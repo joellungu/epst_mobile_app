@@ -1,4 +1,4 @@
-import 'dart:ffi';
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -23,13 +23,13 @@ class _Magasine extends State<Magasine> {
         title: Text(widget.titre!),
       ),
       body: ListView(
-        children: List.generate(100, (index) {
+        children: List.generate(3, (index) {
           return ListTile(
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => PdfVue(
-                    titre: "DYG  duy UYd  DUQY uysd",
+                    titre: "LE MAGAZINE DE L'EPST 4  01.12.2021",
                   ),
                 ),
               );
@@ -38,7 +38,7 @@ class _Magasine extends State<Magasine> {
               Icons.file_copy,
               color: Colors.black,
             ),
-            title: Text("DYG  duy UYd  DUQY uysd"),
+            title: Text("LE MAGAZINE DE L'EPST 4  01.12.2021"),
             subtitle: Text(" Mag du: 12/12/2022"),
             trailing: Icon(
               Icons.arrow_forward_ios_outlined,
@@ -92,6 +92,7 @@ class _PdfVue extends State<PdfVue> {
             context: context,
             builder: (context) {
               return AlertDialog(
+                title: const Text("Aller à la page"),
                 content: Container(
                   height: 100,
                   child: Column(
@@ -100,7 +101,7 @@ class _PdfVue extends State<PdfVue> {
                         child: DropdownButtonFormField<int>(
                           value: a,
                           onChanged: (value) {
-                            value = a;
+                            a = value as int;
                           },
                           items: List.generate(pdfFile!.document.pages.count,
                               (index) {
@@ -114,9 +115,12 @@ class _PdfVue extends State<PdfVue> {
                       ElevatedButton(
                         onPressed: () {
                           _pdfViewerController!.jumpToPage(a);
-                          Navigator.of(context).pop();
+                          print("le numero de la page: $a");
+                          Timer(const Duration(seconds: 1), () {
+                            Navigator.of(context).pop();
+                          });
                         },
-                        child: Center(
+                        child: const Center(
                           child: Text("Afficher"),
                         ),
                       )

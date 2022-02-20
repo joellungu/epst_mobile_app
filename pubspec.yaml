@@ -38,6 +38,13 @@ dependencies:
   youtube_player_flutter: ^8.0.0
   #easy_popup: ^1.0.0
   syncfusion_flutter_pdfviewer: ^19.4.52-beta
+  webview_flutter: ^3.0.0
+  #flutter_plugin_record: ^1.0.1
+  image_picker: ^0.8.4+9
+  #camera_camera: ^2.0.2
+  flutter_chat_bubble: ^2.0.0
+  sqflite: ^2.0.2
+  path_provider: ^2.0.9
 
 dev_dependencies:
   flutter_test:

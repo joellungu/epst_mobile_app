@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -39,49 +39,119 @@ class _DepotPlainte extends State<DepotPlainte> {
               TextField(
                 decoration: InputDecoration(
                   //prefixIcon: Text("De:"),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                    ),
+                  ),
                   label: Text("De:"),
                   //prefixText: "De: "
                 ),
               ),
+              SizedBox(
+                height: 10,
+              ),
               TextField(
                 decoration: InputDecoration(
                     //prefixIcon: Text("Téléphone:"),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(
+                        color: Colors.blue,
+                      ),
+                    ),
                     label: Text("Téléphone:")
                     //prefixText: "De: "
                     ),
               ),
+              SizedBox(
+                height: 10,
+              ),
               TextField(
                 decoration: InputDecoration(
                   //prefixIcon: Text("Email:"),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                    ),
+                  ),
                   label: Text("Email:"),
                   //prefixText: "De: "
                 ),
               ),
-              DropdownButtonHideUnderline(
-                  child: DropdownButtonFormField<int>(
-                value: a,
-                onChanged: (value) {
-                  value = a;
-                },
-                items: [
-                  DropdownMenuItem(
-                    value: 1,
-                    child: Text("Ministre"),
+              SizedBox(
+                height: 10,
+              ),
+              TextField(
+                decoration: InputDecoration(
+                  //prefixIcon: Text("Email:"),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                    ),
                   ),
-                  DropdownMenuItem(
-                    value: 2,
-                    child: Text("Secretaire General"),
+                  label: Text("À:"),
+                  //prefixText: "De: "
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Card(
+                elevation: 0,
+                margin: EdgeInsets.all(0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  side: BorderSide(color: Colors.grey),
+                ),
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
                   ),
-                  DropdownMenuItem(
-                    value: 3,
-                    child: Text("Inspecteur General"),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text("  Province:"),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButtonFormField<int>(
+                            value: a,
+                            onChanged: (value) {
+                              value = a;
+                            },
+                            items: [
+                              DropdownMenuItem(
+                                value: 1,
+                                child: Text("Ministre"),
+                              ),
+                              DropdownMenuItem(
+                                value: 2,
+                                child: Text("Secretaire General"),
+                              ),
+                              DropdownMenuItem(
+                                value: 3,
+                                child: Text("Inspecteur General"),
+                              ),
+                              DropdownMenuItem(
+                                value: 4,
+                                child: Text("DRH"),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                  DropdownMenuItem(
-                    value: 4,
-                    child: Text("DRH"),
-                  )
-                ],
-              )),
+                ),
+              ),
               SizedBox(
                 height: 20,
               ),
@@ -139,41 +209,144 @@ class _DepotPlainte extends State<DepotPlainte> {
                                 ),
                                 itemBuilder: (context) => [
                                   PopupMenuItem(
-                                    child: Text("First"),
-                                    value: 1,
+                                    onTap: () {
+                                      getFile();
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          height: 40,
+                                          width: 40,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: Colors.blue.shade200,
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Icon(Icons.file_copy_outlined),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "Document",
+                                          style: TextStyle(
+                                            color: Colors.grey.shade700,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    value: 2,
                                   ),
                                   PopupMenuItem(
-                                    child: Text("Second"),
+                                    onTap: () {
+                                      getFile();
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          height: 40,
+                                          width: 40,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: Colors.red.shade200,
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Icon(
+                                            Icons.photo_album_outlined,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "Multimedia",
+                                          style: TextStyle(
+                                              color: Colors.grey.shade700,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 17),
+                                        )
+                                      ],
+                                    ),
                                     value: 2,
-                                  )
+                                  ),
+                                  PopupMenuItem(
+                                    onTap: () async {
+                                      //
+                                      final ImagePicker _picker = ImagePicker();
+                                      final XFile? video =
+                                          await _picker.pickVideo(
+                                        source: ImageSource.camera,
+                                      );
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          height: 40,
+                                          width: 40,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: Colors.green.shade200,
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Icon(Icons.video_camera_back),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "Videos",
+                                          style: TextStyle(
+                                              color: Colors.grey.shade700,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 17),
+                                        )
+                                      ],
+                                    ),
+                                    value: 2,
+                                  ),
+                                  PopupMenuItem(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          height: 40,
+                                          width: 40,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            color: Colors.red.shade200,
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Icon(Icons.audiotrack),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "Voie",
+                                          style: TextStyle(
+                                              color: Colors.grey.shade700,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 17),
+                                        )
+                                      ],
+                                    ),
+                                    value: 1,
+                                  ),
                                 ],
                               ),
-                              Expanded(
-                                flex: 1,
-                                child: IconButton(
-                                  onPressed: () async {
-                                    //
-                                    //EasyPopup.show(context, CustomWidget());
-                                    // File? file;
-                                    // //
-                                    // FilePickerResult? result =
-                                    //     await FilePicker.platform.pickFiles();
-
-                                    // if (result != null) {
-                                    //   file = File(result.files.single.path!);
-                                    // } else {
-                                    //   // User canceled the picker
-                                    // }
-                                    // //
-                                    // setState(() {
-                                    //   Fichier = file!.path;
-                                    // });
-                                  },
-                                  icon: Icon(
-                                    Icons.attach_file,
-                                  ),
-                                ),
-                              )
                             ],
                           ),
                         ),
@@ -196,14 +369,6 @@ class _DepotPlainte extends State<DepotPlainte> {
               SizedBox(
                 height: 20,
               ),
-              ElevatedButton(
-                onPressed: () {},
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 40,
-                  child: Text("Tchat"),
-                ),
-              ),
               SizedBox(
                 height: 20,
               ),
@@ -212,6 +377,35 @@ class _DepotPlainte extends State<DepotPlainte> {
         ),
       ),
     );
+  }
+
+  getFile() async {
+    FilePickerResult? result =
+        await FilePicker.platform.pickFiles(allowMultiple: true);
+    if (result != null) {
+      List<File> files = result.paths.map((path) => File(path!)).toList();
+    } else {
+      // User canceled the picker
+    }
+  }
+
+  getFile2(bool v) async {
+    final ImagePicker _picker = ImagePicker();
+    if (v) {
+      final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+    } else {
+      final XFile? video = await _picker.pickVideo(source: ImageSource.camera);
+    }
+    // Pick an image
+    //final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    // Capture a photo
+
+    // Pick a video
+    //final XFile? image = await _picker.pickVideo(source: ImageSource.gallery);
+    // Capture a video
+
+    // Pick multiple images
+    //final List<XFile>? images = await _picker.pickMultiImage();
   }
 }
 

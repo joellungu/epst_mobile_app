@@ -5,6 +5,9 @@ import 'package:epst_app/vues/magasine.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'actualite.dart';
+import 'chat.dart';
+
 class Accueil extends StatefulWidget {
   @override
   State<Accueil> createState() => _Accueil();
@@ -17,7 +20,8 @@ class _Accueil extends State<Accueil> {
     Icons.dashboard,
     Icons.check_circle,
     Icons.people_alt_sharp,
-    //CupertinoIcons.bubble_left_bubble_right_fill,
+    CupertinoIcons.bubble_left_bubble_right_fill,
+    //CupertinoIcons.bubble_left_bubble_right_fill
   ];
 
   List liste = [
@@ -26,6 +30,7 @@ class _Accueil extends State<Accueil> {
     "Mag EPST",
     "Actualité",
     "Listing",
+    "Chat"
   ];
 
   @override
@@ -59,7 +64,7 @@ class _Accueil extends State<Accueil> {
                     titre: liste[index],
                   );
                 } else if (index == 3) {
-                  return DepotPlainte(
+                  return Actualite(
                     titre: liste[index],
                   );
                 } else if (index == 4) {
@@ -67,7 +72,7 @@ class _Accueil extends State<Accueil> {
                     titre: liste[index],
                   );
                 } else {
-                  return Listing(
+                  return Chat(
                     titre: liste[index],
                   );
                 }

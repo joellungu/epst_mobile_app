@@ -3,11 +3,17 @@ import 'package:flutter/material.dart';
 class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text(""),
+        child: Container(
+          child: Image.asset(
+            "assets/EPST APP.png",
+            fit: BoxFit.contain,
+          ),
+          height: MediaQuery.of(context).size.height / 2,
+          width: MediaQuery.of(context).size.width / 1.5,
+        ),
       ),
     );
   }
-
 }

@@ -5,18 +5,30 @@ import 'package:epst_app/vues/accueil.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(Epst(vue: Splash(),),);
-  Timer(Duration(seconds: 5), (){
+  runApp(
+    Epst(
+      vue: Splash(),
+    ),
+  );
+  Timer(const Duration(seconds: 5), () {
     load();
   });
 }
 
 load() async {
   bool v = true;
-  if(v){
-    runApp(Epst(vue: Accueil(),),);
-  }else{
-    runApp(Epst(vue: Splash(),),);
+  if (v) {
+    runApp(
+      Epst(
+        vue: Accueil(),
+      ),
+    );
+  } else {
+    runApp(
+      Epst(
+        vue: Splash(),
+      ),
+    );
   }
 }
 
@@ -38,4 +50,3 @@ class Epst extends StatelessWidget {
     );
   }
 }
-
