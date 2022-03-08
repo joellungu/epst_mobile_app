@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'actualite.dart';
 import 'chat.dart';
+import 'formation_enseignant.dart';
 
 class Accueil extends StatefulWidget {
   @override
@@ -14,23 +15,52 @@ class Accueil extends StatefulWidget {
 }
 
 class _Accueil extends State<Accueil> {
-  List listeIcons = [
-    Icons.airplay,
-    Icons.list_alt,
-    Icons.dashboard,
-    Icons.check_circle,
-    Icons.people_alt_sharp,
-    CupertinoIcons.bubble_left_bubble_right_fill,
-    //CupertinoIcons.bubble_left_bubble_right_fill
+  List listeIcons = const [
+    Icon(
+      Icons.language,
+      color: Colors.white,
+      size: 100,
+    ),
+    Icon(
+      Icons.list_alt,
+      color: Colors.white,
+      size: 100,
+    ),
+    Icon(
+      Icons.dashboard,
+      color: Colors.white,
+      size: 100,
+    ),
+    Icon(
+      Icons.check_circle,
+      color: Colors.white,
+      size: 100,
+    ),
+    Icon(
+      Icons.people_alt_sharp,
+      color: Colors.white,
+      size: 100,
+    ),
+    Icon(
+      CupertinoIcons.bubble_left_bubble_right_fill,
+      color: Colors.white,
+      size: 100,
+    ),
+    Icon(
+      CupertinoIcons.profile_circled,
+      color: Colors.white,
+      size: 100,
+    ),
   ];
 
   List liste = [
-    "Suivre RTEduc",
+    "Epst actualités",
     "Depot plainte",
     "Mag EPST",
-    "Actualité",
+    "Reforme de l'EPST",
     "Listing",
-    "Chat"
+    "Chat",
+    "Formation enseignents"
   ];
 
   @override
@@ -71,8 +101,13 @@ class _Accueil extends State<Accueil> {
                   return Listing(
                     titre: liste[index],
                   );
-                } else {
+                } else if (index == 5) {
                   return Chat(
+                    titre: liste[index],
+                  );
+                } else {
+                  //
+                  return FormationEnseignent(
                     titre: liste[index],
                   );
                 }
@@ -80,6 +115,13 @@ class _Accueil extends State<Accueil> {
             },
             //elevation: 1,
             //color: Colors.white,
+            style: ButtonStyle(
+                /*
+              backgroundColor: MaterialStateProperty.all(
+                Colors.blue.shade400,
+              ),
+              */
+                ),
             child: Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -88,11 +130,7 @@ class _Accueil extends State<Accueil> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Icon(
-                        listeIcons[index],
-                        color: Colors.white70,
-                        size: 100,
-                      ),
+                      child: listeIcons[index],
                       decoration: const BoxDecoration(
                           //color: Colors.blue,
                           borderRadius: BorderRadius.only(
@@ -115,14 +153,14 @@ class _Accueil extends State<Accueil> {
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white70,
+                                color: Colors.white,
                               ),
                             )
                           ],
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white70,
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -138,7 +176,7 @@ class _Accueil extends State<Accueil> {
             ),
           );
         }),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }

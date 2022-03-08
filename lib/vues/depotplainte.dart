@@ -16,8 +16,50 @@ class DepotPlainte extends StatefulWidget {
 
 class _DepotPlainte extends State<DepotPlainte> {
   bool exp = false;
-  int a = 1;
+  TextEditingController deC = TextEditingController();
+  TextEditingController telephoneC = TextEditingController();
+  TextEditingController emailC = TextEditingController();
+  TextEditingController aC = TextEditingController();
+  TextEditingController messageC = TextEditingController();
+
+  int a = 0;
   var Fichier = "";
+  List listeProvince = [
+    "Bas-Uele",
+    "Équateur",
+    "Haut-Katanga",
+    "Haut-Lomami",
+    "Haut-Uele",
+    "Ituri",
+    "Kasaï",
+    "Kasaï central",
+    "Kasaï oriental",
+    "Kinshasa",
+    "Kongo-Central",
+    "Kwango",
+    "Kwilu",
+    "Lomami",
+    "Lualaba",
+    "Mai-Ndombe",
+    "Maniema",
+    "Mongala",
+    "Nord-Kivu",
+    "Nord-Ubangi",
+    "Sankuru",
+    "Sud-Kivu",
+    "Sud-Ubangi",
+    "Tanganyika",
+    "Tshopo",
+    "Tshuapa",
+  ];
+  //
+  int ti = 0;
+  //
+  List listeTiquet = [
+    "Gratuité de l'enseignement",
+    "Violences basées sur le genre",
+    "Autres...",
+  ];
   //
   @override
   Widget build(BuildContext context) {
@@ -37,6 +79,7 @@ class _DepotPlainte extends State<DepotPlainte> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               TextField(
+                controller: deC,
                 decoration: InputDecoration(
                   //prefixIcon: Text("De:"),
                   border: OutlineInputBorder(
@@ -53,6 +96,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                 height: 10,
               ),
               TextField(
+                controller: telephoneC,
                 decoration: InputDecoration(
                     //prefixIcon: Text("Téléphone:"),
                     border: OutlineInputBorder(
@@ -69,6 +113,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                 height: 10,
               ),
               TextField(
+                controller: emailC,
                 decoration: InputDecoration(
                   //prefixIcon: Text("Email:"),
                   border: OutlineInputBorder(
@@ -85,6 +130,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                 height: 10,
               ),
               TextField(
+                controller: aC,
                 decoration: InputDecoration(
                   //prefixIcon: Text("Email:"),
                   border: OutlineInputBorder(
@@ -127,24 +173,15 @@ class _DepotPlainte extends State<DepotPlainte> {
                             onChanged: (value) {
                               value = a;
                             },
-                            items: [
-                              DropdownMenuItem(
-                                value: 1,
-                                child: Text("Ministre"),
-                              ),
-                              DropdownMenuItem(
-                                value: 2,
-                                child: Text("Secretaire General"),
-                              ),
-                              DropdownMenuItem(
-                                value: 3,
-                                child: Text("Inspecteur General"),
-                              ),
-                              DropdownMenuItem(
-                                value: 4,
-                                child: Text("DRH"),
-                              )
-                            ],
+                            items: List.generate(
+                              listeProvince.length,
+                              (index) {
+                                return DropdownMenuItem(
+                                  value: index,
+                                  child: Text(listeProvince[index]),
+                                );
+                              },
+                            ),
                           ),
                         ),
                       )
@@ -157,9 +194,56 @@ class _DepotPlainte extends State<DepotPlainte> {
               ),
               Card(
                 elevation: 0,
+                margin: EdgeInsets.all(0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
-                  side: BorderSide(
+                  side: BorderSide(color: Colors.grey),
+                ),
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text("  Tiquet:"),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButtonFormField<int>(
+                            value: a,
+                            onChanged: (value) {
+                              value = a;
+                            },
+                            items: List.generate(
+                              listeTiquet.length,
+                              (index) {
+                                return DropdownMenuItem(
+                                  value: index,
+                                  child: Text(listeTiquet[index]),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Card(
+                elevation: 0,
+                //margin: const EdgeInsets.all(10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  side: const BorderSide(
                     color: Colors.grey,
                     width: 1,
                   ),
@@ -171,6 +255,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                       Expanded(
                         flex: 8,
                         child: TextField(
+                          controller: messageC,
                           //maxLength: 10,
                           maxLines: 5,
                           decoration: InputDecoration(
@@ -359,7 +444,14 @@ class _DepotPlainte extends State<DepotPlainte> {
                 height: 20,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  deC.clear();
+                  telephoneC.clear();
+                  emailC.clear();
+                  aC.clear();
+                  messageC.clear();
+                  a = 0;
+                },
                 child: Container(
                   alignment: Alignment.center,
                   height: 40,
@@ -445,3 +537,10 @@ SizedBox(height: 20,),
               ),
               ),
  */
+
+
+/*
+
+	
+
+*/

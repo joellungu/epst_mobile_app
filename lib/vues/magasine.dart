@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
@@ -21,6 +20,14 @@ class _Magasine extends State<Magasine> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(widget.titre!),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.search,
+            ),
+          )
+        ],
       ),
       body: ListView(
         children: List.generate(3, (index) {
@@ -29,7 +36,7 @@ class _Magasine extends State<Magasine> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => PdfVue(
-                    titre: "LE MAGAZINE DE L'EPST 4  01.12.2021",
+                    titre: "LE MAGAZINE DE L'EPST ${index + 1} COMPRESSE",
                   ),
                 ),
               );
@@ -38,7 +45,7 @@ class _Magasine extends State<Magasine> {
               Icons.file_copy,
               color: Colors.black,
             ),
-            title: Text("LE MAGAZINE DE L'EPST 4  01.12.2021"),
+            title: Text("LE MAGAZINE DE L'EPST ${index + 1} COMPRESSE"),
             subtitle: Text(" Mag du: 12/12/2022"),
             trailing: Icon(
               Icons.arrow_forward_ios_outlined,
@@ -80,7 +87,7 @@ class _PdfVue extends State<PdfVue> {
         title: Text(widget.titre!),
       ), //LE MAGAZINE DE L'EPST 4  01.12.2021.pdf
       body: SfPdfViewer.asset(
-        "assets/LE MAGAZINE DE L'EPST 4  01.12.2021.pdf",
+        "assets/${widget.titre!}.pdf",
         controller: _pdfViewerController,
         onDocumentLoaded: (pdf) {
           pdfFile = pdf;

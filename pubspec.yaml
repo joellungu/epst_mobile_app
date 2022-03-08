@@ -37,7 +37,8 @@ dependencies:
   file_picker: ^4.4.0
   youtube_player_flutter: ^8.0.0
   #easy_popup: ^1.0.0
-  syncfusion_flutter_pdfviewer: ^19.4.52-beta
+  syncfusion_flutter_pdfviewer: ^19.4.55-beta
+  #pdfx: 
   webview_flutter: ^3.0.0
   #flutter_plugin_record: ^1.0.1
   image_picker: ^0.8.4+9
@@ -45,6 +46,7 @@ dependencies:
   flutter_chat_bubble: ^2.0.0
   sqflite: ^2.0.2
   path_provider: ^2.0.9
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:

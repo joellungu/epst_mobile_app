@@ -1,7 +1,8 @@
 import 'dart:io';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class Actualite extends StatefulWidget {
   String? titre;
@@ -15,37 +16,13 @@ class Actualite extends StatefulWidget {
 }
 
 class _Actualite extends State<Actualite> {
-  Stream<int> tcheck() async* {
-    try {
-      final result = await InternetAddress.lookup('www.google.com');
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
-        print(
-            '_________________________________________________________________connected');
-
-        var url = Uri.parse('https://www.google.com');
-        //var client = HttpClient();
-
-        while (true) {
-          //var response = await http.get(url);
-          //HttpClientRequest request =
-          //await client.get('www.google.com', 80, '');
-          Future.delayed(
-            Duration(seconds: 5),
-          );
-          //Optionally set up headers...
-          //Optionally write to the request object...
-          //HttpClientResponse response = await request.close();
-          //print('Response status: ${result.statusCode}');
-          yield 200; //response.statusCode;
-        }
-      }
-    } on SocketException catch (_) {
-      print(
-          '___________________________________________________________________not connected');
-      yield 0;
-    }
-  }
-
+  List actus = [
+    "Gratuité de l'enseignement",
+    "Programme scolaire Maternelle",
+    "Apprentissage des maths (PEQPSU)",
+    "Amelioration de la qualité de l'enseignement (PAQUED)",
+    "PERSE"
+  ];
   @override
   void initState() {
     super.initState();
@@ -56,71 +33,85 @@ class _Actualite extends State<Actualite> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StreamBuilder(
-        stream: tcheck(),
-        builder: (context, e) {
-          switch (e.connectionState) {
-            case ConnectionState.waiting:
-              return Center(
-                child: Container(
-                  height: 5,
-                  width: 100,
-                  alignment: Alignment.center,
-                  child: LinearProgressIndicator(),
-                ),
-              );
-            case ConnectionState.none:
-              return const Center(
-                child: Center(
-                  child: Text("Un probleme lors de connexion"),
-                ),
-              );
-            case ConnectionState.active:
-              if (e.data == 0) {
-                return Container(
-                  color: Colors.blueGrey,
-                );
-              } else {
-                return const Padding(
-                  padding: EdgeInsets.only(top: 25),
-                  child: WebView(
-                    javascriptMode: JavascriptMode.unrestricted,
-                    initialUrl: 'https://www.eduquepsp.education/',
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(widget.titre!),
+      ),
+      body: ListView(
+        children: List.generate(actus.length, (index) {
+          return ListTile(
+            onTap: () {
+              print("$index");
+              if (index == 2) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => Lire(
+                      titre: "${actus[index]}",
+                    ),
                   ),
                 );
               }
-            case ConnectionState.done:
-              if (e.data == 0) {
-                return Center(
-                    child: Container(
-                  height: 200,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.cloud_off_outlined,
-                        size: 100,
-                      ),
-                      Text("Vous n'etes pas connecté au reseau!"),
-                    ],
+              /*
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => PdfVue(
+                    titre: "LE MAGAZINE DE L'EPST 4  01.12.2021",
                   ),
-                ));
-              } else {
-                return const Padding(
-                  padding: EdgeInsets.only(top: 25),
-                  child: WebView(
-                    javascriptMode: JavascriptMode.unrestricted,
-                    initialUrl: 'https://www.eduquepsp.education/',
-                  ),
-                );
-              }
-          }
-        },
+                ),
+              );
+              */
+            },
+            leading: Icon(
+              index == 2 ? Icons.play_arrow_outlined : Icons.access_time,
+              color: Colors.black,
+            ),
+            title: Text(
+              "${actus[index]}",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            subtitle: Text(" Reforme du: 12/12/2022"),
+          );
+        }),
       ),
     );
   }
 }
 
+class Lire extends StatefulWidget {
+  String? titre;
+
+  Lire({this.titre});
+
+  @override
+  State<StatefulWidget> createState() {
+    return _Lire();
+  }
+}
+
+class _Lire extends State<Lire> {
+  YoutubePlayerController _controller = YoutubePlayerController(
+    initialVideoId: '74EdyJzluWY',
+    flags: YoutubePlayerFlags(
+      autoPlay: true,
+      mute: false,
+    ),
+  );
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(widget.titre!),
+      ),
+      body: YoutubePlayer(
+        controller: _controller,
+        showVideoProgressIndicator: true,
+      ),
+    );
+  }
+}
 
 
 //https://www.eduquepsp.education/

@@ -48,6 +48,7 @@ class ChatDB {
   }
 
   savePlainte(Map<String, dynamic> plainte) async {
+    List liste = plainte["piecejointe"];
     // Insert some records in a transaction
     await database!.transaction((txn) async {
       int id1 = await txn.rawInsert(
