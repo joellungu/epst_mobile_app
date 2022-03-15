@@ -1,10 +1,12 @@
 import 'dart:async';
-
 import 'package:epst_app/splash.dart';
 import 'package:epst_app/vues/accueil.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  //
+  WidgetsFlutterBinding.ensureInitialized();
+  //
   runApp(
     Epst(
       vue: Splash(),
@@ -13,6 +15,7 @@ void main() {
   Timer(const Duration(seconds: 5), () {
     load();
   });
+  //
 }
 
 load() async {
