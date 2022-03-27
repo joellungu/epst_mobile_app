@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:convert';
+import 'package:epst_app/utils/connexion.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
@@ -14,6 +16,38 @@ class Magasine extends StatefulWidget {
 }
 
 class _Magasine extends State<Magasine> {
+  //
+  Future<Widget> loadMagasin() async {
+    List<Map<String, dynamic>> liste = await Connexion.liste_magasin(1);
+    print("longueur  ___  $liste");
+    return ListView(
+      children: List.generate(liste.length, (index) {
+        return ListTile(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => PdfVue(
+                  titre: liste[index]["libelle"],
+                  id: liste[index]["id"],
+                ),
+              ),
+            );
+          },
+          leading: Icon(
+            Icons.file_copy,
+            color: Colors.black,
+          ),
+          title: Text(liste[index]["libelle"]),
+          subtitle: Text(liste[index]["date"]),
+          trailing: Icon(
+            Icons.arrow_forward_ios_outlined,
+          ),
+        );
+      }),
+    );
+  }
+  //
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,29 +63,25 @@ class _Magasine extends State<Magasine> {
           )
         ],
       ),
-      body: ListView(
-        children: List.generate(3, (index) {
-          return ListTile(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => PdfVue(
-                    titre: "LE MAGAZINE DE L'EPST ${index + 1} COMPRESSE",
-                  ),
-                ),
-              );
-            },
-            leading: Icon(
-              Icons.file_copy,
-              color: Colors.black,
-            ),
-            title: Text("LE MAGAZINE DE L'EPST ${index + 1} COMPRESSE"),
-            subtitle: Text(" Mag du: 12/12/2022"),
-            trailing: Icon(
-              Icons.arrow_forward_ios_outlined,
+      body: FutureBuilder(
+        future: loadMagasin(),
+        builder: (context, t) {
+          if (t.hasData) {
+            return t.data as Widget;
+          } else if (t.hasError) {
+            return Center(
+              child: Text("Problème de connexion"),
+            );
+          }
+          return Center(
+            child: Container(
+              height: 50,
+              width: 50,
+              alignment: Alignment.center,
+              child: LinearProgressIndicator(),
             ),
           );
-        }),
+        },
       ),
     );
   }
@@ -59,8 +89,9 @@ class _Magasine extends State<Magasine> {
 
 class PdfVue extends StatefulWidget {
   String? titre;
+  int? id;
 
-  PdfVue({this.titre});
+  PdfVue({this.titre, this.id});
 
   @override
   State<StatefulWidget> createState() {
@@ -72,6 +103,29 @@ class _PdfVue extends State<PdfVue> {
   PdfDocumentLoadedDetails? pdfFile;
   int a = 1;
   PdfViewerController? _pdfViewerController;
+
+  Future<Widget> loadVue() async {
+    Map<String, dynamic> mag = await Connexion.getMagasin(widget.id!);
+    print(mag["date"]);
+    print(mag["id"]);
+    print(mag["description"]);
+    print(mag["libelle"]);
+    //print(mag["piecejointe"]);
+
+    return SfPdfViewer.memory(
+      base64Decode(mag["piecejointe"]),
+      controller: _pdfViewerController,
+      onDocumentLoaded: (pdf) {
+        pdfFile = pdf;
+      },
+    );
+
+    /*
+    return Center(
+      child: Text("cool"),
+    );
+    */
+  }
 
   @override
   void initState() {
@@ -86,11 +140,24 @@ class _PdfVue extends State<PdfVue> {
         centerTitle: false,
         title: Text(widget.titre!),
       ), //LE MAGAZINE DE L'EPST 4  01.12.2021.pdf
-      body: SfPdfViewer.asset(
-        "assets/${widget.titre!}.pdf",
-        controller: _pdfViewerController,
-        onDocumentLoaded: (pdf) {
-          pdfFile = pdf;
+      body: FutureBuilder(
+        future: loadVue(),
+        builder: (context, t) {
+          if (t.hasData) {
+            return t.data as Widget;
+          } else if (t.hasError) {
+            return Center(
+              child: Text("Problème de connexion"),
+            );
+          }
+          return Center(
+            child: Container(
+              height: 50,
+              width: 50,
+              alignment: Alignment.center,
+              child: LinearProgressIndicator(),
+            ),
+          );
         },
       ),
       floatingActionButton: FloatingActionButton(

@@ -1,15 +1,21 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:epst_app/models/historiquedb.dart';
 import 'package:http/http.dart' as http;
+import 'package:sqflite/sqflite.dart';
 
 class Connexion {
   //
-  static var lien = 'http://192.168.1.168:8080/';
+  //static var lien = 'http://10.0.2.2:8080/';
+  //static var lien = 'https://epstapp.herokuapp.com/';
+  static var lien = 'http://192.168.43.2:8080/';
   //
   static Future<String> enregistrement(Map<String, dynamic> utilisateur) async {
     //
     print("utilisateur: ${json.encode(utilisateur)}");
+    Historique h = Historique();
+    Database db = await h.openDB();
     //
     var url = Uri.parse(lien + "plainte");
     //
@@ -24,11 +30,14 @@ class Connexion {
     print('Response body: ${response.body}');
     //print(response);
     if (response.statusCode == 200 || response.statusCode == 201) {
-      String r = response.body;
-      if (r == "0") {
+      Map<String, dynamic> r = jsonDecode(response.body);
+      if ("${r["save"]}" == "0") {
         return "0";
       } else {
-        return r;
+        //
+        db.insert("historique", utilisateur);
+        //
+        return "${r["save"]}";
       }
     } else {
       return "0";
@@ -93,4 +102,32 @@ class Connexion {
 
     return "";
   }
+
+  //
+  static Future<List<Map<String, dynamic>>> liste_magasin(int type) async {
+    List<Map<String, dynamic>> liste = [];
+    //
+    var url = Uri.parse(lien + "magasin/all/$type");
+    var response = await http.get(url);
+    //
+    List rep_liste = json.decode(response.body);
+    rep_liste.forEach((element) {
+      Map<String, dynamic> e = element;
+      liste.add(e);
+    });
+
+    return liste;
+  }
+
+  //
+  static Future<Map<String, dynamic>> getMagasin(int id) async {
+    Map<String, dynamic> t = {};
+    //
+    var url = Uri.parse(lien + "magasin/$id");
+    var response = await http.get(url);
+    t = jsonDecode(response.body);
+    //
+    return t;
+  }
+  //
 }

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'dart:typed_data';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:epst_app/models/historiquedb.dart';
+import 'package:epst_app/vues/reference.dart';
 import 'package:epst_app/vues/transsfere.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
@@ -117,14 +118,12 @@ class _DepotPlainte extends State<DepotPlainte> {
                       ),
                     );
                   } else {
-                    /*
-              //
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => PlainteHis(),
-                ),
-              );
-              */
+                    //
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => References(),
+                      ),
+                    );
                   }
                 },
               ),
@@ -526,10 +525,10 @@ class _DepotPlainte extends State<DepotPlainte> {
                       "envoyeur": deC.text,
                       "telephone": telephoneC.text,
                       "email": emailC.text,
-                      "destinateur": deC.text,
+                      "destinateur": aC.text,
                       "id_tiquet": a,
                       "message": messageC.text,
-                      "id_statut": "${listeTiquet[a]}",
+                      "id_statut": "0",
                       "piecejointe_id": "",
                       "reference": getReference(),
                       "date": "${DateTime.now()}",

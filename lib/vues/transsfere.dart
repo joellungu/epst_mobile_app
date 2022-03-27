@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
-
+import 'package:http/http.dart' as http;
 import 'package:epst_app/utils/connexion.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +20,7 @@ class Transfere1 extends StatefulWidget {
 class _Transfere1 extends State<Transfere1> {
   Future<String> send() async {
     String rep = await Connexion.enregistrement(widget.utilisateur!);
-
+    print("______________:   $rep");
     return rep;
   }
 
@@ -32,8 +32,14 @@ class _Transfere1 extends State<Transfere1> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data != "0") {
-              return Transfere2("${json.decode("${snapshot.data}")["save"]}",
-                  widget.listeFichier);
+              if (widget.listeFichier.length != 0) {
+                return Transfere2(
+                    "${json.decode("${snapshot.data}")}", widget.listeFichier);
+              } else {
+                return Center(
+                  child: Text("Plainte envoyé!"),
+                );
+              }
             } else {
               return Center(
                 child:
@@ -81,11 +87,50 @@ class Transfere2 extends StatefulWidget {
 }
 
 class _Transfere2 extends State<Transfere2> {
-  Future<String> send() async {
-    String rep = await Connexion.enregistrementPiecejointe(
-        widget.piecejointeId, widget.listeFichier);
+  int t = 0;
+  Future<void> send() async {
+    //String rep = await Connexion.enregistrementPiecejointe(
+    //  widget.piecejointeId, widget.listeFichier);
 
-    return rep;
+    widget.listeFichier.forEach(
+      (element) async {
+        //
+        var url = Uri.parse(
+            "https://epstapp.herokuapp.com/piecejointe/${widget.piecejointeId}/${element["type"]}");
+        //element ;
+        //var stream = new http.ByteStream(DelegatingStream.typed(element["type"]));
+        var length = await element["length"];
+        print("------------------------");
+        print(element["type"]);
+        print(widget.piecejointeId);
+        print("------------------------");
+
+        Map<String, dynamic> map = {
+          "piecejointe_id": widget.piecejointeId,
+          "donne": element["data"],
+          "type": element["type"]
+        };
+        var response = await http.post(
+          url,
+          headers: {
+            "Content-Type": "multipart/form-data", //"application/json",
+          },
+          body: element["data"],
+        );
+        //
+        if (response.statusCode == 201 || response.statusCode == 200) {
+          setState(() {
+            t++;
+          });
+        }
+        //
+        print("_____________: ${response.body}");
+        print("_____________: ${response.headers}");
+        print("_____________: ${response.statusCode}");
+        print("_____________: ${response.contentLength}");
+      },
+    );
+    //return rep;
   }
 
   Widget message(String message) {
@@ -101,37 +146,27 @@ class _Transfere2 extends State<Transfere2> {
   }
 
   @override
+  void initState() {
+    //
+    send();
+    //
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: FutureBuilder(
-      future: send(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return message("Truc");
-        } else if (snapshot.hasError) {
-          return Center(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: 40,
+            alignment: Alignment.center,
             child: Text(
-                "Un probleme est survenu lors de l'envois de la plainte\ncode: ${snapshot.error}"),
-          );
-        }
-
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              height: 40,
-              width: 40,
-              alignment: Alignment.center,
-              child: CircularProgressIndicator(),
-            ),
-            Container(
-              height: 50,
-              alignment: Alignment.center,
-              child: Text("Envois de votre plainte en cours..."),
-            ),
-          ],
-        );
-      },
-    ));
+                "Nombre d'element envoyé : $t sur un total de : ${widget.listeFichier.length}"),
+          ),
+        ],
+      ),
+    );
   }
 }
