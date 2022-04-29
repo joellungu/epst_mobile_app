@@ -1,8 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:epst_app/models/magasin.dart';
 import 'package:epst_app/utils/connexion.dart';
 import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class Magasine extends StatefulWidget {
@@ -19,13 +24,36 @@ class Magasine extends StatefulWidget {
 class _Magasine extends State<Magasine> {
   //
   Future<Widget> loadMagasin() async {
-    List<Map<String, dynamic>> liste = await Connexion.liste_magasin(1);
+    List<Map<String, dynamic>> liste = [];
+    //
+
+    //
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      liste = await Connexion.liste_magasin(1);
+    } else {
+      Magasin magasin = Magasin();
+      //
+      Database db = await magasin.openDB();
+      //
+      liste = await db.query("magasin");
+    }
     print("longueur  ___  $liste");
     return ListView(
       children: List.generate(liste.length, (index) {
         return ListTile(
-          onTap: () {
-            //OpenFile.open("/sdcard/example.txt");
+          onTap: () async {
+            final Directory directory =
+                await getApplicationDocumentsDirectory();
+            //
+            print(
+                "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
+            //
+            OpenResult or = await OpenFile.open(
+                "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
+            print(or.message);
+            print(or.type);
           },
           leading: Icon(
             Icons.file_copy,
