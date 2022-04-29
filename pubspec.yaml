@@ -38,7 +38,8 @@ dependencies:
   youtube_player_flutter: ^8.0.0
   #easy_popup: ^1.0.0
   syncfusion_flutter_pdfviewer: ^19.4.55-beta
-  #pdfx: 
+  #pdfx:
+  uuid: ^3.0.6
   webview_flutter: ^3.0.0
   #flutter_plugin_record: ^1.0.1
   image_picker: ^0.8.4+9
@@ -49,6 +50,7 @@ dependencies:
   http: ^0.13.4
   connectivity_plus: ^2.2.1
   web_socket_channel: ^2.1.0
+  open_file: ^3.2.1
 
 dev_dependencies:
   flutter_test:

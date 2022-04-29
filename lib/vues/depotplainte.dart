@@ -10,6 +10,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:uuid/uuid.dart';
 
 class DepotPlainte extends StatefulWidget {
   String? titre;
@@ -279,6 +280,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                         child: DropdownButtonHideUnderline(
                           child: DropdownButtonFormField<int>(
                             value: a,
+                            isExpanded: true,
                             onChanged: (value) {
                               value = a;
                             },
@@ -353,7 +355,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                               ),
                               PopupMenuButton(
                                 onSelected: (e) {
-                                  getFile();
+                                  //getFile();
                                 },
                                 icon: Icon(
                                   Icons.attach_file,
@@ -361,7 +363,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                                 itemBuilder: (context) => [
                                   PopupMenuItem(
                                     onTap: () {
-                                      //getFile();
+                                      getFile();
                                     },
                                     child: Row(
                                       mainAxisAlignment:
@@ -382,7 +384,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                                           width: 10,
                                         ),
                                         Text(
-                                          "Document",
+                                          "Piece jointe",
                                           style: TextStyle(
                                             color: Colors.grey.shade700,
                                             fontWeight: FontWeight.bold,
@@ -393,112 +395,6 @@ class _DepotPlainte extends State<DepotPlainte> {
                                     ),
                                     value: 4,
                                   ),
-                                  PopupMenuItem(
-                                    onTap: () {
-                                      //getFile();
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          height: 40,
-                                          width: 40,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            color: Colors.red.shade200,
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                          child: Icon(
-                                            Icons.photo_album_outlined,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "Multimedia",
-                                          style: TextStyle(
-                                              color: Colors.grey.shade700,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 17),
-                                        )
-                                      ],
-                                    ),
-                                    value: 3,
-                                  ),
-                                  PopupMenuItem(
-                                    onTap: () async {
-                                      //
-                                      //getFile();
-                                      /*
-                                      final ImagePicker _picker = ImagePicker();
-                                      final XFile? video =
-                                          await _picker.pickVideo(
-                                        source: ImageSource.camera,
-                                      );
-                                      */
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          height: 40,
-                                          width: 40,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            color: Colors.green.shade200,
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                          child: Icon(Icons.video_camera_back),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "Videos",
-                                          style: TextStyle(
-                                              color: Colors.grey.shade700,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 17),
-                                        )
-                                      ],
-                                    ),
-                                    value: 2,
-                                  ),
-                                  PopupMenuItem(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          height: 40,
-                                          width: 40,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            color: Colors.red.shade200,
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                          child: Icon(Icons.audiotrack),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "Voie",
-                                          style: TextStyle(
-                                              color: Colors.grey.shade700,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 17),
-                                        )
-                                      ],
-                                    ),
-                                    value: 1,
-                                  ),
                                 ],
                               ),
                             ],
@@ -508,6 +404,28 @@ class _DepotPlainte extends State<DepotPlainte> {
                     ],
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: List.generate(listeFichier.length, (x) {
+                  return ListTile(
+                    leading: Icon(Icons.file_present),
+                    title: Text("Piece n° $x"),
+                    trailing: IconButton(
+                      onPressed: () {
+                        //
+                        setState(() {
+                          listeFichier.removeAt(x);
+                        });
+                        //
+                      },
+                      icon: Icon(Icons.close),
+                    ),
+                  );
+                }),
               ),
               const SizedBox(
                 height: 20,
@@ -626,51 +544,8 @@ class _DepotPlainte extends State<DepotPlainte> {
   }
 
   String getReference() {
-    List al = [
-      "a",
-      "b",
-      "c",
-      "d",
-      "e",
-      "f",
-      "g",
-      "h",
-      "i",
-      "j",
-      "k",
-      "l",
-      "m",
-      "n",
-      "o",
-      "p",
-      "q",
-      "r",
-      "s",
-      "t",
-      "u",
-      "v",
-      "w",
-      "x",
-      "y",
-      "z"
-    ];
-    Random r = Random(25);
-    int t1 = r.nextInt(25);
-    int t2 = r.nextInt(25);
-    int t3 = r.nextInt(25);
-    int t4 = r.nextInt(25);
-    int t5 = r.nextInt(25);
-    int t6 = r.nextInt(25);
-    int t7 = r.nextInt(25);
-    String t8 = al[r.nextInt(25)];
-    String t9 = al[r.nextInt(25)];
-    String t10 = al[r.nextInt(25)];
-    String t11 = al[r.nextInt(25)];
-    String t12 = al[r.nextInt(25)];
-    String t13 = al[r.nextInt(25)];
-    String t14 = al[r.nextInt(25)];
-
-    return "$t1$t2$t3$t4$t5$t6$t7$t8$t9$t10$t11$t12$t13$t14";
+    var uuid = Uuid();
+    return "${uuid.v4()}";
   }
 
   getFile() async {
@@ -691,6 +566,7 @@ class _DepotPlainte extends State<DepotPlainte> {
           },
         );
       });
+      setState(() {});
     } else {
       // User canceled the picker
     }
