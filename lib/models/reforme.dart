@@ -2,13 +2,13 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
 
-class Magasin {
+class Reforme {
   var database;
 
   Future<Database> openDB() async {
     // Get a location using getDatabasesPath
     var databasesPath = await getDatabasesPath();
-    String path1 = join(databasesPath, 'magasin.db');
+    String path1 = join(databasesPath, 'reforme.db');
 
     // Delete the database
     //await deleteDatabase(path1);
@@ -17,7 +17,7 @@ class Magasin {
     database = await openDatabase(path1, version: 1,
         onCreate: (Database db, int version) async {
       // When creating the db, create the table
-      await db.execute("""CREATE TABLE magasin 
+      await db.execute("""CREATE TABLE reforme 
         (
           id VARCHAR,
           libelle VARCHAR,

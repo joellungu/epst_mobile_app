@@ -1,6 +1,12 @@
 import 'dart:io';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:epst_app/models/reforme.dart';
+import 'package:epst_app/utils/connexion.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -29,6 +35,54 @@ class _Actualite extends State<Actualite> {
     // Enable virtual display.
     if (Platform.isAndroid) WebView.platform = AndroidWebView();
   }
+
+  //
+  Future<Widget> loadMagasin() async {
+    List<Map<String, dynamic>> liste = [];
+    //
+
+    //
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      liste = await Connexion.liste_magasin(2);
+    } else {
+      Reforme reforme = Reforme();
+      //
+      Database db = await reforme.openDB();
+      //
+      liste = await db.query("reforme");
+    }
+    print("longueur  ___  $liste");
+    return ListView(
+      children: List.generate(liste.length, (index) {
+        return ListTile(
+          onTap: () async {
+            final Directory directory =
+                await getApplicationDocumentsDirectory();
+            //
+            print(
+                "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
+            //
+            OpenResult or = await OpenFile.open(
+                "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
+            print(or.message);
+            print(or.type);
+          },
+          leading: Icon(
+            Icons.folder,
+            color: Colors.black,
+          ),
+          title: Text(liste[index]["libelle"]),
+          subtitle: Text(liste[index]["date"]),
+          trailing: Icon(
+            Icons.arrow_forward_ios_outlined,
+          ),
+        );
+      }),
+    );
+  }
+  //
 
   @override
   Widget build(BuildContext context) {

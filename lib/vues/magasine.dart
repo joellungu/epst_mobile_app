@@ -56,7 +56,7 @@ class _Magasine extends State<Magasine> {
             print(or.type);
           },
           leading: Icon(
-            Icons.file_copy,
+            Icons.folder,
             color: Colors.black,
           ),
           title: Text(liste[index]["libelle"]),

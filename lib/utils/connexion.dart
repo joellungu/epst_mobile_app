@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:epst_app/models/historiquedb.dart';
 import 'package:epst_app/models/magasin.dart';
+import 'package:epst_app/models/reforme.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -114,15 +115,22 @@ class Connexion {
     //
     //
     Magasin magasin = Magasin();
+    Reforme reforme = Reforme();
     //
     Database db = await magasin.openDB();
+    if (type == 1) {
+      db = await magasin.openDB();
+    } else {
+      db = await reforme.openDB();
+    }
     //
     List rep_liste = json.decode(response.body);
     rep_liste.forEach((element) {
       Map<String, dynamic> e = element;
       print(e);
       liste.add(e);
-      db.insert("magasin", element); //
+      db.insert(type == 1 ? "magasin" : "reforme", element); //
+
       _write("${e["id"]}", e["extention"]);
     });
 
@@ -131,12 +139,12 @@ class Connexion {
 
   //
   static _write(String id, String extension) async {
-    Map<String, dynamic> m = await getMagasin(id);
     final Directory directory = await getApplicationDocumentsDirectory();
 
     final File file = File('${directory.path}/$id.$extension');
     bool v = await Directory('${directory.path}/$id.$extension').exists();
     if (!v) {
+      Map<String, dynamic> m = await getMagasin(id);
       File f = await await file.writeAsBytes(base64Decode(m["piecejointe"])); //
       bool b = await f.exists();
       print("Fichier crée avec succé ! $b");
