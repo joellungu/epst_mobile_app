@@ -63,6 +63,8 @@ class _Accueil extends State<Accueil> {
     "Formation enseignents"
   ];
 
+  TextEditingController textEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,38 +82,76 @@ class _Accueil extends State<Accueil> {
         children: List.generate(liste.length, (index) {
           return ElevatedButton(
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                if (index == 0) {
-                  return LiveStream(
-                    titre: liste[index],
-                  );
-                } else if (index == 1) {
-                  return DepotPlainte(
-                    titre: liste[index],
-                  );
-                } else if (index == 2) {
-                  return Magasine(
-                    titre: liste[index],
-                  );
-                } else if (index == 3) {
-                  return Actualite(
-                    titre: liste[index],
-                  );
-                } else if (index == 4) {
-                  return Listing(
-                    titre: liste[index],
-                  );
-                } else if (index == 5) {
-                  return Chat(
-                    titre: liste[index],
-                  );
-                } else {
-                  //
-                  return FormationEnseignent(
-                    titre: liste[index],
-                  );
-                }
-              }));
+              if (index == 5) {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text("Votre nom"),
+                        content: Container(
+                          height: 150,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              TextField(
+                                controller: textEditingController,
+                                decoration: const InputDecoration(
+                                  hintText: "Votre nom SVP!",
+                                ),
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  if (textEditingController.text.isNotEmpty) {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return Chat(
+                                            titre: liste[index],
+                                            nom: textEditingController.text,
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  }
+                                },
+                                child: Text("Commencer"),
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    });
+              } else {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  if (index == 0) {
+                    return LiveStream(
+                      titre: liste[index],
+                    );
+                  } else if (index == 1) {
+                    return DepotPlainte(
+                      titre: liste[index],
+                    );
+                  } else if (index == 2) {
+                    return Magasine(
+                      titre: liste[index],
+                    );
+                  } else if (index == 3) {
+                    return Actualite(
+                      titre: liste[index],
+                    );
+                  } else if (index == 4) {
+                    return Listing(
+                      titre: liste[index],
+                    );
+                  } else {
+                    //
+                    return FormationEnseignent(
+                      titre: liste[index],
+                    );
+                  }
+                }));
+              }
             },
             //elevation: 1,
             //color: Colors.white,

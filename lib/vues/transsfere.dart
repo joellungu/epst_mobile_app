@@ -88,6 +88,7 @@ class Transfere2 extends StatefulWidget {
 
 class _Transfere2 extends State<Transfere2> {
   int t = 0;
+  bool mx = true;
   Future<void> send() async {
     //String rep = await Connexion.enregistrementPiecejointe(
     //  widget.piecejointeId, widget.listeFichier);
@@ -130,6 +131,11 @@ class _Transfere2 extends State<Transfere2> {
         print("_____________: ${response.contentLength}");
       },
     );
+    Timer(Duration(seconds: 1), () {
+      setState(() {
+        mx = false;
+      });
+    });
     //return rep;
   }
 
@@ -159,6 +165,26 @@ class _Transfere2 extends State<Transfere2> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          mx
+              ? Card(
+                  elevation: 1,
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    child: CircularProgressIndicator(),
+                  ),
+                )
+              : Card(
+                  elevation: 1,
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    child: Icon(
+                      Icons.check_circle_outline,
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
           Container(
             height: 40,
             alignment: Alignment.center,

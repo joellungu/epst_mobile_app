@@ -91,43 +91,25 @@ class _Actualite extends State<Actualite> {
         centerTitle: true,
         title: Text(widget.titre!),
       ),
-      body: ListView(
-        children: List.generate(actus.length, (index) {
-          return ListTile(
-            onTap: () {
-              print("$index");
-              if (index == 2) {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => Lire(
-                      titre: "${actus[index]}",
-                    ),
-                  ),
-                );
-              }
-              /*
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => PdfVue(
-                    titre: "LE MAGAZINE DE L'EPST 4  01.12.2021",
-                  ),
-                ),
-              );
-              */
-            },
-            leading: Icon(
-              index == 2 ? Icons.play_arrow_outlined : Icons.access_time,
-              color: Colors.black,
+      body: FutureBuilder(
+        future: loadMagasin(),
+        builder: (context, t) {
+          if (t.hasData) {
+            return t.data as Widget;
+          } else if (t.hasError) {
+            return Center(
+              child: Text("Problème de connexion"),
+            );
+          }
+          return Center(
+            child: Container(
+              height: 50,
+              width: 50,
+              alignment: Alignment.center,
+              child: LinearProgressIndicator(),
             ),
-            title: Text(
-              "${actus[index]}",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            subtitle: Text(" Reforme du: 12/12/2022"),
           );
-        }),
+        },
       ),
     );
   }

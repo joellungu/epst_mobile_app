@@ -1,11 +1,15 @@
 import 'dart:async';
 import 'package:epst_app/splash.dart';
+import 'package:epst_app/utils/depotcontroler.dart';
 import 'package:epst_app/vues/accueil.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
   //
   WidgetsFlutterBinding.ensureInitialized();
+  //
+  DepotController depotController = Get.put(DepotController());
   //
   runApp(
     Epst(

@@ -32,7 +32,8 @@ class Historique {
           piecejointe_id VARCHAR,
           reference VARCHAR,
           date VARCHAR,
-          province VARCHAR
+          province VARCHAR,
+          envoyer VARCHAR
         )""");
     });
     return database;

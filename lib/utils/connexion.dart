@@ -4,6 +4,8 @@ import 'dart:typed_data';
 import 'package:epst_app/models/historiquedb.dart';
 import 'package:epst_app/models/magasin.dart';
 import 'package:epst_app/models/reforme.dart';
+import 'package:epst_app/utils/depotcontroler.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -31,6 +33,7 @@ class Connexion {
     );
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
+    //
     //print(response);
     if (response.statusCode == 200 || response.statusCode == 201) {
       Map<String, dynamic> r = jsonDecode(response.body);

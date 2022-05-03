@@ -31,7 +31,8 @@ class _Chat extends State<Chat> {
   void initState() {
     //
     _channel = WebSocketChannel.connect(
-      Uri.parse('ws://10.0.2.2:8080/chat/tatu'), //${widget.nom}192.168.43.2
+      Uri.parse(
+          'ws://epstapp.herokuapp.com/chat/${widget.nom}/client'), //${widget.nom}192.168.43.2
     );
     //
     _channel.stream.listen((message) {
