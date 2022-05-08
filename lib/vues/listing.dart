@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class Listing extends StatefulWidget {
   String? titre;
@@ -14,6 +15,7 @@ class Listing extends StatefulWidget {
 class _Listing extends State<Listing> {
   bool exp = false;
   int a = 1;
+  WebViewController? controlleur;
   //
   @override
   Widget build(BuildContext context) {
@@ -22,61 +24,12 @@ class _Listing extends State<Listing> {
         centerTitle: true,
         title: Text(widget.titre!),
       ),
-      body: Center(
-        child: Container(
-          height: 250,
-          width: 250,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                "Si vous-etes agent veuillez saisir votre matricule ici",
-                textAlign: TextAlign.center,
-              ),
-              TextField(
-                textAlign: TextAlign.center,
-                decoration: InputDecoration(
-                  label: Text("Votre matricule"),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
-                      color: Colors.blue,
-                    ),
-                  ),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return Material(
-                        color: Colors.transparent,
-                        child: Center(
-                          child: Container(
-                            height: 5,
-                            width: 100,
-                            alignment: Alignment.center,
-                            child: LinearProgressIndicator(),
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Rechercher",
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
+      body: WebView(
+        onWebViewCreated: (WebViewController w) {
+          controlleur = w;
+        },
+        initialUrl: "https://www.secoperdc.com/", //https://www.youtube.com
+        //"https://www.eduquepsp.education/v1/category/actualites/",
       ),
     );
   }
