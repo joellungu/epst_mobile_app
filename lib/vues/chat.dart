@@ -1,7 +1,4 @@
-import 'dart:async';
 import 'dart:convert';
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/bubble_type.dart';
@@ -9,7 +6,10 @@ import 'package:flutter_chat_bubble/chat_bubble.dart';
 import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_1.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
-var _channel;
+WebSocketChannel? _channel;
+List<String> listeConSave = [];
+Widget? chatt;
+Widget? listChatt;
 
 class Chat extends StatefulWidget {
   String? titre;
@@ -29,26 +29,66 @@ class _Chat extends State<Chat> {
 
   @override
   void initState() {
-    //
+    //192.168.1.68
+    //epstapp.herokuapp.com
     _channel = WebSocketChannel.connect(
       Uri.parse(
-          'ws://epstapp.herokuapp.com/chat/${widget.nom}/client'), //${widget.nom}192.168.43.2
+          'ws://10.0.2.2:8080/chat/${widget.nom}/client'), //${widget.nom}192.168.43.2
     );
     //
-    _channel.stream.listen((message) {
+    _channel!.stream.listen((message) {
       //
       Map<String, dynamic> map = jsonDecode((message) as String);
       print("la reponse du serveur: $map");
-      String idsession = map["idsession"] ?? map["requete"];
+      //String idsession = map["idsession"] ?? map["requete"];
 
       //
-      String idSessionHote = map["idSessionHote"] ?? "";
+      //String idSessionHote = map["idSessionHote"] ?? "";
       //
       String contenu = map["contenu"] ?? "";
       contenu != "" ? listeConv.add(smsMessage(false, contenu)) : "";
       setState(() {
-        if (idsession == "start") {
-          chatt = ChattConv(idSessionHote, listeConv);
+        //
+        //
+        //String idSessionHote = map["idSessionHote"] ?? "";
+        //
+        String contenu = map["content"] ?? "";
+        String hostId = map["hostId"] ?? "";
+        String clientId = map["clientId"] ?? "";
+        String from = map["from"] ?? "";
+        String matricule = map["matricule"] ?? "";
+        //String from = map["from"] ?? "";
+        //
+        if (map["conversation"] != true) {
+          print("efface tout!");
+          //listeConSave
+          // Connexion.saveArchive({
+          //   "date_save": "${DateTime.now()}",
+          //   "nom_agent": "${widget.u!['postnom']} ${widget.u!['prenom']}",
+          //   "nom_client": nomDe,
+          //   "conversation": jsonEncode(listeConSave),
+          // });
+          listeConSave.clear();
+          //
+          listeConv.clear();
+          listeConv.forEach((element) {
+            bool v = listeConv.remove(element);
+            v ? print("Effectué") : print("Pas éffectué");
+          });
+          chatt = Container();
+        } else {
+          listeConSave.add(contenu + "\n");
+          contenu != "" ? listeConv.add(smsMessage(false, contenu)) : print("");
+          //listeConv.add(smsMessage(false, contenu));
+          chatt = ChattConv(
+            "idSessionHote",
+            listeConv,
+            hostId,
+            clientId,
+            from,
+            matricule,
+            user: "${widget.nom}",
+          );
         }
       });
     });
@@ -81,16 +121,24 @@ class _Chat extends State<Chat> {
   @override
   void dispose() {
     //_channel.closeReason = "";
-    _channel.sink.close(0);
+    _channel!.closeCode;
     // TODO: implement dispose
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return WillPopScope(
+      child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
+          leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () async {
+                Navigator.of(context).pop();
+                _channel!.sink.add(
+                    """{"from":"","to":"","content":"","hostId":"","clientId":"","close":true,"all":false,"visible":"non","conversation": false,"matricule":"","date":"","heure":""}""");
+              }),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -114,7 +162,15 @@ class _Chat extends State<Chat> {
             ],
           ),
         ),
-        body: chatt!);
+        body: chatt!,
+      ),
+      onWillPop: () {
+        _channel!.sink.add(
+            """{"from":"","to":"","content":"","hostId":"","clientId":"","close":true,"all":false,"visible":"non","conversation": false,"matricule":"","date":"","heure":""}""");
+        Navigator.of(context).pop();
+        return Future.value(true);
+      },
+    );
   }
 
   Widget smsMessage(bool t, String contenu) {
@@ -156,8 +212,13 @@ class _Chat extends State<Chat> {
 class ChattConv extends StatefulWidget {
   List? listeConv;
   String? idSessionHote;
+  String? hostId, clientId, from;
+  String? user;
+  String? matricule;
 
-  ChattConv(this.idSessionHote, this.listeConv);
+  ChattConv(this.idSessionHote, this.listeConv, this.hostId, this.clientId,
+      this.from, this.matricule,
+      {this.user});
 
   @override
   State<StatefulWidget> createState() {
@@ -167,6 +228,21 @@ class ChattConv extends StatefulWidget {
 
 class _ChattConv extends State<ChattConv> {
   TextEditingController chatCont = TextEditingController();
+  //
+  DateTime dateTime = DateTime.now();
+  String date = "";
+  String heure = "";
+
+  @override
+  void initState() {
+    //
+    date = "${dateTime.day}-${dateTime.month}-${dateTime.year}";
+    heure = "${dateTime.hour}:${dateTime.minute}";
+    //
+    //${dateTime.hour}
+    //
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -231,12 +307,14 @@ class _ChattConv extends State<ChattConv> {
                         ),
                         IconButton(
                           onPressed: () async {
+                            print(
+                                """{"from":"${widget.user}","to":"","content":"${chatCont.text}","hostId":"${widget.hostId}","clientId":"${widget.clientId}","close":false,"all":false,"visible":"non","conversation": true}""");
                             //
                             setState(() {
                               widget.listeConv!
                                   .add(smsMessage(true, chatCont.text));
-                              _channel.sink.add(
-                                  """{"from":"...","to":"${widget.idSessionHote}","content":"${chatCont.text}" }""");
+                              _channel!.sink.add(
+                                  """{"from":"${widget.user}","to":"","content":"${chatCont.text}","hostId":"${widget.hostId}","clientId":"${widget.clientId}","close":false,"all":false,"visible":"non","conversation": true,"matricule":"${widget.matricule}","date":"$date","heure":"$heure"}""");
                               chatCont.clear();
                             });
                           },
@@ -292,3 +370,4 @@ class _ChattConv extends State<ChattConv> {
     }
   }
 }
+//
