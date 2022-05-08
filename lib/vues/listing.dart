@@ -24,13 +24,20 @@ class _Listing extends State<Listing> {
         centerTitle: true,
         title: Text(widget.titre!),
       ),
-      body: WebView(
-        onWebViewCreated: (WebViewController w) {
-          controlleur = w;
-        },
-        initialUrl: "https://www.secoperdc.com/", //https://www.youtube.com
-        //"https://www.eduquepsp.education/v1/category/actualites/",
-      ),
+      body: Padding(
+          padding: EdgeInsets.only(
+              //bottom: 20,
+              ),
+          child: WebView(
+            javascriptMode: JavascriptMode.unrestricted,
+            onWebViewCreated: (WebViewController w) {
+              controlleur = w;
+            },
+            //http://www.dgpardc.org/
+            //https://www.secoperdc.com/
+            initialUrl: "http://www.dgpardc.org/", //https://www.youtube.com
+            //"https://www.eduquepsp.education/v1/category/actualites/",
+          )),
     );
   }
 }

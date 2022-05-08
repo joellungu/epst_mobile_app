@@ -39,6 +39,7 @@ class _LiveStream extends State<LiveStream> {
         title: Text(widget.titre!),
       ),
       body: WebView(
+        javascriptMode: JavascriptMode.unrestricted,
         onWebViewCreated: (WebViewController w) {
           controlleur = w;
         },
