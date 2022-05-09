@@ -30,10 +30,12 @@ class _Chat extends State<Chat> {
   @override
   void initState() {
     //192.168.1.68
+    //10.0.2.2:8080
     //epstapp.herokuapp.com
+    //pepiteapp.herokuapp.com
     _channel = WebSocketChannel.connect(
       Uri.parse(
-          'ws://10.0.2.2:8080/chat/${widget.nom}/client'), //${widget.nom}192.168.43.2
+          'ws://pepiteapp.herokuapp.com/chat/${widget.nom}/client'), //${widget.nom}192.168.43.2
     );
     //
     _channel!.stream.listen((message) {
