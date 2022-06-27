@@ -355,49 +355,32 @@ class _DepotPlainte extends State<DepotPlainte> {
                                   child: Text(Fichier),
                                 ),
                               ),
-                              PopupMenuButton(
-                                onSelected: (e) {
-                                  //getFile();
+                              IconButton(
+                                onPressed:() async {
+
+                                  FilePickerResult? result =
+                                      await FilePicker.platform.pickFiles(allowMultiple: false);
+                                    if (result != null) {
+                                      List<File> files = result.paths.map((path) => File(path!)).toList();
+                                      files.forEach((element) async {
+                                        //
+                                        List<String> extT = element.path.split(".");
+                                        String ext = extT.last;
+                                        Uint8List l = await element.readAsBytes();
+                                        depotController.listeFichier.value.add(
+                                          {
+                                            "length": l.length,
+                                            "data": l,
+                                            "type": ext,
+                                          },
+                                        );
+                                      });
+                                    }
+                                  setState(() {});
                                 },
                                 icon: Icon(
                                   Icons.attach_file,
                                 ),
-                                itemBuilder: (context) => [
-                                  PopupMenuItem(
-                                    onTap: () {
-                                      getFile();
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          height: 40,
-                                          width: 40,
-                                          alignment: Alignment.center,
-                                          decoration: BoxDecoration(
-                                            color: Colors.blue.shade200,
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                          ),
-                                          child: Icon(Icons.file_copy_outlined),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          "Piece jointe",
-                                          style: TextStyle(
-                                            color: Colors.grey.shade700,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 17,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    value: 4,
-                                  ),
-                                ],
                               ),
                             ],
                           ),
@@ -609,30 +592,6 @@ class _DepotPlainte extends State<DepotPlainte> {
     return "${uuid.v4()}";
   }
 
-  getFile() async {
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(allowMultiple: false);
-    if (result != null) {
-      List<File> files = result.paths.map((path) => File(path!)).toList();
-      files.forEach((element) async {
-        //
-        List<String> extT = element.path.split(".");
-        String ext = extT.last;
-        Uint8List l = await element.readAsBytes();
-        depotController.listeFichier.value.add(
-          {
-            "length": l.length,
-            "data": l,
-            "type": ext,
-          },
-        );
-      });
-      setState(() {});
-    } else {
-      // User canceled the picker
-    }
-  }
-
   Future<void> _createFolderAndSave(
       String folderName, List<Map<String, dynamic>> liste) async {
     try {
@@ -662,6 +621,7 @@ class _DepotPlainte extends State<DepotPlainte> {
     }
   }
 
+  /*
   getFile2(bool v) async {
     final ImagePicker _picker = ImagePicker();
     if (v) {
@@ -680,6 +640,7 @@ class _DepotPlainte extends State<DepotPlainte> {
     // Pick multiple images
     //final List<XFile>? images = await _picker.pickMultiImage();
   }
+  */
 }
 /*
 SizedBox(height: 20,),

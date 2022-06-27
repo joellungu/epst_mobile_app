@@ -6,14 +6,16 @@ import 'package:epst_app/models/magasin.dart';
 import 'package:epst_app/models/reforme.dart';
 import 'package:epst_app/utils/depotcontroler.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class Connexion {
   //
-  //static var lien = 'http://10.0.2.2:8080/';
-  static var lien = 'https://pepiteapp.herokuapp.com/';
+  static var lien = 'http://10.0.2.2:8080/';
+  static var ws = '10.0.2.2:8080/';
+  //static var lien = 'https://pepiteapp.herokuapp.com/';
   //https://epstapp.herokuapp.com/
   //pepiteapp.herokuapp.com/
   //static var lien = 'http://192.168.43.2:8080/';
@@ -118,7 +120,6 @@ class Connexion {
     var url = Uri.parse(lien + "magasin/all/$type");
     var response = await http.get(url);
     //
-    //
     Magasin magasin = Magasin();
     Reforme reforme = Reforme();
     //
@@ -144,12 +145,15 @@ class Connexion {
 
   //
   static _write(String id, String extension) async {
+    var box = GetStorage();
+    //
     final Directory directory = await getApplicationDocumentsDirectory();
 
     final File file = File('${directory.path}/$id.$extension');
     bool v = await Directory('${directory.path}/$id.$extension').exists();
     if (!v) {
       Map<String, dynamic> m = await getMagasin(id);
+      box.write(id, base64Decode(m["piecejointe"]));
       File f = await await file.writeAsBytes(base64Decode(m["piecejointe"])); //
       bool b = await f.exists();
       print("Fichier crée avec succé ! $b");

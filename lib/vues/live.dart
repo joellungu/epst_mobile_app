@@ -44,8 +44,8 @@ class _LiveStream extends State<LiveStream> {
           controlleur = w;
         },
         initialUrl:
-            "https://www.eductv.cd/all_actualite.php", //https://www.youtube.com
-        //"https://www.eduquepsp.education/v1/category/actualites/",
+            //"https://www.eductv.cd/all_actualite.php", //https://www.youtube.com
+        "https://www.eduquepsp.education/v1/",
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

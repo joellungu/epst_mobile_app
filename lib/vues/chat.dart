@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:epst_app/utils/connexion.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_bubble/bubble_type.dart';
@@ -35,7 +36,7 @@ class _Chat extends State<Chat> {
     //pepiteapp.herokuapp.com
     _channel = WebSocketChannel.connect(
       Uri.parse(
-          'ws://pepiteapp.herokuapp.com/chat/${widget.nom}/client'), //${widget.nom}192.168.43.2
+          'ws://${Connexion.ws}/chat/${widget.nom}/client'), //${widget.nom}192.168.43.2
     );
     //
     _channel!.stream.listen((message) {

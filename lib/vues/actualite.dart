@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:epst_app/models/reforme.dart';
 import 'package:epst_app/utils/connexion.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
@@ -22,6 +23,9 @@ class Actualite extends StatefulWidget {
 }
 
 class _Actualite extends State<Actualite> {
+  //
+  var box = GetStorage();
+  //
   List actus = [
     "Gratuité de l'enseignement",
     "Programme scolaire Maternelle",
@@ -64,8 +68,15 @@ class _Actualite extends State<Actualite> {
             print(
                 "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
             //
+            //
+            File f = await File("${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}")
+                .writeAsBytes(box.read("${liste[index]["id"]}"));
+            print(box.read("${liste[index]["id"]}"));
+
             OpenResult or = await OpenFile.open(
                 "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
+            //OpenResult or = await OpenFile.open(
+              //  "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
             print(or.message);
             print(or.type);
           },

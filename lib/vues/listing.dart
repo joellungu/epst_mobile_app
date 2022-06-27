@@ -35,9 +35,10 @@ class _Listing extends State<Listing> {
             },
             //http://www.dgpardc.org/
             //https://www.secoperdc.com/
-            initialUrl: "http://www.dgpardc.org/", //https://www.youtube.com
+            initialUrl: "http://www.secoperdc.com", //https://www.youtube.com
             //"https://www.eduquepsp.education/v1/category/actualites/",
-          )),
+          ),
+      ),
     );
   }
 }

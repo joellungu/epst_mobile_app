@@ -5,10 +5,11 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:epst_app/models/magasin.dart';
 import 'package:epst_app/utils/connexion.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+//import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class Magasine extends StatefulWidget {
   String? titre;
@@ -22,6 +23,8 @@ class Magasine extends StatefulWidget {
 }
 
 class _Magasine extends State<Magasine> {
+  //
+  var box = GetStorage();
   //
   Future<Widget> loadMagasin() async {
     List<Map<String, dynamic>> liste = [];
@@ -50,6 +53,10 @@ class _Magasine extends State<Magasine> {
             print(
                 "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
             //
+            File f = await File("${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}")
+            .writeAsBytes(box.read("${liste[index]["id"]}"));
+            print(box.read("${liste[index]["id"]}"));
+
             OpenResult or = await OpenFile.open(
                 "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
             print(or.message);
@@ -91,7 +98,7 @@ class _Magasine extends State<Magasine> {
           if (t.hasData) {
             return t.data as Widget;
           } else if (t.hasError) {
-            return Center(
+            return const Center(
               child: Text("Problème de connexion"),
             );
           }
@@ -100,7 +107,7 @@ class _Magasine extends State<Magasine> {
               height: 50,
               width: 50,
               alignment: Alignment.center,
-              child: LinearProgressIndicator(),
+              child: const LinearProgressIndicator(),
             ),
           );
         },
