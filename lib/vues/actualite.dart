@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:epst_app/models/reforme.dart';
 import 'package:epst_app/utils/connexion.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -35,63 +36,32 @@ class _Actualite extends State<Actualite> {
   ];
   @override
   void initState() {
+    loadMagasin();
+    //
     super.initState();
-    // Enable virtual display.
-    if (Platform.isAndroid) WebView.platform = AndroidWebView();
   }
 
+  RxBool loads = true.obs;
   //
-  Future<Widget> loadMagasin() async {
-    List<Map<String, dynamic>> liste = [];
-    //
+  List liste = [];
+  //
+  Future<void> loadMagasin() async {
 
-    //
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile ||
         connectivityResult == ConnectivityResult.wifi) {
-      liste = await Connexion.liste_magasin(2);
+      bool v = await Connexion.liste_magasin(2);
+      //liste = await
+      liste = box.read("reforme");
+      loads.value = v;
     } else {
-      Reforme reforme = Reforme();
-      //
-      Database db = await reforme.openDB();
-      //
-      liste = await db.query("reforme");
+      liste = box.read("reforme");
+      loads.value = false;
     }
-    print("longueur  ___  $liste");
-    return ListView(
-      children: List.generate(liste.length, (index) {
-        return ListTile(
-          onTap: () async {
-            final Directory directory =
-                await getApplicationDocumentsDirectory();
-            //
-            print(
-                "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
-            //
-            //
-            File f = await File("${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}")
-                .writeAsBytes(box.read("${liste[index]["id"]}"));
-            print(box.read("${liste[index]["id"]}"));
 
-            OpenResult or = await OpenFile.open(
-                "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
-            //OpenResult or = await OpenFile.open(
-              //  "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
-            print(or.message);
-            print(or.type);
-          },
-          leading: Icon(
-            Icons.folder,
-            color: Colors.black,
-          ),
-          title: Text(liste[index]["libelle"]),
-          subtitle: Text(liste[index]["date"]),
-          trailing: Icon(
-            Icons.arrow_forward_ios_outlined,
-          ),
-        );
-      }),
-    );
+    //
+    print("longueur  ___  $liste");
+
   }
   //
 
@@ -102,26 +72,42 @@ class _Actualite extends State<Actualite> {
         centerTitle: true,
         title: Text(widget.titre!),
       ),
-      body: FutureBuilder(
-        future: loadMagasin(),
-        builder: (context, t) {
-          if (t.hasData) {
-            return t.data as Widget;
-          } else if (t.hasError) {
-            return Center(
-              child: Text("Problème de connexion"),
+        body: Obx(()=> loads.value ?
+        Center(
+          child: Container(height: 40, width: 40, alignment: Alignment.center,
+            child: CircularProgressIndicator(),),
+        )
+            : ListView(
+          children: List.generate(liste.length, (index) {
+            return ListTile(
+              onTap: () async {
+                final Directory directory =
+                await getApplicationDocumentsDirectory();
+                //
+                print(
+                    "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
+                //
+                File f = await File("${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}")
+                    .writeAsBytes(box.read("${liste[index]["id"]}"));
+                print(box.read("${liste[index]["id"]}"));
+
+                OpenResult or = await OpenFile.open(
+                    "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
+                print(or.message);
+                print(or.type);
+              },
+              leading: Icon(
+                Icons.file_copy_rounded,
+                color: Colors.black,
+              ),
+              title: Text(liste[index]["libelle"]),
+              subtitle: Text(liste[index]["date"]),
+              trailing: Icon(
+                Icons.arrow_forward_ios_outlined,
+              ),
             );
-          }
-          return Center(
-            child: Container(
-              height: 50,
-              width: 50,
-              alignment: Alignment.center,
-              child: LinearProgressIndicator(),
-            ),
-          );
-        },
-      ),
+          }),
+        ))
     );
   }
 }
