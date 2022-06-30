@@ -38,10 +38,10 @@ class _Magasine extends State<Magasine> {
         connectivityResult == ConnectivityResult.wifi) {
         bool v = await Connexion.liste_magasin(1);
       //liste = await
-      liste = box.read("magasin");
+      liste = box.read("magasin") ?? [];
       loads.value = v;
     } else {
-      liste = box.read("magasin");
+      liste = box.read("magasin") ?? [];
       loads.value = false;
     }
 
@@ -52,6 +52,7 @@ class _Magasine extends State<Magasine> {
   //
   @override
   void initState() {
+    //
     loadMagasin();
     //
     super.initState();
@@ -84,12 +85,14 @@ class _Magasine extends State<Magasine> {
               final Directory directory =
               await getApplicationDocumentsDirectory();
               //
+              //final File file = File('${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}');
+              //
               print(
                   "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
               //
-              File f = await File("${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}")
-                  .writeAsBytes(box.read("${liste[index]["id"]}"));
-              print(box.read("${liste[index]["id"]}"));
+              //File f = await File("${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}")
+                //  .writeAsBytes(box.read("${liste[index]["id"]}"));
+              //print(box.read("${liste[index]["id"]}"));
 
               OpenResult or = await OpenFile.open(
                   "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");

@@ -95,9 +95,9 @@ class _Transfere2 extends State<Transfere2> {
 
     widget.listeFichier.forEach(
       (element) async {
-        //
+        //https://epstapp.herokuapp.com
         var url = Uri.parse(
-            "https://epstapp.herokuapp.com/piecejointe/${widget.piecejointeId}/${element["type"]}");
+            "${Connexion.lien}piecejointe/${widget.piecejointeId}/${element["type"]}");
         //element ;
         //var stream = new http.ByteStream(DelegatingStream.typed(element["type"]));
         var length = await element["length"];

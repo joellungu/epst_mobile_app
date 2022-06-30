@@ -16,8 +16,8 @@ class Connexion {
   //static var lien = 'http://10.0.2.2:8080/';
   //static var ws = '10.0.2.2:8080/';
   //
-  static var lien = 'http://192.168.1.67:8080/';
-  static var ws = '192.168.1.67:8080/';
+  static var lien = 'http://192.168.1.178:8080/';
+  static var ws = '192.168.1.178:8080/';
   //192.168.1.254
   //static var lien = 'https://pepiteapp.herokuapp.com/';
   //https://epstapp.herokuapp.com/
@@ -151,13 +151,19 @@ class Connexion {
       }
       //db.insert(type == 1 ? "magasin" : "reforme", element); //
       if(box.read("${e["id"]}") == null) {
+        print("+++++++++***:pas deja:***");
         _write("${e["id"]}", e["extention"]);
+      }else{
+        print("+++++++++***:deja:***");
+        //print(":::: $l1");
       }
     });
 
+
     //
-    box.write("magasin", liste1);
-    box.write("reforme", liste2);
+    liste1.isEmpty ? box.write("magasin", l1): box.write("magasin", liste1);
+    liste2.isEmpty ? box.write("reforme", l2): box.write("reforme", liste2);
+    //box.write("reforme", liste2);
 
     return false;
   }
