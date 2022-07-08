@@ -1,11 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:epst_app/models/historiquedb.dart';
 import 'package:epst_app/models/magasin.dart';
 import 'package:epst_app/models/reforme.dart';
-import 'package:epst_app/utils/depotcontroler.dart';
-import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
@@ -134,9 +131,7 @@ class Connexion {
     var l1 = box.read("magasin");
     var l2 = box.read("reforme");
     //
-    if(l1 != null){
-
-    }
+    if (l1 != null) {}
     //
     List rep_liste = json.decode(response.body);
     //
@@ -144,25 +139,24 @@ class Connexion {
     rep_liste.forEach((element) {
       Map<String, dynamic> e = element;
       print(e);
-      if(type == 1){
+      if (type == 1) {
         liste1.add(e);
-      }else{
+      } else {
         liste2.add(e);
       }
       //db.insert(type == 1 ? "magasin" : "reforme", element); //
-      if(box.read("${e["id"]}") == null) {
+      if (box.read("${e["id"]}") == null) {
         print("+++++++++***:pas deja:***");
         _write("${e["id"]}", e["extention"]);
-      }else{
+      } else {
         print("+++++++++***:deja:***");
         //print(":::: $l1");
       }
     });
 
-
     //
-    liste1.isEmpty ? box.write("magasin", l1): box.write("magasin", liste1);
-    liste2.isEmpty ? box.write("reforme", l2): box.write("reforme", liste2);
+    liste1.isEmpty ? box.write("magasin", l1) : box.write("magasin", liste1);
+    liste2.isEmpty ? box.write("reforme", l2) : box.write("reforme", liste2);
     //box.write("reforme", liste2);
 
     return false;

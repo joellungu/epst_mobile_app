@@ -87,8 +87,8 @@ class _Actualite extends State<Actualite> {
                 print(
                     "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
                 //
-                File f = await File("${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}")
-                    .writeAsBytes(box.read("${liste[index]["id"]}"));
+                //File f = await File("${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}")
+                  //  .writeAsBytes(box.read("${liste[index]["id"]}"));
                 print(box.read("${liste[index]["id"]}"));
 
                 OpenResult or = await OpenFile.open(

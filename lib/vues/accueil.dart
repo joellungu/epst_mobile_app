@@ -1,6 +1,8 @@
+import 'dart:convert';
+
 import 'package:epst_app/vues/depotplainte.dart';
 import 'package:epst_app/vues/listing.dart';
-import 'package:epst_app/vues/live.dart';
+import 'package:epst_app/vues/live/live.dart';
 import 'package:epst_app/vues/magasine.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -102,12 +104,17 @@ class _Accueil extends State<Accueil> {
                               ElevatedButton(
                                 onPressed: () {
                                   if (textEditingController.text.isNotEmpty) {
+                                    var encoded =
+                                        utf8.encode(textEditingController.text);
+                                    var decoded = utf8.decode(encoded);
+                                    print(decoded);
+
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
                                         builder: (context) {
                                           return Chat(
                                             titre: liste[index],
-                                            nom: textEditingController.text,
+                                            nom: decoded,
                                           );
                                         },
                                       ),
@@ -155,64 +162,63 @@ class _Accueil extends State<Accueil> {
             },
             //elevation: 1,
             //color: Colors.white,
-            style: ButtonStyle(
+            style: const ButtonStyle(
                 /*
               backgroundColor: MaterialStateProperty.all(
                 Colors.blue.shade400,
               ),
               */
                 ),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: listeIcons[index],
-                      decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(
+                  flex: 7,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: listeIcons[index],
+                    decoration: const BoxDecoration(
+                      //color: Colors.blue,
+                      borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
-                      )),
+                      ),
                     ),
                   ),
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          text: index == 1 ? "MGP\n" : "",
-                          children: [
-                            TextSpan(
-                              text: liste[index],
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        text: index == 1 ? "MGP\n" : "",
+                        children: [
+                          TextSpan(
+                            text: liste[index],
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          )
+                        ],
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
                     ),
-                  )
-                ],
-              ),
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    )),
+                  ),
+                )
+              ],
             ),
           );
         }),

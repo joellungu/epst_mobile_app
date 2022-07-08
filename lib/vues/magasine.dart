@@ -1,15 +1,12 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:epst_app/models/magasin.dart';
 import 'package:epst_app/utils/connexion.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:sqflite/sqflite.dart';
 //import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class Magasine extends StatefulWidget {
@@ -32,11 +29,10 @@ class _Magasine extends State<Magasine> {
   List liste = [];
   //
   Future<void> loadMagasin() async {
-
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile ||
         connectivityResult == ConnectivityResult.wifi) {
-        bool v = await Connexion.liste_magasin(1);
+      bool v = await Connexion.liste_magasin(1);
       //liste = await
       liste = box.read("magasin") ?? [];
       loads.value = v;
@@ -47,8 +43,8 @@ class _Magasine extends State<Magasine> {
 
     //
     print("longueur  ___  $liste");
-
   }
+
   //
   @override
   void initState() {
@@ -73,44 +69,50 @@ class _Magasine extends State<Magasine> {
           )
         ],
       ),
-      body: Obx(()=> loads.value ?
-          Center(
-            child: Container(height: 40, width: 40, alignment: Alignment.center,
-            child: CircularProgressIndicator(),),
-          )
-          : ListView(
-        children: List.generate(liste.length, (index) {
-          return ListTile(
-            onTap: () async {
-              final Directory directory =
-              await getApplicationDocumentsDirectory();
-              //
-              //final File file = File('${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}');
-              //
-              print(
-                  "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
-              //
-              //File f = await File("${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}")
-                //  .writeAsBytes(box.read("${liste[index]["id"]}"));
-              //print(box.read("${liste[index]["id"]}"));
+      body: Obx(
+        () => loads.value
+            ? Center(
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  alignment: Alignment.center,
+                  child: CircularProgressIndicator(),
+                ),
+              )
+            : ListView(
+                children: List.generate(liste.length, (index) {
+                  return ListTile(
+                    onTap: () async {
+                      final Directory directory =
+                          await getApplicationDocumentsDirectory();
+                      //
+                      //final File file = File('${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}');
+                      //
+                      print(
+                          "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
+                      //
+                      //File f = await File("${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}")
+                      //  .writeAsBytes(box.read("${liste[index]["id"]}"));
+                      //print(box.read("${liste[index]["id"]}"));
 
-              OpenResult or = await OpenFile.open(
-                  "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
-              print(or.message);
-              print(or.type);
-            },
-            leading: Icon(
-              Icons.file_copy_rounded,
-              color: Colors.black,
-            ),
-            title: Text(liste[index]["libelle"]),
-            subtitle: Text(liste[index]["date"]),
-            trailing: Icon(
-              Icons.arrow_forward_ios_outlined,
-            ),
-          );
-        }),
-      ))
+                      OpenResult or = await OpenFile.open(
+                          "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
+                      print(or.message);
+                      print(or.type);
+                    },
+                    leading: Icon(
+                      Icons.file_copy_rounded,
+                      color: Colors.black,
+                    ),
+                    title: Text(liste[index]["libelle"]),
+                    subtitle: Text(liste[index]["date"]),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios_outlined,
+                    ),
+                  );
+                }),
+              ),
+      ),
     );
   }
 }

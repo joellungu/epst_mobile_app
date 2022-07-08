@@ -34,9 +34,12 @@ class _Chat extends State<Chat> {
     //10.0.2.2:8080
     //epstapp.herokuapp.com
     //pepiteapp.herokuapp.com
+    var encoded = utf8.encode(widget.nom!);
+    var decoded = utf8.decode(encoded);
+
     _channel = WebSocketChannel.connect(
       Uri.parse(
-          'ws://${Connexion.ws}/chat/${widget.nom}/client'), //${widget.nom}192.168.43.2
+          'ws://${Connexion.ws}/chat/$decoded/client'), //${widget.nom}192.168.43.2
     );
     //
     _channel!.stream.listen((message) {
@@ -136,12 +139,13 @@ class _Chat extends State<Chat> {
         appBar: AppBar(
           centerTitle: true,
           leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () async {
-                Navigator.of(context).pop();
-                _channel!.sink.add(
-                    """{"from":"","to":"","content":"","hostId":"","clientId":"","close":true,"all":false,"visible":"non","conversation": false,"matricule":"","date":"","heure":""}""");
-              }),
+            icon: Icon(Icons.arrow_back),
+            onPressed: () async {
+              Navigator.of(context).pop();
+              _channel!.sink.add(
+                  """{"from":"","to":"","content":"","hostId":"","clientId":"","close":true,"all":false,"visible":"non","conversation": false,"matricule":"","date":"","heure":""}""");
+            },
+          ),
           title: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -177,6 +181,10 @@ class _Chat extends State<Chat> {
   }
 
   Widget smsMessage(bool t, String contenu) {
+    //
+    var encoded = utf8.encode(contenu);
+    var decoded = utf8.decode(encoded);
+    //
     if (t) {
       return ChatBubble(
         clipper: ChatBubbleClipper1(type: BubbleType.sendBubble),
@@ -188,7 +196,7 @@ class _Chat extends State<Chat> {
             maxWidth: MediaQuery.of(context).size.width * 0.7,
           ),
           child: Text(
-            contenu,
+            decoded,
             style: TextStyle(color: Colors.white),
           ),
         ),
@@ -203,7 +211,7 @@ class _Chat extends State<Chat> {
             maxWidth: MediaQuery.of(context).size.width * 0.7,
           ),
           child: Text(
-            contenu,
+            decoded,
             style: TextStyle(color: Colors.black),
           ),
         ),
@@ -339,19 +347,23 @@ class _ChattConv extends State<ChattConv> {
   }
 
   Widget smsMessage(bool t, String contenu) {
+    //
+    var encoded = utf8.encode(contenu);
+    var decoded = utf8.decode(encoded);
+    //
     if (t) {
       return ChatBubble(
         clipper: ChatBubbleClipper1(type: BubbleType.sendBubble),
         alignment: Alignment.topRight,
-        margin: EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 20),
         backGroundColor: Colors.blue,
         child: Container(
           constraints: BoxConstraints(
             maxWidth: MediaQuery.of(context).size.width * 0.7,
           ),
           child: Text(
-            contenu,
-            style: TextStyle(color: Colors.white),
+            decoded,
+            style: const TextStyle(color: Colors.white),
           ),
         ),
       );
@@ -359,14 +371,14 @@ class _ChattConv extends State<ChattConv> {
       return ChatBubble(
         clipper: ChatBubbleClipper1(type: BubbleType.receiverBubble),
         backGroundColor: Color(0xffE7E7ED),
-        margin: EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 20),
         child: Container(
           constraints: BoxConstraints(
             maxWidth: MediaQuery.of(context).size.width * 0.7,
           ),
           child: Text(
-            contenu,
-            style: TextStyle(color: Colors.black),
+            decoded,
+            style: const TextStyle(color: Colors.black),
           ),
         ),
       );
