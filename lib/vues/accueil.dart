@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:epst_app/vues/depotplainte.dart';
 import 'package:epst_app/vues/listing.dart';
 import 'package:epst_app/vues/live/live.dart';
-import 'package:epst_app/vues/magasine.dart';
+import 'package:epst_app/vues/magasin/magasine.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

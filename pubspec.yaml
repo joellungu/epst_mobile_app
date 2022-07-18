@@ -36,9 +36,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   file_picker: ^4.4.0
   youtube_player_flutter: ^8.0.0
+  shimmer: ^2.0.0
   #easy_popup: ^1.0.0
   #syncfusion_flutter_pdfviewer: ^19.4.55-beta
   #pdfx:
+  flutter_mailer: ^2.0.1
+  dio: ^4.0.6
   uuid: ^3.0.6
   webview_flutter: ^3.0.4
   #flutter_plugin_record: ^1.0.1
@@ -53,6 +56,7 @@ dependencies:
   open_file: ^3.2.1
   get: ^4.6.1
   get_storage: ^2.0.3
+  isolated_worker: ^0.1.1
 
 dev_dependencies:
   flutter_test:

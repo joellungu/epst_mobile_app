@@ -1,6 +1,16 @@
+import 'dart:async';
+
+import 'package:epst_app/vues/accueil.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Splash extends StatelessWidget {
+  Splash() {
+    Timer(Duration(seconds: 2), () {
+      //
+      Get.off(Accueil());
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

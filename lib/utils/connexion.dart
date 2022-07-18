@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:dio/dio.dart' as dio;
 import 'package:epst_app/models/historiquedb.dart';
 import 'package:epst_app/models/magasin.dart';
 import 'package:epst_app/models/reforme.dart';
@@ -10,11 +11,14 @@ import 'package:sqflite/sqflite.dart';
 
 class Connexion {
   //
+  static var lien = 'http://192.168.43.134:8080/';
+  static var ws = '192.168.43.134:8080/';
+  //192.168.1.77
   //static var lien = 'http://10.0.2.2:8080/';
   //static var ws = '10.0.2.2:8080/';
-  //
-  static var lien = 'http://192.168.1.178:8080/';
-  static var ws = '192.168.1.178:8080/';
+  //192.168.1.77
+  //static var lien = 'http://192.168.1.178:8080/';
+  //static var ws = '192.168.1.178:8080/';
   //192.168.1.254
   //static var lien = 'https://pepiteapp.herokuapp.com/';
   //https://epstapp.herokuapp.com/
@@ -115,7 +119,7 @@ class Connexion {
   }
 
   //
-  static Future<bool> liste_magasin(int type) async {
+  static Future<bool> liste_magasin1(int type) async {
     List<Map<String, dynamic>> liste1 = [];
     List<Map<String, dynamic>> liste2 = [];
     //List<Map<String, dynamic>>
@@ -160,6 +164,61 @@ class Connexion {
     //box.write("reforme", liste2);
 
     return false;
+  }
+
+  static Future<bool> liste_magasin(int type) async {
+    try {
+      //var response = await dio.Dio().get('http://www.google.com');
+      List<Map<String, dynamic>> liste1 = [];
+      List<Map<String, dynamic>> liste2 = [];
+      //List<Map<String, dynamic>>
+      //
+      //var url = Uri.parse(lien + "magasin/all/$type");
+      //var response = await http.get(url);
+      var response = await dio.Dio().get(lien + "magasin/all/$type");
+      //
+      Magasin magasin = Magasin();
+      Reforme reforme = Reforme();
+      //
+      var box = GetStorage();
+      //
+      var l1 = box.read("magasin");
+      var l2 = box.read("reforme");
+      //
+      if (l1 != null) {}
+      //
+      print(response.data);
+      List rep_liste = response.data;
+      //
+      rep_liste.forEach((element) {
+        Map<String, dynamic> e = element;
+        print(e);
+        if (type == 1) {
+          liste1.add(e);
+        } else {
+          liste2.add(e);
+        }
+        //db.insert(type == 1 ? "magasin" : "reforme", element); //
+        if (box.read("${e["id"]}") == null) {
+          print("+++++++++***:pas deja:***");
+          _write("${e["id"]}", e["extention"]);
+        } else {
+          print("+++++++++***:deja:***");
+          //print(":::: $l1");
+        }
+      });
+
+      //
+      liste1.isEmpty ? box.write("magasin", l1) : box.write("magasin", liste1);
+      liste2.isEmpty ? box.write("reforme", l2) : box.write("reforme", liste2);
+      //box.write("reforme", liste2);
+
+      return false;
+      print(response);
+    } catch (e) {
+      print(e);
+      return true;
+    }
   }
 
   //

@@ -1,13 +1,12 @@
 import 'dart:io';
-import 'dart:math';
 import 'dart:typed_data';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:epst_app/models/historiquedb.dart';
 import 'package:epst_app/utils/depotcontroler.dart';
 import 'package:epst_app/vues/reference.dart';
 import 'package:epst_app/vues/transsfere.dart';
+import 'package:flutter_mailer/flutter_mailer.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
@@ -82,6 +81,33 @@ class _DepotPlainte extends State<DepotPlainte> {
         centerTitle: true,
         title: Text(widget.titre!),
         actions: [
+          IconButton(
+              onPressed: () async {
+                //['mmuseghe@gmail.com']
+                //
+                const GMAIL_SCHEMA = 'com.google.android.gm';
+
+                //final bool gmailinstalled =
+                //  await FlutterMailer.isAppInstalled(GMAIL_SCHEMA);
+
+                if (true) {
+                  final MailOptions mailOptions = MailOptions(
+                    body:
+                        'a long body for the email <br> with a subset of HTML',
+                    subject: 'the Email Subject',
+                    recipients: ['mmuseghe@gmail.com'],
+                    isHTML: true,
+                    bccRecipients: ['other@example.com'],
+                    ccRecipients: ['third@example.com'],
+                    //attachments: [
+                    //  'path/to/image.png',
+                    //],
+                    appSchema: GMAIL_SCHEMA,
+                  );
+                  await FlutterMailer.send(mailOptions);
+                }
+              },
+              icon: Icon(Icons.send)),
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: DropdownButtonHideUnderline(
@@ -356,26 +382,29 @@ class _DepotPlainte extends State<DepotPlainte> {
                                 ),
                               ),
                               IconButton(
-                                onPressed:() async {
-
-                                  FilePickerResult? result =
-                                      await FilePicker.platform.pickFiles(allowMultiple: false);
-                                    if (result != null) {
-                                      List<File> files = result.paths.map((path) => File(path!)).toList();
-                                      files.forEach((element) async {
-                                        //
-                                        List<String> extT = element.path.split(".");
-                                        String ext = extT.last;
-                                        Uint8List l = await element.readAsBytes();
-                                        depotController.listeFichier.value.add(
-                                          {
-                                            "length": l.length,
-                                            "data": l,
-                                            "type": ext,
-                                          },
-                                        );
-                                      });
-                                    }
+                                onPressed: () async {
+                                  FilePickerResult? result = await FilePicker
+                                      .platform
+                                      .pickFiles(allowMultiple: false);
+                                  if (result != null) {
+                                    List<File> files = result.paths
+                                        .map((path) => File(path!))
+                                        .toList();
+                                    files.forEach((element) async {
+                                      //
+                                      List<String> extT =
+                                          element.path.split(".");
+                                      String ext = extT.last;
+                                      Uint8List l = await element.readAsBytes();
+                                      depotController.listeFichier.value.add(
+                                        {
+                                          "length": l.length,
+                                          "data": l,
+                                          "type": ext,
+                                        },
+                                      );
+                                    });
+                                  }
                                   setState(() {});
                                 },
                                 icon: Icon(
@@ -642,6 +671,7 @@ class _DepotPlainte extends State<DepotPlainte> {
   }
   */
 }
+
 /*
 SizedBox(height: 20,),
               Container(height: 50,

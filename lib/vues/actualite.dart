@@ -46,69 +46,81 @@ class _Actualite extends State<Actualite> {
   List liste = [];
   //
   Future<void> loadMagasin() async {
-
     var connectivityResult = await (Connectivity().checkConnectivity());
     if (connectivityResult == ConnectivityResult.mobile ||
         connectivityResult == ConnectivityResult.wifi) {
       bool v = await Connexion.liste_magasin(2);
       //liste = await
+      //if (box.read("reforme")) {
       liste = box.read("reforme");
+      //} else {
+      //print(box.read("reforme"));
+      //}
       loads.value = v;
+      if (v) {
+        print("truc truc");
+        liste = box.read("reforme") ?? [];
+        loads.value = false;
+        print("truc $liste");
+        //
+      }
     } else {
-      liste = box.read("reforme");
+      liste = box.read("reforme") ?? [];
       loads.value = false;
     }
 
     //
     print("longueur  ___  $liste");
-
   }
   //
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(widget.titre!),
-      ),
-        body: Obx(()=> loads.value ?
-        Center(
-          child: Container(height: 40, width: 40, alignment: Alignment.center,
-            child: CircularProgressIndicator(),),
-        )
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(widget.titre!),
+        ),
+        body: Obx(() => loads.value
+            ? Center(
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  alignment: Alignment.center,
+                  child: CircularProgressIndicator(),
+                ),
+              )
             : ListView(
-          children: List.generate(liste.length, (index) {
-            return ListTile(
-              onTap: () async {
-                final Directory directory =
-                await getApplicationDocumentsDirectory();
-                //
-                print(
-                    "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
-                //
-                //File f = await File("${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}")
-                  //  .writeAsBytes(box.read("${liste[index]["id"]}"));
-                print(box.read("${liste[index]["id"]}"));
+                children: List.generate(liste.length, (index) {
+                  return ListTile(
+                    onTap: () async {
+                      final Directory directory =
+                          await getApplicationDocumentsDirectory();
+                      //
+                      print(
+                          "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
+                      //
+                      //File f = await File("${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}")
+                      //  .writeAsBytes(box.read("${liste[index]["id"]}"));
+                      print(box.read("${liste[index]["id"]}"));
 
-                OpenResult or = await OpenFile.open(
-                    "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
-                print(or.message);
-                print(or.type);
-              },
-              leading: Icon(
-                Icons.file_copy_rounded,
-                color: Colors.black,
-              ),
-              title: Text(liste[index]["libelle"]),
-              subtitle: Text(liste[index]["date"]),
-              trailing: Icon(
-                Icons.arrow_forward_ios_outlined,
-              ),
-            );
-          }),
-        ))
-    );
+                      OpenResult or = await OpenFile.open(
+                          "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
+                      print(or.message);
+                      print(or.type);
+                    },
+                    leading: Icon(
+                      Icons.file_copy_rounded,
+                      color: Colors.black,
+                    ),
+                    title: Text(liste[index]["libelle"]),
+                    subtitle: Text(liste[index]["date"]),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios_outlined,
+                    ),
+                  );
+                }),
+              )));
   }
 }
 
