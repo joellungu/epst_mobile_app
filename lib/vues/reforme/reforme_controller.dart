@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:path_provider/path_provider.dart';
 
-class MagasinController extends GetxController with StateMixin<List> {
+class ReformeController extends GetxController with StateMixin<List> {
   //change(data, status: RxStatus.success());
   MagasinConnexion magasinConnexion = MagasinConnexion();
   List<Map<String, dynamic>> liste1 = [];
@@ -24,7 +24,7 @@ class MagasinController extends GetxController with StateMixin<List> {
     //
     var l1 = box.read("magasin");
     var l2 = box.read("reforme");
-    Response rep = await magasinConnexion.getListeMag(1);
+    Response rep = await magasinConnexion.getListeMag(type);
     if (rep.isOk) {
       print(rep.body);
       List rep_liste = rep.body;
@@ -55,14 +55,16 @@ class MagasinController extends GetxController with StateMixin<List> {
       liste2.isEmpty ? box.write("reforme", l2) : box.write("reforme", liste2);
       //box.write("reforme", liste2);//
       //
-      change(liste1, status: RxStatus.success());
+
+      change(liste2, status: RxStatus.success());
 
       //change(l1, status: RxStatus.success());
     } else {
       box.write("magasin", l1);
       box.write("reforme", l2);
       //
-      change(l1, status: RxStatus.success());
+
+      change(l2, status: RxStatus.success());
     }
   }
 

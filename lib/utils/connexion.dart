@@ -11,11 +11,11 @@ import 'package:sqflite/sqflite.dart';
 
 class Connexion {
   //
-  static var lien = 'http://192.168.43.134:8080/';
-  static var ws = '192.168.43.134:8080/';
+  //static var lien = 'http://192.168.43.134:8080/';
+  //static var ws = '192.168.43.134:8080/';
   //192.168.1.77
-  //static var lien = 'http://10.0.2.2:8080/';
-  //static var ws = '10.0.2.2:8080/';
+  static var lien = 'http://10.0.2.2:8080/';
+  static var ws = '10.0.2.2:8080/';
   //192.168.1.77
   //static var lien = 'http://192.168.1.178:8080/';
   //static var ws = '192.168.1.178:8080/';

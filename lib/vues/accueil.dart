@@ -7,7 +7,7 @@ import 'package:epst_app/vues/magasin/magasine.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'actualite.dart';
+import 'reforme/reforme.dart';
 import 'chat.dart';
 import 'formation_enseignant.dart';
 
@@ -144,7 +144,7 @@ class _Accueil extends State<Accueil> {
                       titre: liste[index],
                     );
                   } else if (index == 3) {
-                    return Actualite(
+                    return Reforme(
                       titre: liste[index],
                     );
                   } else if (index == 4) {

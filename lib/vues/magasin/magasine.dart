@@ -30,7 +30,6 @@ class Magasine extends GetView<MagasinController> {
   //
   Magasine({this.titre}) {
     controller.getListeMag(1);
-    WidgetsFlutterBinding.ensureInitialized();
   }
   //
   String? titre;
@@ -40,40 +39,6 @@ class Magasine extends GetView<MagasinController> {
   //
   List liste = [];
   //
-  Future<void> loadMagasin() async {
-    var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.mobile ||
-        connectivityResult == ConnectivityResult.wifi) {
-      bool v = await Connexion.liste_magasin(1);
-      //liste = await
-      liste = box.read("magasin") ?? [];
-      loads.value = v;
-      if (v) {
-        print("truc truc");
-        liste = box.read("magasin") ?? [];
-        loads.value = false;
-        print("truc $liste");
-        //
-      }
-    } else {
-      liste = box.read("magasin") ?? [];
-      loads.value = false;
-    }
-
-    //
-    print("longueur  ___  $liste");
-  }
-
-  /*
-  @override
-  void initState() {
-    //
-    //loadMagasin();
-    //
-    super.initState();
-  }
-  */
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,64 +60,65 @@ class Magasine extends GetView<MagasinController> {
             //
             //
             RxInt load = 0.obs;
-            Timer(const Duration(seconds: 1), () async {
+            Timer(const Duration(milliseconds: 1), () async {
               //
               final Directory directory =
                   await getApplicationDocumentsDirectory();
-              //load.value =
-              await _spawnAndReceive("${state[index]['id']}",
-                  state[index]['extention'], directory.path);
+              String path = directory.path;
+              load.value = await File(
+                          '$path/${state[index]['id']}.${state[index]['extention']}')
+                      .exists()
+                  ? 1
+                  : 0;
+              //_spawnAndReceive("${state[index]['id']}",
+              //state[index]['extention'], directory.path);
             });
             //Timer(const Duration(milliseconds: 500), () async {
             //});
             //
             return Obx(
-              () => load.value == 0
-                  ? Container(
-                      height: 50,
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Container(
-                          height: 50,
-                          width: 50,
-                          alignment: Alignment.center,
-                          child: const CircularProgressIndicator(
-                            strokeWidth: 1,
-                          ),
-                        ),
-                      ),
-                    )
-                  : load.value == 2
-                      ? Container()
-                      : ListTile(
-                          onTap: () async {
-                            final Directory directory =
-                                await getApplicationDocumentsDirectory();
-                            //
-                            //final File file = File('${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}');
-                            //
-                            print(
-                                "${directory.path}/${state[index]["id"]}.${state[index]["extention"]}");
-                            //
-                            //File f = await File("${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}")
-                            //  .writeAsBytes(box.read("${liste[index]["id"]}"));
-                            //print(box.read("${liste[index]["id"]}"));
-
-                            OpenResult or = await OpenFile.open(
-                                "${directory.path}/${state[index]["id"]}.${state[index]["extention"]}");
-                            print(or.message);
-                            print(or.type);
-                          },
-                          leading: Icon(
-                            Icons.file_copy_rounded,
+              () => ListTile(
+                onTap: () async {
+                  if (load.value == 1) {
+                    final Directory directory =
+                        await getApplicationDocumentsDirectory();
+                    print(
+                        "${directory.path}/${state[index]["id"]}.${state[index]["extention"]}");
+                    OpenResult or = await OpenFile.open(
+                        "${directory.path}/${state[index]["id"]}.${state[index]["extention"]}");
+                    print(or.message);
+                    print(or.type);
+                  } else {
+                    load.value = 2;
+                    //
+                    load.value = await controller.write("${state[index]["id"]}",
+                        "${state[index]["extention"]}");
+                    print("lecture");
+                  }
+                },
+                leading: Icon(
+                  Icons.file_copy_rounded,
+                  color: Colors.black,
+                ),
+                title: Text(state[index]["libelle"]),
+                subtitle: Text(state[index]["date"]),
+                trailing: load.value == 1
+                    ? const Icon(
+                        Icons.check_circle_outline,
+                        color: Colors.green,
+                      )
+                    : load.value == 0
+                        ? const Icon(
+                            Icons.download,
                             color: Colors.black,
+                          )
+                        : Container(
+                            height: 40,
+                            width: 40,
+                            alignment: Alignment.center,
+                            child: const CircularProgressIndicator(),
                           ),
-                          title: Text(state[index]["libelle"]),
-                          subtitle: Text(state[index]["date"]),
-                          trailing: Icon(
-                            Icons.arrow_forward_ios_outlined,
-                          ),
-                        ),
+              ),
             );
           }),
         ),
@@ -203,67 +169,6 @@ class Magasine extends GetView<MagasinController> {
         onError: (error) => Text("$error"),
       ),
     );
-  }
-
-  Future<void> _spawnAndReceive(
-      String id, String extention, String path) async {
-    //final p = ReceivePort();
-    IsolatedWorker().run<List, void>((e) async {
-      String id = e[0];
-      String extention = e[1];
-      String path = e[2];
-      int result = 0;
-      //
-      //final Directory directory = await getApplicationDocumentsDirectory();
-      //
-      //print(':::$path/$id.$extention');
-      //
-      bool vc = await File('$path/$id.$extention').exists();
-      //bool v = await Directory(
-      //      '${directory.path}/${state[index]["id"]}.${state[index]["extention"]}')
-      //.exists();
-      //
-      if (vc) {
-        result = 1;
-        print("Salut: 1");
-      } else {
-        MagasinController controller = Get.put(MagasinController());
-        //result = await controller.write(id, extention);
-        print("Salut: 2");
-      }
-      //return result;
-    }, [extention, id, path]);
-    //return (await p.first) as int;
-  }
-
-  Future<int> _readAndParseJson(List<String> args) async {
-    //SendPort responsePort = args[0];
-    String id = args[0];
-    String extention = args[1];
-    int result = 0;
-    //
-    //final Directory directory = await getApplicationDocumentsDirectory();
-    //
-    //print(':::${directory.path}/$id.$extention');
-    //
-    bool vc = true;
-    //await File('${directory.path}/$id.$extention').exists();
-    //bool v = await Directory(
-    //      '${directory.path}/${state[index]["id"]}.${state[index]["extention"]}')
-    //.exists();
-    //
-    if (vc) {
-      result = 1;
-      print("Salut: 1");
-    } else {
-      //load.value = 2;
-      print("Salut: 2");
-      //result = await controller.write(id, extention);
-    }
-    //final fileData = await File(fileName).readAsString();
-    //final result = jsonDecode(fileData);
-    //Isolate.exit(responsePort, result);
-    return result;
   }
 }
 

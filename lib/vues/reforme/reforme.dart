@@ -1,126 +1,157 @@
+import 'dart:async';
 import 'dart:io';
-import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:epst_app/models/reforme.dart';
-import 'package:epst_app/utils/connexion.dart';
+import 'package:epst_app/vues/reforme/reforme_controller.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class Actualite extends StatefulWidget {
+class Reforme extends GetView<ReformeController> {
+  //
+  Reforme({this.titre}) {
+    controller.getListeMag(2);
+  }
+  //
   String? titre;
-
-  Actualite({this.titre});
-
-  @override
-  State<StatefulWidget> createState() {
-    return _Actualite();
-  }
-}
-
-class _Actualite extends State<Actualite> {
-  //
   var box = GetStorage();
-  //
-  List actus = [
-    "Gratuité de l'enseignement",
-    "Programme scolaire Maternelle",
-    "Apprentissage des maths (PEQPSU)",
-    "Amelioration de la qualité de l'enseignement (PAQUED)",
-    "PERSE"
-  ];
-  @override
-  void initState() {
-    loadMagasin();
-    //
-    super.initState();
-  }
 
   RxBool loads = true.obs;
   //
   List liste = [];
   //
-  Future<void> loadMagasin() async {
-    var connectivityResult = await (Connectivity().checkConnectivity());
-    if (connectivityResult == ConnectivityResult.mobile ||
-        connectivityResult == ConnectivityResult.wifi) {
-      bool v = await Connexion.liste_magasin(2);
-      //liste = await
-      //if (box.read("reforme")) {
-      liste = box.read("reforme");
-      //} else {
-      //print(box.read("reforme"));
-      //}
-      loads.value = v;
-      if (v) {
-        print("truc truc");
-        liste = box.read("reforme") ?? [];
-        loads.value = false;
-        print("truc $liste");
-        //
-      }
-    } else {
-      liste = box.read("reforme") ?? [];
-      loads.value = false;
-    }
-
-    //
-    print("longueur  ___  $liste");
-  }
-  //
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(widget.titre!),
-        ),
-        body: Obx(() => loads.value
-            ? Center(
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  alignment: Alignment.center,
-                  child: CircularProgressIndicator(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("$titre"),
+        actions: [
+          /*IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.search,
+            ),
+          )*/
+        ],
+      ),
+      body: controller.obx(
+        (state) => ListView(
+          children: List.generate(state!.length, (index) {
+            //
+            //
+            RxInt load = 0.obs;
+            Timer(const Duration(milliseconds: 1), () async {
+              //
+              final Directory directory =
+                  await getApplicationDocumentsDirectory();
+              String path = directory.path;
+              load.value = await File(
+                          '$path/${state[index]['id']}.${state[index]['extention']}')
+                      .exists()
+                  ? 1
+                  : 0;
+              //_spawnAndReceive("${state[index]['id']}",
+              //state[index]['extention'], directory.path);
+            });
+            //Timer(const Duration(milliseconds: 500), () async {
+            //});
+            //
+            return Obx(
+              () => ListTile(
+                onTap: () async {
+                  if (load.value == 1) {
+                    final Directory directory =
+                        await getApplicationDocumentsDirectory();
+                    print(
+                        "${directory.path}/${state[index]["id"]}.${state[index]["extention"]}");
+                    OpenResult or = await OpenFile.open(
+                        "${directory.path}/${state[index]["id"]}.${state[index]["extention"]}");
+                    print(or.message);
+                    print(or.type);
+                  } else {
+                    load.value = 2;
+                    //
+                    load.value = await controller.write("${state[index]["id"]}",
+                        "${state[index]["extention"]}");
+                    print("lecture");
+                  }
+                },
+                leading: Icon(
+                  Icons.file_copy_rounded,
+                  color: Colors.black,
                 ),
-              )
-            : ListView(
-                children: List.generate(liste.length, (index) {
-                  return ListTile(
-                    onTap: () async {
-                      final Directory directory =
-                          await getApplicationDocumentsDirectory();
-                      //
-                      print(
-                          "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
-                      //
-                      //File f = await File("${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}")
-                      //  .writeAsBytes(box.read("${liste[index]["id"]}"));
-                      print(box.read("${liste[index]["id"]}"));
+                title: Text(state[index]["libelle"]),
+                subtitle: Text(state[index]["date"]),
+                trailing: load.value == 1
+                    ? const Icon(
+                        Icons.check_circle_outline,
+                        color: Colors.green,
+                      )
+                    : load.value == 0
+                        ? const Icon(
+                            Icons.download,
+                            color: Colors.black,
+                          )
+                        : Container(
+                            height: 40,
+                            width: 40,
+                            alignment: Alignment.center,
+                            child: const CircularProgressIndicator(),
+                          ),
+              ),
+            );
+          }),
+        ),
+        // here you can put your custom loading indicator, but
+        // by default would be Center(child:CircularProgressIndicator())
+        onLoading: Shimmer.fromColors(
+          baseColor: Colors.grey.shade200,
+          highlightColor: Colors.grey.shade400,
+          child: ListView(
+            children: List.generate(
+              10,
+              (index) => ListTile(
+                leading: Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                ),
+                title: Container(
+                  height: 10,
+                  width: 200,
+                  color: Colors.grey,
+                ),
+                subtitle: Container(
+                  height: 10,
+                  width: 100,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+          ),
+        ),
+        onEmpty: const Center(
+          child: Text(
+            'Vide',
+            style: TextStyle(
+              color: Colors.grey,
+              fontSize: 13,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
 
-                      OpenResult or = await OpenFile.open(
-                          "${directory.path}/${liste[index]["id"]}.${liste[index]["extention"]}");
-                      print(or.message);
-                      print(or.type);
-                    },
-                    leading: Icon(
-                      Icons.file_copy_rounded,
-                      color: Colors.black,
-                    ),
-                    title: Text(liste[index]["libelle"]),
-                    subtitle: Text(liste[index]["date"]),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios_outlined,
-                    ),
-                  );
-                }),
-              )));
+        // here also you can set your own error widget, but by
+        // default will be an Center(child:Text(error))
+        onError: (error) => Text("$error"),
+      ),
+    );
   }
 }
 

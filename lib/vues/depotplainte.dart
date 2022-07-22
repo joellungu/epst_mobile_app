@@ -80,85 +80,6 @@ class _DepotPlainte extends State<DepotPlainte> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(widget.titre!),
-        actions: [
-          IconButton(
-              onPressed: () async {
-                //['mmuseghe@gmail.com']
-                //
-                const GMAIL_SCHEMA = 'com.google.android.gm';
-
-                //final bool gmailinstalled =
-                //  await FlutterMailer.isAppInstalled(GMAIL_SCHEMA);
-
-                if (true) {
-                  final MailOptions mailOptions = MailOptions(
-                    body:
-                        'a long body for the email <br> with a subset of HTML',
-                    subject: 'the Email Subject',
-                    recipients: ['mmuseghe@gmail.com'],
-                    isHTML: true,
-                    bccRecipients: ['other@example.com'],
-                    ccRecipients: ['third@example.com'],
-                    //attachments: [
-                    //  'path/to/image.png',
-                    //],
-                    appSchema: GMAIL_SCHEMA,
-                  );
-                  await FlutterMailer.send(mailOptions);
-                }
-              },
-              icon: Icon(Icons.send)),
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: DropdownButtonHideUnderline(
-              child: DropdownButton<int>(
-                icon: const Icon(
-                  Icons.more_vert,
-                  color: Colors.white,
-                ),
-                items: [
-                  DropdownMenuItem(
-                    value: 1,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
-                        Icon(Icons.history),
-                        Text("  Historique")
-                      ],
-                    ),
-                  ),
-                  DropdownMenuItem(
-                    value: 2,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: const [
-                        Icon(Icons.history),
-                        Text("  References")
-                      ],
-                    ),
-                  )
-                ],
-                onChanged: (e) {
-                  if (e == 1) {
-                    //
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => PlainteHis(),
-                      ),
-                    );
-                  } else {
-                    //
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => References(),
-                      ),
-                    );
-                  }
-                },
-              ),
-            ),
-          )
-        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -310,7 +231,8 @@ class _DepotPlainte extends State<DepotPlainte> {
                             value: a,
                             isExpanded: true,
                             onChanged: (value) {
-                              value = a;
+                              a = value as int;
+                              print("le id: $a");
                             },
                             items: List.generate(
                               listeTiquet.length,
