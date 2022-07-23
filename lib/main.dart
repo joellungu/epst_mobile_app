@@ -3,6 +3,7 @@ import 'package:epst_app/splash.dart';
 import 'package:epst_app/utils/depotcontroler.dart';
 import 'package:epst_app/vues/accueil.dart';
 import 'package:epst_app/vues/magasin/magasin_controller.dart';
+import 'package:epst_app/vues/plainte/depotplainte_controller.dart';
 import 'package:epst_app/vues/reforme/reforme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,9 @@ void main() async {
   await GetStorage.init();
   //
   DepotController depotController = Get.put(DepotController());
+  //
+  DepotPlainteController depotPlainteController =
+      Get.put(DepotPlainteController());
   Get.put(MagasinController());
   Get.put(ReformeController());
   //MagasinController magasinController =
