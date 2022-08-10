@@ -57,6 +57,7 @@ dependencies:
   get: ^4.6.1
   get_storage: ^2.0.3
   isolated_worker: ^0.1.1
+  video_player: ^2.4.6
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:epst_app/vues/cours/cours.dart';
 import 'package:epst_app/vues/plainte/depotplainte.dart';
 import 'package:epst_app/vues/listing.dart';
 import 'package:epst_app/vues/live/live.dart';
@@ -53,6 +53,11 @@ class _Accueil extends State<Accueil> {
       color: Colors.white,
       size: 100,
     ),
+    Icon(
+      CupertinoIcons.device_laptop,
+      color: Colors.white,
+      size: 100,
+    ),
   ];
 
   List liste = [
@@ -62,7 +67,8 @@ class _Accueil extends State<Accueil> {
     "Reforme de l'EPST",
     "Listing",
     "Chat",
-    "Formation enseignents"
+    "Formation enseignents",
+    "Cours en ligne"
   ];
 
   TextEditingController textEditingController = TextEditingController();
@@ -149,6 +155,11 @@ class _Accueil extends State<Accueil> {
                     );
                   } else if (index == 4) {
                     return Listing(
+                      titre: liste[index],
+                    );
+                  } else if (index == 7) {
+                    //print("Je suis le cours...");
+                    return Coure(
                       titre: liste[index],
                     );
                   } else {

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class Splash extends StatelessWidget {
   Splash() {
-    Timer(Duration(seconds: 2), () {
+    Timer(Duration(seconds: 5), () {
       //
       Get.off(Accueil());
     });

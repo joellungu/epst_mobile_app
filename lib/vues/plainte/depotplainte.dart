@@ -80,6 +80,29 @@ class _DepotPlainte extends State<DepotPlainte> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(widget.titre!),
+        actions: [
+          DropdownButton<int>(
+          //value: 1,
+          icon: Icon(Icons.more_vert, color: Colors.white,),
+          items: [
+            DropdownMenuItem<int>(
+              child: Text("Historique"),
+              value: 1,
+            ),
+            DropdownMenuItem<int>(
+              child: Text("Reference"),
+              value: 2,
+            )
+          ], onChanged: (e){
+            //
+            if(e==1){
+              Get.to(PlainteHis());
+            }else{
+              Get.to(References());
+            }
+          }),
+          Padding(padding: EdgeInsets.only(right: 10))
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -682,7 +705,9 @@ class _PlainteHis extends State<PlainteHis> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("Historique"),
+      ),
       body: FutureBuilder(
         future: getPlaite(),
         builder: (context, b) {
