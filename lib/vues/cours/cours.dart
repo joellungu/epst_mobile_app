@@ -15,17 +15,9 @@ class Coure extends StatefulWidget{
 }
 
 class _Coure extends State<Coure> {
-  late VideoPlayerController _controller;
 
   @override
   void initState() {
-    super.initState();
-    _controller = VideoPlayerController.network(
-        '${Connexion.lien}coure/lire/1/1/1')
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});
-      });
   }
   @override
   Widget build(BuildContext context) {
@@ -33,25 +25,282 @@ class _Coure extends State<Coure> {
       appBar: AppBar(
         title: Text("${widget.titre}"),
       ),
-      body: Center(
-        child: _controller.value.isInitialized
-        ? AspectRatio(
-          aspectRatio: _controller.value.aspectRatio,
-          child: VideoPlayer(_controller),
-        )
-            : Container(),
-        ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            _controller.value.isPlaying
-            ? _controller.pause()
-                : _controller.play();
-          });
-        },
-        child: Icon(
-          _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-        ),
+      body: GridView.count(
+        padding: EdgeInsets.all(10),
+        crossAxisCount: 2,
+        mainAxisSpacing: 5,
+        crossAxisSpacing: 5,
+        childAspectRatio: 1,
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              //
+            },
+            style: ButtonStyle(
+              /*
+              backgroundColor: MaterialStateProperty.all(
+                Colors.blue.shade400,
+              ),
+              */
+            ),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    flex: 7,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Icon(
+                        Icons.dock_sharp,
+                        size: 100,
+                      ), //
+                      decoration: const BoxDecoration(
+                        //color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                          )),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: const TextSpan(
+                          text: "Arretés ministeriels",
+                          children: [
+                            TextSpan(
+                              text: "",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              //
+            },
+            style: ButtonStyle(
+              /*
+              backgroundColor: MaterialStateProperty.all(
+                Colors.blue.shade400,
+              ),
+              */
+            ),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    flex: 7,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Icon(
+                        Icons.notifications,
+                        size: 100,
+                      ), //
+                      decoration: const BoxDecoration(
+                        //color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                          )),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: const TextSpan(
+                          text: "Notifications arretés",
+                          children: [
+                            TextSpan(
+                              text: "",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              //
+            },
+            style: ButtonStyle(
+              /*
+              backgroundColor: MaterialStateProperty.all(
+                Colors.blue.shade400,
+              ),
+              */
+            ),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    flex: 7,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Icon(
+                        Icons.note_alt,
+                        size: 100,
+                      ), //
+                      decoration: const BoxDecoration(
+                        //color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                          )),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: const TextSpan(
+                          text: "Notes circulaires",
+                          children: [
+                            TextSpan(
+                              text: "",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              //
+            },
+            style: ButtonStyle(
+              /*
+              backgroundColor: MaterialStateProperty.all(
+                Colors.blue.shade400,
+              ),
+              */
+            ),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    flex: 7,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Icon(
+                        Icons.keyboard_voice,
+                        size: 100,
+                      ), //
+                      decoration: const BoxDecoration(
+                        //color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                          )),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: const TextSpan(
+                          text: "Message phonique",
+                          children: [
+                            TextSpan(
+                              text: "",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -59,7 +308,6 @@ class _Coure extends State<Coure> {
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
   }
 
 }

@@ -1,15 +1,18 @@
 import 'dart:convert';
+import 'package:epst_app/vues/chat/chat.dart';
 import 'package:epst_app/vues/cours/cours.dart';
+import 'package:epst_app/vues/formation/formation.dart';
 import 'package:epst_app/vues/plainte/depotplainte.dart';
 import 'package:epst_app/vues/listing.dart';
 import 'package:epst_app/vues/live/live.dart';
 import 'package:epst_app/vues/magasin/magasine.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'reforme/reforme.dart';
 import 'chat.dart';
-import 'formation_enseignant.dart';
+import 'formation/formation_enseignant.dart';
 
 class Accueil extends StatefulWidget {
   @override
@@ -34,6 +37,11 @@ class _Accueil extends State<Accueil> {
       size: 100,
     ),
     Icon(
+      CupertinoIcons.bubble_left_bubble_right_fill,
+      color: Colors.white,
+      size: 100,
+    ),
+    Icon(
       Icons.check_circle,
       color: Colors.white,
       size: 100,
@@ -44,17 +52,12 @@ class _Accueil extends State<Accueil> {
       size: 100,
     ),
     Icon(
-      CupertinoIcons.bubble_left_bubble_right_fill,
-      color: Colors.white,
-      size: 100,
-    ),
-    Icon(
       CupertinoIcons.profile_circled,
       color: Colors.white,
       size: 100,
     ),
     Icon(
-      CupertinoIcons.device_laptop,
+      CupertinoIcons.doc_on_clipboard_fill,
       color: Colors.white,
       size: 100,
     ),
@@ -64,11 +67,11 @@ class _Accueil extends State<Accueil> {
     "Epst actualités",
     "Depot plainte",
     "Mag EPST",
+    "Chat",
     "Reforme de l'EPST",
     "Listing",
-    "Chat",
-    "Formation enseignents",
-    "Cours en ligne"
+    "Formation à distance",
+    "Document officiel Epst",
   ];
 
   TextEditingController textEditingController = TextEditingController();
@@ -90,7 +93,7 @@ class _Accueil extends State<Accueil> {
         children: List.generate(liste.length, (index) {
           return ElevatedButton(
             onPressed: () {
-              if (index == 5) {
+              if (index == 3) {
                 showDialog(
                     context: context,
                     builder: (context) {
@@ -149,12 +152,12 @@ class _Accueil extends State<Accueil> {
                     return Magasine(
                       titre: liste[index],
                     );
-                  } else if (index == 3) {
-                    return Reforme(
+                  } else if (index == 5) {
+                    return Listing(
                       titre: liste[index],
                     );
                   } else if (index == 4) {
-                    return Listing(
+                    return Reforme(
                       titre: liste[index],
                     );
                   } else if (index == 7) {
@@ -164,7 +167,7 @@ class _Accueil extends State<Accueil> {
                     );
                   } else {
                     //
-                    return FormationEnseignent(
+                    return Formation(
                       titre: liste[index],
                     );
                   }
@@ -234,6 +237,14 @@ class _Accueil extends State<Accueil> {
           );
         }),
       ),
+      /*
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Get.to(()=>ChatTest());
+        },
+        child: Icon(Icons.add),
+      ),
+      */
     );
   }
 }
