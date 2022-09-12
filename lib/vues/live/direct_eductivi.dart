@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
 class DirectEductivi extends StatefulWidget {
@@ -165,153 +167,59 @@ class _DirectEductivi extends State<DirectEductivi> {
         appBar: AppBar(
           title: Text("Direct"),
         ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-              child: Center(
-                child: _chewieController != null &&
-                    _chewieController!
-                        .videoPlayerController.value.isInitialized
-                    ? Chewie(
-                  controller: _chewieController!,
-                )
-                    : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    CircularProgressIndicator(),
-                    SizedBox(height: 20),
-                    Text('Loading'),
-                  ],
-                ),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                _chewieController?.enterFullScreen();
-              },
-              child: const Text('Fullscreen'),
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _videoPlayerController1.pause();
-                        _videoPlayerController1.seekTo(Duration.zero);
-                        _createChewieController();
-                      });
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text("Landscape Video"),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _videoPlayerController2.pause();
-                        _videoPlayerController2.seekTo(Duration.zero);
-                        _chewieController = _chewieController!.copyWith(
-                          videoPlayerController: _videoPlayerController2,
-                          autoPlay: true,
-                          looping: true,
-                          /* subtitle: Subtitles([
-                            Subtitle(
-                              index: 0,
-                              start: Duration.zero,
-                              end: const Duration(seconds: 10),
-                              text: 'Hello from subtitles',
-                            ),
-                            Subtitle(
-                              index: 0,
-                              start: const Duration(seconds: 10),
-                              end: const Duration(seconds: 20),
-                              text: 'Whats up? :)',
-                            ),
-                          ]),
-                          subtitleBuilder: (context, subtitle) => Container(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Text(
-                              subtitle,
-                              style: const TextStyle(color: Colors.white),
-                            ),
-                          ), */
-                        );
-                      });
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text("Portrait Video"),
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _platform = TargetPlatform.android;
-                      });
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text("Android controls"),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _platform = TargetPlatform.iOS;
-                      });
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text("iOS controls"),
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      setState(() {
-                        _platform = TargetPlatform.windows;
-                      });
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
-                      child: Text("Desktop controls"),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            if (Platform.isAndroid)
-              ListTile(
-                title: const Text("Delay"),
-                subtitle: DelaySlider(
-                  delay:
-                  _chewieController?.progressIndicatorDelay?.inMilliseconds,
-                  onSave: (delay) async {
-                    if (delay != null) {
-                      bufferDelay = delay == 0 ? null : delay;
-                      await initializePlayer();
-                    }
-                  },
-                ),
+        backgroundColor: Colors.black,
+        body: HtmlWidget(
+          // the first parameter (`html`) is required
+          '''<video width="${Get.size.width}" height="${Get.size.height}" controls autoplay>
+            <source src="http://eu.oraostream.com:8081/eductv-orao/playlist.m3u8" type="video/mp4"></video>''',
+
+          // all other parameters are optional, a few notable params:
+
+          // specify custom styling for an element
+          // see supported inline styling below
+          customStylesBuilder: (element) {
+            if (element.classes.contains('foo')) {
+              return {'color': 'red'};
+            }
+
+            return null;
+          },
+
+          // render a custom widget
+          customWidgetBuilder: (element) {
+            if (element.attributes['foo'] == 'bar') {
+              //return FooBarWidget();
+            }
+
+            return null;
+          },
+
+          // turn on selectable if required (it's disabled by default)
+          isSelectable: true,
+
+          // these callbacks are called when a complicated element is loading
+          // or failed to render allowing the app to render progress indicator
+          // and fallback widget
+          onErrorBuilder: (context, element, error) => Text('$element error: $error'),
+          onLoadingBuilder: (context, element, loadingProgress) => Center(
+            child:
+            SizedBox(
+              height: 50,
+              width: 50,
+              child: CircularProgressIndicator(),
               )
-          ],
+            ,),
+
+          // this callback will be triggered when user taps a link
+          //onTapUrl: (url) => print('tapped $url'),
+          // select the render mode for HTML body
+          // by default, a simple `Column` is rendered
+          // consider using `ListView` or `SliverList` for better performance
+          renderMode: RenderMode.column,
+          // set the default styling for text
+          textStyle: TextStyle(fontSize: 14),
+          // turn on `webView` if you need IFRAME support (it's disabled by default)
+          webView: true,
         ),
     );
   }

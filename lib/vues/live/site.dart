@@ -26,6 +26,12 @@ class _Site extends State<Site> {
             //"https://www.eductv.cd/all_actualite.php", //https://www.youtube.com
             "https://www.eduquepsp.education/v1/",
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          controlleur!.reload();
+        },
+        child: Icon(Icons.sync),
+      ),
     );
   }
 }

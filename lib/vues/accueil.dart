@@ -8,6 +8,7 @@ import 'package:epst_app/vues/live/live.dart';
 import 'package:epst_app/vues/magasin/magasine.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'reforme/reforme.dart';
@@ -75,6 +76,15 @@ class _Accueil extends State<Accueil> {
   ];
 
   TextEditingController textEditingController = TextEditingController();
+
+  @override
+  void initState() {
+    SystemChrome.setPreferredOrientations([ DeviceOrientation.portraitUp, DeviceOrientation.portraitUp ]);
+
+    Source: https://prograide.com/pregunta/68443/flutter--comment-definir-et-verrouiller-lorientation-de-lecran--la-demande
+    //
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

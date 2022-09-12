@@ -1,8 +1,10 @@
 import 'package:epst_app/vues/live/site.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import 'clin_oeil.dart';
 import 'direct_eductivi.dart';
 
 class LiveStream extends StatefulWidget {
@@ -29,6 +31,8 @@ class _LiveStream extends State<LiveStream> {
 
   @override
   void initState() {
+    //
+    SystemChrome.setPreferredOrientations([ DeviceOrientation.portraitUp, DeviceOrientation.portraitUp ]);
     //
     super.initState();
   }
@@ -119,7 +123,7 @@ class _LiveStream extends State<LiveStream> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return Site();
+                    return ClinOeil();
                   },
                 ),
               );
