@@ -1,4 +1,5 @@
-import 'package:epst_app/vues/live/site.dart';
+import 'package:epst_app/vues/actualite/site.dart';
+import 'package:epst_app/vues/formation/enseignement_eleve_enligne.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -55,10 +56,9 @@ class _Formation extends State<Formation> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Icon(
-                        Icons.menu_book,
-                        size: 100,
-                      ), //
+                      child: Text("FOAD", style: TextStyle(
+                          color: Colors.white, fontSize: 30
+                      ),), //
                       decoration: const BoxDecoration(
                         //color: Colors.blue,
                           borderRadius: BorderRadius.only(
@@ -108,7 +108,7 @@ class _Formation extends State<Formation> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return Site();
+                    return EnseignementEleve();
                   },
                 ),
               );
@@ -128,10 +128,9 @@ class _Formation extends State<Formation> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Icon(
-                        Icons.school_rounded,
-                        size: 100,
-                      ), //
+                      child: Text("E-Classe", style: TextStyle(
+                        color: Colors.white, fontSize: 30
+                      ),), //
                       decoration: const BoxDecoration(
                         //color: Colors.blue,
                           borderRadius: BorderRadius.only(

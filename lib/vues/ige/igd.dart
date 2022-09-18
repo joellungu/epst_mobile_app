@@ -7,22 +7,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
-class Coure extends StatefulWidget{
+class Ige extends StatefulWidget{
   String? titre;
   //
-  Coure({this.titre});
+  Ige({this.titre});
   //
   @override
   State<StatefulWidget> createState() {
-    return _Coure();
+    return _Ige();
   }
 }
 
-class _Coure extends State<Coure> {
+class _Ige extends State<Ige> {
 
   @override
   void initState() {}
   //
+  double st = 25;
   //
   @override
   Widget build(BuildContext context) {
@@ -42,10 +43,10 @@ class _Coure extends State<Coure> {
               //
               Get.to(ArretesMinisteriel(titre: "Arretés ministeriels"));
             },
-            style: const ButtonStyle(
+            style: ButtonStyle(
               /*
-              backgroundColor: MaterialStateProperty.all(
-                Colors.blue.shade400,
+                backgroundColor: MaterialStateProperty.all(
+                Colors.green.shade700,
               ),
               */
             ),
@@ -53,8 +54,9 @@ class _Coure extends State<Coure> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  /*
                   Expanded(
-                    flex: 7,
+                    flex: 0,
                     child: Container(
                       alignment: Alignment.center,
                       child: Icon(
@@ -69,14 +71,15 @@ class _Coure extends State<Coure> {
                           )),
                     ),
                   ),
+                  */
                   Expanded(
-                    flex: 3,
+                    flex: 1,
                     child: Container(
                       alignment: Alignment.center,
                       child: RichText(
                         textAlign: TextAlign.center,
-                        text: const TextSpan(
-                          text: "Arretés ministeriels",
+                        text: TextSpan(
+                          text: "Demande palmarès",
                           children: [
                             TextSpan(
                               text: "",
@@ -88,7 +91,7 @@ class _Coure extends State<Coure> {
                             )
                           ],
                           style: TextStyle(
-                            fontSize: 13,
+                            fontSize: st,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
@@ -110,10 +113,10 @@ class _Coure extends State<Coure> {
               //
               Get.to(NotificationsArretes(titre: "Notifications arretés"));
             },
-            style: const ButtonStyle(
+            style: ButtonStyle(
               /*
-              backgroundColor: MaterialStateProperty.all(
-                Colors.blue.shade400,
+                backgroundColor: MaterialStateProperty.all(
+                Colors.green.shade700,
               ),
               */
             ),
@@ -121,6 +124,7 @@ class _Coure extends State<Coure> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  /*
                   Expanded(
                     flex: 7,
                     child: Container(
@@ -137,14 +141,15 @@ class _Coure extends State<Coure> {
                           )),
                     ),
                   ),
+                  */
                   Expanded(
-                    flex: 3,
+                    flex: 1,
                     child: Container(
                       alignment: Alignment.center,
                       child: RichText(
                         textAlign: TextAlign.center,
-                        text: const TextSpan(
-                          text: "Notifications arretés",
+                        text: TextSpan(
+                          text: "Demande Note d'acquis de droit",
                           children: [
                             TextSpan(
                               text: "",
@@ -156,7 +161,7 @@ class _Coure extends State<Coure> {
                             )
                           ],
                           style: TextStyle(
-                            fontSize: 13,
+                            fontSize: st,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
@@ -178,10 +183,10 @@ class _Coure extends State<Coure> {
               //
               Get.to(NotesCirculaire(titre: "Notes circulaires"));
             },
-            style: const ButtonStyle(
+            style: ButtonStyle(
               /*
-              backgroundColor: MaterialStateProperty.all(
-                Colors.blue.shade400,
+                backgroundColor: MaterialStateProperty.all(
+                Colors.green.shade700,
               ),
               */
             ),
@@ -189,6 +194,7 @@ class _Coure extends State<Coure> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  /*
                   Expanded(
                     flex: 7,
                     child: Container(
@@ -205,14 +211,15 @@ class _Coure extends State<Coure> {
                           )),
                     ),
                   ),
+                  */
                   Expanded(
-                    flex: 3,
+                    flex: 1,
                     child: Container(
                       alignment: Alignment.center,
                       child: RichText(
                         textAlign: TextAlign.center,
-                        text: const TextSpan(
-                          text: "Notes circulaires",
+                        text: TextSpan(
+                          text: "Demande diplome",
                           children: [
                             TextSpan(
                               text: "",
@@ -224,7 +231,7 @@ class _Coure extends State<Coure> {
                             )
                           ],
                           style: TextStyle(
-                            fontSize: 13,
+                            fontSize: st,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
@@ -246,10 +253,10 @@ class _Coure extends State<Coure> {
               //
               Get.to(MessagePhonique(titre: "Message phonique"));
             },
-            style: const ButtonStyle(
+            style: ButtonStyle(
               /*
-              backgroundColor: MaterialStateProperty.all(
-                Colors.blue.shade400,
+                backgroundColor: MaterialStateProperty.all(
+                Colors.green.shade700,
               ),
               */
             ),
@@ -257,6 +264,7 @@ class _Coure extends State<Coure> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  /*
                   Expanded(
                     flex: 7,
                     child: Container(
@@ -273,14 +281,15 @@ class _Coure extends State<Coure> {
                           )),
                     ),
                   ),
+                  */
                   Expanded(
-                    flex: 3,
+                    flex: 1,
                     child: Container(
                       alignment: Alignment.center,
                       child: RichText(
                         textAlign: TextAlign.center,
-                        text: const TextSpan(
-                          text: "Message phonique",
+                        text: TextSpan(
+                          text: "Demande transfère",
                           children: [
                             TextSpan(
                               text: "",
@@ -292,7 +301,77 @@ class _Coure extends State<Coure> {
                             )
                           ],
                           style: TextStyle(
-                            fontSize: 13,
+                            fontSize: st,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              //
+              Get.to(MessagePhonique(titre: "Message phonique"));
+            },
+            style: ButtonStyle(
+              /*
+                backgroundColor: MaterialStateProperty.all(
+                Colors.green.shade700,
+              ),
+              */
+            ),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  /*
+                  Expanded(
+                    flex: 7,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: const Icon(
+                        Icons.keyboard_voice,
+                        size: 100,
+                      ), //
+                      decoration: const BoxDecoration(
+                        //color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                          )),
+                    ),
+                  ),
+                  */
+                  Expanded(
+                    flex: 1,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "Vérification document",
+                          children: [
+                            TextSpan(
+                              text: "",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: st,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
@@ -318,5 +397,5 @@ class _Coure extends State<Coure> {
   void dispose() {
     super.dispose();
   }
-  //
+//
 }

@@ -1,4 +1,4 @@
-import 'package:epst_app/vues/live/site.dart';
+import 'package:epst_app/vues/actualite/site.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';

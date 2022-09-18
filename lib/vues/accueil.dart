@@ -2,10 +2,12 @@ import 'dart:convert';
 import 'package:epst_app/vues/chat/chat.dart';
 import 'package:epst_app/vues/cours/cours.dart';
 import 'package:epst_app/vues/formation/formation.dart';
+import 'package:epst_app/vues/ige/igd.dart';
 import 'package:epst_app/vues/plainte/depotplainte.dart';
 import 'package:epst_app/vues/listing.dart';
-import 'package:epst_app/vues/live/live.dart';
+import 'package:epst_app/vues/actualite/live.dart';
 import 'package:epst_app/vues/magasin/magasine.dart';
+import 'package:epst_app/vues/sg/sg.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,64 +23,75 @@ class Accueil extends StatefulWidget {
 }
 
 class _Accueil extends State<Accueil> {
-  List listeIcons = const [
-    Icon(
-      Icons.language,
-      color: Colors.white,
-      size: 100,
-    ),
-    Icon(
-      Icons.list_alt,
-      color: Colors.white,
-      size: 100,
-    ),
-    Icon(
-      Icons.dashboard,
-      color: Colors.white,
-      size: 100,
-    ),
-    Icon(
-      CupertinoIcons.bubble_left_bubble_right_fill,
-      color: Colors.white,
-      size: 100,
-    ),
-    Icon(
-      Icons.check_circle,
-      color: Colors.white,
-      size: 100,
-    ),
-    Icon(
-      Icons.people_alt_sharp,
-      color: Colors.white,
-      size: 100,
-    ),
-    Icon(
-      CupertinoIcons.profile_circled,
-      color: Colors.white,
-      size: 100,
-    ),
-    Icon(
-      CupertinoIcons.doc_on_clipboard_fill,
-      color: Colors.white,
-      size: 100,
-    ),
-  ];
+  double si = 60;
+  List listeIcons = [];
 
   List liste = [
     "Epst actualités",
     "Depot plainte",
     "Mag EPST",
-    "Chat",
+    "Chat avec agent EPST",
     "Reforme de l'EPST",
     "Listing",
     "Formation à distance",
     "Document officiel Epst",
+    "Demande document scolaire",
+    "Sécretaria général",
   ];
 
   TextEditingController textEditingController = TextEditingController();
 
   @override
   void initState() {
+    listeIcons = [
+      Icon(
+        Icons.language,
+        color: Colors.white,
+        size: si,
+      ),
+      Icon(
+        Icons.list_alt,
+        color: Colors.white,
+        size: si,
+      ),
+      Icon(
+        Icons.dashboard,
+        color: Colors.white,
+        size: si,
+      ),
+      Icon(
+        CupertinoIcons.bubble_left_bubble_right_fill,
+        color: Colors.white,
+        size: si,
+      ),
+      Icon(
+        Icons.check_circle,
+        color: Colors.white,
+        size: si,
+      ),
+      Icon(
+        Icons.people_alt_sharp,
+        color: Colors.white,
+        size: si,
+      ),
+      Icon(
+        CupertinoIcons.profile_circled,
+        color: Colors.white,
+        size: si,
+      ),
+      Icon(
+        CupertinoIcons.doc_on_clipboard_fill,
+        color: Colors.white,
+        size: si,
+      ),
+      //
+      Text("IGE", style: TextStyle(fontSize: 35),),
+      Icon(
+        CupertinoIcons.doc_plaintext,
+        color: Colors.white,
+        size: 100,
+      ),
+    ];
     SystemChrome.setPreferredOrientations([ DeviceOrientation.portraitUp, DeviceOrientation.portraitUp ]);
 
     Source: https://prograide.com/pregunta/68443/flutter--comment-definir-et-verrouiller-lorientation-de-lecran--la-demande
@@ -96,10 +109,10 @@ class _Accueil extends State<Accueil> {
       ),
       body: GridView.count(
         padding: EdgeInsets.all(10),
-        crossAxisCount: 2,
+        crossAxisCount: 3,
         mainAxisSpacing: 5,
         crossAxisSpacing: 5,
-        childAspectRatio: 1,
+        childAspectRatio: 0.7,
         children: List.generate(liste.length, (index) {
           return ElevatedButton(
             onPressed: () {
@@ -171,8 +184,18 @@ class _Accueil extends State<Accueil> {
                       titre: liste[index],
                     );
                   } else if (index == 7) {
-                    //print("Je suis le cours...");
+                    //print("Je suis le cours...");Ige,Ige
                     return Coure(
+                      titre: liste[index],
+                    );
+                  } else if (index == 8) {
+                    //print("Je suis le cours...");Ige,Ige
+                    return Ige(
+                      titre: liste[index],
+                    );
+                  } else if (index == 9) {
+                    //print("Je suis le cours...");Ige,Ige
+                    return SecretariaGeneral(
                       titre: liste[index],
                     );
                   } else {
@@ -211,7 +234,7 @@ class _Accueil extends State<Accueil> {
                   ),
                 ),
                 Expanded(
-                  flex: 3,
+                  flex: 5,
                   child: Container(
                     alignment: Alignment.center,
                     child: RichText(
@@ -222,14 +245,14 @@ class _Accueil extends State<Accueil> {
                           TextSpan(
                             text: liste[index],
                             style: const TextStyle(
-                              fontSize: 20,
+                              fontSize: 15,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
                           )
                         ],
                         style: const TextStyle(
-                          fontSize: 20,
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),

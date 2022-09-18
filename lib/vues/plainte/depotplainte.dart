@@ -69,6 +69,13 @@ class _DepotPlainte extends State<DepotPlainte> {
   List listeTiquet = [
     "Gratuité de l'enseignement",
     "Violences basées sur le genre",
+    "Diplome d'état",
+    "Examen d'état",
+    "TENAFEP",
+    "TENASOP",
+    "Suspension",
+    "Salaire ou prime",
+    "Matricule",
     "Autres...",
   ];
   //
@@ -243,7 +250,11 @@ class _DepotPlainte extends State<DepotPlainte> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("  Tiquet:"),
+                      Text("  Thématique:",
+                        style: TextStyle(
+                          fontSize: 10
+                        ),
+                      ),
                       SizedBox(
                         width: 20,
                       ),
@@ -252,6 +263,10 @@ class _DepotPlainte extends State<DepotPlainte> {
                         child: DropdownButtonHideUnderline(
                           child: DropdownButtonFormField<int>(
                             value: a,
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.black
+                            ),
                             isExpanded: true,
                             onChanged: (value) {
                               a = value as int;

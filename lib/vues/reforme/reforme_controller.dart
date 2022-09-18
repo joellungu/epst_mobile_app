@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-
+import 'package:http/http.dart' as http;
 import 'package:epst_app/utils/connexion.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -22,12 +22,14 @@ class ReformeController extends GetxController with StateMixin<List> {
     var box = GetStorage();
     int v = 0;
     //
-    var l1 = box.read("magasin");
-    var l2 = box.read("reforme");
-    Response rep = await magasinConnexion.getListeMag(type);
-    if (rep.isOk) {
+    var l1 = box.read("magasin") ?? [];
+    var l2 = box.read("reforme") ?? [];
+    http.Response rep = await magasinConnexion.getListeMag(type);
+    if (rep.statusCode == 200 ||
+        rep.statusCode == 201 ||
+        rep.statusCode == 204) {
       print(rep.body);
-      List rep_liste = rep.body;
+      List rep_liste = jsonDecode(rep.body);
       //
       rep_liste.forEach((element) {
         Map<String, dynamic> e = element;
@@ -100,7 +102,7 @@ class ReformeController extends GetxController with StateMixin<List> {
     //
     //var url = Uri.parse("${Connexion.lien}magasin/$id");
     var response = await magasinConnexion.getMagasin("$id");
-    t = response.body;
+    t = jsonDecode(response.body);
     //
     //==
     //
@@ -109,11 +111,17 @@ class ReformeController extends GetxController with StateMixin<List> {
 }
 
 class MagasinConnexion extends GetConnect {
-  Future<Response> getListeMag(int type) async {
-    return get("${Connexion.lien}magasin/all/$type");
+  Future<http.Response> getListeMag(int type) async {
+    var url = Uri.parse('${Connexion.lien}magasin/all/$type');
+    var response = await http.get(url);
+    return response;
+    //return get("${Connexion.lien}magasin/all/$type");
   }
 
-  Future<Response> getMagasin(String id) async {
-    return get("${Connexion.lien}magasin/$id");
+  Future<http.Response> getMagasin(String id) async {
+    var url = Uri.parse('${Connexion.lien}magasin/$id');
+    var response = await http.get(url);
+    return response;
+    //return get("${Connexion.lien}magasin/$id");
   }
 }
