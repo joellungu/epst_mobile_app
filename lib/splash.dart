@@ -14,7 +14,17 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: Container(
+        padding: const EdgeInsets.only(top: 20, bottom: 5),
+        child: Image.asset(
+          "assets/WhatsApp Image 2022-11-21 at 12.39.59.jpeg",
+          fit: BoxFit.contain,
+        ),
+        height: MediaQuery.of(context).size.height ,
+        width: MediaQuery.of(context).size.width ,
+      ),
+      /*
+      Center(
         child: Container(
           child: Image.asset(
             "assets/EPST APP.png",
@@ -24,6 +34,7 @@ class Splash extends StatelessWidget {
           width: MediaQuery.of(context).size.width / 1.5,
         ),
       ),
+      */
     );
   }
 }

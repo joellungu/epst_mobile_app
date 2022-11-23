@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 class Transfere1 extends StatefulWidget {
   Map<String, dynamic>? utilisateur;
   List<Map<String, dynamic>> listeFichier = [];
+  //
   Transfere1(this.utilisateur, this.listeFichier);
   //
   @override
@@ -91,8 +92,7 @@ class _Transfere2 extends State<Transfere2> {
   bool mx = true;
   Future<void> send() async {
     //String rep = await Connexion.enregistrementPiecejointe(
-    //  widget.piecejointeId, widget.listeFichier);
-
+    //widget.piecejointeId, widget.listeFichier);
     widget.listeFichier.forEach(
       (element) async {
         //https://epstapp.herokuapp.com

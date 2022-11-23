@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:epst_app/vues/chat/chat.dart';
 import 'package:epst_app/vues/cours/cours.dart';
 import 'package:epst_app/vues/formation/formation.dart';
 import 'package:epst_app/vues/ige/igd.dart';
@@ -11,11 +10,9 @@ import 'package:epst_app/vues/sg/sg.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
-
+import 'mutuelle/mutuelle.dart';
 import 'reforme/reforme.dart';
 import 'chat.dart';
-import 'formation/formation_enseignant.dart';
 
 class Accueil extends StatefulWidget {
   @override
@@ -37,6 +34,7 @@ class _Accueil extends State<Accueil> {
     "Document officiel Epst",
     "Demande document scolaire",
     "Sécretaria général",
+    "Mutuelle de santé",
   ];
 
   TextEditingController textEditingController = TextEditingController();
@@ -90,6 +88,11 @@ class _Accueil extends State<Accueil> {
         CupertinoIcons.doc_plaintext,
         color: Colors.white,
         size: 100,
+      ),
+      //
+      Image.asset("assets/Logo_MESP_ok.png",
+      color: Colors.blue,
+        colorBlendMode: BlendMode.color,
       ),
     ];
     SystemChrome.setPreferredOrientations([ DeviceOrientation.portraitUp, DeviceOrientation.portraitUp ]);
@@ -196,6 +199,11 @@ class _Accueil extends State<Accueil> {
                   } else if (index == 9) {
                     //print("Je suis le cours...");Ige,Ige
                     return SecretariaGeneral(
+                      titre: liste[index],
+                    );
+                  } else if (index == 10) {
+                    //print("Je suis le cours...");Ige,Ige
+                    return Mutuelle(
                       titre: liste[index],
                     );
                   } else {

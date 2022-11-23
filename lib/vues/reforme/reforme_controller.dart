@@ -92,7 +92,7 @@ class ReformeController extends GetxController with StateMixin<List> {
       return 1;
       //
     } catch (e) {
-      return 2;
+      return 0;
     }
   }
 

@@ -134,7 +134,6 @@ class MagasinController extends GetxController with StateMixin<List> {
         change(l7, status: RxStatus.success());
       }
       //
-
     }
   }
 
@@ -161,7 +160,7 @@ class MagasinController extends GetxController with StateMixin<List> {
       //
     } catch (e) {
       print(e);
-      return 2;
+      return 0;
     }
   }
 
