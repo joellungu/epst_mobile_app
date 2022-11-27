@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math';
 import 'dart:typed_data';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:epst_app/models/historiquedb.dart';
 import 'package:epst_app/utils/depotcontroler.dart';
 import 'package:epst_app/vues/reference.dart';
 import 'package:epst_app/vues/transsfere.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'mutuelle_controller.dart';
 import 'package:get/get.dart';
@@ -33,10 +35,13 @@ class _Demande extends State<Demande> {
   TextEditingController prenom = TextEditingController();
   TextEditingController matricule = TextEditingController();
   TextEditingController notes = TextEditingController();
-
+  //
   int a = 0;
   int s = 0;
   int b = 0;
+  int p = 0;
+  int d = 0;
+  //
   var Fichier = "";
   List listeProvince = [
     "Bas-Uele",
@@ -45,9 +50,9 @@ class _Demande extends State<Demande> {
     "Haut-Lomami",
     "Haut-Uele",
     "Ituri",
-    "Kasaï",
-    "Kasaï central",
-    "Kasaï oriental",
+    "Kasai",
+    "Kasai central",
+    "Kasai oriental",
     "Kinshasa",
     "Kongo-Central",
     "Kwango",
@@ -69,22 +74,85 @@ class _Demande extends State<Demande> {
   //
   int ti = 0;
   //
+  List<String> listeDistrict2 = [
+    "BAS-UELE"
+    ,"EQUATEUR 1"
+    ,"EQUATEUR 2"
+    ,"HAUT-KATANGA 1"
+    ,"HAUT-KATANGA 2"
+    ,"HAUT-LOMAMI 1"
+    ,"HAUT-LOMAMI 2"
+    ,"HAUT-UELE 1"
+    ,"HAUT-UELE 2"
+    ,"ITURI 1"
+    ,"ITURI 2"
+    ,"ITURI 3"
+    ,"KASAI 1"
+    ,"KASAI 2"
+    ,"KASAI CENTRAL 1"
+    ,"KASAI CENTRAL 2"
+    ,"KASAI ORIENTAL 1"
+    ,"KASAI ORIENTAL 2"
+    ,"KINSHASA-FUNA"
+    ,"KINSHASA-LUKUNGA"
+    ,"KINSHASA-MONT AMBA"
+    ,"KINSHASA-PLATEAU"
+    ,"KINSHASA-TSHANGU"
+    ,"KONGO CENTRAL 1"
+    ,"KONGO CENTRAL 2"
+    ,"KONGO CENTRAL 3"
+    ,"KWANGO 1"
+    ,"KWANGO 2"
+    ,"KWILU 1"
+    ,"KWILU 2"
+    ,"KWILU 3"
+    ,"LOMAMI"
+    ,"LOMAMI 2"
+    ,"LUALABA 1"
+    ,"LUALABA 2"
+    ,"MAI-NDOMBE 1"
+    ,"MAI-NDOMBE 2"
+    ,"MAI-NDOMBE 3"
+    ,"MANIEMA 1"
+    ,"MANIEMA 2"
+    ,"MONGALA 1"
+    ,"MONGALA 2"
+    ,"NORD-KIVU 1"
+    ,"NORD-KIVU 2"
+    ,"NORD-KIVU 3"
+    ,"NORD-UBANGI 1"
+    ,"NORD-UBANGI 2"
+    ,"SANKURU 1"
+    ,"SANKURU 2"
+    ,"SUD KIVU 2"
+    ,"SUD-KIVU 1"
+    ,"SUD-KIVU 3"
+    ,"SUD-UBANGI 1"
+    ,"SUD-UBANGI 2"
+    ,"TANGANYIKA 1"
+    ,"TANGANYIKA 2"
+    ,"TSHOPO 1"
+    ,"TSHOPO 2"
+    ,"TSHUAPA 1"
+    ,"TSHUAPA 2"
+  ];
+  //
+  List<String> listeDistrict = [];
 
-  List listeServices = [
+  List<String> listeServices = [
     "Demande consulation",
     "Demande transfère",
     "Demande médicaments",
-    "",
   ];
   //
-  List listeBeneficiaire = [
+  List<String> listeBeneficiaire = [
     "Moi-meme",
     "Epouse",
     "Enfant 1",
     "Enfant 2",
   ];
   //
-  List listeDiraction = [
+  List<String> listeDiraction = [
     "Cabinet SG",
     "Cabinet IGE",
     "DGC",
@@ -105,7 +173,9 @@ class _Demande extends State<Demande> {
   //
   RxInt i = 0.obs;
   //
-  List listeTiquet = [
+  RxInt i2 = 0.obs;
+  //
+  List<String> listeTiquet = [
     "Gratuité de l'enseignement",
     "Violences basées sur le genre",
     "Diplome d'état",
@@ -118,11 +188,31 @@ class _Demande extends State<Demande> {
     "Autres...",
   ];
   //
-  String ext = "png";
+  String ext1 = "png";
+  String ext2 = "png";
   //
   DepotController depotController = Get.find();
   //
-  XFile? img;
+  XFile? img1;
+  XFile? img2;
+  RxBool piecejointe = false.obs;
+  RxString piecejointe_text = "".obs;
+  //
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    //
+    listeDistrict.clear();
+    //
+    listeDistrict2.forEach((element) {
+      if("$element".toLowerCase().contains("${listeProvince[0]}".toLowerCase())){
+        listeDistrict.add("$element");
+      }
+
+    });
+    //
+  }
   //
   @override
   Widget build(BuildContext context) {
@@ -269,7 +359,6 @@ class _Demande extends State<Demande> {
               const SizedBox(
                 height: 10,
               ),
-
               Text("Services"),
               SizedBox(height: 10,),
               Card(
@@ -297,7 +386,20 @@ class _Demande extends State<Demande> {
                           child: DropdownButtonFormField<int>(
                             value: s,
                             onChanged: (value) {
-                              value = s;
+                              s = value as int;
+                              setState((){
+                              if(s == 0){
+                                piecejointe = false.obs;
+                                piecejointe_text.value = "";
+                              }else if(s == 1){
+                                piecejointe_text.value = "Note de transfère";
+                                piecejointe = true.obs;
+                              }else{
+                                piecejointe_text.value = "Odonnance";
+                                piecejointe = true.obs;
+                              }
+                              });
+                              //value = s;
                             },
                             items: List.generate(
                               listeServices.length,
@@ -315,6 +417,117 @@ class _Demande extends State<Demande> {
                   ),
                 ),
               ),
+              ////////////////////:
+              const SizedBox(
+                height: 10,
+              ),
+              Text("Province"),
+              SizedBox(height: 10,),
+              Card(
+                elevation: 0,
+                margin: EdgeInsets.all(0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  side: BorderSide(color: Colors.grey),
+                ),
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text("  Province:"),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButtonFormField<int>(
+                            value: p,
+                            onChanged: (value) {
+                              p = value as int;
+                              listeDistrict.clear();
+                              setState((){
+                                listeDistrict2.forEach((element) {
+                                  if("$element".toLowerCase().contains("${listeProvince[p]}".toLowerCase())){
+                                    print("$element");
+                                    listeDistrict.add("$element");
+                                  }
+                                });
+                              });
+                              //value = s;
+                            },
+                            items: List.generate(
+                              listeProvince.length,
+                                  (index) {
+                                return DropdownMenuItem(
+                                  value: index,
+                                  child: Text(listeProvince[index]),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              ///////////
+              const SizedBox(
+                height: 10,
+              ),
+              Text("Province éducationnel"),
+              SizedBox(height: 10,),
+              Card(
+                elevation: 0,
+                margin: EdgeInsets.all(0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  side: BorderSide(color: Colors.grey),
+                ),
+                child: Container(
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text("  Province éducationnel:"),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButtonFormField<int>(
+                            value: d,
+                            onChanged: (value) {
+                              d = value as int;
+                              setState((){});
+                              //value = s;
+                            },
+                            items: List.generate(
+                              listeDistrict.length,
+                                  (index) {
+                                return DropdownMenuItem(
+                                  value: index,
+                                  child: Text(listeDistrict[index]),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              ///////////
               const SizedBox(
                 height: 10,
               ),
@@ -400,10 +613,10 @@ class _Demande extends State<Demande> {
                   onPressed: () async {
                     final ImagePicker _picker = ImagePicker();
                     // Pick an image
-                    img = await _picker.pickImage(source: ImageSource.gallery);
-                    ext = "${img!.name}".split(".").last;
+                    img1 = await _picker.pickImage(source: ImageSource.gallery);
+                    ext1 = "${img1!.name}".split(".").last;
                     i = 1.obs;
-                    print("ext ${img!.name}".split(".").last);
+                    print("ext ${img1!.name}".split(".").last);
                     // Capture a photo
                     Timer(Duration(seconds: 1), () {
                       setState((){
@@ -420,11 +633,44 @@ class _Demande extends State<Demande> {
                           width: Get.size.width / 1.1,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: FileImage(File(img!.path))
+                              image: FileImage(File(img1!.path))
                             )
                           ),
                           //child: Image.file(File(img!.path)),
                         ):Container()
+              ),
+              SizedBox(height: 10,),
+              Obx(
+                () => piecejointe.value ? ElevatedButton.icon(
+                onPressed: () async {
+                  final ImagePicker _picker = ImagePicker();
+                  // Pick an image
+                  img2 = await _picker.pickImage(source: ImageSource.gallery);
+                  ext2 = "${img2!.name}".split(".").last;
+                  i2 = 1.obs;
+                  print("ext ${img2!.name}".split(".").last);
+                  // Capture a photo
+                  Timer(Duration(seconds: 1), () {
+                    setState((){
+                      //
+                    });
+                  });
+                },
+                icon: Icon(Icons.file_present),
+                label: Text(piecejointe_text.value),
+              ):Container(),
+          ),
+              Obx(
+                      () => i2.value != 0 ? Container(
+                    height: Get.size.height / 4,
+                    width: Get.size.width / 1.1,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: FileImage(File(img2!.path))
+                        )
+                    ),
+                    //child: Image.file(File(img!.path)),
+                  ):Container()
               ),
               const SizedBox(
                 height: 20,
@@ -470,13 +716,15 @@ class _Demande extends State<Demande> {
                           )
                       );
                       //
-                      Future<Uint8List> i = img!.readAsBytes();
-                      File file = File(img!.path);
+                      //Future<Uint8List> i = img1!.readAsBytes();
+                      //File file = File(img1!.path);
                       //
-                      Uint8List l = await img!.readAsBytes();
+                      Uint8List l1 = await img1!.readAsBytes();
+                      Uint8List l2 = await img2!.readAsBytes();
+
                       //
                       Map<String, dynamic> formulaireD = {
-                        "id":1,
+                        "id":getCode(),
                         "nom": nom.text,
                         "postnom": postnom.text,
                         "prenom": prenom.text,
@@ -487,10 +735,13 @@ class _Demande extends State<Demande> {
                         "notes": notes.text,
                         "jour":"${DateTime.now()}",
                         "valider":0,
-                        "carte": l,
-                        "ext": ext
+                        "carte": l1,
+                        "piecejointe":l2,
+                        "ext1": ext1,
+                        "ext2": ext2,
+                        "province": listeProvince[p],
+                        "district": listeDistrict[d]
                       };
-                      //
                       //
                       MutuelleController mutuelleController = Get.find();
                       //ByteArrayInputStream//formulaireD
@@ -511,17 +762,23 @@ class _Demande extends State<Demande> {
                   child: Text("Envoyer"),
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  String getCode() {
+    String n = "";
+    var rng = Random();
+    for(var i = 0; i < 17; i++){
+      n = "$n${rng.nextInt(9)}";
+    }
+    return n;
   }
 
   messageErreur(String titre, String message) {

@@ -95,8 +95,7 @@ class Magasine extends GetView<MagasinController> {
                   flex: 1,
                   child: Obx(
                     () => ListView(
-                      children: List.generate(
-                          l.length, (index) {
+                      children: List.generate(l.length, (index) {
                         //
                         RxInt load = 0.obs;
                         Timer(const Duration(milliseconds: 1), () async {
@@ -121,54 +120,54 @@ class Magasine extends GetView<MagasinController> {
                         return "${l[index]["libelle"]}"
                                 .toLowerCase()
                                 .contains(text.value.toLowerCase())
-                            ?
-                        Obx(
-                          () => ListTile(
-                            onTap: () async {
-                              if (load.value == 1) {
-                                final Directory directory =
-                                    await getApplicationDocumentsDirectory();
-                                print(
-                                    "${directory.path}/${l[index]["id"]}.${l[index]["extention"]}");
-                                OpenResult or = await OpenFile.open(
-                                    "${directory.path}/${l[index]["id"]}.${l[index]["extention"]}");
-                                print(or.message);
-                                print(or.type);
-                              } else {
-                                load.value = 2;
-                                //
-                                load.value = await controller.write(
-                                    "${l[index]["id"]}",
-                                    "${l[index]["extention"]}");
-                                print("lecture: ${load.value}");
-                              }
-                            },
-                            leading: Icon(
-                              Icons.file_copy_rounded,
-                              color: Colors.black,
-                            ),
-                            title: Text(l[index]["libelle"]),
-                            subtitle: Text(l[index]["date"]),
-                            trailing: load.value == 1
-                                ? const Icon(
-                                    Icons.check_circle_outline,
-                                    color: Colors.green,
-                                  )
-                                : load.value == 0
-                                    ? const Icon(
-                                        Icons.download,
-                                        color: Colors.black,
-                                      )
-                                    : Container(
-                                        height: 40,
-                                        width: 40,
-                                        alignment: Alignment.center,
-                                        child:
-                                            const CircularProgressIndicator(),
-                                      ),
-                          ),
-                        )
-                        : Container();
+                            ? Obx(
+                                () => ListTile(
+                                  onTap: () async {
+                                    if (load.value == 1) {
+                                      final Directory directory =
+                                          await getApplicationDocumentsDirectory();
+                                      print(
+                                          "${directory.path}/${l[index]["id"]}.${l[index]["extention"]}");
+                                      OpenResult or = await OpenFile.open(
+                                          "${directory.path}/${l[index]["id"]}.${l[index]["extention"]}");
+                                      print(or.message);
+                                      print(or.type);
+                                    } else {
+                                      load.value = 2;
+                                      //
+                                      load.value = await controller.write(
+                                          "${l[index]["id"]}",
+                                          "${l[index]["extention"]}");
+                                      print("lecture: ${load.value}");
+                                    }
+                                  },
+                                  leading: Image.asset(
+                                    "assets/logo-app.jpeg",
+                                    color: Colors.blue,
+                                    colorBlendMode: BlendMode.color,
+                                  ),
+                                  title: Text(l[index]["libelle"]),
+                                  subtitle: Text(l[index]["date"]),
+                                  trailing: load.value == 1
+                                      ? const Icon(
+                                          Icons.check_circle_outline,
+                                          color: Colors.green,
+                                        )
+                                      : load.value == 0
+                                          ? const Icon(
+                                              Icons.download,
+                                              color: Colors.black,
+                                            )
+                                          : Container(
+                                              height: 40,
+                                              width: 40,
+                                              alignment: Alignment.center,
+                                              child:
+                                                  const CircularProgressIndicator(),
+                                            ),
+                                ),
+                              )
+                            : Container();
                       }),
                     ),
                   ),
@@ -228,7 +227,6 @@ class Magasine extends GetView<MagasinController> {
       ),
     );
   }
-
 }
 
 /*

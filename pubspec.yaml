@@ -45,6 +45,7 @@ dependencies:
   webview_flutter: ^3.0.4
   #flutter_plugin_record: ^1.0.1
   image_picker: ^0.8.4+9
+  accordion:
   #camera_camera: ^2.0.2
   flutter_chat_bubble:
   sqflite: ^2.0.2

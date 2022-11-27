@@ -57,9 +57,9 @@ class _Coure extends State<Coure> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Icon(
-                        Icons.dock_sharp,
-                        size: 100,
+                      child: Image.asset("assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
                       ), //
                       decoration: const BoxDecoration(
                         //color: Colors.blue,
@@ -125,9 +125,9 @@ class _Coure extends State<Coure> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Icon(
-                        Icons.notifications,
-                        size: 100,
+                      child: Image.asset("assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
                       ), //
                       decoration: const BoxDecoration(
                         //color: Colors.blue,
@@ -193,9 +193,9 @@ class _Coure extends State<Coure> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Icon(
-                        Icons.note_alt,
-                        size: 100,
+                      child: Image.asset("assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
                       ), //
                       decoration: const BoxDecoration(
                         //color: Colors.blue,
@@ -261,9 +261,9 @@ class _Coure extends State<Coure> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      child: const Icon(
-                        Icons.keyboard_voice,
-                        size: 100,
+                      child: Image.asset("assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
                       ), //
                       decoration: const BoxDecoration(
                         //color: Colors.blue,

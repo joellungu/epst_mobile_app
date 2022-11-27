@@ -42,20 +42,19 @@ class _Accueil extends State<Accueil> {
   @override
   void initState() {
     listeIcons = [
-      Icon(
-        Icons.language,
-        color: Colors.white,
-        size: si,
+      Image.asset("assets/news-actualite.png",
+        color: Colors.blue,
+        colorBlendMode: BlendMode.color,
+        width: 250,
+        height: 250,
+      ),//
+      Image.asset("assets/LOGO-MINEPST-BON.png",
+        color: Colors.blue,
+        colorBlendMode: BlendMode.color,
       ),
-      Icon(
-        Icons.list_alt,
-        color: Colors.white,
-        size: si,
-      ),
-      Icon(
-        Icons.dashboard,
-        color: Colors.white,
-        size: si,
+      Image.asset("assets/logo-mag.png",
+        color: Colors.blue,
+        colorBlendMode: BlendMode.color,
       ),
       Icon(
         CupertinoIcons.bubble_left_bubble_right_fill,
@@ -67,30 +66,31 @@ class _Accueil extends State<Accueil> {
         color: Colors.white,
         size: si,
       ),
-      Icon(
-        Icons.people_alt_sharp,
-        color: Colors.white,
-        size: si,
+      Image.asset("assets/SECOPE.jpg",
+        color: Colors.blue,
+        colorBlendMode: BlendMode.color,
       ),
-      Icon(
-        CupertinoIcons.profile_circled,
-        color: Colors.white,
-        size: si,
+      Image.asset("assets/FOAD.jpg",
+        color: Colors.blue,
+        colorBlendMode: BlendMode.color,
       ),
-      Icon(
-        CupertinoIcons.doc_on_clipboard_fill,
-        color: Colors.white,
-        size: si,
+      Image.asset("assets/LOGO-MINEPST-BON.png",
+        color: Colors.blue,
+        colorBlendMode: BlendMode.color,
       ),
       //
-      Text("IGE", style: TextStyle(fontSize: 35),),
-      Icon(
-        CupertinoIcons.doc_plaintext,
-        color: Colors.white,
-        size: 100,
+      Image.asset("assets/LOGO-MINEPST-BON.png",
+        color: Colors.blue,
+        colorBlendMode: BlendMode.color,
+      ),
+      Image.asset("assets/LOGO-MINEPST-BON.png",
+        fit: BoxFit.fill,
+        color: Colors.blue,
+        colorBlendMode: BlendMode.color,
       ),
       //
       Image.asset("assets/Logo_MESP_ok.png",
+      fit: BoxFit.fill,
       color: Colors.blue,
         colorBlendMode: BlendMode.color,
       ),
@@ -230,6 +230,7 @@ class _Accueil extends State<Accueil> {
                 Expanded(
                   flex: 7,
                   child: Container(
+                    padding: EdgeInsets.all(5),
                     alignment: Alignment.center,
                     child: listeIcons[index],
                     decoration: const BoxDecoration(
