@@ -11,6 +11,13 @@ import 'package:get_storage/get_storage.dart';
 
 import 'vues/mutuelle/mutuelle_controller.dart';
 
+List liste_ecoles = [];
+RxString annee = "".obs;
+RxString ecole = "Ecole".obs;
+RxString option = "Option".obs;
+RxString ecole1 = "".obs;
+RxString ecole2 = "".obs;
+
 void main() async {
   //
   WidgetsFlutterBinding.ensureInitialized();
@@ -71,3 +78,6 @@ class Epst extends StatelessWidget {
     );
   }
 }
+/*
+
+*/

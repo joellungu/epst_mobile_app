@@ -1,202 +1,43 @@
-import 'package:epst_app/vues/actualite/site.dart';
+import 'package:epst_app/vues/cours/message_phonique.dart';
+import 'package:epst_app/vues/mutuelle/demande.dart';
+import 'package:epst_app/vues/mutuelle/historique_demande.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:get/get.dart';
 
-import 'clin_oeil.dart';
-import 'direct_eductivi.dart';
+import 'demande_identification.dart';
+import 'historique_demande_identification.dart';
 
-class LiveStream extends StatefulWidget {
+class Identification extends StatefulWidget {
   String? titre;
-  LiveStream({this.titre});
-
+  //
+  Identification({this.titre});
+  //
   @override
   State<StatefulWidget> createState() {
-    return _LiveStream();
+    return _Identification();
   }
 }
 
-class _LiveStream extends State<LiveStream> {
-  WebViewController? controlleur;
-  /*
-  YoutubePlayerController _controller = YoutubePlayerController(
-    initialVideoId: 'jVYG_eH5UMU',
-    flags: YoutubePlayerFlags(
-      autoPlay: true,
-      mute: false,
-    ),
-  );
-  */
-
-  @override
-  void initState() {
-    //
-    SystemChrome.setPreferredOrientations(
-        [DeviceOrientation.portraitUp, DeviceOrientation.portraitUp]);
-    //
-    super.initState();
-  }
-
+class _Identification extends State<Identification> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(widget.titre!),
+        title: Text("${widget.titre}"),
       ),
       body: GridView.count(
         padding: EdgeInsets.all(10),
         crossAxisCount: 2,
         mainAxisSpacing: 5,
-        crossAxisSpacing: 5,
-        childAspectRatio: 1,
+        crossAxisSpacing: 7,
+        childAspectRatio: 0.8,
         children: [
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return DirectEductivi();
-                  },
-                ),
-              );
+              //
+              Get.to(DemandeIdentification(titre: "Demande d'identification"));
             },
-            style: ButtonStyle(),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Icon(
-                        Icons.live_tv,
-                        size: 100,
-                      ), //
-                      decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      )),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: const TextSpan(
-                          text: "direct",
-                          children: [
-                            TextSpan(
-                              text: "",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return ClinOeil();
-                  },
-                ),
-              );
-            },
-            style: ButtonStyle(),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Icon(
-                        Icons.remove_red_eye,
-                        size: 100,
-                      ), //
-                      decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      )),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: const TextSpan(
-                          text: "Clin oeil",
-                          children: [
-                            TextSpan(
-                              text: "",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Actualites();
-                  },
-                ),
-              );
-            },
-            style: ButtonStyle(
+            style: const ButtonStyle(
                 /*
               backgroundColor: MaterialStateProperty.all(
                 Colors.blue.shade400,
@@ -204,6 +45,7 @@ class _LiveStream extends State<LiveStream> {
               */
                 ),
             child: Container(
+              padding: EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -211,9 +53,10 @@ class _LiveStream extends State<LiveStream> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Icon(
-                        Icons.language,
-                        size: 100,
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
                       ), //
                       decoration: const BoxDecoration(
                           //color: Colors.blue,
@@ -230,7 +73,7 @@ class _LiveStream extends State<LiveStream> {
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
-                          text: "actualité site",
+                          text: "Demande d'identification",
                           children: [
                             TextSpan(
                               text: "",
@@ -242,7 +85,77 @@ class _LiveStream extends State<LiveStream> {
                             )
                           ],
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              //
+              Get.to(HistoriqueDemandeIdentification());
+            },
+            style: const ButtonStyle(
+                /*
+              backgroundColor: MaterialStateProperty.all(
+                Colors.blue.shade400,
+              ),
+              */
+                ),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    flex: 7,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
+                      ), //
+                      decoration: const BoxDecoration(
+                          //color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      )),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: const TextSpan(
+                          text: "Validation",
+                          children: [
+                            TextSpan(
+                              text: "",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: 13,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),

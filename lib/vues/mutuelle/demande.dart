@@ -54,7 +54,7 @@ class _Demande extends State<Demande> {
     "Kasai central",
     "Kasai oriental",
     "Kinshasa",
-    "Kongo-Central",
+    "Kongo Central",
     "Kwango",
     "Kwilu",
     "Lomami",
@@ -74,67 +74,67 @@ class _Demande extends State<Demande> {
   //
   int ti = 0;
   //
-  List<String> listeDistrict2 = [
-    "BAS-UELE"
-    ,"EQUATEUR 1"
-    ,"EQUATEUR 2"
-    ,"HAUT-KATANGA 1"
-    ,"HAUT-KATANGA 2"
-    ,"HAUT-LOMAMI 1"
-    ,"HAUT-LOMAMI 2"
-    ,"HAUT-UELE 1"
-    ,"HAUT-UELE 2"
-    ,"ITURI 1"
-    ,"ITURI 2"
-    ,"ITURI 3"
-    ,"KASAI 1"
-    ,"KASAI 2"
-    ,"KASAI CENTRAL 1"
-    ,"KASAI CENTRAL 2"
-    ,"KASAI ORIENTAL 1"
-    ,"KASAI ORIENTAL 2"
-    ,"KINSHASA-FUNA"
-    ,"KINSHASA-LUKUNGA"
-    ,"KINSHASA-MONT AMBA"
-    ,"KINSHASA-PLATEAU"
-    ,"KINSHASA-TSHANGU"
-    ,"KONGO CENTRAL 1"
-    ,"KONGO CENTRAL 2"
-    ,"KONGO CENTRAL 3"
-    ,"KWANGO 1"
-    ,"KWANGO 2"
-    ,"KWILU 1"
-    ,"KWILU 2"
-    ,"KWILU 3"
-    ,"LOMAMI"
-    ,"LOMAMI 2"
-    ,"LUALABA 1"
-    ,"LUALABA 2"
-    ,"MAI-NDOMBE 1"
-    ,"MAI-NDOMBE 2"
-    ,"MAI-NDOMBE 3"
-    ,"MANIEMA 1"
-    ,"MANIEMA 2"
-    ,"MONGALA 1"
-    ,"MONGALA 2"
-    ,"NORD-KIVU 1"
-    ,"NORD-KIVU 2"
-    ,"NORD-KIVU 3"
-    ,"NORD-UBANGI 1"
-    ,"NORD-UBANGI 2"
-    ,"SANKURU 1"
-    ,"SANKURU 2"
-    ,"SUD KIVU 2"
-    ,"SUD-KIVU 1"
-    ,"SUD-KIVU 3"
-    ,"SUD-UBANGI 1"
-    ,"SUD-UBANGI 2"
-    ,"TANGANYIKA 1"
-    ,"TANGANYIKA 2"
-    ,"TSHOPO 1"
-    ,"TSHOPO 2"
-    ,"TSHUAPA 1"
-    ,"TSHUAPA 2"
+  List<Map<String, dynamic>> listeDistrict2 = [
+    {"p": "BAS-UELE", "d": "BAS-UELE"},
+    {"p": "EQUATEUR", "d": "EQUATEUR 1"},
+    {"p": "EQUATEUR", "d": "EQUATEUR 2"},
+    {"p": "HAUT-KATANGA", "d": "HAUT-KATANGA 1"},
+    {"p": "HAUT-KATANGA", "d": "HAUT-KATANGA 2"},
+    {"p": "HAUT-LOMAMI", "d": "HAUT-LOMAMI 1"},
+    {"p": "HAUT-LOMAMI", "d": "HAUT-LOMAMI 2"},
+    {"p": "HAUT-UELE", "d": "HAUT-UELE 1"},
+    {"p": "HAUT-UELE", "d": "HAUT-UELE 2"},
+    {"p": "ITURI", "d": "ITURI 1"},
+    {"p": "ITURI", "d": "ITURI 2"},
+    {"p": "ITURI", "d": "ITURI 3"},
+    {"p": "KASAI", "d": "KASAI 1"},
+    {"p": "KASAI", "d": "KASAI 2"},
+    {"p": "KASAI CENTRAL", "d": "KASAI CENTRAL 1"},
+    {"p": "KASAI CENTRAL", "d": "KASAI CENTRAL 2"},
+    {"p": "KASAI ORIENTAL", "d": "KASAI ORIENTAL 1"},
+    {"p": "KASAI ORIENTAL", "d": "KASAI ORIENTAL 2"},
+    {"p": "KINSHASA", "d": "KINSHASA-FUNA"},
+    {"p": "KINSHASA", "d": "KINSHASA-LUKUNGA"},
+    {"p": "KINSHASA", "d": "KINSHASA-MONT AMBA"},
+    {"p": "KINSHASA", "d": "KINSHASA-PLATEAU"},
+    {"p": "KINSHASA", "d": "KINSHASA-TSHANGU"},
+    {"p": "KONGO CENTRAL", "d": "KONGO CENTRAL 1"},
+    {"p": "KONGO CENTRAL", "d": "KONGO CENTRAL 2"},
+    {"p": "KONGO CENTRAL", "d": "KONGO CENTRAL 3"},
+    {"p": "KWANGO", "d": "KWANGO 1"},
+    {"p": "KWANGO", "d": "KWANGO 2"},
+    {"p": "KWILU", "d": "KWILU 1"},
+    {"p": "KWILU", "d": "KWILU 2"},
+    {"p": "KWILU", "d": "KWILU 3"},
+    {"p": "LOMAMI", "d": "LOMAMI"},
+    {"p": "LOMAMI", "d": "LOMAMI 2"},
+    {"p": "LUALABA", "d": "LUALABA 1"},
+    {"p": "LUALABA", "d": "LUALABA 2"},
+    {"p": "MAI-NDOMBE", "d": "MAI-NDOMBE 1"},
+    {"p": "MAI-NDOMBE", "d": "MAI-NDOMBE 2"},
+    {"p": "MAI-NDOMBE", "d": "MAI-NDOMBE 3"},
+    {"p": "MANIEMA", "d": "MANIEMA 1"},
+    {"p": "MANIEMA", "d": "MANIEMA 2"},
+    {"p": "MONGALA", "d": "MONGALA 1"},
+    {"p": "MONGALA", "d": "MONGALA 2"},
+    {"p": "NORD-KIVU", "d": "NORD-KIVU 1"},
+    {"p": "NORD-KIVU", "d": "NORD-KIVU 2"},
+    {"p": "NORD-KIVU", "d": "NORD-KIVU 3"},
+    {"p": "NORD-UBANGI", "d": "NORD-UBANGI 1"},
+    {"p": "NORD-UBANGI", "d": "NORD-UBANGI 2"},
+    {"p": "SANKURU", "d": "SANKURU 1"},
+    {"p": "SANKURU", "d": "SANKURU 2"},
+    {"p": "SUD KIVU", "d": "SUD KIVU 2"},
+    {"p": "SUD KIVU", "d": "SUD-KIVU 1"},
+    {"p": "SUD KIVU", "d": "SUD-KIVU 3"},
+    {"p": "SUD-UBANGI", "d": "SUD-UBANGI 1"},
+    {"p": "SUD-UBANGI", "d": "SUD-UBANGI 2"},
+    {"p": "TANGANYIKA", "d": "TANGANYIKA 1"},
+    {"p": "TANGANYIKA", "d": "TANGANYIKA 2"},
+    {"p": "TSHOPO", "d": "TSHOPO 1"},
+    {"p": "TSHOPO", "d": "TSHOPO 2"},
+    {"p": "TSHUAPA", "d": "TSHUAPA 1"},
+    {"p": "TSHUAPA", "d": "TSHUAPA 2"}
   ];
   //
   List<String> listeDistrict = [];
@@ -206,20 +206,26 @@ class _Demande extends State<Demande> {
     listeDistrict.clear();
     //
     listeDistrict2.forEach((element) {
-      if("$element".toLowerCase().contains("${listeProvince[0]}".toLowerCase())){
-        listeDistrict.add("$element");
+      if ("${element['p']}".toLowerCase() ==
+          ("${listeProvince[0]}".toLowerCase())) {
+        listeDistrict.add("${element['d']}");
       }
-
     });
     //
   }
+
   //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(widget.titre!, style: TextStyle(fontSize: 17,),),
+        title: Text(
+          widget.titre!,
+          style: TextStyle(
+            fontSize: 17,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -232,7 +238,9 @@ class _Demande extends State<Demande> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text("Identité agent EPST"),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               TextField(
                 controller: nom,
                 decoration: InputDecoration(
@@ -253,7 +261,7 @@ class _Demande extends State<Demande> {
               TextField(
                 controller: postnom,
                 decoration: InputDecoration(
-                  //prefixIcon: Text("Téléphone:"),
+                    //prefixIcon: Text("Téléphone:"),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(
@@ -261,8 +269,8 @@ class _Demande extends State<Demande> {
                       ),
                     ),
                     label: Text("Postnom")
-                  //prefixText: "De: "
-                ),
+                    //prefixText: "De: "
+                    ),
               ),
               const SizedBox(
                 height: 10,
@@ -316,10 +324,9 @@ class _Demande extends State<Demande> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("  Direction:",
-                        style: TextStyle(
-                            fontSize: 10
-                        ),
+                      Text(
+                        "  Direction:",
+                        style: TextStyle(fontSize: 10),
                       ),
                       SizedBox(
                         width: 20,
@@ -342,7 +349,7 @@ class _Demande extends State<Demande> {
                             },
                             items: List.generate(
                               listeDiraction.length,
-                                  (index) {
+                              (index) {
                                 return DropdownMenuItem(
                                   value: index,
                                   child: Text(listeDiraction[index]),
@@ -360,7 +367,9 @@ class _Demande extends State<Demande> {
                 height: 10,
               ),
               Text("Services"),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Card(
                 elevation: 0,
                 margin: EdgeInsets.all(0),
@@ -387,23 +396,23 @@ class _Demande extends State<Demande> {
                             value: s,
                             onChanged: (value) {
                               s = value as int;
-                              setState((){
-                              if(s == 0){
-                                piecejointe = false.obs;
-                                piecejointe_text.value = "";
-                              }else if(s == 1){
-                                piecejointe_text.value = "Note de transfère";
-                                piecejointe = true.obs;
-                              }else{
-                                piecejointe_text.value = "Odonnance";
-                                piecejointe = true.obs;
-                              }
+                              setState(() {
+                                if (s == 0) {
+                                  piecejointe = false.obs;
+                                  piecejointe_text.value = "";
+                                } else if (s == 1) {
+                                  piecejointe_text.value = "Note de transfère";
+                                  piecejointe = true.obs;
+                                } else {
+                                  piecejointe_text.value = "Odonnance";
+                                  piecejointe = true.obs;
+                                }
                               });
                               //value = s;
                             },
                             items: List.generate(
                               listeServices.length,
-                                  (index) {
+                              (index) {
                                 return DropdownMenuItem(
                                   value: index,
                                   child: Text(listeServices[index]),
@@ -422,7 +431,9 @@ class _Demande extends State<Demande> {
                 height: 10,
               ),
               Text("Province"),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Card(
                 elevation: 0,
                 margin: EdgeInsets.all(0),
@@ -450,11 +461,12 @@ class _Demande extends State<Demande> {
                             onChanged: (value) {
                               p = value as int;
                               listeDistrict.clear();
-                              setState((){
+                              setState(() {
                                 listeDistrict2.forEach((element) {
-                                  if("$element".toLowerCase().contains("${listeProvince[p]}".toLowerCase())){
+                                  if ("${element['p']}".toLowerCase() ==
+                                      ("${listeProvince[p]}".toLowerCase())) {
                                     print("$element");
-                                    listeDistrict.add("$element");
+                                    listeDistrict.add("${element['d']}");
                                   }
                                 });
                               });
@@ -462,7 +474,7 @@ class _Demande extends State<Demande> {
                             },
                             items: List.generate(
                               listeProvince.length,
-                                  (index) {
+                              (index) {
                                 return DropdownMenuItem(
                                   value: index,
                                   child: Text(listeProvince[index]),
@@ -481,7 +493,9 @@ class _Demande extends State<Demande> {
                 height: 10,
               ),
               Text("Province éducationnel"),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Card(
                 elevation: 0,
                 margin: EdgeInsets.all(0),
@@ -506,14 +520,18 @@ class _Demande extends State<Demande> {
                         child: DropdownButtonHideUnderline(
                           child: DropdownButtonFormField<int>(
                             value: d,
+                            style: const TextStyle(
+                              fontSize: 13,
+                              color: Colors.black,
+                            ),
                             onChanged: (value) {
                               d = value as int;
-                              setState((){});
+                              setState(() {});
                               //value = s;
                             },
                             items: List.generate(
                               listeDistrict.length,
-                                  (index) {
+                              (index) {
                                 return DropdownMenuItem(
                                   value: index,
                                   child: Text(listeDistrict[index]),
@@ -594,7 +612,7 @@ class _Demande extends State<Demande> {
                             },
                             items: List.generate(
                               listeBeneficiaire.length,
-                                  (index) {
+                              (index) {
                                 return DropdownMenuItem(
                                   value: index,
                                   child: Text(listeBeneficiaire[index]),
@@ -608,123 +626,126 @@ class _Demande extends State<Demande> {
                   ),
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               ElevatedButton.icon(
-                  onPressed: () async {
-                    final ImagePicker _picker = ImagePicker();
-                    // Pick an image
-                    img1 = await _picker.pickImage(source: ImageSource.gallery);
-                    ext1 = "${img1!.name}".split(".").last;
-                    i = 1.obs;
-                    print("ext ${img1!.name}".split(".").last);
-                    // Capture a photo
-                    Timer(Duration(seconds: 1), () {
-                      setState((){
-                        //
-                      });
-                    });
-                  },
-                icon: Icon(Icons.file_present),
-                label: Text("Joindre la carte MESP du bénéficiaire"),
-              ),
-              Obx(
-                    () => i.value != 0 ? Container(
-                          height: Get.size.height / 4,
-                          width: Get.size.width / 1.1,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: FileImage(File(img1!.path))
-                            )
-                          ),
-                          //child: Image.file(File(img!.path)),
-                        ):Container()
-              ),
-              SizedBox(height: 10,),
-              Obx(
-                () => piecejointe.value ? ElevatedButton.icon(
                 onPressed: () async {
                   final ImagePicker _picker = ImagePicker();
                   // Pick an image
-                  img2 = await _picker.pickImage(source: ImageSource.gallery);
-                  ext2 = "${img2!.name}".split(".").last;
-                  i2 = 1.obs;
-                  print("ext ${img2!.name}".split(".").last);
+                  img1 = await _picker.pickImage(source: ImageSource.gallery);
+                  ext1 = "${img1!.name}".split(".").last;
+                  i = 1.obs;
+                  print("ext ${img1!.name}".split(".").last);
                   // Capture a photo
                   Timer(Duration(seconds: 1), () {
-                    setState((){
+                    setState(() {
                       //
                     });
                   });
                 },
                 icon: Icon(Icons.file_present),
-                label: Text(piecejointe_text.value),
-              ):Container(),
-          ),
-              Obx(
-                      () => i2.value != 0 ? Container(
-                    height: Get.size.height / 4,
-                    width: Get.size.width / 1.1,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: FileImage(File(img2!.path))
-                        )
-                    ),
-                    //child: Image.file(File(img!.path)),
-                  ):Container()
+                label: Text("Joindre la carte MESP du bénéficiaire"),
               ),
+              Obx(() => i.value != 0
+                  ? Container(
+                      height: Get.size.height / 4,
+                      width: Get.size.width / 1.1,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: FileImage(File(img1!.path)))),
+                      //child: Image.file(File(img!.path)),
+                    )
+                  : Container()),
+              SizedBox(
+                height: 10,
+              ),
+              Obx(
+                () => piecejointe.value
+                    ? ElevatedButton.icon(
+                        onPressed: () async {
+                          final ImagePicker _picker = ImagePicker();
+                          // Pick an image
+                          img2 = await _picker.pickImage(
+                              source: ImageSource.gallery);
+                          ext2 = "${img2!.name}".split(".").last;
+                          i2 = 1.obs;
+                          print("ext ${img2!.name}".split(".").last);
+                          // Capture a photo
+                          Timer(Duration(seconds: 1), () {
+                            setState(() {
+                              //
+                            });
+                          });
+                        },
+                        icon: Icon(Icons.file_present),
+                        label: Text(piecejointe_text.value),
+                      )
+                    : Container(),
+              ),
+              Obx(() => i2.value != 0
+                  ? Container(
+                      height: Get.size.height / 4,
+                      width: Get.size.width / 1.1,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: FileImage(File(img2!.path)))),
+                      //child: Image.file(File(img!.path)),
+                    )
+                  : Container()),
               const SizedBox(
                 height: 20,
               ),
               ElevatedButton(
                 onPressed: () async {
                   if (nom.text.isEmpty) {
-                    messageErreur(
-                        "Erreur", "Veuillez remplire le champ nom");
+                    messageErreur("Erreur", "Veuillez remplire le champ nom");
                   } else if (postnom.text.isEmpty) {
                     messageErreur(
                         "Erreur", "Veuillez remplire le champ postnom");
                   } else if (prenom.text.isEmpty) {
-                    messageErreur("Erreur", "Veuillez remplire le champ prenom");
+                    messageErreur(
+                        "Erreur", "Veuillez remplire le champ prenom");
                   } else if (matricule.text.isEmpty) {
                     messageErreur(
                         "Erreur", "Veuillez remplire le champ matricule");
                   } else if (notes.text.isEmpty) {
-                    messageErreur(
-                        "Erreur", "Veuillez remplire le champ notes");
+                    messageErreur("Erreur", "Veuillez remplire le champ notes");
                   } else if (notes.text.isEmpty) {
                     messageErreur(
                         "Erreur", "Veuillez associer la photo de la carte");
                   } else {
                     var connectivityResult =
-                    await (Connectivity().checkConnectivity());
+                        await (Connectivity().checkConnectivity());
                     //
                     if (connectivityResult == ConnectivityResult.mobile ||
                         connectivityResult == ConnectivityResult.wifi) {
                       //
-                      Get.dialog(
-                          Center(
-                            child: Container(
-                              height: 40,width: 40,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: CircularProgressIndicator(
-                                strokeWidth: 7,
-                              ),
-                            ),
-                          )
-                      );
+                      Get.dialog(Center(
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: CircularProgressIndicator(
+                            strokeWidth: 7,
+                          ),
+                        ),
+                      ));
                       //
                       //Future<Uint8List> i = img1!.readAsBytes();
                       //File file = File(img1!.path);
                       //
                       Uint8List l1 = await img1!.readAsBytes();
-                      Uint8List l2 = await img2!.readAsBytes();
+                      Uint8List l2 = img2 != null
+                          ? await img2!.readAsBytes()
+                          : await Uint8List.fromList([1]);
 
                       //
                       Map<String, dynamic> formulaireD = {
-                        "id":getCode(),
+                        "id": getCode(),
                         "nom": nom.text,
                         "postnom": postnom.text,
                         "prenom": prenom.text,
@@ -733,10 +754,10 @@ class _Demande extends State<Demande> {
                         "services": listeServices[s],
                         "beneficiaire": listeBeneficiaire[b],
                         "notes": notes.text,
-                        "jour":"${DateTime.now()}",
-                        "valider":0,
+                        "jour": "${DateTime.now()}",
+                        "valider": 0,
                         "carte": l1,
-                        "piecejointe":l2,
+                        "piecejointe": l2,
                         "ext1": ext1,
                         "ext2": ext2,
                         "province": listeProvince[p],
@@ -751,9 +772,7 @@ class _Demande extends State<Demande> {
                       });
 
                       //____________________________________________________________
-                    } else {
-
-                    }
+                    } else {}
                   }
                 },
                 child: Container(
@@ -775,7 +794,7 @@ class _Demande extends State<Demande> {
   String getCode() {
     String n = "";
     var rng = Random();
-    for(var i = 0; i < 17; i++){
+    for (var i = 0; i < 17; i++) {
       n = "$n${rng.nextInt(9)}";
     }
     return n;
@@ -910,7 +929,7 @@ class _PlainteHis extends State<PlainteHis> {
     Database? db = await historique.openDB();
     //
     List<Map<String, dynamic>> listPlainte =
-    await db.rawQuery('SELECT * FROM historique');
+        await db.rawQuery('SELECT * FROM historique');
 
     return ListView(
       padding: EdgeInsets.all(10),
@@ -936,9 +955,9 @@ class _PlainteHis extends State<PlainteHis> {
             icon: listPlainte[index]["envoyer"] == "non"
                 ? Icon(Icons.sync)
                 : Icon(
-              Icons.check_circle_outline,
-              color: Colors.green,
-            ),
+                    Icons.check_circle_outline,
+                    color: Colors.green,
+                  ),
           ),
         );
       }),
@@ -1134,10 +1153,10 @@ class _HistoriqueSend extends State<HistoriqueSend> {
             height: 20,
           ),
           Obx(
-                () => Column(
+            () => Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children:
-              List.generate(depotController.listeFichier.value.length, (x) {
+                  List.generate(depotController.listeFichier.value.length, (x) {
                 return ListTile(
                   leading: Icon(Icons.file_present),
                   title: Text("Piece n° $x"),
@@ -1162,7 +1181,7 @@ class _HistoriqueSend extends State<HistoriqueSend> {
             onPressed: () async {
               //
               var connectivityResult =
-              await (Connectivity().checkConnectivity());
+                  await (Connectivity().checkConnectivity());
               //
               if (connectivityResult == ConnectivityResult.mobile ||
                   connectivityResult == ConnectivityResult.wifi) {
@@ -1242,7 +1261,7 @@ class _HistoriqueSend extends State<HistoriqueSend> {
 
   getFile() async {
     FilePickerResult? result =
-    await FilePicker.platform.pickFiles(allowMultiple: false);
+        await FilePicker.platform.pickFiles(allowMultiple: false);
     if (result != null) {
       List<File> files = result.paths.map((path) => File(path!)).toList();
       files.forEach((element) async {

@@ -1,9 +1,9 @@
 import 'package:epst_app/vues/actualite/site.dart';
 import 'package:epst_app/vues/formation/enseignement_eleve_enligne.dart';
+import 'package:epst_app/vues/formation/foad.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
 
 class Formation extends StatefulWidget {
   String? titre;
@@ -16,12 +16,15 @@ class Formation extends StatefulWidget {
 }
 
 class _Formation extends State<Formation> {
-
   @override
   void initState() {
     //
     super.initState();
   }
+
+  double st = 15;
+  double taille = 10;
+  double pd = 15;
 
   @override
   Widget build(BuildContext context) {
@@ -38,143 +41,149 @@ class _Formation extends State<Formation> {
         childAspectRatio: 1,
         children: [
           ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Site();
-                  },
-                ),
-              );
-            },
-            style: ButtonStyle(),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Text("FOAD", style: TextStyle(
-                          color: Colors.white, fontSize: 30
-                      ),), //
-                      decoration: const BoxDecoration(
-                        //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                          )),
-                    ),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return FOAD();
+                    },
                   ),
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: const TextSpan(
-                          text: "Formation à distance des enseignants",
-                          children: [
-                            TextSpan(
-                              text: "",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                );
+              },
+              style: ButtonStyle(),
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      flex: 5,
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(pd),
+                        child: Image.asset(
+                          "assets/LOGO-MINEPST-BON.png",
+                          color: Colors.blue,
+                          colorBlendMode: BlendMode.color,
+                        ), //
+                        decoration: const BoxDecoration(
+                            //color: Colors.blue,
+                            borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                        )),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 5,
+                      child: Container(
+                        padding: EdgeInsets.only(bottom: 15),
+                        alignment: Alignment.center,
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: "",
+                            children: [
+                              TextSpan(
+                                text: "FOAD",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                            style: TextStyle(
+                              fontSize: st,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        )),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                          )),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return EnseignementEleve();
-                  },
+                    )
+                  ],
                 ),
-              );
-            },
-            style: ButtonStyle(
-              /*
+              )),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return EnseignementEleve();
+                    },
+                  ),
+                );
+              },
+              style: ButtonStyle(
+                  /*
               backgroundColor: MaterialStateProperty.all(
                 Colors.blue.shade400,
               ),
               */
-            ),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Text("E-Classe", style: TextStyle(
-                        color: Colors.white, fontSize: 30
-                      ),), //
-                      decoration: const BoxDecoration(
-                        //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                          )),
-                    ),
                   ),
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: const TextSpan(
-                          text: "Enseignement en ligne des élèves",
-                          children: [
-                            TextSpan(
-                              text: "",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      flex: 5,
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(pd),
+                        child: Image.asset(
+                          "assets/LOGO E-CLASSE.02e1cc99.png",
+                          color: Colors.blue,
+                          colorBlendMode: BlendMode.color,
+                        ), //
+                        decoration: const BoxDecoration(
+                            //color: Colors.blue,
+                            borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                        )),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 5,
+                      child: Container(
+                        padding: EdgeInsets.only(bottom: 15),
+                        alignment: Alignment.center,
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: "E-Classe",
+                            children: [
+                              TextSpan(
+                                text: "",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                            style: TextStyle(
+                              fontSize: st,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        )),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                          )),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
+                    )
+                  ],
+                ),
+              )),
         ],
       ),
     );

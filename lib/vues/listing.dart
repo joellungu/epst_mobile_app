@@ -39,6 +39,12 @@ class _Listing extends State<Listing> {
             //"https://www.eduquepsp.education/v1/category/actualites/",
           ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          controlleur!.reload();
+        },
+        child: Icon(Icons.sync),
+      ),
     );
   }
 }

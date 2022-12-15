@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:epst_app/vues/cours/cours.dart';
 import 'package:epst_app/vues/formation/formation.dart';
-import 'package:epst_app/vues/ige/igd.dart';
+import 'package:epst_app/vues/ige/ige.dart';
 import 'package:epst_app/vues/plainte/depotplainte.dart';
 import 'package:epst_app/vues/listing.dart';
 import 'package:epst_app/vues/actualite/live.dart';
@@ -42,62 +42,73 @@ class _Accueil extends State<Accueil> {
   @override
   void initState() {
     listeIcons = [
-      Image.asset("assets/news-actualite.png",
+      Image.asset(
+        "assets/news-actualite.png",
         color: Colors.blue,
         colorBlendMode: BlendMode.color,
         width: 250,
         height: 250,
-      ),//
-      Image.asset("assets/LOGO-MINEPST-BON.png",
+      ), //
+      Image.asset(
+        "assets/LOGO-MINEPST-BON.png",
         color: Colors.blue,
         colorBlendMode: BlendMode.color,
       ),
-      Image.asset("assets/logo-mag.png",
+      Image.asset(
+        "assets/logo-mag.png",
         color: Colors.blue,
         colorBlendMode: BlendMode.color,
       ),
-      Icon(
-        CupertinoIcons.bubble_left_bubble_right_fill,
-        color: Colors.white,
-        size: si,
-      ),
-      Icon(
-        Icons.check_circle,
-        color: Colors.white,
-        size: si,
-      ),
-      Image.asset("assets/SECOPE.jpg",
+      Image.asset(
+        "assets/images.png",
         color: Colors.blue,
         colorBlendMode: BlendMode.color,
       ),
-      Image.asset("assets/FOAD.jpg",
+      Image.asset(
+        "assets/LOGO-MINEPST-BON.png",
         color: Colors.blue,
         colorBlendMode: BlendMode.color,
       ),
-      Image.asset("assets/LOGO-MINEPST-BON.png",
+      Image.asset(
+        "assets/SECOPE.jpg",
+        color: Colors.blue,
+        colorBlendMode: BlendMode.color,
+      ),
+      Image.asset(
+        "assets/FOAD.jpg",
+        color: Colors.blue,
+        colorBlendMode: BlendMode.color,
+      ),
+      Image.asset(
+        "assets/LOGO-MINEPST-BON.png",
         color: Colors.blue,
         colorBlendMode: BlendMode.color,
       ),
       //
-      Image.asset("assets/LOGO-MINEPST-BON.png",
+      Image.asset(
+        "assets/LOGO-MINEPST-BON.png",
         color: Colors.blue,
         colorBlendMode: BlendMode.color,
       ),
-      Image.asset("assets/LOGO-MINEPST-BON.png",
+      Image.asset(
+        "assets/LOGO-MINEPST-BON.png",
         fit: BoxFit.fill,
         color: Colors.blue,
         colorBlendMode: BlendMode.color,
       ),
       //
-      Image.asset("assets/Logo_MESP_ok.png",
-      fit: BoxFit.fill,
-      color: Colors.blue,
+      Image.asset(
+        "assets/Logo_MESP_ok.png",
+        fit: BoxFit.fill,
+        color: Colors.blue,
         colorBlendMode: BlendMode.color,
       ),
     ];
-    SystemChrome.setPreferredOrientations([ DeviceOrientation.portraitUp, DeviceOrientation.portraitUp ]);
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitUp]);
 
-    Source: https://prograide.com/pregunta/68443/flutter--comment-definir-et-verrouiller-lorientation-de-lecran--la-demande
+    Source:
+    https: //prograide.com/pregunta/68443/flutter--comment-definir-et-verrouiller-lorientation-de-lecran--la-demande
     //
     super.initState();
   }

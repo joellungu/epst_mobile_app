@@ -16,8 +16,10 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
 
   //
   MutuelleController mutuelleController = MutuelleController();
+  TextEditingController cenome = TextEditingController();
   var box = GetStorage();
   RxList l = RxList();
+
   //
   @override
   void initState() {
@@ -27,6 +29,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
     super.initState();
     //
     l.value = box.read("historique") ?? [];
+    l.value = l.value.reversed.toList();
     print(box.read("historique"));
     //
   }
@@ -41,7 +44,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
       appBar: AppBar(
         title: Text("Validation"),
       ),
-      body: Obx(()=> Accordion(
+      body: Accordion(
           maxOpenSections: 2,
           headerBackgroundColorOpened: Colors.black54,
           scaleWhenAnimating: true,
@@ -50,6 +53,9 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
         children: List.generate(l.length, (index) {
           Map e = l[index];
           String dd = "${e['jour']}".split('.')[0];
+          //
+          RxInt show = 0.obs;
+          //
           return AccordionSection(
               header: Text("${e['services']} du $dd",
                 style: TextStyle(color: Colors.white, fontSize: 17, fontWeight: FontWeight.bold),
@@ -93,10 +99,10 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                   alignment: Alignment.centerLeft,
                   child: Text("Notes: ${e['notes']}",
                             style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.normal),)),
-                  /*Align(
+              /*
+              Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Valider: ${e['valider']}",
-
                         style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold),)),
                   */
                   Align(
@@ -113,13 +119,74 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                   Align(
                   alignment: Alignment.centerLeft,
                   child: FutureBuilder(
-                    future: getStatus("${e['matricule']}"),
+                    future: getStatus("${e['id']}"),
                     builder: (context, t){
                       if(t.hasData){
                         int v = t.data as int;
-                        return v == 1 ? Text("Validation MESP: Validé", style: TextStyle(fontSize: 20),) : v == 2 ?
-                        Text("Validation MESP: Refusé", style: TextStyle(fontSize: 20),) :
-                        Text("Validation MESP: En attente", style: TextStyle(fontSize: 20),);
+                        print("Valider ou: $v");
+                        show.value = v;
+                        //setState((){});
+                        return Container(
+                          height: 100,
+                          child: Column(
+                            children: [
+                              v == 1 ? Align(
+                          alignment: Alignment.centerLeft,
+                                  child: Text("Validation MESP: Validé", style: TextStyle(fontSize: 20),),) : v == 2 ?
+                              Align(
+                              alignment: Alignment.centerLeft,
+                                child: Text("Validation MESP: Refusé", style: TextStyle(fontSize: 20),),) :v == 3 ?
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text("Validation MESP: Expiré", style: TextStyle(fontSize: 20),),) :
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text("Validation MESP: En attente", style: TextStyle(fontSize: 20),),),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                height: 50,
+                                child: v == 1 ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Expanded(
+                                      flex: 6,
+                                      child: TextField(
+                                        controller: cenome,
+                                        decoration: InputDecoration(
+                                          hintText: "Cenome medecin",
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                            borderSide: const BorderSide(
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                      flex: 3,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+
+                                          if (cenome.text.isNotEmpty) {
+                                            mutuelleController.setSaturer(this,l.value,index,"${e['id']}",cenome.text);
+                                          }
+                                        },
+                                        child: const Text("Effectué"),
+                                      ),
+                                    ),
+                                  ],
+                                ):Container(),
+                              ),
+                            ],
+                          ),
+                        );
+                        //return
                       }else if(t.hasError){
                         return Text("...");
                       }
@@ -129,49 +196,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                         child: CircularProgressIndicator(),);
                     },
                   ),),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    height: 50,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Expanded(
-                          flex: 6,
-                          child: TextField(
-                            //controller: recherche_matricule,
-                            decoration: InputDecoration(
-                              hintText: "Cenome medecin",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Expanded(
-                          flex: 3,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              /*
-                              if (recherche_matricule.text.isNotEmpty) {
-                                Get.to(MutuelleRecherche(
-                                    recherche_matricule.text));
-                              }
-                              */
-                            },
-                            child: const Text("Effectué"),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+
                   ],
                 )
               );
@@ -199,7 +224,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
           );
           */
         }),
-      ))
+      )
     );
   }
 
