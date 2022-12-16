@@ -4,12 +4,14 @@ import 'package:get/get.dart';
 
 class RechercheAnnee extends SearchDelegate {
   List<String> liste_annee = [];
-  int a = 1900;
+  int a1 = 1900;
+  int a2 = 1901;
 
   RechercheAnnee() {
-    for (int i = 0; i < 500; i++) {
-      liste_annee.add("$a");
-      a++;
+    for (int i = 0; i < 400; i++) {
+      liste_annee.add("$a1-$a2");
+      a1++;
+      a2++;
     }
   }
   @override

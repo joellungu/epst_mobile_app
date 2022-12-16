@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:accordion/accordion.dart';
 import 'package:epst_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,14 +10,14 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'recherche_annee.dart';
 import 'recherche_ecole.dart';
 
-class Palmares extends StatefulWidget {
+class DemandePalmares extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _Palmares();
+    return _DemandePalmares();
   }
 }
 
-class _Palmares extends State<Palmares> {
+class _DemandePalmares extends State<DemandePalmares> {
   //
   int p = 0;
   int d = 0;
@@ -48,8 +51,65 @@ class _Palmares extends State<Palmares> {
     "Tshuapa",
   ];
   //
+  List listeOptions = [
+    "LATIN-PHILOSOPHIE,101",
+    "MATHEMATIQUE-PHYSIQUE,102",
+    "CHIMIE-BIOLOGIE,103",
+    "LATIN-GREC,104",
+    "LATIN-MATHEMATIQUE,105",
+    "SCIENCES,106",
+    "PEDAGOGIE GENERALE,201",
+    "EDUCATION PHYSIQUE,202",
+    "NORMALE,203",
+    "PEDAGOGIE MATERNELLE,204",
+    "COMMERCIALE ET GESTION,301",
+    "SECRETARIAT-ADMINISTRATION,302",
+    "SOCIALE,401",
+    "ARTS PLASTIQUES,501",
+    "ARTS DRAMATIQUES,502",
+    "MUSIQUE,503",
+    "ESTHETIQUE & COIFFURE,504",
+    "COIFFURE,505",
+    "COUPE-COUTURE,601",
+    "HOTESSE D'ACCUEIL,701",
+    "HOTELLERIE & RESTAURATION,702",
+    "TOURISME,704",
+    "AGRICULTURE GENERALE,801",
+    "PECHE ET NAVIGATION,802",
+    "VETERINAIRE,803",
+    "INDUSTRIES AGRICOLES,804",
+    "NUTRITION,805",
+    "FORESTERIE,806",
+    "MECANIQUE GENERALE,901",
+    "MECANIQUE MACHINES-OUTILS,902",
+    "ELECTRICITE,903",
+    "CONSTRUCTION,904",
+    "CHIMIE INDUSTRIELLE,905",
+    "ELECTRONIQUE,906",
+    "IMPRIMERIE,907",
+    "COMMUTATION,908",
+    "RADIO-TRANSMISSION,909",
+    "METEOROLOGIE,910",
+    "AVIATION CIVILE,911",
+    "PETRO-CHIMIE,914",
+    "MECANIQUE AUTOMOBILE,915",
+    "CONSTRUCTION METALLIQUE,916",
+    "MENUISERIE EBENISTERIE,917",
+    "MINE ET GEOLOGIE,918",
+    "METALLURGIE,919",
+    "DESSIN DE BATIMENT,920",
+    "INSTALLATION SANITAIRE,921",
+    "TOLERIE,922",
+    "AJUSTAGE ET SOUDURE,923",
+  ];
+  //
+  int option = 0;
+  //
+
   int ti = 0;
   int a = 1900;
+  //
+  RxBool demande = true.obs;
   //
   List liste_annee = [];
   //
@@ -82,123 +142,199 @@ class _Palmares extends State<Palmares> {
                   "https://www.eduquepsp.education", //https://www.youtube.com
               //"https://www.efoad.minepst.gouv.cd",
             )
-          : Padding(
+          : ListView(
               padding: EdgeInsets.all(20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Ecole",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
+              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Image.asset(
+                  "assets/LOGO-MINEPST-BON.png",
+                  height: 200,
+                  width: 200,
+                  //color: Colors.white,
+                  //colorBlendMode: BlendMode.color,
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Ecole",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
+                ),
+                Card(
+                  elevation: 0,
+                  margin: EdgeInsets.all(0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    side: BorderSide(color: Colors.grey),
                   ),
-                  Card(
-                    elevation: 0,
-                    margin: EdgeInsets.all(0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: BorderSide(color: Colors.grey),
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        //
-                        showSearch(
-                            context: context, delegate: RechercheEcole());
-                      },
-                      child: Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Container(
-                          alignment: Alignment.center,
-                          //width: Get.size.width,
-                          child: Obx(
-                            () => Text(
-                              ecole.value,
-                              style: TextStyle(
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  ///////////
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Année-scolaire",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Card(
-                    elevation: 0,
-                    margin: EdgeInsets.all(0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: BorderSide(color: Colors.grey),
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        //
-                        showSearch(
-                            context: context, delegate: RechercheAnnee());
-                      },
-                      child: Container(
-                        height: 50,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Container(
-                          alignment: Alignment.center,
-                          //width: Get.size.width,
-                          child: Obx(
-                            () => Text(
-                              annee.value,
-                              style: TextStyle(
-                                color: Colors.black,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  ///////////
-                  const SizedBox(
-                    height: 10,
-                  ),
-
-                  ///
-                  ElevatedButton(
-                    onPressed: () async {
+                  child: InkWell(
+                    onTap: () {
                       //
+                      showSearch(context: context, delegate: RechercheEcole());
                     },
                     child: Container(
-                      alignment: Alignment.center,
-                      height: 40,
-                      child: const Text("Envoyer"),
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Container(
+                        alignment: Alignment.center,
+                        //width: Get.size.width,
+                        child: Obx(
+                          () => Text(
+                            ecole.value,
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ],
-              ),
+                ),
+                ///////////
+                const SizedBox(
+                  height: 20,
+                ),
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Année-scolaire",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Card(
+                  elevation: 0,
+                  margin: const EdgeInsets.all(0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    side: const BorderSide(color: Colors.grey),
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      //
+                      showSearch(context: context, delegate: RechercheAnnee());
+                    },
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: Container(
+                        alignment: Alignment.center,
+                        //width: Get.size.width,
+                        child: Obx(
+                          () => Text(
+                            annee.value,
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                ///////////
+                const SizedBox(
+                  height: 10,
+                ),
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Options",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Card(
+                  elevation: 0,
+                  margin: EdgeInsets.all(0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    side: BorderSide(color: Colors.grey),
+                  ),
+                  child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          "  Option:",
+                          style: TextStyle(fontSize: 10),
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButtonFormField<int>(
+                              value: option,
+                              /*
+                            style: TextStyle(
+                                //fontSize: 12,
+                                color: Colors.black
+                            ),
+                            */
+                              isExpanded: true,
+                              onChanged: (value) {
+                                option = value as int;
+                                print("le id: $option");
+                              },
+                              items: List.generate(
+                                listeOptions.length,
+                                (index) {
+                                  return DropdownMenuItem(
+                                    value: index,
+                                    child: Text(
+                                      "${listeOptions[index]}".split(",")[0],
+                                      style: const TextStyle(fontSize: 13),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+
+                const SizedBox(
+                  height: 10,
+                ),
+
+                ///
+                ElevatedButton(
+                  onPressed: () async {
+                    //
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 40,
+                    child: const Text("Envoyer"),
+                  ),
+                ),
+                Obx(() => demande.value
+                    ? SizedBox(
+                        height: Get.size.height / 2,
+                        child: Palmares(),
+                      )
+                    : Container())
+              ],
             ),
       // floatingActionButton: FloatingActionButton(
       //   onPressed: () {
@@ -206,6 +342,62 @@ class _Palmares extends State<Palmares> {
       //   },
       //   child: Icon(Icons.sync),
       // ),
+    );
+  }
+}
+
+class Palmares extends StatelessWidget {
+  RxBool rep = true.obs;
+  List l = [
+    {"nom": "Tata", "postnom": "Tutu", "prenom": "Tintin", "pourcentage": 76},
+    {"nom": "Tata", "postnom": "Tutu", "prenom": "Tintin", "pourcentage": 76},
+    {"nom": "Tata", "postnom": "Tutu", "prenom": "Tintin", "pourcentage": 76},
+  ];
+
+  Palmares() {
+    Timer(Duration(seconds: 3), () {
+      rep.value = true;
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => rep.value
+          ? Accordion(
+              maxOpenSections: 2,
+              headerBackgroundColorOpened: Colors.black54,
+              scaleWhenAnimating: true,
+              openAndCloseAnimation: true,
+              children: [
+                  AccordionSection(
+                    header: const Text(
+                      "Resultat du palmarès",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    content: Column(
+                        children: List.generate(l.length, (index) {
+                      Map e = l[index];
+                      return ListTile(
+                        title: Text("${e['nom']}"),
+                        subtitle: Text("${e['postnom']} ${e['prenom']}"),
+                        trailing: Text("${e['pourcentage']} %"),
+                      );
+                    })),
+                  )
+                ])
+          : Container(
+              height: 50,
+              alignment: Alignment.center,
+              child: SizedBox(
+                height: 50,
+                width: 50,
+                child: CircularProgressIndicator(),
+              ),
+            ),
     );
   }
 }

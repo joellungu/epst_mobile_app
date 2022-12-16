@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import 'vues/identification/identification_controller.dart';
+import 'vues/ige/demande_identification/demande_identification_controller.dart';
 import 'vues/mutuelle/mutuelle_controller.dart';
 
 List liste_ecoles = [];
@@ -28,7 +30,10 @@ void main() async {
   //
   DepotPlainteController depotPlainteController =
       Get.put(DepotPlainteController());
+  DemandeIdentificationController demandeIdentificationController =
+      Get.put(DemandeIdentificationController());
   Get.put(MagasinController());
+  Get.put(IdentificationController());
   Get.put(ReformeController());
   MutuelleController mutuelleController = Get.put(MutuelleController());
   //MagasinController magasinController =

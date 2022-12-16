@@ -48,7 +48,7 @@ class _Ige extends State<Ige> {
           ElevatedButton(
             onPressed: () {
               //
-              Get.to(Palmares());
+              Get.to(DemandePalmares());
             },
             style: ButtonStyle(
                 /*

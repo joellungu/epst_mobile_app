@@ -19,6 +19,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
 
+import 'demande_identification_controller.dart';
+
 class DemandeIdentification extends StatefulWidget {
   String? titre;
 
@@ -108,6 +110,8 @@ class _DemandeIdentification extends State<DemandeIdentification> {
   int dd = 0;
   //
   int option = 0;
+  int p_e = 0;
+  int p_o = 0;
   //
   List<Map<String, dynamic>> listeDistrict2 = [
     {"p": "BAS-UELE", "d": "BAS-UELE"},
@@ -246,7 +250,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
         padding: EdgeInsets.all(10),
         children: [
           const Text("Identité de l'élève"),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           TextField(
@@ -490,7 +494,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                       child: DropdownButtonFormField<int>(
                         value: p,
                         onChanged: (value) {
-                          p = value as int;
+                          p_o = value as int;
                           //listeDistrict.clear();
                           setState(() {});
                           //value = s;
@@ -545,7 +549,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               //prefixText: "De: "
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Row(
@@ -610,10 +614,10 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                   //child: Image.file(File(img!.path)),
                 )
               : Container()),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
-          Align(
+          const Align(
             alignment: Alignment.centerLeft,
             child: Text(
               "Information lié à l'ecole",
@@ -622,7 +626,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Card(
@@ -630,7 +634,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
             margin: EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: InkWell(
               onTap: () {
@@ -701,19 +705,20 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                     flex: 1,
                     child: DropdownButtonHideUnderline(
                       child: DropdownButtonFormField<int>(
-                        value: p,
+                        value: p_e,
                         onChanged: (value) {
-                          p = value as int;
+                          p_e = value as int;
                           listeDistrict.clear();
                           setState(() {
                             listeDistrict2.forEach((element) {
                               if ("${element['p']}".toLowerCase() ==
-                                  ("${listeProvince[p]}".toLowerCase())) {
+                                  ("${listeProvince[p_e]}".toLowerCase())) {
                                 print("$element");
                                 listeDistrict.add("${element['d']}");
                               }
                             });
                           });
+                          print(listeDistrict);
                           //value = s;
                         },
                         items: List.generate(
@@ -742,10 +747,10 @@ class _DemandeIdentification extends State<DemandeIdentification> {
           ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: Container(
               height: 50,
@@ -755,8 +760,8 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text("  Province éducationnel:"),
-                  SizedBox(
+                  const Text("  Province éducationnel:"),
+                  const SizedBox(
                     width: 20,
                   ),
                   Expanded(
@@ -789,7 +794,6 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               ),
             ),
           ),
-
           ///////////
           const SizedBox(
             height: 10,
@@ -963,34 +967,40 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                     ),
                   ));
                   //
-                  //Future<Uint8List> i = img1!.readAsBytes();
-                  //File file = File(img1!.path);
-                  //
                   Uint8List l1 = await img1!.readAsBytes();
-
                   //
                   Map<String, dynamic> formulaireD = {
                     "id": getCode(),
                     "nom": nom.text,
                     "postnom": postnom.text,
                     "prenom": prenom.text,
+                    "sexe": genres[genre],
                     "nompere": nom_pere.text,
                     "nommere": nom_mere.text,
                     "telephone": telephone.text,
                     "adresse": adresse.text,
-                    "datenaissance": "${d!.day}/${d!.month}/${d!.year}",
-                    "sexe": genres[genre],
+                    "provinceOrigine": listeProvince[p_o],
+                    "lieuNaissance": lieu_de_naissance.text,
+                    "dateNaissance": "${d!.year}-${d!.month}-${d!.day}",
                     "photo": l1,
                     "ext1": ext1,
-                    "province": listeProvince[p],
+                    "ecole": ecole.value,
+                    "provinceEcole": listeProvince[p_e],
+                    "provinceEducationnel": listeDistrict[dd],
+                    "option": "${listeOptions[option]}".split(",")[1],
+                    "typeIdentification": listeProvince[p],
+                    "valider": 0,
                   };
+                  /*
+                  */
+                  DemandeIdentificationController
+                      demandeIdentificationController = Get.find();
+                  //ByteArrayInputStream//formulaireD
                   //
-                  // MutuelleController mutuelleController = Get.find();
-                  // //ByteArrayInputStream//formulaireD
-                  // //
-                  // Timer(Duration(seconds: 1), () {
-                  //   mutuelleController.faireUnDemande(formulaireD);
-                  // });
+                  Timer(const Duration(seconds: 1), () {
+                    demandeIdentificationController
+                        .faireUneInscription(formulaireD);
+                  });
 
                   //____________________________________________________________
                 } else {}

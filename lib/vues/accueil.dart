@@ -10,6 +10,9 @@ import 'package:epst_app/vues/sg/sg.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'identification/identification.dart';
+import 'identification/verification.dart';
 import 'mutuelle/mutuelle.dart';
 import 'reforme/reforme.dart';
 import 'chat.dart';
@@ -117,9 +120,44 @@ class _Accueil extends State<Accueil> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("EPST APP"),
+        title: const Text("EPST APP"),
         centerTitle: true,
         elevation: 1,
+        actions: [
+          PopupMenuButton(onSelected: (e) {
+            //Identification
+            print(e);
+            Get.to(Verification());
+            //
+          }, itemBuilder: (c) {
+            return [
+              PopupMenuItem(
+                value: 1,
+                //onTap: () => Get.to(Identification()),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: const [
+                    Icon(
+                      Icons.person,
+                      size: 25,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text("Identification")
+                  ],
+                ),
+              )
+            ];
+          }),
+          // IconButton(
+          //   onPressed: () {},
+          //   icon: Icon(
+          //     Icons.more_vert,
+          //   ),
+          // )
+        ],
       ),
       body: GridView.count(
         padding: EdgeInsets.all(10),
