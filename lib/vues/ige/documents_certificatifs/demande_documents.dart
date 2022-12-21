@@ -4,37 +4,27 @@ import 'dart:math';
 import 'dart:typed_data';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:epst_app/main.dart';
-import 'package:epst_app/models/historiquedb.dart';
-import 'package:epst_app/utils/depotcontroler.dart';
 import 'package:epst_app/vues/ige/recherche_annee.dart';
 import 'package:epst_app/vues/ige/recherche_ecole.dart';
-import 'package:epst_app/vues/reference.dart';
-import 'package:epst_app/vues/transsfere.dart';
-import 'package:epst_app/widgets/paiement.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:image_picker/image_picker.dart';
-//import 'mutuelle_controller.dart';
-import 'package:get/get.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
+import '../demande_identification/demande_identification_controller.dart';
 
-import 'demande_identification_controller.dart';
-
-class DemandeIdentification extends StatefulWidget {
+class DemandeDocument extends StatefulWidget {
   String? titre;
-
-  DemandeIdentification({this.titre});
-
+  //
+  DemandeDocument(this.titre);
+  //
   @override
   State<StatefulWidget> createState() {
-    return _DemandeIdentification();
+    return _DemandeDocument();
   }
 }
 
-class _DemandeIdentification extends State<DemandeIdentification> {
+class _DemandeDocument extends State<DemandeDocument> {
   TextEditingController nom = TextEditingController();
   TextEditingController postnom = TextEditingController();
   TextEditingController prenom = TextEditingController();
@@ -46,10 +36,12 @@ class _DemandeIdentification extends State<DemandeIdentification> {
   List genres = ["Homme", "Femme"];
   int genre = 0;
   List types = [
-    "Examens d'Etat",
-    "TENASOPE",
-    "TENAFEPE",
-    "Identification SERNI"
+    "Diplome d'etat",
+    "Brevet professionnel",
+    "Certificat d'étude primaire",
+    "Note d'acquis de droit",
+    "Attestation de N.D.D",
+    "Releve de côtes"
   ];
   //
   List listeOptions = [
@@ -103,7 +95,6 @@ class _DemandeIdentification extends State<DemandeIdentification> {
     "TOLERIE,922",
     "AJUSTAGE ET SOUDURE,923",
   ];
-  //
   //
   int a = 0;
   int s = 0;
@@ -249,9 +240,9 @@ class _DemandeIdentification extends State<DemandeIdentification> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         children: [
-          const Text("Identité de l'élève"),
+          const Text("Identité de l'élève propriétaire"),
           const SizedBox(
             height: 10,
           ),
@@ -845,7 +836,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               ),
             ),
           ),
-          const SizedBox(
+          SizedBox(
             height: 10,
           ),
           Card(
@@ -883,7 +874,6 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               ),
             ),
           ),
-
           const SizedBox(
             height: 10,
           ),
@@ -903,7 +893,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    "  Type d'identification:",
+                    "  Document demandé:",
                     style: TextStyle(fontSize: 10),
                   ),
                   SizedBox(
@@ -948,9 +938,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
           const SizedBox(
             height: 10,
           ),
-          Obx(() => type.value == 0
-              ? const Text("Ce type d'identification est payant (5 dollar)")
-              : Text("")),
+          const Text("Ce type document est payant (5 dollar)"),
           const SizedBox(
             height: 20,
           ),
@@ -1022,35 +1010,13 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                   };
                   /*
                   */
-                  if (type.value == 0) {
-                    //PayementMethode
-                    showDialog(
-                        context: context,
-                        builder: (c) {
-                          return Material(
-                            color: Colors.transparent,
-                            child: Center(
-                              child: Container(
-                                padding: const EdgeInsets.all(15),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                height: 250,
-                                width: 270,
-                                child: PayementMethode({}),
-                              ),
-                            ),
-                          );
-                        });
-                  } else {}
                   DemandeIdentificationController
                       demandeIdentificationController = Get.find();
                   //ByteArrayInputStream//formulaireD
                   //
                   Timer(const Duration(seconds: 1), () {
-                    //demandeIdentificationController
-                    //  .faireUneInscription(formulaireD);
+                    demandeIdentificationController
+                        .faireUneInscription(formulaireD);
                   });
 
                   //____________________________________________________________
@@ -1060,7 +1026,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
             child: Container(
               alignment: Alignment.center,
               height: 40,
-              child: const Text("Envoyer"),
+              child: Text("Envoyer"),
             ),
           ),
           const SizedBox(
@@ -1134,432 +1100,6 @@ class _DemandeIdentification extends State<DemandeIdentification> {
       }
     } catch (e) {
       print("_______________: $e");
-    }
-  }
-
-/*
-  getFile2(bool v) async {
-    final ImagePicker _picker = ImagePicker();
-    if (v) {
-      final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
-    } else {
-      final XFile? video = await _picker.pickVideo(source: ImageSource.camera);
-    }
-    // Pick an image
-    //final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    // Capture a photo
-
-    // Pick a video
-    //final XFile? image = await _picker.pickVideo(source: ImageSource.gallery);
-    // Capture a video
-
-    // Pick multiple images
-    //final List<XFile>? images = await _picker.pickMultiImage();
-  }
-  */
-}
-
-/*
-SizedBox(height: 20,),
-              Container(height: 50,
-              child: Flexible(
-                child: new ConstrainedBox(
-                  constraints: new BoxConstraints(
-                    minWidth: MediaQuery.of(context).size.width,
-                    maxWidth: MediaQuery.of(context).size.width,
-                    minHeight: 25.0,
-                    maxHeight: 135.0,
-                  ),
-                  child: new Scrollbar(
-                    child: new TextField(
-                      cursorColor: Colors.red,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: null,
-                      //controller: tc,
-                      //_handleSubmitted : null,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.only(
-                            top: 2.0,
-                            left: 13.0,
-                            right: 13.0,
-                            bottom: 2.0),
-                        hintText: "Type your message",
-                        hintStyle: TextStyle(
-                          color:Colors.grey,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              ),
- */
-
-class PlainteHis extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _PlainteHis();
-  }
-}
-
-class _PlainteHis extends State<PlainteHis> {
-  Future<Widget> getPlaite() async {
-    Historique historique = Historique();
-    Database? db = await historique.openDB();
-    //
-    List<Map<String, dynamic>> listPlainte =
-        await db.rawQuery('SELECT * FROM historique');
-
-    return ListView(
-      padding: EdgeInsets.all(10),
-      children: List.generate(listPlainte.length, (index) {
-        print(listPlainte[index]["envoyer"]);
-        return ListTile(
-          leading: Icon(Icons.menu),
-          title: Text(listPlainte[index]["envoyeur"]),
-          subtitle: Text(listPlainte[index]["date"]),
-          trailing: IconButton(
-            onPressed: () {
-              //
-              if (listPlainte[index]["envoyer"] == "non") {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return HistoriqueSend(listPlainte[index]);
-                    },
-                  ),
-                );
-              }
-            },
-            icon: listPlainte[index]["envoyer"] == "non"
-                ? Icon(Icons.sync)
-                : Icon(
-                    Icons.check_circle_outline,
-                    color: Colors.green,
-                  ),
-          ),
-        );
-      }),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Historique"),
-      ),
-      body: FutureBuilder(
-        future: getPlaite(),
-        builder: (context, b) {
-          if (b.hasData) {
-            return b.data as Widget;
-          } else if (b.hasError) {
-            return Center(
-              child: Text("Erreur lors du chargement: ${b.error}"),
-            );
-          }
-          return Center(
-            child: Container(
-              height: 40,
-              width: 40,
-              alignment: Alignment.center,
-              child: CircularProgressIndicator(),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class HistoriqueSend extends StatefulWidget {
-  Map<String, dynamic> pl = {};
-
-  HistoriqueSend(this.pl);
-
-  @override
-  State<StatefulWidget> createState() {
-    return _HistoriqueSend();
-  }
-}
-
-class _HistoriqueSend extends State<HistoriqueSend> {
-  //
-  DepotController depotController = Get.find();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.delete),
-          ),
-        ],
-      ),
-      body: ListView(
-        padding: EdgeInsets.all(5),
-        children: [
-          Text.rich(
-            TextSpan(
-              text: "De: ",
-              style: st,
-              children: [
-                TextSpan(
-                  text: "${widget.pl['envoyeur']}",
-                  style: st2,
-                ),
-              ],
-            ),
-          ),
-          Text.rich(
-            TextSpan(
-              text: "Téléphone: ",
-              style: st,
-              children: [
-                TextSpan(
-                  text: "${widget.pl['telephone']}",
-                  style: st2,
-                ),
-              ],
-            ),
-          ),
-          Text.rich(
-            TextSpan(
-              text: "Email: ",
-              style: st,
-              children: [
-                TextSpan(
-                  text: "${widget.pl['email']}",
-                  style: st2,
-                ),
-              ],
-            ),
-          ),
-          Text.rich(
-            TextSpan(
-              text: "À: ",
-              style: st,
-              children: [
-                TextSpan(
-                  text: "${widget.pl['destinateur']}",
-                  style: st2,
-                ),
-              ],
-            ),
-          ),
-          Text.rich(
-            TextSpan(
-              text: "Message: \n",
-              style: st,
-              children: [
-                TextSpan(
-                  text: "${widget.pl['message']}^n\n",
-                  style: st2,
-                ),
-              ],
-            ),
-          ),
-          Container(
-            height: 50,
-            padding: EdgeInsets.only(right: 10),
-            alignment: Alignment.centerRight,
-            decoration: BoxDecoration(
-              //color: Colors.yellow,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Expanded(
-                  flex: 7,
-                  child: Container(
-                    alignment: Alignment.centerLeft,
-                    //child: Text(Fichier),
-                  ),
-                ),
-                PopupMenuButton(
-                  onSelected: (e) {
-                    //getFile();
-                  },
-                  icon: Icon(
-                    Icons.attach_file,
-                  ),
-                  itemBuilder: (context) => [
-                    PopupMenuItem(
-                      onTap: () {
-                        getFile();
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 40,
-                            width: 40,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: Colors.blue.shade200,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Icon(Icons.file_copy_outlined),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Piece jointe",
-                            style: TextStyle(
-                              color: Colors.grey.shade700,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17,
-                            ),
-                          )
-                        ],
-                      ),
-                      value: 4,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Obx(
-            () => Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children:
-                  List.generate(depotController.listeFichier.value.length, (x) {
-                return ListTile(
-                  leading: Icon(Icons.file_present),
-                  title: Text("Piece n° $x"),
-                  trailing: IconButton(
-                    onPressed: () {
-                      //
-                      setState(() {
-                        depotController.listeFichier.value.removeAt(x);
-                      });
-                      //
-                    },
-                    icon: Icon(Icons.close),
-                  ),
-                );
-              }),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              //
-              var connectivityResult =
-                  await (Connectivity().checkConnectivity());
-              //
-              if (connectivityResult == ConnectivityResult.mobile ||
-                  connectivityResult == ConnectivityResult.wifi) {
-                // I am connected to a mobile network. I am connected to a wifi network.
-                //
-                //widget.pl["envoyer"] = "oui";
-                Map<String, dynamic> utilisateur = widget.pl;
-                utilisateur["envoyer"] = "oui";
-                // deC.clear();
-                // telephoneC.clear();
-                // emailC.clear();
-                // aC.clear();
-                // messageC.clear();
-                // a = 0;
-                // p = 0;
-                print("_____________________: $utilisateur");
-                List<Map<String, dynamic>> l = [];
-                /*
-                      //____________________________________________________________
-                      depotController.listeFichier.value.forEach((element) {
-                        Map<String, dynamic> e = element;
-                        l.add(e);
-                      });
-                      */
-                //____________________________________________________________
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Transfere1(utilisateur, l);
-                    },
-                  ),
-                );
-              } else {
-                //GetSnackBar(title: titre, message: message);
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text("Problème de connexion"),
-                      content: Text(
-                        "Vous n'etes pas connecté à internet, veuillez vous reconnecter puis reessayer",
-                        textAlign: TextAlign.center,
-                      ),
-                      actions: [
-                        IconButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          icon: Icon(
-                            Icons.close,
-                          ),
-                        )
-                      ],
-                    );
-                  },
-                );
-              }
-            },
-            child: Text("Reenvoyer"),
-          ),
-        ],
-      ),
-    );
-  }
-
-  var st = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 13,
-    color: Colors.black,
-  );
-
-  var st2 = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 13,
-    color: Colors.green,
-  );
-
-  getFile() async {
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(allowMultiple: false);
-    if (result != null) {
-      List<File> files = result.paths.map((path) => File(path!)).toList();
-      files.forEach((element) async {
-        //
-        List<String> extT = element.path.split(".");
-        String ext = extT.last;
-        Uint8List l = await element.readAsBytes();
-        depotController.listeFichier.value.add(
-          {
-            "length": l.length,
-            "data": l,
-            "type": ext,
-          },
-        );
-      });
-      setState(() {});
-    } else {
-      // User canceled the picker
     }
   }
 }

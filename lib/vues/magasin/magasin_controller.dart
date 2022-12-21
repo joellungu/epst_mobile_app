@@ -55,17 +55,17 @@ class MagasinController extends GetxController with StateMixin<List> {
         //print(e);
         if (type == 1) {
           liste1.add(e);
-        } else if(type == 2) {
+        } else if (type == 2) {
           liste2.add(e);
-        } else if(type == 3) {
+        } else if (type == 3) {
           liste3.add(e);
-        } else if(type == 4) {
+        } else if (type == 4) {
           liste4.add(e);
-        } else if(type == 5) {
+        } else if (type == 5) {
           liste5.add(e);
-        } else if(type == 6) {
+        } else if (type == 6) {
           liste6.add(e);
-        } else if(type == 7) {
+        } else if (type == 7) {
           liste7.add(e);
         }
         /*
@@ -94,17 +94,17 @@ class MagasinController extends GetxController with StateMixin<List> {
       //change(liste1, status: RxStatus.success());
       if (type == 1) {
         change(liste1, status: RxStatus.success());
-      } else if(type == 2) {
+      } else if (type == 2) {
         change(liste2, status: RxStatus.success());
-      } else if(type == 3) {
+      } else if (type == 3) {
         change(liste3, status: RxStatus.success());
-      } else if(type == 4) {
+      } else if (type == 4) {
         change(liste4, status: RxStatus.success());
-      } else if(type == 5) {
+      } else if (type == 5) {
         change(liste5, status: RxStatus.success());
-      } else if(type == 6) {
+      } else if (type == 6) {
         change(liste6, status: RxStatus.success());
-      } else if(type == 7) {
+      } else if (type == 7) {
         change(liste7, status: RxStatus.success());
       }
       //
@@ -120,17 +120,17 @@ class MagasinController extends GetxController with StateMixin<List> {
       //
       if (type == 1) {
         change(l1, status: RxStatus.success());
-      } else if(type == 2) {
+      } else if (type == 2) {
         change(l2, status: RxStatus.success());
-      } else if(type == 3) {
+      } else if (type == 3) {
         change(l3, status: RxStatus.success());
-      } else if(type == 4) {
+      } else if (type == 4) {
         change(l4, status: RxStatus.success());
-      } else if(type == 5) {
+      } else if (type == 5) {
         change(l5, status: RxStatus.success());
-      } else if(type == 6) {
+      } else if (type == 6) {
         change(l6, status: RxStatus.success());
-      } else if(type == 7) {
+      } else if (type == 7) {
         change(l7, status: RxStatus.success());
       }
       //
@@ -181,11 +181,15 @@ class MagasinController extends GetxController with StateMixin<List> {
 class MagasinConnexion extends GetConnect {
   Future<http.Response> getListeMag(int type) async {
     var url = Uri.parse('${Connexion.lien}magasin/all/$type');
-    var response = await http.get(url);
+    var response = await http.get(url, headers: {
+      "Accept": "application/json, text/plain;charset=UTF-8",
+      "Content-type": "application/json; charset=utf-8"
+    });
     return response;
     //print("${Connexion.lien}magasin/all/$type");
     //return get("${Connexion.lien}magasin/all/$type");
   }
+
   Future<http.Response> getMagasin(String id) async {
     var url = Uri.parse('${Connexion.lien}magasin/$id');
     var response = await http.get(url);

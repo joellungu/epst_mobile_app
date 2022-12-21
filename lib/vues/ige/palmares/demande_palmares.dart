@@ -2,13 +2,15 @@ import 'dart:async';
 
 import 'package:accordion/accordion.dart';
 import 'package:epst_app/main.dart';
+import 'package:epst_app/vues/ige/palmares/liste_palmares.dart';
+import 'package:epst_app/widgets/paiement.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import 'recherche_annee.dart';
-import 'recherche_ecole.dart';
+import '../recherche_annee.dart';
+import '../recherche_ecole.dart';
 
 class DemandePalmares extends StatefulWidget {
   @override
@@ -122,7 +124,11 @@ class _DemandePalmares extends State<DemandePalmares> {
       liste_annee.add(a);
       a++;
     }
-    //lien_siite
+    //
+    Timer(Duration(seconds: 3), () {
+      loadPayment.value = true;
+    });
+    //
     super.initState();
   }
 
@@ -187,7 +193,7 @@ class _DemandePalmares extends State<DemandePalmares> {
                         //width: Get.size.width,
                         child: Obx(
                           () => Text(
-                            ecole.value,
+                            "${ecole.value["ecole"] ?? ''} / ${ecole.value["province"] ?? ''}",
                             style: TextStyle(
                               color: Colors.black,
                             ),
@@ -246,6 +252,7 @@ class _DemandePalmares extends State<DemandePalmares> {
                 const SizedBox(
                   height: 10,
                 ),
+                /*
                 const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -292,6 +299,7 @@ class _DemandePalmares extends State<DemandePalmares> {
                               onChanged: (value) {
                                 option = value as int;
                                 print("le id: $option");
+                                print("${listeOptions[option]}".split(",")[1]);
                               },
                               items: List.generate(
                                 listeOptions.length,
@@ -312,28 +320,66 @@ class _DemandePalmares extends State<DemandePalmares> {
                     ),
                   ),
                 ),
-
                 const SizedBox(
                   height: 10,
                 ),
-
+                */
                 ///
                 ElevatedButton(
                   onPressed: () async {
                     //
+                    showDialog(
+                        context: context,
+                        builder: (c) {
+                          return Material(
+                            color: Colors.transparent,
+                            child: Center(
+                              child: Container(
+                                padding: const EdgeInsets.all(15),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                height: 250,
+                                width: 270,
+                                child: PayementMethode({}),
+                              ),
+                            ),
+                          );
+                        });
                   },
                   child: Container(
                     alignment: Alignment.center,
                     height: 40,
-                    child: const Text("Envoyer"),
+                    child: const Text("Demander"),
                   ),
                 ),
-                Obx(() => demande.value
-                    ? SizedBox(
-                        height: Get.size.height / 2,
-                        child: Palmares(),
-                      )
-                    : Container())
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "Demande payant (5 dollar)",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 11,
+                  ),
+                ),
+                Obx(
+                  () => loadPayment.value
+                      ? SizedBox(
+                          height: Get.size.height / 2,
+                          child: Palmares(),
+                        )
+                      : Container(
+                          height: 50,
+                          alignment: Alignment.center,
+                          child: SizedBox(
+                            height: 5,
+                            width: 100,
+                            child: LinearProgressIndicator(),
+                          ),
+                        ),
+                )
               ],
             ),
       // floatingActionButton: FloatingActionButton(
@@ -356,7 +402,7 @@ class Palmares extends StatelessWidget {
 
   Palmares() {
     Timer(Duration(seconds: 3), () {
-      rep.value = true;
+      rep.value = false;
     });
   }
   @override
@@ -392,10 +438,10 @@ class Palmares extends StatelessWidget {
           : Container(
               height: 50,
               alignment: Alignment.center,
-              child: SizedBox(
-                height: 50,
-                width: 50,
-                child: CircularProgressIndicator(),
+              child: const SizedBox(
+                height: 15,
+                width: 100,
+                child: LinearProgressIndicator(),
               ),
             ),
     );

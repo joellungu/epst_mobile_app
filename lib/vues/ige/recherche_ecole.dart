@@ -38,9 +38,9 @@ class RechercheEcole extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    List<String> matchQuery = [];
+    List<Map> matchQuery = [];
     for (var annee in liste_ecoles) {
-      if (annee.toLowerCase().contains(query.toLowerCase())) {
+      if (annee["ecole"].toLowerCase().contains(query.toLowerCase())) {
         //var result = matchQuery[]
         matchQuery.add(annee);
       }
@@ -48,9 +48,14 @@ class RechercheEcole extends SearchDelegate {
     return ListView.builder(
       itemCount: matchQuery.length,
       itemBuilder: (context, index) {
-        var result = matchQuery[index];
+        Map result = matchQuery[index];
         return ListTile(
-          title: Text(result),
+          title: Text(
+            "${result["ecole"]} (${result["province"]})",
+            style: TextStyle(
+              fontSize: 13,
+            ),
+          ), //
           onTap: () {
             //
             ecole.value = result;
@@ -67,9 +72,9 @@ class RechercheEcole extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<String> matchQuery = [];
+    List<Map> matchQuery = [];
     for (var annee in liste_ecoles) {
-      if (annee.toLowerCase().contains(query.toLowerCase())) {
+      if (annee["ecole"].toLowerCase().contains(query.toLowerCase())) {
         //var result = matchQuery[]
         matchQuery.add(annee);
       }
@@ -77,9 +82,14 @@ class RechercheEcole extends SearchDelegate {
     return ListView.builder(
       itemCount: matchQuery.length,
       itemBuilder: (context, index) {
-        var result = matchQuery[index];
+        Map result = matchQuery[index];
         return ListTile(
-          title: Text(result),
+          title: Text(
+            "${result["ecole"]} (${result["province"]})",
+            style: TextStyle(
+              fontSize: 13,
+            ),
+          ), //
           onTap: () {
             //
             ecole.value = result;

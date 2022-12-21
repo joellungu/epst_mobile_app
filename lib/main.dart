@@ -8,17 +8,21 @@ import 'package:epst_app/vues/reforme/reforme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
 import 'vues/identification/identification_controller.dart';
 import 'vues/ige/demande_identification/demande_identification_controller.dart';
+import 'vues/ige/palmares/palmares_controller.dart';
 import 'vues/mutuelle/mutuelle_controller.dart';
 
+//
 List liste_ecoles = [];
 RxString annee = "".obs;
-RxString ecole = "Ecole".obs;
+RxMap ecole = {"ecole": "", "province": ""}.obs;
 RxString option = "Option".obs;
-RxString ecole1 = "".obs;
-RxString ecole2 = "".obs;
+RxMap ecole1 = {"ecole": "", "province": ""}.obs;
+RxMap ecole2 = {"ecole": "", "province": ""}.obs;
+RxBool loadPayment = false.obs;
+RxMap infoPayment = {}.obs;
+//
 
 void main() async {
   //
@@ -34,6 +38,7 @@ void main() async {
       Get.put(DemandeIdentificationController());
   Get.put(MagasinController());
   Get.put(IdentificationController());
+  Get.put(PalmaresController());
   Get.put(ReformeController());
   MutuelleController mutuelleController = Get.put(MutuelleController());
   //MagasinController magasinController =

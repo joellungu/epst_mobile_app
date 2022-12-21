@@ -13,8 +13,13 @@ class Splash extends StatelessWidget {
     var r = await rootBundle.loadString("assets/ecoles.txt");
     List l1 = r.split('\n');
     for (String e in l1) {
-      print(e.split(',')[1]);
-      liste_ecoles.add(e.split(',')[1]);
+      print(e.split(',')[1]); //[1]
+
+      liste_ecoles.add({
+        "ecole": e.split(',')[1],
+        "province": e.split(',')[2],
+        "code_ecole": e.split(',')[3]
+      });
     }
     print("cool c'est finit");
     //
