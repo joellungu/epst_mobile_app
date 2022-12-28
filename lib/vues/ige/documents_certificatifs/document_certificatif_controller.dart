@@ -7,11 +7,11 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
-class DemandeIdentificationController extends GetxController {
+class DemandeDocumentController extends GetxController {
   Requete requete = Requete();
 
   Future<int> getStatus(String id) async {
-    Response response = await requete.getE("identification/statusdem?id=$id");
+    Response response = await requete.getE("documentscolaire/statusdem?id=$id");
     print("mutuelle/statusdem?id=$id");
     if (response.statusCode == 200 || response.statusCode == 201) {
       print("le status: ${response.body}");
@@ -23,7 +23,7 @@ class DemandeIdentificationController extends GetxController {
 
   setSaturer(State st, List l, int t, String id, String cenome) async {
     //
-    Response rep = await requete.getE("identification/saturer/$id/$cenome/3");
+    Response rep = await requete.getE("documentscolaire/saturer/$id/$cenome/3");
     //await requette.getE("mutuelle/all/demande");
     if (rep.statusCode == 200 ||
         rep.statusCode == 201 ||
@@ -54,7 +54,7 @@ class DemandeIdentificationController extends GetxController {
     print(map); //http.
     //Response response = await requete.postE("identification/demande", map);
     var response = await http.post(
-        Uri.parse("${Connexion.lien}identification/enregistrement"),
+        Uri.parse("${Connexion.lien}documentscolaire/enregistrement"),
         headers: {
           "Content-Type": "application/json", //"application/json",
         },
@@ -66,10 +66,10 @@ class DemandeIdentificationController extends GetxController {
       print(response.statusCode);
       Map e = jsonDecode(response.body);
       print(e);
-      List l = box.read("historique_identification") ?? [];
+      List l = box.read("historique_document") ?? [];
       e['photo'] = "";
       l.add(e);
-      box.write("historique_identification", l);
+      box.write("historique_document", l);
       Get.back();
       Get.snackbar("Succès", "Demande envoyé avec succès");
     } else {

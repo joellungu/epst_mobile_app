@@ -8,25 +8,26 @@ import 'package:http/http.dart' as http;
 import '../../utils/requetes.dart';
 
 class MutuelleController extends GetxController {
-
   Requete requete = Requete();
 
   Future<int> getStatus(String id) async {
     Response response = await requete.getE("mutuelle/statusdem?id=$id");
     print("mutuelle/statusdem?id=$id");
-    if(response.statusCode == 200 || response.statusCode == 201){
+    if (response.statusCode == 200 || response.statusCode == 201) {
       print("le status: ${response.body}");
       return response.body;
-    }else{
+    } else {
       return 0;
     }
   }
+
   setSaturer(State st, List l, int t, String id, String cenome) async {
     //
-    Response rep =
-    await requete.getE("mutuelle/saturer/$id/$cenome/3");
+    Response rep = await requete.getE("mutuelle/saturer/$id/$cenome/3");
     //await requette.getE("mutuelle/all/demande");
-    if (rep.statusCode == 200 || rep.statusCode == 201 || rep.statusCode == 204) {
+    if (rep.statusCode == 200 ||
+        rep.statusCode == 201 ||
+        rep.statusCode == 204) {
       //getAllDemande(province, district);
 
       //l.removeAt(t);
@@ -35,7 +36,7 @@ class MutuelleController extends GetxController {
       Get.snackbar("Effectué", "Demande expiré");
       //
       var box = GetStorage();
-      box.write("historique",l);
+      box.write("historique", l);
       st.setState(() {});
     } else {
       print(rep.statusCode);
@@ -47,22 +48,21 @@ class MutuelleController extends GetxController {
     //
   }
 
-
   faireUnDemande(Map map) async {
     var box = GetStorage();
 
-    print(map);//http.
+    print(map); //http.
     //Response response = await requete.postE("mutuelle/demande", map);
-    var response = await http.post(
-      Uri.parse("${Connexion.lien}mutuelle/demande"),
-      headers: {
-        "Content-Type": "application/json", //"application/json",
-      },
-      body: json.encode(map)//element["data"],
-    );
+    var response =
+        await http.post(Uri.parse("${Connexion.lien}mutuelle/demande"),
+            headers: {
+              "Content-Type": "application/json", //"application/json",
+            },
+            body: json.encode(map) //element["data"],
+            );
     print(response.statusCode);
     print(response.body);
-    if(response.statusCode == 200 || response.statusCode == 201){
+    if (response.statusCode == 200 || response.statusCode == 201) {
       print(response.statusCode);
       print(response.body);
       List l = box.read("historique") ?? [];
@@ -71,7 +71,7 @@ class MutuelleController extends GetxController {
       box.write("historique", l);
       Get.back();
       Get.snackbar("Succès", "Demande envoyé avec succès");
-    }else{
+    } else {
       print(response.statusCode);
       print(response.body);
       Get.back();
@@ -79,4 +79,3 @@ class MutuelleController extends GetxController {
     }
   }
 }
-

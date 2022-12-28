@@ -13,9 +13,9 @@ class Connexion {
   //
   //static var lien = 'http://192.168.43.134:8080/';
   //static var ws = '192.168.43.134:8080/';
-  //192.168.1.77
-  static var lien_siite =
-      'https://app-02b35183-fec6-4c4b-99d9-fca268735259.cleverapps.io/';
+  //192.168.1.72
+  //static var lien_siite =
+  //  'https://app-02b35183-fec6-4c4b-99d9-fca268735259.cleverapps.io/';
   static var lien =
       'https://app-02b35183-fec6-4c4b-99d9-fca268735259.cleverapps.io/';
   static var ws = 'app-02b35183-fec6-4c4b-99d9-fca268735259.cleverapps.io';

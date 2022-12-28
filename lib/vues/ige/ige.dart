@@ -4,11 +4,12 @@ import 'package:epst_app/vues/cours/message_phonique.dart';
 import 'package:epst_app/vues/cours/notes_circulaire.dart';
 import 'package:epst_app/vues/cours/notifications_arretes.dart';
 import 'package:epst_app/vues/ige/palmares/demande_palmares.dart';
-import 'package:epst_app/vues/ige/demande_transfere.dart';
+import 'package:epst_app/vues/ige/demande_transfere/demande_transfere.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
+import 'demande_transfere/transfere.dart';
 import 'documents_certificatifs/demande_documents.dart';
 import 'demande_identification/demande_identification.dart';
 import 'demande_identification/identification.dart';
@@ -253,7 +254,9 @@ class _Ige extends State<Ige> {
           ElevatedButton(
             onPressed: () {
               //
-              Get.to(DemandeTransfere());
+              Get.to(Transfere(
+                titre: "Demande de transfère",
+              ));
             },
             style: ButtonStyle(
                 /*

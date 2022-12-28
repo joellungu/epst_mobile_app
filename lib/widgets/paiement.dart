@@ -5,8 +5,10 @@ import '../main.dart';
 
 class PayementMethode extends StatefulWidget {
   Map requette;
+  double prix;
+  Function f;
   //
-  PayementMethode(this.requette);
+  PayementMethode(this.requette, this.prix, this.f);
   //
   @override
   State<StatefulWidget> createState() {
@@ -23,13 +25,13 @@ class _PayementMethode extends State<PayementMethode> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
+      height: 300,
       width: 200,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 10, right: 10),
+            padding: const EdgeInsets.only(left: 10, right: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [Text("Votre numéro de téléphone")],
@@ -51,6 +53,10 @@ class _PayementMethode extends State<PayementMethode> {
           ),
           const SizedBox(
             height: 5,
+          ),
+          Text(
+            "Formulaire payant (1 dollar) plus frais de transaction",
+            textAlign: TextAlign.center,
           ),
           Row(
             children: [
@@ -99,6 +105,8 @@ class _PayementMethode extends State<PayementMethode> {
             onPressed: () async {
               //
               print(ecole.value);
+              widget.f(widget.requette);
+              /*
               showDialog(
                   context: context,
                   builder: (c) {
@@ -133,6 +141,7 @@ class _PayementMethode extends State<PayementMethode> {
                       ),
                     );
                   });
+                  */
               /*
                     String nomecole = ecole.value;
                     String codeoption = "${listeOptions[option]}".split(",")[1];

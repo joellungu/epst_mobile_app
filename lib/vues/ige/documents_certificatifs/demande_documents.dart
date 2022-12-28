@@ -6,12 +6,14 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:epst_app/main.dart';
 import 'package:epst_app/vues/ige/recherche_annee.dart';
 import 'package:epst_app/vues/ige/recherche_ecole.dart';
+import 'package:epst_app/widgets/paiement.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 import '../demande_identification/demande_identification_controller.dart';
+import 'document_certificatif_controller.dart';
 
 class DemandeDocument extends StatefulWidget {
   String? titre;
@@ -37,6 +39,7 @@ class _DemandeDocument extends State<DemandeDocument> {
   int genre = 0;
   List types = [
     "Diplome d'etat",
+    "Diplome d'aptitude profesionnel",
     "Brevet professionnel",
     "Certificat d'étude primaire",
     "Note d'acquis de droit",
@@ -938,7 +941,10 @@ class _DemandeDocument extends State<DemandeDocument> {
           const SizedBox(
             height: 10,
           ),
-          const Text("Ce type document est payant (5 dollar)"),
+          const Text(
+            "Ce formulaire est payant (7 dollar)",
+            textAlign: TextAlign.center,
+          ),
           const SizedBox(
             height: 20,
           ),
@@ -950,19 +956,30 @@ class _DemandeDocument extends State<DemandeDocument> {
                 messageErreur("Erreur", "Veuillez remplire le champ postnom");
               } else if (prenom.text.isEmpty) {
                 messageErreur("Erreur", "Veuillez remplire le champ prenom");
-              } else if (nom_pere.text.isEmpty) {
-                messageErreur("Erreur", "Veuillez remplire le champ matricule");
-              } else if (nom_mere.text.isEmpty) {
-                messageErreur("Erreur", "Veuillez remplire le champ notes");
-              } else if (adresse.text.isEmpty) {
-                messageErreur(
-                    "Erreur", "Veuillez associer la photo de la carte");
-              } else if (telephone.text.isEmpty) {
-                messageErreur("Erreur", "Veuillez remplire le champ postnom");
-              } else if (prenom.text.isEmpty) {
-                messageErreur("Erreur", "Veuillez remplire le champ prenom");
               } else if (lieu_de_naissance.text.isEmpty) {
-                messageErreur("Erreur", "Veuillez remplire le champ matricule");
+                messageErreur(
+                    "Erreur", "Veuillez remplire le champ lieu de naissance");
+              } else if (d == null) {
+                messageErreur(
+                    "Erreur", "Veuillez indiquer une date de naissance");
+              } else if (nom_pere.text.isEmpty) {
+                messageErreur("Erreur", "Veuillez remplire le champ nom mère");
+              } else if (nom_mere.text.isEmpty) {
+                messageErreur("Erreur", "Veuillez remplire le champ nom mère");
+              } else if (telephone.text.isEmpty) {
+                messageErreur(
+                    "Erreur", "Veuillez entrer un numéro de téléphone");
+              } else if (adresse.text.isEmpty) {
+                //
+                messageErreur("Erreur", "Veuillez entrer une adresse");
+              } else if (ecole.value == {}) {
+                messageErreur("Erreur", "Veuillez selectionner une école");
+              } else if (annee.value.isEmpty) {
+                messageErreur(
+                    "Erreur", "Veuillez selectionner une période (année)");
+              } else if (img1 == null) {
+                //
+                messageErreur("Erreur", "Veuillez selectionner une photo");
               } else {
                 var connectivityResult =
                     await (Connectivity().checkConnectivity());
@@ -984,8 +1001,12 @@ class _DemandeDocument extends State<DemandeDocument> {
                     ),
                   ));
                   //
+                  DateTime d2 = DateTime.now();
+                  //
                   Uint8List l1 = await img1!.readAsBytes();
                   //
+                  String vd = d!.day < 9 ? "0${d!.day}" : "${d!.day}";
+                  String ddd = "${d!.year}-${d!.month}-$vd";
                   Map<String, dynamic> formulaireD = {
                     "id": getCode(),
                     "nom": nom.text,
@@ -998,26 +1019,53 @@ class _DemandeDocument extends State<DemandeDocument> {
                     "adresse": adresse.text,
                     "provinceOrigine": listeProvince[p_o],
                     "lieuNaissance": lieu_de_naissance.text,
-                    "dateNaissance": "${d!.year}-${d!.month}-${d!.day}",
+                    "dateNaissance": ddd,
                     "photo": l1,
                     "ext1": ext1,
-                    "ecole": ecole.value,
+                    "ecole": ecole.value["ecole"],
                     "provinceEcole": listeProvince[p_e],
                     "provinceEducationnel": listeDistrict[dd],
                     "option": "${listeOptions[option]}".split(",")[1],
-                    "typeIdentification": listeProvince[p],
+                    "annee": annee.value,
+                    "datedemande": "${d2.day}/${d2.month}/${d2.year}",
+                    "documenrDemandecode": type.value,
+                    "documenrDemande": types[type.value],
                     "valider": 0,
                   };
                   /*
                   */
-                  DemandeIdentificationController
-                      demandeIdentificationController = Get.find();
-                  //ByteArrayInputStream//formulaireD
-                  //
-                  Timer(const Duration(seconds: 1), () {
-                    demandeIdentificationController
-                        .faireUneInscription(formulaireD);
-                  });
+                  if (type.value == 0 || type.value == 4) {
+                    //PayementMethode
+                    showDialog(
+                      context: context,
+                      builder: (c) {
+                        return Material(
+                          color: Colors.transparent,
+                          child: Center(
+                            child: Container(
+                              padding: const EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              height: 300,
+                              width: 270,
+                              child: PayementMethode(formulaireD, 7, send),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  } else {
+                    send(formulaireD);
+                  }
+                  // DemandeDocumentController demandeDocumentController =
+                  //     Get.find();
+                  // //ByteArrayInputStream//formulaireD
+                  // //
+                  // Timer(const Duration(seconds: 1), () {
+                  //   demandeDocumentController.faireUneInscription(formulaireD);
+                  // });
 
                   //____________________________________________________________
                 } else {}
@@ -1035,6 +1083,17 @@ class _DemandeDocument extends State<DemandeDocument> {
         ],
       ),
     );
+  }
+
+  send(Map formulaireD) async {
+    Get.back();
+    DemandeIdentificationController demandeIdentificationController =
+        Get.find();
+    //ByteArrayInputStream//formulaireD
+    //
+    Timer(const Duration(seconds: 1), () {
+      demandeIdentificationController.faireUneInscription(formulaireD);
+    });
   }
 
   String getCode() {

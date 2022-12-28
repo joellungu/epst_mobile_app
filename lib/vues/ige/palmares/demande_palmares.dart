@@ -340,9 +340,9 @@ class _DemandePalmares extends State<DemandePalmares> {
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                height: 250,
+                                height: 300,
                                 width: 270,
-                                child: PayementMethode({}),
+                                child: PayementMethode({}, 7, send),
                               ),
                             ),
                           );
@@ -358,7 +358,7 @@ class _DemandePalmares extends State<DemandePalmares> {
                   height: 10,
                 ),
                 const Text(
-                  "Demande payant (5 dollar)",
+                  "Formulaire payant (1 dollar)",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 11,
@@ -389,6 +389,11 @@ class _DemandePalmares extends State<DemandePalmares> {
       //   child: Icon(Icons.sync),
       // ),
     );
+  }
+
+  send() async {
+    Get.back();
+    print("cool");
   }
 }
 

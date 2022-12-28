@@ -4,7 +4,7 @@ import 'package:epst_app/vues/reforme/reforme_controller.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:open_file/open_file.dart';
+import 'package:open_file_safe/open_file_safe.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -48,7 +48,7 @@ class Reforme extends GetView<ReformeController> {
             return Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Container(
@@ -65,6 +65,7 @@ class Reforme extends GetView<ReformeController> {
                     },
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.search),
+                      hintText: "Recherche élève",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
                         borderSide: BorderSide(

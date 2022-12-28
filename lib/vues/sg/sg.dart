@@ -5,6 +5,7 @@ import 'package:epst_app/vues/cours/notes_circulaire.dart';
 import 'package:epst_app/vues/cours/notifications_arretes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:open_file_safe/open_file_safe.dart';
 import 'package:video_player/video_player.dart';
 import 'dart:async';
 import 'dart:io';
@@ -12,7 +13,6 @@ import 'package:epst_app/vues/magasin/magasin_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shimmer/shimmer.dart';
 

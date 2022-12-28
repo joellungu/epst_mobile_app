@@ -1,4 +1,6 @@
 import 'package:accordion/accordion.dart';
+import 'package:epst_app/vues/identification/identification_controller.dart';
+import 'package:epst_app/vues/ige/documents_certificatifs/document_certificatif_controller.dart';
 import 'package:epst_app/vues/mutuelle/mutuelle_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +15,8 @@ class HistoriqueDemandeDocument extends StatefulWidget {
 
 class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
   //
-  MutuelleController mutuelleController = MutuelleController();
+  DemandeDocumentController demandeDocumentController = Get.find();
+  //IdentificationController identificationController = Get.find();
   TextEditingController cenome = TextEditingController();
   var box = GetStorage();
   RxList l = RxList();
@@ -26,7 +29,7 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
     //
     super.initState();
     //
-    l.value = box.read("historique") ?? [];
+    l.value = box.read("historique_document") ?? [];
     l.value = l.value.reversed.toList();
     print(box.read("historique"));
     //
@@ -34,7 +37,7 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
 
   //
   Future<int> getStatus(String id) async {
-    return mutuelleController.getStatus(id);
+    return demandeDocumentController.getStatus(id);
   }
 
   //
@@ -57,8 +60,9 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
             //
             return AccordionSection(
                 header: Text(
-                  "${e['services']} du $dd",
+                  "${e['documenrDemande']} du ${e['datedemande'] ?? ''}",
                   style: TextStyle(
+                      //datedemande
                       color: Colors.white,
                       fontSize: 17,
                       fontWeight: FontWeight.bold),
@@ -106,7 +110,7 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
                     Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Matricule: ${e['matricule']}",
+                          "sexe: ${e['sexe']}",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 17,
@@ -115,7 +119,7 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
                     Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Direction: ${e['direction']}",
+                          "lieuNaissance: ${e['lieuNaissance']}",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 17,
@@ -124,7 +128,7 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
                     Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Services: ${e['services']}",
+                          "dateNaissance: ${e['dateNaissance']}",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 17,
@@ -133,7 +137,7 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
                     Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Beneficiaire: ${e['beneficiaire']}",
+                          "telephone: ${e['telephone']}",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 17,
@@ -142,22 +146,7 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
                     Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Notes: ${e['notes']}",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 17,
-                              fontWeight: FontWeight.normal),
-                        )),
-                    /*
-              Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text("Valider: ${e['valider']}",
-                        style: TextStyle(color: Colors.black, fontSize: 17, fontWeight: FontWeight.bold),)),
-                  */
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Province: ${e['province']}",
+                          "nompere: ${e['nompere']}",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 17,
@@ -166,12 +155,100 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
                     Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "District: ${e['district']}",
+                          "nommere: ${e['nommere']}",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
                         )),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "adresse: ${e['adresse']}",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold),
+                        )),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "provinceOrigine: ${e['provinceOrigine']}",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 17,
+                              fontWeight: FontWeight.normal),
+                        )),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "ecole: ${e['ecole']}",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 17,
+                            fontWeight: FontWeight.normal),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "provinceEcole: ${e['provinceEcole']}",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 17,
+                            fontWeight: FontWeight.normal),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "provinceEducationnel: ${e['provinceEducationnel']}",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 17,
+                            fontWeight: FontWeight.normal),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "option: ${e['option']}",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 17,
+                            fontWeight: FontWeight.normal),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "annee: ${e['annee']}",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 17,
+                            fontWeight: FontWeight.normal),
+                      ),
+                    ),
+                    // Align(
+                    //   alignment: Alignment.centerLeft,
+                    //   child: Text(
+                    //     "documenrDemandecode: ${e['documenrDemandecode']}",
+                    //     style: TextStyle(
+                    //         color: Colors.black,
+                    //         fontSize: 17,
+                    //         fontWeight: FontWeight.normal),
+                    //   ),
+                    // ),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "document Demande: ${e['documenrDemande']}",
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 17,
+                            fontWeight: FontWeight.normal),
+                      ),
+                    ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -193,7 +270,7 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
                                       ? Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
-                                            "Validation MESP: Validé",
+                                            "Validation: Validé",
                                             style: TextStyle(fontSize: 20),
                                           ),
                                         )
@@ -201,7 +278,7 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
                                           ? Align(
                                               alignment: Alignment.centerLeft,
                                               child: Text(
-                                                "Validation MESP: Refusé",
+                                                "Validation: Refusé",
                                                 style: TextStyle(fontSize: 20),
                                               ),
                                             )
@@ -210,7 +287,7 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
                                                   alignment:
                                                       Alignment.centerLeft,
                                                   child: Text(
-                                                    "Validation MESP: Expiré",
+                                                    "Validation: Expiré",
                                                     style:
                                                         TextStyle(fontSize: 20),
                                                   ),
@@ -219,63 +296,13 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
                                                   alignment:
                                                       Alignment.centerLeft,
                                                   child: Text(
-                                                    "Validation MESP: En attente",
+                                                    "Validation: En attente",
                                                     style:
                                                         TextStyle(fontSize: 20),
                                                   ),
                                                 ),
                                   const SizedBox(
                                     height: 20,
-                                  ),
-                                  Container(
-                                    height: 50,
-                                    child: v == 1
-                                        ? Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Expanded(
-                                                flex: 6,
-                                                child: TextField(
-                                                  controller: cenome,
-                                                  decoration: InputDecoration(
-                                                    hintText: "Cenome medecin",
-                                                    border: OutlineInputBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      borderSide:
-                                                          const BorderSide(
-                                                        color: Colors.black,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 10,
-                                              ),
-                                              Expanded(
-                                                flex: 3,
-                                                child: ElevatedButton(
-                                                  onPressed: () {
-                                                    if (cenome
-                                                        .text.isNotEmpty) {
-                                                      mutuelleController
-                                                          .setSaturer(
-                                                              this,
-                                                              l.value,
-                                                              index,
-                                                              "${e['id']}",
-                                                              cenome.text);
-                                                    }
-                                                  },
-                                                  child: const Text("Effectué"),
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                        : Container(),
                                   ),
                                 ],
                               ),

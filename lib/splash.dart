@@ -45,7 +45,7 @@ class Splash extends StatelessWidget {
       body: Container(
         padding: const EdgeInsets.only(top: 20, bottom: 5),
         child: Image.asset(
-          "assets/WhatsApp Image 2022-11-21 at 12.39.59.jpeg",
+          "assets/EPST-APP.png",
           fit: BoxFit.contain,
         ),
         height: MediaQuery.of(context).size.height,

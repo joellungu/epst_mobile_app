@@ -49,7 +49,8 @@ class _DemandeIdentification extends State<DemandeIdentification> {
     "Examens d'Etat",
     "TENASOPE",
     "TENAFEPE",
-    "Identification SERNI"
+    "Identification SERNI",
+    "JURY NATIONAL C.C"
   ];
   //
   List listeOptions = [
@@ -948,9 +949,14 @@ class _DemandeIdentification extends State<DemandeIdentification> {
           const SizedBox(
             height: 10,
           ),
-          Obx(() => type.value == 0
-              ? const Text("Ce type d'identification est payant (5 dollar)")
-              : Text("")),
+          Obx(
+            () => type.value == 0 || type.value == 4
+                ? const Text(
+                    "Ce type d'identification est payant (7 dollar)",
+                    textAlign: TextAlign.center,
+                  )
+                : const Text(""),
+          ),
           const SizedBox(
             height: 20,
           ),
@@ -962,19 +968,30 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                 messageErreur("Erreur", "Veuillez remplire le champ postnom");
               } else if (prenom.text.isEmpty) {
                 messageErreur("Erreur", "Veuillez remplire le champ prenom");
-              } else if (nom_pere.text.isEmpty) {
-                messageErreur("Erreur", "Veuillez remplire le champ matricule");
-              } else if (nom_mere.text.isEmpty) {
-                messageErreur("Erreur", "Veuillez remplire le champ notes");
-              } else if (adresse.text.isEmpty) {
-                messageErreur(
-                    "Erreur", "Veuillez associer la photo de la carte");
-              } else if (telephone.text.isEmpty) {
-                messageErreur("Erreur", "Veuillez remplire le champ postnom");
-              } else if (prenom.text.isEmpty) {
-                messageErreur("Erreur", "Veuillez remplire le champ prenom");
               } else if (lieu_de_naissance.text.isEmpty) {
-                messageErreur("Erreur", "Veuillez remplire le champ matricule");
+                messageErreur(
+                    "Erreur", "Veuillez remplire le champ lieu de naissance");
+              } else if (d == null) {
+                messageErreur(
+                    "Erreur", "Veuillez indiquer une date de naissance");
+              } else if (nom_pere.text.isEmpty) {
+                messageErreur("Erreur", "Veuillez remplire le champ nom mère");
+              } else if (nom_mere.text.isEmpty) {
+                messageErreur("Erreur", "Veuillez remplire le champ nom mère");
+              } else if (telephone.text.isEmpty) {
+                messageErreur(
+                    "Erreur", "Veuillez entrer un numéro de téléphone");
+              } else if (adresse.text.isEmpty) {
+                //
+                messageErreur("Erreur", "Veuillez entrer une adresse");
+              } else if (ecole.value == {}) {
+                messageErreur("Erreur", "Veuillez selectionner une école");
+              } else if (annee.value.isEmpty) {
+                messageErreur(
+                    "Erreur", "Veuillez selectionner une période (année)");
+              } else if (img1 == null) {
+                //
+                messageErreur("Erreur", "Veuillez selectionner une photo");
               } else {
                 var connectivityResult =
                     await (Connectivity().checkConnectivity());
@@ -996,8 +1013,12 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                     ),
                   ));
                   //
+                  DateTime d2 = DateTime.now();
+                  //
                   Uint8List l1 = await img1!.readAsBytes();
                   //
+                  String vd = d!.day < 9 ? "0${d!.day}" : "${d!.day}";
+                  String ddd = "${d!.year}-${d!.month}-$vd";
                   Map<String, dynamic> formulaireD = {
                     "id": getCode(),
                     "nom": nom.text,
@@ -1010,48 +1031,46 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                     "adresse": adresse.text,
                     "provinceOrigine": listeProvince[p_o],
                     "lieuNaissance": lieu_de_naissance.text,
-                    "dateNaissance": "${d!.year}-${d!.month}-${d!.day}",
+                    "dateNaissance": ddd,
                     "photo": l1,
                     "ext1": ext1,
-                    "ecole": ecole.value,
+                    "ecole": ecole.value["ecole"],
                     "provinceEcole": listeProvince[p_e],
                     "provinceEducationnel": listeDistrict[dd],
                     "option": "${listeOptions[option]}".split(",")[1],
-                    "typeIdentification": listeProvince[p],
+                    "annee": annee.value,
+                    "datedemande": "${d2.day}/${d2.month}/${d2.year}",
+                    "typeIdentificationcode": type.value,
+                    "typeIdentification": types[type.value],
                     "valider": 0,
                   };
                   /*
                   */
-                  if (type.value == 0) {
+                  if (type.value == 0 || type.value == 4) {
                     //PayementMethode
                     showDialog(
-                        context: context,
-                        builder: (c) {
-                          return Material(
-                            color: Colors.transparent,
-                            child: Center(
-                              child: Container(
-                                padding: const EdgeInsets.all(15),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                height: 250,
-                                width: 270,
-                                child: PayementMethode({}),
+                      context: context,
+                      builder: (c) {
+                        return Material(
+                          color: Colors.transparent,
+                          child: Center(
+                            child: Container(
+                              padding: const EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
                               ),
+                              height: 300,
+                              width: 270,
+                              child: PayementMethode(formulaireD, 7, send),
                             ),
-                          );
-                        });
-                  } else {}
-                  DemandeIdentificationController
-                      demandeIdentificationController = Get.find();
-                  //ByteArrayInputStream//formulaireD
-                  //
-                  Timer(const Duration(seconds: 1), () {
-                    //demandeIdentificationController
-                    //  .faireUneInscription(formulaireD);
-                  });
+                          ),
+                        );
+                      },
+                    );
+                  } else {
+                    send(formulaireD);
+                  }
 
                   //____________________________________________________________
                 } else {}
@@ -1069,6 +1088,17 @@ class _DemandeIdentification extends State<DemandeIdentification> {
         ],
       ),
     );
+  }
+
+  send(Map formulaireD) async {
+    Get.back();
+    DemandeIdentificationController demandeIdentificationController =
+        Get.find();
+    //ByteArrayInputStream//formulaireD
+    //
+    Timer(const Duration(seconds: 1), () {
+      demandeIdentificationController.faireUneInscription(formulaireD);
+    });
   }
 
   String getCode() {

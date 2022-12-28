@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:epst_app/splash.dart';
 import 'package:epst_app/utils/depotcontroler.dart';
 import 'package:epst_app/vues/accueil.dart';
+import 'package:epst_app/vues/ige/documents_certificatifs/document_certificatif_controller.dart';
 import 'package:epst_app/vues/magasin/magasin_controller.dart';
 import 'package:epst_app/vues/plainte/depotplainte_controller.dart';
 import 'package:epst_app/vues/reforme/reforme_controller.dart';
@@ -10,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'vues/identification/identification_controller.dart';
 import 'vues/ige/demande_identification/demande_identification_controller.dart';
+import 'vues/ige/demande_transfere/transfere_controller.dart';
 import 'vues/ige/palmares/palmares_controller.dart';
 import 'vues/mutuelle/mutuelle_controller.dart';
 
@@ -40,6 +42,8 @@ void main() async {
   Get.put(IdentificationController());
   Get.put(PalmaresController());
   Get.put(ReformeController());
+  Get.put(DemandeDocumentController());
+  Get.put(TransfereController());
   MutuelleController mutuelleController = Get.put(MutuelleController());
   //MagasinController magasinController =
   runApp(
