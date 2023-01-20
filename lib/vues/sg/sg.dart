@@ -1,8 +1,8 @@
 import 'package:epst_app/utils/connexion.dart';
-import 'package:epst_app/vues/cours/arretes_ministeriel.dart';
-import 'package:epst_app/vues/cours/message_phonique.dart';
-import 'package:epst_app/vues/cours/notes_circulaire.dart';
-import 'package:epst_app/vues/cours/notifications_arretes.dart';
+import 'package:epst_app/vues/documents_officiels/arretes_ministeriel.dart';
+import 'package:epst_app/vues/documents_officiels/message_phonique.dart';
+import 'package:epst_app/vues/documents_officiels/notes_circulaire.dart';
+import 'package:epst_app/vues/documents_officiels/notifications_arretes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:open_file_safe/open_file_safe.dart';

@@ -1,14 +1,15 @@
 import 'package:epst_app/utils/connexion.dart';
-import 'package:epst_app/vues/cours/arretes_ministeriel.dart';
-import 'package:epst_app/vues/cours/message_phonique.dart';
-import 'package:epst_app/vues/cours/notes_circulaire.dart';
-import 'package:epst_app/vues/cours/notifications_arretes.dart';
+import 'package:epst_app/vues/documents_officiels/arretes_ministeriel.dart';
+import 'package:epst_app/vues/documents_officiels/message_phonique.dart';
+import 'package:epst_app/vues/documents_officiels/notes_circulaire.dart';
+import 'package:epst_app/vues/documents_officiels/notifications_arretes.dart';
 import 'package:epst_app/vues/ige/palmares/demande_palmares.dart';
 import 'package:epst_app/vues/ige/demande_transfere/demande_transfere.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
+import 'attestation_reussite/attestation_reussit.dart';
 import 'demande_transfere/transfere.dart';
 import 'documents_certificatifs/demande_documents.dart';
 import 'demande_identification/demande_identification.dart';
@@ -389,7 +390,7 @@ class _Ige extends State<Ige> {
           ElevatedButton(
             onPressed: () {
               //
-              Get.to(MessagePhonique(titre: "Message phonique"));
+              Get.to(AttestationReussit(titre: "Attestation de réussite"));
             },
             style: ButtonStyle(
                 /*

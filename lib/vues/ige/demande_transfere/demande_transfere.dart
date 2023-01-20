@@ -1102,7 +1102,8 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                                 ),
                                 height: 250,
                                 width: 270,
-                                child: PayementMethode(formulaireD, 2, send),
+                                child: PayementMethode(formulaireD, 2, send,
+                                    "palmares", "palmares"),
                               ),
                             ),
                           );

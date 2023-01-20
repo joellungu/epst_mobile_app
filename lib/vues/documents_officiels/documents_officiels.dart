@@ -1,16 +1,18 @@
 import 'package:epst_app/utils/connexion.dart';
-import 'package:epst_app/vues/cours/arretes_ministeriel.dart';
-import 'package:epst_app/vues/cours/message_phonique.dart';
-import 'package:epst_app/vues/cours/notes_circulaire.dart';
-import 'package:epst_app/vues/cours/notifications_arretes.dart';
+import 'package:epst_app/vues/documents_officiels/arretes_ministeriel.dart';
+import 'package:epst_app/vues/documents_officiels/message_phonique.dart';
+import 'package:epst_app/vues/documents_officiels/notes_circulaire.dart';
+import 'package:epst_app/vues/documents_officiels/notifications_arretes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
-class Coure extends StatefulWidget{
+import 'arretes_ministeriel.dart';
+
+class documents_officiels extends StatefulWidget {
   String? titre;
   //
-  Coure({this.titre});
+  documents_officiels({this.titre});
   //
   @override
   State<StatefulWidget> createState() {
@@ -18,8 +20,7 @@ class Coure extends StatefulWidget{
   }
 }
 
-class _Coure extends State<Coure> {
-
+class _Coure extends State<documents_officiels> {
   @override
   void initState() {}
   //
@@ -40,15 +41,15 @@ class _Coure extends State<Coure> {
           ElevatedButton(
             onPressed: () {
               //
-              Get.to(ArretesMinisteriel(titre: "Arretés ministeriels"));
+              Get.to(ArretesMinisteriel(titre: "Arrêtés ministériels"));
             },
             style: const ButtonStyle(
-              /*
+                /*
               backgroundColor: MaterialStateProperty.all(
                 Colors.blue.shade400,
               ),
               */
-            ),
+                ),
             child: Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -57,16 +58,17 @@ class _Coure extends State<Coure> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Image.asset("assets/LOGO-MINEPST-BON.png",
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
                         color: Colors.blue,
                         colorBlendMode: BlendMode.color,
                       ), //
                       decoration: const BoxDecoration(
-                        //color: Colors.blue,
+                          //color: Colors.blue,
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                          )),
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      )),
                     ),
                   ),
                   Expanded(
@@ -76,7 +78,7 @@ class _Coure extends State<Coure> {
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
-                          text: "Arretés ministeriels",
+                          text: "Arrêtés ministériels",
                           children: [
                             TextSpan(
                               text: "",
@@ -96,9 +98,9 @@ class _Coure extends State<Coure> {
                       ),
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                          )),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
                     ),
                   )
                 ],
@@ -111,12 +113,12 @@ class _Coure extends State<Coure> {
               Get.to(NotificationsArretes(titre: "Notifications arretés"));
             },
             style: const ButtonStyle(
-              /*
+                /*
               backgroundColor: MaterialStateProperty.all(
                 Colors.blue.shade400,
               ),
               */
-            ),
+                ),
             child: Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -125,16 +127,17 @@ class _Coure extends State<Coure> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Image.asset("assets/LOGO-MINEPST-BON.png",
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
                         color: Colors.blue,
                         colorBlendMode: BlendMode.color,
                       ), //
                       decoration: const BoxDecoration(
-                        //color: Colors.blue,
+                          //color: Colors.blue,
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                          )),
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      )),
                     ),
                   ),
                   Expanded(
@@ -164,9 +167,9 @@ class _Coure extends State<Coure> {
                       ),
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                          )),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
                     ),
                   )
                 ],
@@ -179,12 +182,12 @@ class _Coure extends State<Coure> {
               Get.to(NotesCirculaire(titre: "Notes circulaires"));
             },
             style: const ButtonStyle(
-              /*
+                /*
               backgroundColor: MaterialStateProperty.all(
                 Colors.blue.shade400,
               ),
               */
-            ),
+                ),
             child: Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -193,16 +196,17 @@ class _Coure extends State<Coure> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Image.asset("assets/LOGO-MINEPST-BON.png",
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
                         color: Colors.blue,
                         colorBlendMode: BlendMode.color,
                       ), //
                       decoration: const BoxDecoration(
-                        //color: Colors.blue,
+                          //color: Colors.blue,
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                          )),
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      )),
                     ),
                   ),
                   Expanded(
@@ -232,9 +236,9 @@ class _Coure extends State<Coure> {
                       ),
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                          )),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
                     ),
                   )
                 ],
@@ -247,12 +251,12 @@ class _Coure extends State<Coure> {
               Get.to(MessagePhonique(titre: "Message phonique"));
             },
             style: const ButtonStyle(
-              /*
+                /*
               backgroundColor: MaterialStateProperty.all(
                 Colors.blue.shade400,
               ),
               */
-            ),
+                ),
             child: Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -261,16 +265,17 @@ class _Coure extends State<Coure> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Image.asset("assets/LOGO-MINEPST-BON.png",
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
                         color: Colors.blue,
                         colorBlendMode: BlendMode.color,
                       ), //
                       decoration: const BoxDecoration(
-                        //color: Colors.blue,
+                          //color: Colors.blue,
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                          )),
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      )),
                     ),
                   ),
                   Expanded(
@@ -300,9 +305,9 @@ class _Coure extends State<Coure> {
                       ),
                       decoration: const BoxDecoration(
                           borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                          )),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
                     ),
                   )
                 ],

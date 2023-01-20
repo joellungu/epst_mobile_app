@@ -110,80 +110,157 @@ class _Formation extends State<Formation> {
                 ),
               )),
           ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return EnseignementEleve();
-                    },
-                  ),
-                );
-              },
-              style: ButtonStyle(
-                  /*
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return EnseignementEleve();
+                  },
+                ),
+              );
+            },
+            style: ButtonStyle(
+                /*
               backgroundColor: MaterialStateProperty.all(
                 Colors.blue.shade400,
               ),
               */
-                  ),
-              child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Expanded(
-                      flex: 5,
-                      child: Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.all(pd),
-                        child: Image.asset(
-                          "assets/LOGO E-CLASSE.02e1cc99.png",
-                          color: Colors.blue,
-                          colorBlendMode: BlendMode.color,
-                        ), //
-                        decoration: const BoxDecoration(
-                            //color: Colors.blue,
-                            borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        )),
-                      ),
+                ),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(pd),
+                      child: Image.asset(
+                        "assets/LOGO E-CLASSE.02e1cc99.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
+                      ), //
+                      decoration: const BoxDecoration(
+                          //color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      )),
                     ),
-                    Expanded(
-                      flex: 5,
-                      child: Container(
-                        padding: EdgeInsets.only(bottom: 15),
-                        alignment: Alignment.center,
-                        child: RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(
-                            text: "E-Classe",
-                            children: [
-                              TextSpan(
-                                text: "",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              )
-                            ],
-                            style: TextStyle(
-                              fontSize: st,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      padding: EdgeInsets.only(bottom: 15),
+                      alignment: Alignment.center,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "E-Classe",
+                          children: [
+                            TextSpan(
+                              text: "",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: st,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
-                        )),
                       ),
-                    )
-                  ],
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return EnseignementEleve();
+                  },
                 ),
-              )),
+              );
+            },
+            style: ButtonStyle(
+                /*
+              backgroundColor: MaterialStateProperty.all(
+                Colors.blue.shade400,
+              ),
+              */
+                ),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(pd),
+                      child: Image.asset(
+                        "assets/LOGO E-CLASSE.02e1cc99.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
+                      ), //
+                      decoration: const BoxDecoration(
+                          //color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      )),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      padding: EdgeInsets.only(bottom: 15),
+                      alignment: Alignment.center,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "Ma Classe",
+                          children: [
+                            TextSpan(
+                              text: "",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: st,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

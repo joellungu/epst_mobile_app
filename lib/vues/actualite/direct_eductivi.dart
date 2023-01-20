@@ -35,7 +35,7 @@ class _DirectEductivi extends State<DirectEductivi> {
 
   List<String> srcs = [
     "http://eu.oraostream.com:8081/eductv-orao/playlist.m3u8"
-    "https://assets.mixkit.co/videos/preview/mixkit-spinning-around-the-earth-29351-large.mp4",
+        "https://assets.mixkit.co/videos/preview/mixkit-spinning-around-the-earth-29351-large.mp4",
     "https://assets.mixkit.co/videos/preview/mixkit-daytime-city-traffic-aerial-view-56-large.mp4",
     "https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1226-large.mp4"
   ];
@@ -108,7 +108,7 @@ class _DirectEductivi extends State<DirectEductivi> {
       autoPlay: true,
       looping: true,
       progressIndicatorDelay:
-      bufferDelay != null ? Duration(milliseconds: bufferDelay!) : null,
+          bufferDelay != null ? Duration(milliseconds: bufferDelay!) : null,
 
       additionalOptions: (context) {
         return <OptionItem>[
@@ -124,12 +124,12 @@ class _DirectEductivi extends State<DirectEductivi> {
         padding: const EdgeInsets.all(10.0),
         child: subtitle is InlineSpan
             ? RichText(
-          text: subtitle,
-        )
+                text: subtitle,
+              )
             : Text(
-          subtitle.toString(),
-          style: const TextStyle(color: Colors.black),
-        ),
+                subtitle.toString(),
+                style: const TextStyle(color: Colors.black),
+              ),
       ),
 
       hideControlsTimer: const Duration(seconds: 1),
@@ -164,63 +164,63 @@ class _DirectEductivi extends State<DirectEductivi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Direct"),
-        ),
-        backgroundColor: Colors.black,
-        body: HtmlWidget(
-          // the first parameter (`html`) is required
-          '''<video width="${Get.size.width}" height="${Get.size.height}" controls autoplay>
+      appBar: AppBar(
+        title: Text("Direct"),
+      ),
+      backgroundColor: Colors.black,
+      body: HtmlWidget(
+        // the first parameter (`html`) is required
+        '''<video width="${Get.size.width}" height="${Get.size.height}" controls autoplay>
             <source src="http://eu.oraostream.com:8081/eductv-orao/playlist.m3u8" type="video/mp4"></video>''',
 
-          // all other parameters are optional, a few notable params:
+        // all other parameters are optional, a few notable params:
 
-          // specify custom styling for an element
-          // see supported inline styling below
-          customStylesBuilder: (element) {
-            if (element.classes.contains('foo')) {
-              return {'color': 'red'};
-            }
+        // specify custom styling for an element
+        // see supported inline styling below
+        customStylesBuilder: (element) {
+          if (element.classes.contains('foo')) {
+            return {'color': 'red'};
+          }
 
-            return null;
-          },
+          return null;
+        },
 
-          // render a custom widget
-          customWidgetBuilder: (element) {
-            if (element.attributes['foo'] == 'bar') {
-              //return FooBarWidget();
-            }
+        // render a custom widget
+        customWidgetBuilder: (element) {
+          if (element.attributes['foo'] == 'bar') {
+            //return FooBarWidget();
+          }
 
-            return null;
-          },
+          return null;
+        },
 
-          // turn on selectable if required (it's disabled by default)
-          isSelectable: true,
+        // turn on selectable if required (it's disabled by default)
+        isSelectable: true,
 
-          // these callbacks are called when a complicated element is loading
-          // or failed to render allowing the app to render progress indicator
-          // and fallback widget
-          onErrorBuilder: (context, element, error) => Text('$element error: $error'),
-          onLoadingBuilder: (context, element, loadingProgress) => Center(
-            child:
-            SizedBox(
-              height: 50,
-              width: 50,
-              child: CircularProgressIndicator(),
-              )
-            ,),
-
-          // this callback will be triggered when user taps a link
-          //onTapUrl: (url) => print('tapped $url'),
-          // select the render mode for HTML body
-          // by default, a simple `Column` is rendered
-          // consider using `ListView` or `SliverList` for better performance
-          renderMode: RenderMode.column,
-          // set the default styling for text
-          textStyle: TextStyle(fontSize: 14),
-          // turn on `webView` if you need IFRAME support (it's disabled by default)
-          webView: true,
+        // these callbacks are called when a complicated element is loading
+        // or failed to render allowing the app to render progress indicator
+        // and fallback widget
+        onErrorBuilder: (context, element, error) =>
+            Text('$element error: $error'),
+        onLoadingBuilder: (context, element, loadingProgress) => Center(
+          child: SizedBox(
+            height: 50,
+            width: 50,
+            child: CircularProgressIndicator(),
+          ),
         ),
+
+        // this callback will be triggered when user taps a link
+        //onTapUrl: (url) => print('tapped $url'),
+        // select the render mode for HTML body
+        // by default, a simple `Column` is rendered
+        // consider using `ListView` or `SliverList` for better performance
+        renderMode: RenderMode.column,
+        // set the default styling for text
+        textStyle: TextStyle(fontSize: 14),
+        // turn on `webView` if you need IFRAME support (it's disabled by default)
+        webView: true,
+      ),
     );
   }
 }
@@ -266,11 +266,11 @@ class _DelaySliderState extends State<DelaySlider> {
         onPressed: saved
             ? null
             : () {
-          widget.onSave(delay);
-          setState(() {
-            saved = true;
-          });
-        },
+                widget.onSave(delay);
+                setState(() {
+                  saved = true;
+                });
+              },
       ),
     );
   }

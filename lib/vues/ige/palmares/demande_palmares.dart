@@ -329,24 +329,26 @@ class _DemandePalmares extends State<DemandePalmares> {
                   onPressed: () async {
                     //
                     showDialog(
-                        context: context,
-                        builder: (c) {
-                          return Material(
-                            color: Colors.transparent,
-                            child: Center(
-                              child: Container(
-                                padding: const EdgeInsets.all(15),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                height: 300,
-                                width: 270,
-                                child: PayementMethode({}, 7, send),
+                      context: context,
+                      builder: (c) {
+                        return Material(
+                          color: Colors.transparent,
+                          child: Center(
+                            child: Container(
+                              padding: const EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
                               ),
+                              height: 300,
+                              width: 270,
+                              child: PayementMethode(
+                                  {}, 1, send, "palmares", "palmares"),
                             ),
-                          );
-                        });
+                          ),
+                        );
+                      },
+                    );
                   },
                   child: Container(
                     alignment: Alignment.center,

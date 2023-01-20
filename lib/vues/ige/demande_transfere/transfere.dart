@@ -1,4 +1,4 @@
-import 'package:epst_app/vues/cours/message_phonique.dart';
+import 'package:epst_app/vues/documents_officiels/message_phonique.dart';
 import 'package:epst_app/vues/ige/demande_transfere/demande_transfere.dart';
 import 'package:epst_app/vues/mutuelle/demande.dart';
 import 'package:epst_app/vues/mutuelle/historique_demande.dart';

@@ -47,9 +47,9 @@ class _DemandeIdentification extends State<DemandeIdentification> {
   int genre = 0;
   List types = [
     "Examens d'Etat",
-    "TENASOPE",
-    "TENAFEPE",
-    "Identification SERNI",
+    "TENASOSP",
+    "ENAFEP",
+    "Identification SERNIE",
     "JURY NATIONAL C.C"
   ];
   //
@@ -1062,7 +1062,8 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                               ),
                               height: 300,
                               width: 270,
-                              child: PayementMethode(formulaireD, 7, send),
+                              child: PayementMethode(
+                                  formulaireD, 7, send, "palmares", "palmares"),
                             ),
                           ),
                         );

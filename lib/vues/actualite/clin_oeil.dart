@@ -21,6 +21,7 @@ class _ClinOeil extends State<ClinOeil> {
     //
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     var w = Get.size.width;
@@ -35,7 +36,7 @@ class _ClinOeil extends State<ClinOeil> {
             frameborder="0">
           </iframe>
           ''',
-          customStylesBuilder: (element) {
+        customStylesBuilder: (element) {
           if (element.classes.contains('foo')) {
             return {'color': 'red'};
           }

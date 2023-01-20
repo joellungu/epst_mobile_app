@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:epst_app/vues/cours/cours.dart';
+import 'package:epst_app/vues/documents_officiels/documents_officiels.dart';
 import 'package:epst_app/vues/formation/formation.dart';
 import 'package:epst_app/vues/ige/ige.dart';
 import 'package:epst_app/vues/plainte/depotplainte.dart';
@@ -27,16 +27,16 @@ class _Accueil extends State<Accueil> {
   List listeIcons = [];
 
   List liste = [
-    "Epst actualités",
-    "Depot plainte",
-    "Mag EPST",
+    "EPST actualités",
+    "Dépôt plainte",
+    "Magazine de l’EPST",
     "Chat avec agent EPST",
-    "Reforme de l'EPST",
+    "Réformes EPST",
     "Listing",
     "Formation à distance",
-    "Document officiel Epst",
-    "Demande document scolaire",
-    "Sécretaria général",
+    "Document officiel EPST",
+    "Demande documents scolaires",
+    "Sécretariat général",
     "Mutuelle de santé",
   ];
 
@@ -45,12 +45,9 @@ class _Accueil extends State<Accueil> {
   @override
   void initState() {
     listeIcons = [
-      Image.asset(
-        "assets/news-actualite.png",
-        color: Colors.blue,
-        colorBlendMode: BlendMode.color,
-        width: 250,
-        height: 250,
+      const Icon(
+        Icons.language,
+        size: 70,
       ), //
       Image.asset(
         "assets/LOGO-MINEPST-BON.png",
@@ -237,7 +234,7 @@ class _Accueil extends State<Accueil> {
                     );
                   } else if (index == 7) {
                     //print("Je suis le cours...");Ige,Ige
-                    return Coure(
+                    return documents_officiels(
                       titre: liste[index],
                     );
                   } else if (index == 8) {
@@ -317,10 +314,11 @@ class _Accueil extends State<Accueil> {
                       ),
                     ),
                     decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
-                    )),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                    ),
                   ),
                 )
               ],

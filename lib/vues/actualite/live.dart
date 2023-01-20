@@ -90,7 +90,7 @@ class _LiveStream extends State<LiveStream> {
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
-                          text: "direct",
+                          text: "Direct",
                           children: [
                             TextSpan(
                               text: "",
@@ -157,7 +157,7 @@ class _LiveStream extends State<LiveStream> {
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
-                          text: "Clin oeil",
+                          text: "Clin d’œil ",
                           children: [
                             TextSpan(
                               text: "",
@@ -230,7 +230,7 @@ class _LiveStream extends State<LiveStream> {
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
-                          text: "actualité site",
+                          text: "EPST sur le net",
                           children: [
                             TextSpan(
                               text: "",

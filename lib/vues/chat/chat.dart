@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 import 'package:stomp_dart_client/stomp.dart';
@@ -10,16 +9,13 @@ class ChatTest extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _ChatTest();
   }
-
 }
 
 class _ChatTest extends State<ChatTest> {
-
   late StompClient client;
   WebSocketChannel? _channel;
   //
-  var socket = io(
-      'http://10.0.2.2:8080/', <String, dynamic>{
+  var socket = io('http://10.0.2.2:8080/', <String, dynamic>{
     'transports': ['websocket'],
     'autoConnect': true,
   });
@@ -70,18 +66,16 @@ class _ChatTest extends State<ChatTest> {
     client = StompClient(
         config: StompConfig(
             url: 'ws://10.0.2.2:8080/websocket-server',
-            onConnect: (e){
+            onConnect: (e) {
               print("Cool connecté $e");
             },
             onWebSocketError: (dynamic error) => print(error.toString()),
-            onStompError: (e){
+            onStompError: (e) {
               print(e);
             },
-            onWebSocketDone: (){
+            onWebSocketDone: () {
               print("connecté et tout");
-            }
-        )
-    );
+            }));
     client.activate();
     //
 
@@ -96,22 +90,21 @@ class _ChatTest extends State<ChatTest> {
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: Container(),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-
-          client.subscribe(destination: "/topic/messages", callback: (e){
-            print("Even: $e");
-          });
+        onPressed: () {
+          client.subscribe(
+              destination: "/topic/messages",
+              callback: (e) {
+                print("Even: $e");
+              });
         },
         child: Icon(Icons.add),
       ),
     );
   }
-
 }

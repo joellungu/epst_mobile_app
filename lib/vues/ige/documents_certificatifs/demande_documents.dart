@@ -38,8 +38,8 @@ class _DemandeDocument extends State<DemandeDocument> {
   List genres = ["Homme", "Femme"];
   int genre = 0;
   List types = [
-    "Diplome d'etat",
-    "Diplome d'aptitude profesionnel",
+    "Diplôme d'etat",
+    "Diplôme d'aptitude profesionnel",
     "Brevet professionnel",
     "Certificat d'étude primaire",
     "Note d'acquis de droit",
@@ -1050,7 +1050,8 @@ class _DemandeDocument extends State<DemandeDocument> {
                               ),
                               height: 300,
                               width: 270,
-                              child: PayementMethode(formulaireD, 7, send),
+                              child: PayementMethode(
+                                  formulaireD, 7, send, "palmares", "palmares"),
                             ),
                           ),
                         );

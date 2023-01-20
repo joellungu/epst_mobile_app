@@ -14,6 +14,7 @@ import 'vues/ige/demande_identification/demande_identification_controller.dart';
 import 'vues/ige/demande_transfere/transfere_controller.dart';
 import 'vues/ige/palmares/palmares_controller.dart';
 import 'vues/mutuelle/mutuelle_controller.dart';
+import 'widgets/paiement_controller.dart';
 
 //
 List liste_ecoles = [];
@@ -38,6 +39,7 @@ void main() async {
       Get.put(DepotPlainteController());
   DemandeIdentificationController demandeIdentificationController =
       Get.put(DemandeIdentificationController());
+  Get.put(PaiementController());
   Get.put(MagasinController());
   Get.put(IdentificationController());
   Get.put(PalmaresController());

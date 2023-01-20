@@ -11,21 +11,20 @@ import 'package:sqflite/sqflite.dart';
 
 class Connexion {
   //
-  //static var lien = 'http://192.168.43.134:8080/';
-  //static var ws = '192.168.43.134:8080/';
+  //static var lien = 'http://dgc-epst.uc.r.appspot.com/';
+  //static var ws = 'epst-env-1.eba-vcxfayxz.us-east-2.elasticbeanstalk.com';
   //192.168.1.72
   //static var lien_siite =
   //  'https://app-02b35183-fec6-4c4b-99d9-fca268735259.cleverapps.io/';
-  static var lien =
-      'https://app-02b35183-fec6-4c4b-99d9-fca268735259.cleverapps.io/';
-  static var ws = 'app-02b35183-fec6-4c4b-99d9-fca268735259.cleverapps.io';
+  //static var lien = 'https://dgc-epst.uc.r.appspot.com/';
+  //static var ws = 'dgc-epst.uc.r.appspot.com';
   ////////////////////////////////////////////////////////////
-  //static var lien = 'http://10.0.2.2:8080/';
-  //static var ws = '10.0.2.2:8080/';
+  static var lien = 'http://10.0.2.2:8080/';
+  static var ws = '10.0.2.2:8080/';
   ////////////////////////////////////////////////////////////
   //192.168.1.77
-  //static var lien = 'http://192.168.100.68:8080/';
-  //static var ws = '192.168.100.68:8080/';
+  //static var lien = 'https://dgc-epst.uc.r.appspot.com/';
+  //static var ws = 'dgc-epst.uc.r.appspot.com';
   //192.168.1.254
   //static var lien = 'https://pepiteapp.herokuapp.com/';
   //https://epstapp.herokuapp.com/
@@ -34,11 +33,11 @@ class Connexion {
   //
   static Future<String> enregistrement(Map<String, dynamic> utilisateur) async {
     //
-    print("utilisateur: ${json.encode(utilisateur)}");
+    //print("utilisateur: ${json.encode(utilisateur)}");
     Historique h = Historique();
     Database db = await h.openDB();
     //
-    var url = Uri.parse(lien + "plainte");
+    var url = Uri.parse("${lien}plainte");
     //
     var response = await http.post(
       url,
@@ -47,8 +46,8 @@ class Connexion {
       },
       body: json.encode(utilisateur),
     );
-    print('Response status: ${response.statusCode}');
-    print('Response body: ${response.body}');
+    //print('Response status: ${response.statusCode}');
+    //print('Response body: ${response.body}');
     //
     //print(response);
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -80,10 +79,10 @@ class Connexion {
         //element ;
         //var stream = new http.ByteStream(DelegatingStream.typed(element["type"]));
         var length = await element["length"];
-        print("------------------------");
-        print(element["type"]);
-        print(id);
-        print("------------------------");
+        //print("------------------------");
+        //print(element["type"]);
+        //print(id);
+        //print("------------------------");
         //List<String> extT = element.path.split(".");
         //String ext = extT.last;
         //substring(element.path.length - 4, element.path.length)
@@ -115,10 +114,10 @@ class Connexion {
           body: element["data"],
         );
         //
-        print("_____________: ${response.body}");
-        print("_____________: ${response.headers}");
-        print("_____________: ${response.statusCode}");
-        print("_____________: ${response.contentLength}");
+        //print("_____________: ${response.body}");
+        //print("_____________: ${response.headers}");
+        //print("_____________: ${response.statusCode}");
+        //print("_____________: ${response.contentLength}");
       },
     );
 
@@ -149,7 +148,7 @@ class Connexion {
     //
     rep_liste.forEach((element) {
       Map<String, dynamic> e = element;
-      print(e);
+      //print(e);
       if (type == 1) {
         liste1.add(e);
       } else {
@@ -157,10 +156,10 @@ class Connexion {
       }
       //db.insert(type == 1 ? "magasin" : "reforme", element); //
       if (box.read("${e["id"]}") == null) {
-        print("+++++++++***:pas deja:***");
+        //print("+++++++++***:pas deja:***");
         _write("${e["id"]}", e["extention"]);
       } else {
-        print("+++++++++***:deja:***");
+        //print("+++++++++***:deja:***");
         //print(":::: $l1");
       }
     });

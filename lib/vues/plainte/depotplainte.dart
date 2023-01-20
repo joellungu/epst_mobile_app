@@ -69,12 +69,12 @@ class _DepotPlainte extends State<DepotPlainte> {
   List listeTiquet = [
     "Gratuité de l'enseignement",
     "Violences basées sur le genre",
-    "Diplome d'état",
-    "Examen d'état",
-    "TENAFEP",
-    "TENASOP",
-    "Suspension",
+    "Diplôme d’Etat ",
+    "ENAFEP",
+    "TENASOSP",
+    "Mesure diciplinaire",
     "Salaire ou prime",
+    "Corruption",
     "Matricule",
     "Autres...",
   ];
@@ -89,25 +89,29 @@ class _DepotPlainte extends State<DepotPlainte> {
         title: Text(widget.titre!),
         actions: [
           DropdownButton<int>(
-          //value: 1,
-          icon: Icon(Icons.more_vert, color: Colors.white,),
-          items: [
-            DropdownMenuItem<int>(
-              child: Text("Historique"),
-              value: 1,
-            ),
-            DropdownMenuItem<int>(
-              child: Text("Reference"),
-              value: 2,
-            )
-          ], onChanged: (e){
-            //
-            if(e==1){
-              Get.to(PlainteHis());
-            }else{
-              Get.to(References());
-            }
-          }),
+              //value: 1,
+              icon: Icon(
+                Icons.more_vert,
+                color: Colors.white,
+              ),
+              items: [
+                DropdownMenuItem<int>(
+                  child: Text("Historique"),
+                  value: 1,
+                ),
+                DropdownMenuItem<int>(
+                  child: Text("Reference"),
+                  value: 2,
+                )
+              ],
+              onChanged: (e) {
+                //
+                if (e == 1) {
+                  Get.to(PlainteHis());
+                } else {
+                  Get.to(References());
+                }
+              }),
           Padding(padding: EdgeInsets.only(right: 10))
         ],
       ),
@@ -250,10 +254,9 @@ class _DepotPlainte extends State<DepotPlainte> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("  Thématique:",
-                        style: TextStyle(
-                          fontSize: 10
-                        ),
+                      Text(
+                        "  Thématique:",
+                        style: TextStyle(fontSize: 10),
                       ),
                       SizedBox(
                         width: 20,
@@ -263,10 +266,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                         child: DropdownButtonHideUnderline(
                           child: DropdownButtonFormField<int>(
                             value: a,
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.black
-                            ),
+                            style: TextStyle(fontSize: 12, color: Colors.black),
                             isExpanded: true,
                             onChanged: (value) {
                               a = value as int;
@@ -341,8 +341,8 @@ class _DepotPlainte extends State<DepotPlainte> {
                                   child: Text(Fichier),
                                 ),
                               ),
-                              IconButton(
-                                onPressed: () async {
+                              InkWell(
+                                onTap: () async {
                                   FilePickerResult? result = await FilePicker
                                       .platform
                                       .pickFiles(allowMultiple: false);
@@ -367,8 +367,29 @@ class _DepotPlainte extends State<DepotPlainte> {
                                   }
                                   setState(() {});
                                 },
-                                icon: Icon(
-                                  Icons.attach_file,
+                                child: Container(
+                                  height: 40,
+                                  width: 200,
+                                  decoration: BoxDecoration(
+                                    color: Colors.transparent,
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        "Joindre un document",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.blue.shade900,
+                                        ),
+                                      ),
+                                      Icon(
+                                        Icons.attach_file,
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],

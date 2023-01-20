@@ -1,14 +1,18 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:uuid/uuid.dart';
 import '../main.dart';
+import 'paiement_controller.dart';
 
 class PayementMethode extends StatefulWidget {
   Map requette;
   double prix;
   Function f;
+  String? type;
+  String? demande;
   //
-  PayementMethode(this.requette, this.prix, this.f);
+  PayementMethode(this.requette, this.prix, this.f, this.demande, this.type);
   //
   @override
   State<StatefulWidget> createState() {
@@ -40,7 +44,7 @@ class _PayementMethode extends State<PayementMethode> {
           TextField(
             controller: numero,
             decoration: InputDecoration(
-              //prefixIcon: Text("De:"),
+              prefix: const Text("+243"),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(
@@ -69,7 +73,7 @@ class _PayementMethode extends State<PayementMethode> {
                       fontSize: 13,
                     ),
                   ),
-                  value: "usd",
+                  value: "USD",
                   groupValue: gender,
                   onChanged: (value) {
                     setState(() {
@@ -87,7 +91,7 @@ class _PayementMethode extends State<PayementMethode> {
                       fontSize: 13,
                     ),
                   ),
-                  value: "cdf",
+                  value: "CDF",
                   groupValue: gender,
                   onChanged: (value) {
                     setState(() {
@@ -104,9 +108,100 @@ class _PayementMethode extends State<PayementMethode> {
           ElevatedButton(
             onPressed: () async {
               //
-              print(ecole.value);
-              widget.f(widget.requette);
-              /*
+              if (numero.text.length == 9) {
+                print("le numéro:" "243" + numero.text);
+                //
+                PaiementController paiementController = Get.find();
+                //
+                Get.dialog(
+                  const Center(
+                    child: SizedBox(
+                      height: 40,
+                      width: 40,
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                );
+                var ref = getReference();
+                DateTime d = DateTime.now();
+                Map e = {
+                  "nom": widget.requette['nom'] ?? "",
+                  "postnom": widget.requette['postnom'] ?? "",
+                  "prenom": widget.requette['prenom'] ?? "",
+                  "date": "${d.day}/${d.month}/${d.year}",
+                  "type": widget.type,
+                  "demande": widget.demande,
+                  "phone": "243" + numero.text,
+                  "reference": ref,
+                  "amount": widget.prix,
+                  "currency": gender,
+                };
+                Map m = await paiementController.paiement(e);
+                print("la reponse du serveur: $m");
+                if (m['code'] != null) {
+                  //La fonction bloucle...
+                  //Get.back();
+
+                  Timer(Duration(seconds: 5), () async {
+                    //
+                    Timer? t;
+                    t = Timer.periodic(const Duration(seconds: 5),
+                        (timer) async {
+                      var rep = await paiementController
+                          .verification(m['orderNumber']);
+                      print("La vérification: $rep");
+                      //
+                      if (rep['status'] == null) {
+                        if (rep['code'] == 0 || rep['code'] == "0") {
+                          //USSD bien envoyé
+                          if (rep['transaction']['status'] == "1" ||
+                              rep['transaction']['status'] == 1) {
+                            //Paiement non éffectué
+                            print(widget.requette);
+                            t!.cancel();
+                            Get.back();
+                            Get.snackbar(
+                              "Notification",
+                              "Le paiement n'a pas reussi",
+                              backgroundColor: Colors.blue,
+                              colorText: Colors.white,
+                            );
+                          } else {
+                            t!.cancel();
+                            Get.back();
+                            //widget.f(widget.requette);
+                          }
+                        } else {
+                          //USSD non envoyé
+                          t!.cancel();
+                          Get.back();
+                          Get.back();
+                          Get.snackbar(
+                            "Notification",
+                            rep['message'] ??
+                                "Erreur lors du paiement code d'erreur 1",
+                            backgroundColor: Colors.blue,
+                            colorText: Colors.white,
+                          );
+                        }
+                      } else {
+                        print("pass");
+                      }
+                    });
+                  });
+                } else {
+                  //
+                  Get.back();
+                  Get.snackbar(
+                    "Erreur",
+                    m['message'],
+                    backgroundColor: Colors.blue,
+                    colorText: Colors.white,
+                  );
+                  //
+                }
+
+                /*
               showDialog(
                   context: context,
                   builder: (c) {
@@ -142,7 +237,7 @@ class _PayementMethode extends State<PayementMethode> {
                     );
                   });
                   */
-              /*
+                /*
                     String nomecole = ecole.value;
                     String codeoption = "${listeOptions[option]}".split(",")[1];
                     String anneescolaire = annee.value;
@@ -158,6 +253,11 @@ class _PayementMethode extends State<PayementMethode> {
                     );
                   
                     */
+
+              } else {
+                Get.snackbar("Erreur", "Le numéro est incorrecte");
+              }
+              print(ecole.value);
             },
             child: Container(
               alignment: Alignment.center,
@@ -171,5 +271,11 @@ class _PayementMethode extends State<PayementMethode> {
         ],
       ),
     );
+  }
+
+  //
+  String getReference() {
+    var uuid = Uuid();
+    return "${uuid.v4()}";
   }
 }
