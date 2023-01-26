@@ -4,23 +4,23 @@ import 'package:accordion/accordion.dart';
 import 'package:epst_app/main.dart';
 import 'package:epst_app/vues/ige/palmares/liste_palmares.dart';
 import 'package:epst_app/vues/ige/palmares/palmares_controller.dart';
+import 'package:epst_app/vues/ige/resultat_exetat/resultat_controller.dart';
 import 'package:epst_app/widgets/paiement.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-
 import '../recherche_annee.dart';
 import '../recherche_ecole.dart';
+import 'resultat_liste.dart';
 
-class DemandePalmares extends StatefulWidget {
+class ResultatExetat extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _DemandePalmares();
+    return _ResultatExetat();
   }
 }
 
-class _DemandePalmares extends State<DemandePalmares> {
+class _ResultatExetat extends State<ResultatExetat> {
   //
   int p = 0;
   int d = 0;
@@ -108,6 +108,7 @@ class _DemandePalmares extends State<DemandePalmares> {
   //
   int option = 0;
   //
+  TextEditingController code = TextEditingController();
 
   int ti = 0;
   int a = 1900;
@@ -137,7 +138,7 @@ class _DemandePalmares extends State<DemandePalmares> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Demande palmares"),
+        title: const Text("Resultat EXETAT"),
       ),
       body: ListView(
         padding: EdgeInsets.all(20),
@@ -153,118 +154,24 @@ class _DemandePalmares extends State<DemandePalmares> {
           const SizedBox(
             height: 30,
           ),
-          const Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Ecole",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
-            child: InkWell(
-              onTap: () {
-                //
-                showSearch(context: context, delegate: RechercheEcole());
-              },
-              child: Container(
-                height: 50,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: Container(
-                  alignment: Alignment.center,
-                  //width: Get.size.width,
-                  child: Obx(
-                    () => Text(
-                      "${ecole.value["ecole"] ?? ''} / ${ecole.value["province"] ?? ''}",
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
+            child: TextField(
+              controller: code,
+              decoration: InputDecoration(
+                label: const Text("Code à 14 chiffre"),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
             ),
           ),
           ///////////
-          const SizedBox(
-            height: 20,
-          ),
-          const Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Options",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-
-          Card(
-            elevation: 0,
-            margin: EdgeInsets.all(0),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
-            ),
-            child: Container(
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Text(
-                    "  ",
-                    style: TextStyle(fontSize: 10),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButtonFormField<int>(
-                        value: option,
-                        /*
-                            style: TextStyle(
-                                //fontSize: 12,
-                                color: Colors.black
-                            ),
-                            */
-                        isExpanded: true,
-                        onChanged: (value) {
-                          option = value as int;
-                          print("le id: $option");
-                        },
-                        items: List.generate(
-                          listeOptions.length,
-                          (index) {
-                            return DropdownMenuItem(
-                              value: index,
-                              child: Text(
-                                "${listeOptions[index]}".split(",")[0],
-                                style: const TextStyle(fontSize: 13),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
           const SizedBox(
             height: 20,
           ),
@@ -388,40 +295,41 @@ class _DemandePalmares extends State<DemandePalmares> {
           ///
           ElevatedButton(
             onPressed: () async {
-              String v = ecole["code_ecole"].replaceAll(RegExp(r"\s+"), "");
-              String n = ecole["ecole"].replaceAll(RegExp(r"\s+"), "");
-              String p = ecole["province"].replaceAll(RegExp(r"\s+"), "");
-              print(v[11]);
-              print(v.length);
-              print(v.runtimeType);
-
-              showDialog(
-                context: context,
-                builder: (c) {
-                  return Material(
-                    color: Colors.transparent,
-                    child: Center(
-                      child: Container(
-                        padding: const EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        height: 300,
-                        width: 270,
-                        child: PayementMethode({
-                          "nomecole": n,
-                          "option": "${listeOptions[option]}".split(",")[0],
-                          "nomprovince": p,
-                          "codeecole": v,
-                          "codeoption": "${listeOptions[option]}".split(",")[1],
-                          "anneescolaire": annee.value,
-                        }, 1, send, "palmares", "palmares"),
-                      ), //0.02
-                    ),
-                  );
-                },
-              );
+              if (code.text.length != 14) {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text("Erreur"),
+                      content: Text("Votre code est incorrect"),
+                    );
+                  },
+                );
+              } else {
+                showDialog(
+                  context: context,
+                  builder: (c) {
+                    return Material(
+                      color: Colors.transparent,
+                      child: Center(
+                        child: Container(
+                          padding: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          height: 300,
+                          width: 270,
+                          child: PayementMethode({
+                            "codecandidat": "${code.text}.0",
+                            "anneescolaire": annee.value,
+                          }, 0.6, send, "palmares", "palmares"),
+                        ), //0.02
+                      ),
+                    );
+                  },
+                );
+              }
               //*/
             },
             child: Container(
@@ -434,7 +342,7 @@ class _DemandePalmares extends State<DemandePalmares> {
             height: 10,
           ),
           const Text(
-            "Formulaire payant (1 dollar)",
+            "Formulaire payant (0.6 dollar)",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 11,
@@ -446,12 +354,12 @@ class _DemandePalmares extends State<DemandePalmares> {
           ElevatedButton(
             onPressed: () async {
               //
-              Get.to(ListPalmares());
+              Get.to(ListResultat());
             },
             child: Container(
               alignment: Alignment.center,
               height: 40,
-              child: const Text("Voir palmares demandé"),
+              child: const Text("Voir resultat demandé"),
             ),
           ),
           /*
@@ -486,9 +394,11 @@ class _DemandePalmares extends State<DemandePalmares> {
   send(Map e) async {
     //Get.back();
     print(e['codeecole'].runtimeType);
-    PalmaresController palmaresController = Get.find(); //
-    palmaresController.getListe(e['nomprovince'], e['nomecole'], e['option'],
-        e['codeecole'], e['codeoption'], e['anneescolaire']);
+    ResultatController resultatController = Get.find(); //
+    resultatController.getListe(
+      e['anneescolaire'],
+      e['codecandidat'],
+    );
     /*
     @,
      ,

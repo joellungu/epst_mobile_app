@@ -56,6 +56,8 @@ class _HistoriqueDemandeIdentification
             Map e = l[index];
             String dd = "${e['jour']}".split('.')[0];
             //
+            print(e);
+            //
             RxInt show = 0.obs;
             //
             return AccordionSection(
@@ -228,16 +230,18 @@ class _HistoriqueDemandeIdentification
                             fontWeight: FontWeight.normal),
                       ),
                     ),
+                    /*
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "documenrDemandecode: ${e['typeIdentificationcode']}",
+                        "Identification: ${e['typeIdentification']}",
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
                       ),
                     ),
+                    */
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(

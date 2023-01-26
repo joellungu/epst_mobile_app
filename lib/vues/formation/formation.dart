@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import 'ma_classe.dart';
+
 class Formation extends StatefulWidget {
   String? titre;
   Formation({this.titre});
@@ -190,7 +192,7 @@ class _Formation extends State<Formation> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return EnseignementEleve();
+                    return MaClasse();
                   },
                 ),
               );
@@ -212,7 +214,7 @@ class _Formation extends State<Formation> {
                       alignment: Alignment.center,
                       padding: EdgeInsets.all(pd),
                       child: Image.asset(
-                        "assets/LOGO E-CLASSE.02e1cc99.png",
+                        "assets/LOGO-MINEPST-BON.png",
                         color: Colors.blue,
                         colorBlendMode: BlendMode.color,
                       ), //
@@ -232,7 +234,7 @@ class _Formation extends State<Formation> {
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
-                          text: "Ma Classe",
+                          text: "MA CLASSE",
                           children: [
                             TextSpan(
                               text: "",

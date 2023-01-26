@@ -3,31 +3,31 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'palmares_controller.dart';
 
-class ListPalmares extends StatelessWidget {
+class ListResultat extends StatelessWidget {
   //
   //String? nomecole;
   //String? codeoption;
   ///String? anneescolaire;
   RxList l = [].obs;
-  ListPalmares() {
+  ListResultat() {
     //
     //controller.getListe(nomecole!, codeoption!, anneescolaire!);
     //
     var box = GetStorage();
     //
     //
-    l.value = box.read("liste_palmares") ?? [];
+    l.value = box.read("liste_resultats") ?? [];
     //
     print("la reponse: $l");
   }
+
   //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Liste palmares"),
+        title: const Text("Liste resultats"),
       ),
       body: Obx(
         () => ListView(
@@ -58,9 +58,9 @@ class ListPalmares extends StatelessWidget {
               //   //child: Image.network(
               //   //  "${Connexion.lien}identification/piecejointe/${e['id']}"),
               // ),
-              title: Text("${e['nomecole'] ?? '...'}"),
-              subtitle: Text("${e['codeoption']}"),
-              trailing: Text("${e['anneescolaire']}"),
+              title: Text("${e['codecandidat'] ?? '...'}"),
+              subtitle: Text("${e['anneescolaire']}"),
+              //trailing: Text("${e['anneescolaire']}"),
             );
           }),
         ),
@@ -70,13 +70,14 @@ class ListPalmares extends StatelessWidget {
 }
 
 class DetailsPalmares extends StatelessWidget {
-  List l;
+  Map? l;
   Map e;
   DetailsPalmares(this.l, this.e) {
     print(l);
   }
   @override
   Widget build(BuildContext context) {
+    print(l);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -97,7 +98,8 @@ class DetailsPalmares extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-        l.isEmpty
+        // ignore: unnecessary_null_comparison
+        l == null
             ? Container(
                 padding: const EdgeInsets.only(top: 50),
                 alignment: Alignment.center,
@@ -120,27 +122,7 @@ class DetailsPalmares extends StatelessWidget {
                   ),
                 ),
               )
-            : Column(
-                children: List.generate(
-                  l.length,
-                  (index) {
-                    //
-                    Map e = l[index];
-                    return Row(children: [
-                      Text("${index + 1}  "),
-                      Expanded(
-                        flex: 1,
-                        child: ListTile(
-                          leading: Icon(CupertinoIcons.person),
-                          title: Text("${e['nomcandidat']}"),
-                          subtitle: Text("${e['option']}"),
-                          trailing: Text("${e['note']} %"),
-                        ),
-                      )
-                    ]);
-                  },
-                ),
-              )
+            : RichText(text: TextSpan(text: ""))
       ]),
     );
   }

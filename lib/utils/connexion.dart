@@ -11,16 +11,18 @@ import 'package:sqflite/sqflite.dart';
 
 class Connexion {
   //
-  //static var lien = 'http://dgc-epst.uc.r.appspot.com/';
-  //static var ws = 'epst-env-1.eba-vcxfayxz.us-east-2.elasticbeanstalk.com';
+  //static var lien = 'http://10.0.2.2:8080/';
+  //static var ws = '10.0.2.2:8080';
+  static var lien = 'http://192.168.1.65:8080/';
+  static var ws = '192.168.1.65:8080';
   //192.168.1.72
   //static var lien_siite =
   //  'https://app-02b35183-fec6-4c4b-99d9-fca268735259.cleverapps.io/';
   //static var lien = 'https://dgc-epst.uc.r.appspot.com/';
   //static var ws = 'dgc-epst.uc.r.appspot.com';
   ////////////////////////////////////////////////////////////
-  static var lien = 'http://10.0.2.2:8080/';
-  static var ws = '10.0.2.2:8080/';
+  //static var lien = 'http://10.0.2.2:8080/';
+  //static var ws = '10.0.2.2:8080/';
   ////////////////////////////////////////////////////////////
   //192.168.1.77
   //static var lien = 'https://dgc-epst.uc.r.appspot.com/';

@@ -24,7 +24,7 @@ class _PayementMethode extends State<PayementMethode> {
   RxBool load = true.obs;
   TextEditingController numero = TextEditingController();
   //
-  String gender = "usd";
+  String gender = "USD";
   //
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class _PayementMethode extends State<PayementMethode> {
             height: 5,
           ),
           Text(
-            "Formulaire payant (1 dollar) plus frais de transaction",
+            "Formulaire payant (${widget.prix} dollar) plus frais de transaction",
             textAlign: TextAlign.center,
           ),
           Row(
@@ -147,16 +147,22 @@ class _PayementMethode extends State<PayementMethode> {
                     Timer? t;
                     t = Timer.periodic(const Duration(seconds: 5),
                         (timer) async {
+                      int w = 0;
+                      print("Je suis run cool $w");
+                      w++;
                       var rep = await paiementController
                           .verification(m['orderNumber']);
                       print("La vérification: $rep");
                       //
-                      if (rep['status'] == null) {
+                      if (rep['status'] == null || rep['status'] == null) {
                         if (rep['code'] == 0 || rep['code'] == "0") {
                           //USSD bien envoyé
                           if (rep['transaction']['status'] == "1" ||
                               rep['transaction']['status'] == 1) {
                             //Paiement non éffectué
+                            //
+                            //widget.f(widget.requette);
+                            //
                             print(widget.requette);
                             t!.cancel();
                             Get.back();
@@ -166,10 +172,28 @@ class _PayementMethode extends State<PayementMethode> {
                               backgroundColor: Colors.blue,
                               colorText: Colors.white,
                             );
+                          } else if (rep['transaction']['status'] == "2" ||
+                              rep['transaction']['status'] == 2) {
+                            print("Paiement en attente");
+                          } else if (rep['transaction']['status'] == "3" ||
+                              rep['transaction']['status'] == 3) {
+                            t!.cancel();
+                            Get.back();
+                            Get.snackbar(
+                              "Notification",
+                              "Pas de paiement effectué",
+                              backgroundColor: Colors.blue,
+                              colorText: Colors.white,
+                            );
                           } else {
                             t!.cancel();
                             Get.back();
-                            //widget.f(widget.requette);
+                            //var r = widget.requette;
+                            //r["reference"] = rep['transaction']['reference'];
+                            print(
+                                "--------------------------------------------");
+                            print("$rep");
+                            widget.f(widget.requette);
                           }
                         } else {
                           //USSD non envoyé
@@ -194,7 +218,7 @@ class _PayementMethode extends State<PayementMethode> {
                   Get.back();
                   Get.snackbar(
                     "Erreur",
-                    m['message'],
+                    m['message'] ?? "Vide",
                     backgroundColor: Colors.blue,
                     colorText: Colors.white,
                   );

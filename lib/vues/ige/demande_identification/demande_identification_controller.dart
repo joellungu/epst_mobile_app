@@ -51,7 +51,7 @@ class DemandeIdentificationController extends GetxController {
   faireUneInscription(Map map) async {
     var box = GetStorage();
 
-    print(map); //http.
+    //print(map); //http.
     //Response response = await requete.postE("identification/demande", map);
     var response = await http.post(
         Uri.parse("${Connexion.lien}identification/enregistrement"),
@@ -62,6 +62,7 @@ class DemandeIdentificationController extends GetxController {
         );
     print(response.statusCode);
     print(response.body);
+    //Get.back();
     if (response.statusCode == 200 || response.statusCode == 201) {
       print(response.statusCode);
       Map e = jsonDecode(response.body);

@@ -8,6 +8,9 @@ class PaiementController extends GetxController {
   Requete requete = Requete();
   Future<Map> paiement(Map e) async {
     Response rep = await requete.postE("paiement/paie", e);
+    print("la reponse du serveur: ${rep.statusCode}");
+    print("la reponse du serveur: ${rep.body}");
+
     if (rep.isOk) {
       return rep.body;
     } else {

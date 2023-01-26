@@ -519,6 +519,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
           ),
           TextField(
             controller: telephone,
+            keyboardType: TextInputType.number,
             decoration: InputDecoration(
               //prefixIcon: Text("Email:"),
               border: OutlineInputBorder(
@@ -999,19 +1000,6 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                 if (connectivityResult == ConnectivityResult.mobile ||
                     connectivityResult == ConnectivityResult.wifi) {
                   //
-                  Get.dialog(Center(
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: CircularProgressIndicator(
-                        strokeWidth: 7,
-                      ),
-                    ),
-                  ));
                   //
                   DateTime d2 = DateTime.now();
                   //
@@ -1046,6 +1034,8 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                   };
                   /*
                   */
+                  print("Le type vaut: ${type.value}");
+
                   if (type.value == 0 || type.value == 4) {
                     //PayementMethode
                     showDialog(
@@ -1070,11 +1060,29 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                       },
                     );
                   } else {
-                    send(formulaireD);
+                    print("Pas payant");
+                    Get.dialog(
+                      Center(
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: CircularProgressIndicator(
+                            strokeWidth: 7,
+                          ),
+                        ),
+                      ),
+                    );
+                    send2(formulaireD);
                   }
 
                   //____________________________________________________________
-                } else {}
+                } else {
+                  print("Pas cool");
+                }
               }
             },
             child: Container(
@@ -1097,7 +1105,18 @@ class _DemandeIdentification extends State<DemandeIdentification> {
         Get.find();
     //ByteArrayInputStream//formulaireD
     //
-    Timer(const Duration(seconds: 1), () {
+    Timer(const Duration(seconds: 2), () {
+      demandeIdentificationController.faireUneInscription(formulaireD);
+    });
+  }
+
+  //
+  send2(Map formulaireD) async {
+    DemandeIdentificationController demandeIdentificationController =
+        Get.find();
+    //ByteArrayInputStream//formulaireD
+    //
+    Timer(const Duration(seconds: 2), () {
       demandeIdentificationController.faireUneInscription(formulaireD);
     });
   }

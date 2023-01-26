@@ -15,6 +15,7 @@ import 'documents_certificatifs/demande_documents.dart';
 import 'demande_identification/demande_identification.dart';
 import 'demande_identification/identification.dart';
 import 'documents_certificatifs/documents.dart';
+import 'resultat_exetat/resultat_exetat.dart';
 
 class Ige extends StatefulWidget {
   String? titre;
@@ -31,7 +32,7 @@ class _Ige extends State<Ige> {
   @override
   void initState() {}
   //
-  double st = 15;
+  double st = 13;
   double taille = 10;
   double pd = 15;
   //
@@ -51,7 +52,7 @@ class _Ige extends State<Ige> {
           ElevatedButton(
             onPressed: () {
               //
-              Get.to(DemandePalmares());
+              Get.to(ResultatExetat());
             },
             style: ButtonStyle(
                 /*
@@ -90,12 +91,12 @@ class _Ige extends State<Ige> {
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
-                          text: "Palmarès exetat",
+                          text: "Consultation résultats d'examen d'etat",
                           children: [
                             TextSpan(
                               text: "",
                               style: TextStyle(
-                                fontSize: 20,
+                                fontSize: taille,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
@@ -109,16 +110,18 @@ class _Ige extends State<Ige> {
                         ),
                       ),
                       decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
                     ),
                   )
                 ],
               ),
             ),
           ),
+
           // ElevatedButton(
           //   onPressed: () {
           //     //
@@ -459,7 +462,78 @@ class _Ige extends State<Ige> {
               ),
             ),
           ),
-        ],
+          ElevatedButton(
+            onPressed: () {
+              //
+              Get.to(DemandePalmares());
+            },
+            style: ButtonStyle(
+                /*
+                backgroundColor: MaterialStateProperty.all(
+                Colors.green.shade700,
+              ),
+              */
+                ),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(pd),
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
+                      ), //
+                      decoration: const BoxDecoration(
+                          //color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      )),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      padding: EdgeInsets.only(bottom: 15),
+                      alignment: Alignment.center,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "Palmarès exetat",
+                          children: [
+                            TextSpan(
+                              text: "",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: st,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ], //
       ),
     );
   }

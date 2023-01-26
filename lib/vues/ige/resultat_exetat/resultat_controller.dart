@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
-class PalmaresController extends GetxController with StateMixin<List> {
+class ResultatController extends GetxController with StateMixin<List> {
   Requete requete = Requete();
   RxList liste_palmares = [].obs;
   //
@@ -30,46 +30,42 @@ class PalmaresController extends GetxController with StateMixin<List> {
   //   }
   // }
   //
-  getListe(String nomprovince, String nomEcole, String option, String codeecole,
-      String codeoption, String anneescolaire) async {
+  getListe(
+    String anneescolaire,
+    String codecandidat,
+  ) async {
     //print("province: $province => distric: $distric");
     //identification/all/demande?province=$province&district=$distric&valider=0
     //{nomecole}/{codeoption}/{anneescolaire}
-    print(":: ::${codeecole.length}");
-    print(":: ::$codeoption");
+    print(":: ::${codecandidat}");
     print(":: ::$anneescolaire");
     //${Connexion.lien}
-    Response response = await requete.postE("palmares", {
-      "nomecole": nomEcole,
-      "nomprovince": nomprovince,
-      "codeoption": "$codeoption.0",
-      "anneescolaire": anneescolaire
-    });
+    Response response = await requete.getE(
+      "palmares/resultat/$anneescolaire/$codecandidat",
+    );
     if (response.isOk) {
       var box = GetStorage();
       //
       print(response.body);
-      List l = response.body; //
+      //List l = response.body; //
       //
-      print("la reponse: $l");
+      //print("la reponse: $l");
       //
-      liste_palmares.value = box.read("liste_palmares") ?? [];
+      liste_palmares.value = box.read("liste_resultats") ?? [];
       Map e = {
-        "nomecole": nomEcole,
-        "option": option,
-        "codeecole": codeecole,
-        "codeoption": "$codeoption.0",
         "anneescolaire": anneescolaire,
-        "liste": l
+        "codecandidat": codecandidat,
+        "liste": response.body
       };
       liste_palmares.add(e);
-      box.write('liste_palmares', liste_palmares);
+      box.write('liste_resultats', liste_palmares);
       //change(liste_palmares, status: RxStatus.success());
       Get.dialog(
         const AlertDialog(
-          title: Text("Palmares"),
+          title: Text("Resultat"),
           content: Text(
-              "Votre palmares a été téléchargé avec succès, cliquez sur 'Voir palmares demandé'."),
+            "Votre Resultat a été téléchargé avec succès, cliquez sur 'Voir Resultat demandé'.",
+          ),
         ),
       );
       //

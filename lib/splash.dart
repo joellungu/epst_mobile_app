@@ -43,13 +43,13 @@ class Splash extends StatelessWidget {
         Container(
           padding: const EdgeInsets.only(top: 20, bottom: 5),
           child: Image.asset(
-            "assets/EPST APP.png",
+            "assets/Logo EPST-APP FINAL 2.png",
             fit: BoxFit.contain,
           ),
           height: Get.size.height / 2,
           width: Get.size.width,
         ),
-        SizedBox(
+        const SizedBox(
           height: 40,
           width: 40,
           child: CircularProgressIndicator(),
@@ -77,7 +77,7 @@ class Splash extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.only(top: 20, bottom: 5),
                 child: Image.asset(
-                  "assets/EPST APP.png",
+                  "assets/Logo EPST-APP FINAL 2.png",
                   fit: BoxFit.contain,
                 ),
                 height: Get.size.height / 2,

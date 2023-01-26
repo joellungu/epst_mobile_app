@@ -13,6 +13,7 @@ import 'vues/identification/identification_controller.dart';
 import 'vues/ige/demande_identification/demande_identification_controller.dart';
 import 'vues/ige/demande_transfere/transfere_controller.dart';
 import 'vues/ige/palmares/palmares_controller.dart';
+import 'vues/ige/resultat_exetat/resultat_controller.dart';
 import 'vues/mutuelle/mutuelle_controller.dart';
 import 'widgets/paiement_controller.dart';
 
@@ -46,6 +47,7 @@ void main() async {
   Get.put(ReformeController());
   Get.put(DemandeDocumentController());
   Get.put(TransfereController());
+  Get.put(ResultatController());
   MutuelleController mutuelleController = Get.put(MutuelleController());
   //MagasinController magasinController =
   runApp(

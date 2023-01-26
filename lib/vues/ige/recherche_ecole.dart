@@ -61,7 +61,7 @@ class RechercheEcole extends SearchDelegate {
             ecole.value = result;
             ecole1.value = result;
             ecole2.value = result;
-            print("salut");
+            print("salut: ${ecole.value}");
             Get.back();
             //
           },
@@ -95,7 +95,7 @@ class RechercheEcole extends SearchDelegate {
             ecole.value = result;
             ecole1.value = result;
             ecole2.value = result;
-            print("salut");
+            print("salut: ${ecole.value}");
             Get.back();
             //
           },
