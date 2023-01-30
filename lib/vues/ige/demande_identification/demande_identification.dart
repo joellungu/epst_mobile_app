@@ -1052,8 +1052,8 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                               ),
                               height: 300,
                               width: 270,
-                              child: PayementMethode(
-                                  formulaireD, 7, send, "palmares", "palmares"),
+                              child: PayementMethode(formulaireD, 0.02, send,
+                                  "palmares", "palmares"),
                             ),
                           ),
                         );

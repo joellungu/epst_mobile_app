@@ -73,11 +73,45 @@ class DemandeIdentificationController extends GetxController {
       box.write("historique_identification", l);
       Get.back();
       Get.snackbar("Succès", "Demande envoyé avec succès");
+      Get.dialog(
+        AlertDialog(
+          title: Text("Succès"),
+          content: Text("Demande envoyé avec succès"),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: Icon(
+                Icons.check,
+                color: Colors.green,
+              ),
+            )
+          ],
+        ),
+      );
     } else {
       print(response.statusCode);
       print(response.body);
       Get.back();
       Get.snackbar("Erreur", "Un problème est survenu lors l'envois");
+      Get.dialog(
+        AlertDialog(
+          title: Text("Erreur"),
+          content: Text("Un problème est survenu lors l'envois"),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Get.back();
+              },
+              icon: Icon(
+                Icons.check,
+                color: Colors.green,
+              ),
+            )
+          ],
+        ),
+      );
     }
   }
 }

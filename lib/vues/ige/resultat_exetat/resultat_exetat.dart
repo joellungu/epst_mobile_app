@@ -159,7 +159,7 @@ class _ResultatExetat extends State<ResultatExetat> {
             margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: const BorderSide(color: Colors.grey),
+              //side: const BorderSide(color: Colors.grey),
             ),
             child: TextField(
               controller: code,
@@ -342,7 +342,7 @@ class _ResultatExetat extends State<ResultatExetat> {
             height: 10,
           ),
           const Text(
-            "Formulaire payant (0.6 dollar)",
+            "Formulaire payant (0.60 dollar)",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 11,

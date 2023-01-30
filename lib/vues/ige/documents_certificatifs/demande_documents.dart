@@ -43,6 +43,7 @@ class _DemandeDocument extends State<DemandeDocument> {
     "Brevet professionnel",
     "Certificat d'étude primaire",
     "Note d'acquis de droit",
+    "Attestation reussite (EXETAT)",
     "Attestation de N.D.D",
     "Releve de côtes"
   ];
@@ -925,7 +926,7 @@ class _DemandeDocument extends State<DemandeDocument> {
                               value: index,
                               child: Text(
                                 types[index],
-                                style: const TextStyle(fontSize: 13),
+                                style: const TextStyle(fontSize: 12),
                               ),
                             );
                           },

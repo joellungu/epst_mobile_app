@@ -114,11 +114,14 @@ class _PayementMethode extends State<PayementMethode> {
                 PaiementController paiementController = Get.find();
                 //
                 Get.dialog(
-                  const Center(
-                    child: SizedBox(
-                      height: 40,
-                      width: 40,
-                      child: CircularProgressIndicator(),
+                  const Material(
+                    color: Colors.transparent,
+                    child: Center(
+                      child: SizedBox(
+                        height: 40,
+                        width: 40,
+                        child: CircularProgressIndicator(),
+                      ),
                     ),
                   ),
                 );
@@ -136,11 +139,14 @@ class _PayementMethode extends State<PayementMethode> {
                   "amount": widget.prix,
                   "currency": gender,
                 };
+                print('element: $e');
                 Map m = await paiementController.paiement(e);
                 print("la reponse du serveur: $m");
                 if (m['code'] != null) {
                   //La fonction bloucle...
                   //Get.back();
+
+                  //widget.f(widget.requette);
 
                   Timer(Duration(seconds: 5), () async {
                     //

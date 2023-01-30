@@ -221,24 +221,24 @@ class _Ige extends State<Ige> {
                   Expanded(
                     flex: 5,
                     child: Container(
-                      padding: EdgeInsets.only(bottom: 15),
+                      padding: EdgeInsets.only(),
                       alignment: Alignment.center,
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
-                          text: "Documents certificatifs",
+                          text: "Documents certificatifs ",
                           children: [
                             TextSpan(
-                              text: "",
+                              text: "(Attestations, diplome, NAD ...)",
                               style: TextStyle(
-                                fontSize: taille,
+                                fontSize: 10,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
                             )
                           ],
                           style: TextStyle(
-                            fontSize: st,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),

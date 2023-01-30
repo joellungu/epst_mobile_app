@@ -388,9 +388,9 @@ class _DemandePalmares extends State<DemandePalmares> {
           ///
           ElevatedButton(
             onPressed: () async {
-              String v = ecole["code_ecole"].replaceAll(RegExp(r"\s+"), "");
-              String n = ecole["ecole"].replaceAll(RegExp(r"\s+"), "");
-              String p = ecole["province"].replaceAll(RegExp(r"\s+"), "");
+              String v = ecole["code_ecole"]; //.replaceAll(RegExp(r"\s+"), "");
+              String n = ecole["ecole"]; //.replaceAll(RegExp(r"\s+"), "");
+              String p = ecole["province"]; //.replaceAll(RegExp(r"\s+"), "");
               print(v[11]);
               print(v.length);
               print(v.runtimeType);
@@ -411,12 +411,13 @@ class _DemandePalmares extends State<DemandePalmares> {
                         width: 270,
                         child: PayementMethode({
                           "nomecole": n,
-                          "option": "${listeOptions[option]}".split(",")[0],
+                          "option":
+                              "${listeOptions[option]}".split(",")[0] + ".0",
                           "nomprovince": p,
                           "codeecole": v,
                           "codeoption": "${listeOptions[option]}".split(",")[1],
                           "anneescolaire": annee.value,
-                        }, 1, send, "palmares", "palmares"),
+                        }, 0.5, send, "palmares", "palmares"),
                       ), //0.02
                     ),
                   );
@@ -434,7 +435,7 @@ class _DemandePalmares extends State<DemandePalmares> {
             height: 10,
           ),
           const Text(
-            "Formulaire payant (1 dollar)",
+            "Formulaire payant (0.50 dollar)",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 11,

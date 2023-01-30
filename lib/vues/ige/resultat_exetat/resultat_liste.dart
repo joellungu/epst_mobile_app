@@ -15,7 +15,7 @@ class ListResultat extends StatelessWidget {
     //controller.getListe(nomecole!, codeoption!, anneescolaire!);
     //
     var box = GetStorage();
-    //
+    //liste_resultats
     //
     l.value = box.read("liste_resultats") ?? [];
     //
@@ -27,7 +27,7 @@ class ListResultat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Liste resultats"),
+        title: const Text("Liste résultats"),
       ),
       body: Obx(
         () => ListView(
@@ -58,7 +58,7 @@ class ListResultat extends StatelessWidget {
               //   //child: Image.network(
               //   //  "${Connexion.lien}identification/piecejointe/${e['id']}"),
               // ),
-              title: Text("${e['codecandidat'] ?? '...'}"),
+              title: Text("${e['codecandidat'] ?? '...'}".split(".")[0]),
               subtitle: Text("${e['anneescolaire']}"),
               //trailing: Text("${e['anneescolaire']}"),
             );
@@ -82,7 +82,7 @@ class DetailsPalmares extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "${e['nomecole']}\n${e['option']}: ${e['anneescolaire']}",
+          "${l!['nomecole']}\n${l!['option']}: ${e['anneescolaire']}",
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 13),
         ),
@@ -103,7 +103,7 @@ class DetailsPalmares extends StatelessWidget {
             ? Container(
                 padding: const EdgeInsets.only(top: 50),
                 alignment: Alignment.center,
-                child: const Text.rich(
+                child: Text.rich(
                   TextSpan(
                     text:
                         "Aucun resultat n'a été trouvé, veuillez recommencer ou contacter le ",
@@ -122,7 +122,41 @@ class DetailsPalmares extends StatelessWidget {
                   ),
                 ),
               )
-            : RichText(text: TextSpan(text: ""))
+            : RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  text: "Felicitation ",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 30,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: "${l!['nomcandidat']}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                      ),
+                    ),
+                    TextSpan(text: " Vous-avez réussi aux Examens d'Etat avec"),
+                    TextSpan(
+                      text: " ${l!['note']} % \n\n",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30,
+                      ),
+                    ),
+                    WidgetSpan(
+                        child: ElevatedButton(
+                      onPressed: () {},
+                      child: const Text(
+                        "Télécharger votre attestation de reussit \n(4 dollars)",
+                        textAlign: TextAlign.center,
+                      ),
+                    ))
+                  ],
+                ),
+              )
       ]),
     );
   }

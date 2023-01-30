@@ -38,6 +38,14 @@ class PalmaresController extends GetxController with StateMixin<List> {
     print(":: ::${codeecole.length}");
     print(":: ::$codeoption");
     print(":: ::$anneescolaire");
+    print("------------------------------------------------------");
+    print({
+      "nomecole": nomEcole,
+      "nomprovince": nomprovince,
+      "codeoption": "$codeoption.0",
+      "anneescolaire": anneescolaire
+    });
+    print("------------------------------------------------------");
     //${Connexion.lien}
     Response response = await requete.postE("palmares", {
       "nomecole": nomEcole,

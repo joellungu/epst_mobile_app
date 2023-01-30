@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:epst_app/vues/documents_officiels/documents_officiels.dart';
+import 'package:epst_app/vues/epst_kelasi/epst_kelasi.dart';
 import 'package:epst_app/vues/formation/formation.dart';
 import 'package:epst_app/vues/ige/ige.dart';
 import 'package:epst_app/vues/plainte/depotplainte.dart';
@@ -38,6 +39,7 @@ class _Accueil extends State<Accueil> {
     "Demande documents scolaires",
     "Sécretariat général",
     "Mutuelle de santé",
+    "EPST Kelasi",
   ];
 
   TextEditingController textEditingController = TextEditingController();
@@ -99,6 +101,12 @@ class _Accueil extends State<Accueil> {
       //
       Image.asset(
         "assets/Logo_MESP_ok.png",
+        fit: BoxFit.fill,
+        color: Colors.blue,
+        colorBlendMode: BlendMode.color,
+      ),
+      Image.asset(
+        "assets/icon 1024X1024.PNG",
         fit: BoxFit.fill,
         color: Colors.blue,
         colorBlendMode: BlendMode.color,
@@ -210,55 +218,61 @@ class _Accueil extends State<Accueil> {
                       );
                     });
               } else {
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) {
-                  if (index == 0) {
-                    return LiveStream(
-                      titre: liste[index],
-                    );
-                  } else if (index == 1) {
-                    return DepotPlainte(
-                      titre: liste[index],
-                    );
-                  } else if (index == 2) {
-                    return Magasine(
-                      titre: liste[index],
-                    );
-                  } else if (index == 5) {
-                    return Listing(
-                      titre: liste[index],
-                    );
-                  } else if (index == 4) {
-                    return Reforme(
-                      titre: liste[index],
-                    );
-                  } else if (index == 7) {
-                    //print("Je suis le cours...");Ige,Ige
-                    return documents_officiels(
-                      titre: liste[index],
-                    );
-                  } else if (index == 8) {
-                    //print("Je suis le cours...");Ige,Ige
-                    return Ige(
-                      titre: liste[index],
-                    );
-                  } else if (index == 9) {
-                    //print("Je suis le cours...");Ige,Ige
-                    return SecretariaGeneral(
-                      titre: liste[index],
-                    );
-                  } else if (index == 10) {
-                    //print("Je suis le cours...");Ige,Ige
-                    return Mutuelle(
-                      titre: liste[index],
-                    );
-                  } else {
-                    //
-                    return Formation(
-                      titre: liste[index],
-                    );
-                  }
-                }));
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) {
+                    if (index == 0) {
+                      return LiveStream(
+                        titre: liste[index],
+                      );
+                    } else if (index == 1) {
+                      return DepotPlainte(
+                        titre: liste[index],
+                      );
+                    } else if (index == 2) {
+                      return Magasine(
+                        titre: liste[index],
+                      );
+                    } else if (index == 5) {
+                      return Listing(
+                        titre: liste[index],
+                      );
+                    } else if (index == 4) {
+                      return Reforme(
+                        titre: liste[index],
+                      );
+                    } else if (index == 6) {
+                      //print("Je suis le cours...");Ige,Ige
+                      return Formation(
+                        titre: liste[index],
+                      );
+                    } else if (index == 7) {
+                      //print("Je suis le cours...");Ige,Ige
+                      return documents_officiels(
+                        titre: liste[index],
+                      );
+                    } else if (index == 8) {
+                      //print("Je suis le cours...");Ige,Ige
+                      return Ige(
+                        titre: liste[index],
+                      );
+                    } else if (index == 9) {
+                      //print("Je suis le cours...");Ige,Ige
+                      return SecretariaGeneral(
+                        titre: liste[index],
+                      );
+                    } else if (index == 10) {
+                      //print("Je suis le cours...");Ige,Ige
+                      return Mutuelle(
+                        titre: liste[index],
+                      );
+                    } else {
+                      //
+                      return EpstKelasi(
+                        liste[index],
+                      );
+                    }
+                  }),
+                );
               }
             },
             //elevation: 1,
