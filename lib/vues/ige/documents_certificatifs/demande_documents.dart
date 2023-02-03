@@ -896,25 +896,34 @@ class _DemandeDocument extends State<DemandeDocument> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
-                    "  Document demandé:",
+                  const Text(
+                    "  Doc demandé:",
                     style: TextStyle(fontSize: 10),
                   ),
-                  SizedBox(
-                    width: 20,
+                  const SizedBox(
+                    width: 10,
                   ),
                   Expanded(
                     flex: 1,
                     child: DropdownButtonHideUnderline(
-                      child: DropdownButtonFormField<int>(
+                      child: DropdownButton<int>(
                         value: type.value,
-                        /*
-                            style: TextStyle(
-                                //fontSize: 12,
-                                color: Colors.black
-                            ),
-                            */
+                        underline: SizedBox(),
+                        style:
+                            const TextStyle(fontSize: 10, color: Colors.black),
                         isExpanded: true,
+                        // decoration: const InputDecoration(
+
+                        //   border: OutlineInputBorder(
+                        //     gapPadding: 0,
+
+                        //     borderSide: BorderSide(
+                        //       color: Colors.white,
+                        //       width: 0,
+                        //     ),
+                        //   ),
+                        // ),
+
                         onChanged: (value) {
                           type.value = value as int;
                           print("le id: $type");
@@ -1035,32 +1044,32 @@ class _DemandeDocument extends State<DemandeDocument> {
                   };
                   /*
                   */
-                  if (type.value == 0 || type.value == 4) {
-                    //PayementMethode
-                    showDialog(
-                      context: context,
-                      builder: (c) {
-                        return Material(
-                          color: Colors.transparent,
-                          child: Center(
-                            child: Container(
-                              padding: const EdgeInsets.all(15),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              height: 300,
-                              width: 270,
-                              child: PayementMethode(
-                                  formulaireD, 7, send, "palmares", "palmares"),
+                  //if (type.value == 0 || type.value == 4) {
+                  //PayementMethode
+                  showDialog(
+                    context: context,
+                    builder: (c) {
+                      return Material(
+                        color: Colors.transparent,
+                        child: Center(
+                          child: Container(
+                            padding: const EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
                             ),
+                            height: 300,
+                            width: 270,
+                            child: PayementMethode(
+                                formulaireD, 7, send, "palmares", "palmares"),
                           ),
-                        );
-                      },
-                    );
-                  } else {
-                    send(formulaireD);
-                  }
+                        ),
+                      );
+                    },
+                  );
+                  //} else {
+                  //  send(formulaireD);
+                  //}
                   // DemandeDocumentController demandeDocumentController =
                   //     Get.find();
                   // //ByteArrayInputStream//formulaireD
