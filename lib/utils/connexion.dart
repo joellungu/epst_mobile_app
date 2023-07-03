@@ -14,14 +14,14 @@ class Connexion {
   //static var lien = 'http://localhost:8080/';
   //static var ws = 'localhost:8080';
 
-  //static var lien = 'https://epstserveur.herokuapp.com/';
-  //static var ws = 'epstserveur.herokuapp.com';
+  static var lien = 'https://epstserveur.herokuapp.com/';
+  static var ws = 'epstserveur.herokuapp.com';
   //
   //static var lien = 'http://45.90.220.130:8080/';
   //static var ws = '45.90.220.130:8080/';
 
-  static var lien = 'http://10.0.2.2:8080/';
-  static var ws = '10.0.2.2:8080';
+  //static var lien = 'http://10.0.2.2:8080/';
+  //static var ws = '10.0.2.2:8080';
 
   //192.168.1.72
   //static var lien_siite =

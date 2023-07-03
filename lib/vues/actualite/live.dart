@@ -1,6 +1,7 @@
 import 'package:epst_app/vues/actualite/site.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
@@ -188,6 +189,9 @@ class _LiveStream extends State<LiveStream> {
           ),
           ElevatedButton(
             onPressed: () {
+              //
+              Get.to(Actualites());
+              /*
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
@@ -195,6 +199,7 @@ class _LiveStream extends State<LiveStream> {
                   },
                 ),
               );
+              */
             },
             style: ButtonStyle(
                 /*

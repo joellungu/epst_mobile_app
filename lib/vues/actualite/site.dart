@@ -18,13 +18,15 @@ class _Actualites extends State<Actualites> {
         title: const Text("Actualité"),
       ),
       body: WebView(
-        javascriptMode: JavascriptMode.unrestricted,
-        onWebViewCreated: (WebViewController w) {
-          controlleur = w;
-        },
-        initialUrl: "https://www.eduquepsp.education", //https://www.youtube.com
-        //"https://www.efoad.minepst.gouv.cd",
-      ),
+          javascriptMode: JavascriptMode.unrestricted,
+          onWebViewCreated: (WebViewController w) {
+            controlleur = w;
+          },
+          initialUrl: "https://minepst.gouv.cd/infos-et-blogs"
+          //"https://www.eduquepsp.education",
+          //https://www.youtube.com
+          //"https://www.efoad.minepst.gouv.cd",
+          ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           controlleur!.reload();

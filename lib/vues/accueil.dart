@@ -37,7 +37,7 @@ class _Accueil extends State<Accueil> {
     "DINACOPE Listing",
     "Sécretariat général & Directions centrales",
     "DIGE\nE-SIGE EPST",
-    "Demande documents EPST",
+    "Demande Exetat, documents EPST",
     "Formation à distance",
     "Mutuelle de santé",
     "EPST Kelasi",
