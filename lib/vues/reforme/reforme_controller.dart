@@ -24,12 +24,10 @@ class ReformeController extends GetxController with StateMixin<List> {
     //
     var l1 = box.read("magasin") ?? [];
     var l2 = box.read("reforme") ?? [];
-    http.Response rep = await magasinConnexion.getListeMag(type);
-    if (rep.statusCode == 200 ||
-        rep.statusCode == 201 ||
-        rep.statusCode == 204) {
+    Response rep = await magasinConnexion.getListeMag(type);
+    if (rep.isOk) {
       print(rep.body);
-      List rep_liste = jsonDecode(rep.body);
+      List rep_liste = rep.body;
       //
       rep_liste.forEach((element) {
         Map<String, dynamic> e = element;
@@ -111,9 +109,9 @@ class ReformeController extends GetxController with StateMixin<List> {
 }
 
 class MagasinConnexion extends GetConnect {
-  Future<http.Response> getListeMag(int type) async {
+  Future<Response> getListeMag(int type) async {
     var url = Uri.parse('${Connexion.lien}magasin/all/$type');
-    var response = await http.get(url);
+    var response = await get('${Connexion.lien}magasin/all/$type');
     return response;
     //return get("${Connexion.lien}magasin/all/$type");
   }

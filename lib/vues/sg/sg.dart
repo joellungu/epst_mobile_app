@@ -3,6 +3,8 @@ import 'package:epst_app/vues/documents_officiels/arretes_ministeriel.dart';
 import 'package:epst_app/vues/documents_officiels/message_phonique.dart';
 import 'package:epst_app/vues/documents_officiels/notes_circulaire.dart';
 import 'package:epst_app/vues/documents_officiels/notifications_arretes.dart';
+import 'package:epst_app/vues/sg/sg_controller.dart';
+import 'package:epst_app/widgets/pdf_vue.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:open_file_safe/open_file_safe.dart';
@@ -16,7 +18,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shimmer/shimmer.dart';
 
-class SecretariaGeneral extends GetView<MagasinController> {
+class SecretariaGeneral extends GetView<SgController> {
   //
   SecretariaGeneral({this.titre}) {
     controller.getListeMag(7);
@@ -122,6 +124,8 @@ class SecretariaGeneral extends GetView<MagasinController> {
                                           "${directory.path}/${l[index]["id"]}.${l[index]["extention"]}");
                                       print(or.message);
                                       print(or.type);
+                                      //Get.to(PdfVue(
+                                      //  "${directory.path}/${l[index]["id"]}.${l[index]["extention"]}"));
                                     } else {
                                       load.value = 2;
                                       //
@@ -137,7 +141,7 @@ class SecretariaGeneral extends GetView<MagasinController> {
                                     colorBlendMode: BlendMode.color,
                                   ),
                                   title: Text(l[index]["libelle"]),
-                                  subtitle: Text(l[index]["date"]),
+                                  subtitle: Text(l[index]["dateenligne"]),
                                   trailing: load.value == 1
                                       ? const Icon(
                                           Icons.check_circle_outline,

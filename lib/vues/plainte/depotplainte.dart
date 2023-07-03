@@ -5,7 +5,6 @@ import 'package:epst_app/models/historiquedb.dart';
 import 'package:epst_app/utils/depotcontroler.dart';
 import 'package:epst_app/vues/reference.dart';
 import 'package:epst_app/vues/transsfere.dart';
-import 'package:flutter_mailer/flutter_mailer.dart';
 import 'package:get/get.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +36,7 @@ class _DepotPlainte extends State<DepotPlainte> {
   var Fichier = "";
   List listeProvince = [
     "Bas-Uele",
-    "Équateur",
+    "Equateur",
     "Haut-Katanga",
     "Haut-Lomami",
     "Haut-Uele",
@@ -173,23 +172,23 @@ class _DepotPlainte extends State<DepotPlainte> {
                   //prefixText: "De: "
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextField(
-                controller: aC,
-                decoration: InputDecoration(
-                  //prefixIcon: Text("Email:"),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
-                      color: Colors.blue,
-                    ),
-                  ),
-                  label: Text("À:"),
-                  //prefixText: "De: "
-                ),
-              ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              // TextField(
+              //   controller: aC,
+              //   decoration: InputDecoration(
+              //     //prefixIcon: Text("Email:"),
+              //     border: OutlineInputBorder(
+              //       borderRadius: BorderRadius.circular(10),
+              //       borderSide: BorderSide(
+              //         color: Colors.blue,
+              //       ),
+              //     ),
+              //     label: Text("À:"),
+              //     //prefixText: "De: "
+              //   ),
+              // ),
               const SizedBox(
                 height: 10,
               ),
@@ -438,9 +437,6 @@ class _DepotPlainte extends State<DepotPlainte> {
                         "Erreur", "Veuillez remplire le champ téléphone");
                   } else if (emailC.text.isEmpty) {
                     messageErreur("Erreur", "Veuillez remplire le champ email");
-                  } else if (aC.text.isEmpty) {
-                    messageErreur(
-                        "Erreur", "Veuillez remplire le champ destinateur");
                   } else if (messageC.text.isEmpty) {
                     messageErreur(
                         "Erreur", "Veuillez remplire le champ message");
@@ -459,7 +455,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                         "destinateur": aC.text,
                         "id_tiquet": a,
                         "message": messageC.text,
-                        "id_statut": "0",
+                        "id_statut": 0,
                         "piecejointe_id": "",
                         "reference": getReference(),
                         "date": "${DateTime.now()}",
@@ -506,7 +502,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                         "destinateur": aC.text,
                         "id_tiquet": a,
                         "message": messageC.text,
-                        "id_statut": "0",
+                        "id_statut": 0,
                         "piecejointe_id": "",
                         "reference": ref,
                         "date": "${DateTime.now()}",

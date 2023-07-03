@@ -18,7 +18,7 @@ class _Verification extends State<Verification> {
   //
   List listeProvince = [
     "Bas-Uele",
-    "Équateur",
+    "Equateur",
     "Haut-Katanga",
     "Haut-Lomami",
     "Haut-Uele",

@@ -98,26 +98,53 @@ class _Transfere2 extends State<Transfere2> {
         //https://epstapp.herokuapp.com
         var url = Uri.parse(
             "${Connexion.lien}piecejointe/${widget.piecejointeId}/${element["type"]}");
-        //element ;
+        //element ; ${widget.piecejointeId}/${element["type"]}
         //var stream = new http.ByteStream(DelegatingStream.typed(element["type"]));
         var length = await element["length"];
         print("------------------------");
         print(element["type"]);
         print(widget.piecejointeId);
         print("------------------------");
-
+        /*
         Map<String, dynamic> map = {
           "piecejointe_id": widget.piecejointeId,
           "donne": element["data"],
           "type": element["type"]
         };
-        var response = await http.post(
-          url,
-          headers: {
-            "Content-Type": "multipart/form-data", //"application/json",
-          },
-          body: element["data"],
+        */
+
+        var request =
+            http.MultipartRequest("POST", url); //Uri.parse(urlInsertImage)
+        request.fields["ProductId"] =
+            widget.piecejointeId; // productId.toString();
+        request.files.add(
+          http.MultipartFile.fromBytes(
+            "picture", element["data"], //File(file!.path).readAsBytesSync(),
+            filename: element["type"], //file!.path,
+          ),
         );
+        // var res = await request.send();
+        // if (res.statusCode == 201 || res.statusCode == 200) {
+        //   print(res.statusCode);
+        //   print("cool");
+        //   print("cool: rep: ${res.headers}");
+        //   print("cool: rep: ${res.stream}");
+        // } else {
+        //   print(res.statusCode);
+        //   print("pas cool");
+        //   print("cool: rep: ${res.headers}");
+        //   print("cool: rep: ${res.stream}");
+        // }
+
+        ///
+        var response = await http.post(url,
+            headers: {
+              "Content-Type":
+                  "application/octet-stream" //"application/json", //"multipart/form-data", //
+            },
+            body: element["data"] //jsonEncode(map),
+            //element["data"],
+            );
         //
         if (response.statusCode == 201 || response.statusCode == 200) {
           setState(() {

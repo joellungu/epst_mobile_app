@@ -34,8 +34,9 @@ class _DirectEductivi extends State<DirectEductivi> {
   }
 
   List<String> srcs = [
-    "http://eu.oraostream.com:8081/eductv-orao/playlist.m3u8"
-        "https://assets.mixkit.co/videos/preview/mixkit-spinning-around-the-earth-29351-large.mp4",
+    "http://eu.oraostream.com:8081/KIN-EDUCTV/ledirect/playlist.m3u8",
+    "http://eu.oraostream.com:8081/eductv-orao/playlist.m3u8",
+    "https://assets.mixkit.co/videos/preview/mixkit-spinning-around-the-earth-29351-large.mp4",
     "https://assets.mixkit.co/videos/preview/mixkit-daytime-city-traffic-aerial-view-56-large.mp4",
     "https://assets.mixkit.co/videos/preview/mixkit-a-girl-blowing-a-bubble-gum-at-an-amusement-park-1226-large.mp4"
   ];

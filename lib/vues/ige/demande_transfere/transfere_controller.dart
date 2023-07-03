@@ -52,13 +52,12 @@ class TransfereController extends GetxController {
 
     print(map); //http.
     //Response response = await requete.postE("identification/demande", map);
-    var response =
-        await http.post(Uri.parse("${Connexion.lien}transfere/enregistrement"),
-            headers: {
-              "Content-Type": "application/json", //"application/json",
-            },
-            body: json.encode(map) //element["data"],
-            );
+    var response = await http.post(Uri.parse("${Connexion.lien}transfere"),
+        headers: {
+          "Content-Type": "application/json", //"application/json",
+        },
+        body: json.encode(map) //element["data"],
+        );
     print(response.statusCode);
     print(response.body);
     if (response.statusCode == 200 || response.statusCode == 201) {

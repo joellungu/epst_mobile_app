@@ -11,15 +11,23 @@ import 'package:sqflite/sqflite.dart';
 
 class Connexion {
   //
-  //static var lien = 'http://10.0.2.2:8080/';
-  //static var ws = '10.0.2.2:8080';
-  //static var lien = 'http://192.168.43.134:8080/';
-  //static var ws = '192.168.43.134:8080';
+  //static var lien = 'http://localhost:8080/';
+  //static var ws = 'localhost:8080';
+
+  //static var lien = 'https://epstserveur.herokuapp.com/';
+  //static var ws = 'epstserveur.herokuapp.com';
+  //
+  //static var lien = 'http://45.90.220.130:8080/';
+  //static var ws = '45.90.220.130:8080/';
+
+  static var lien = 'http://10.0.2.2:8080/';
+  static var ws = '10.0.2.2:8080';
+
   //192.168.1.72
   //static var lien_siite =
   //  'https://app-02b35183-fec6-4c4b-99d9-fca268735259.cleverapps.io/';
-  static var lien = 'https://dgc-epst.uc.r.appspot.com/';
-  static var ws = 'dgc-epst.uc.r.appspot.com';
+  //static var lien = 'https://dgc-epst.uc.r.appspot.com/';
+  //static var ws = 'dgc-epst.uc.r.appspot.com';
   ////////////////////////////////////////////////////////////
   //static var lien = 'http://10.0.2.2:8080/';
   //static var ws = '10.0.2.2:8080/';
@@ -35,7 +43,7 @@ class Connexion {
   //
   static Future<String> enregistrement(Map<String, dynamic> utilisateur) async {
     //
-    //print("utilisateur: ${json.encode(utilisateur)}");
+    print("utilisateur: ${json.encode(utilisateur)}");
     Historique h = Historique();
     Database db = await h.openDB();
     //
@@ -76,8 +84,8 @@ class Connexion {
 
     e.forEach(
       (element) async {
-        //
-        var url = Uri.parse(lien + "piecejointe/$id/${element["type"]}");
+        ///$id/${element["type"]}
+        var url = Uri.parse(lien + "piecejointe");
         //element ;
         //var stream = new http.ByteStream(DelegatingStream.typed(element["type"]));
         var length = await element["length"];

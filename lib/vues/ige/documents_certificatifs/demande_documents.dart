@@ -160,9 +160,9 @@ class _DemandeDocument extends State<DemandeDocument> {
     {"p": "NORD-UBANGI", "d": "NORD-UBANGI 2"},
     {"p": "SANKURU", "d": "SANKURU 1"},
     {"p": "SANKURU", "d": "SANKURU 2"},
-    {"p": "SUD KIVU", "d": "SUD KIVU 2"},
-    {"p": "SUD KIVU", "d": "SUD-KIVU 1"},
-    {"p": "SUD KIVU", "d": "SUD-KIVU 3"},
+    {"p": "SUD-KIVU", "d": "SUD-KIVU 2"},
+    {"p": "SUD-KIVU", "d": "SUD-KIVU 1"},
+    {"p": "SUD-KIVU", "d": "SUD-KIVU 3"},
     {"p": "SUD-UBANGI", "d": "SUD-UBANGI 1"},
     {"p": "SUD-UBANGI", "d": "SUD-UBANGI 2"},
     {"p": "TANGANYIKA", "d": "TANGANYIKA 1"},
@@ -178,7 +178,7 @@ class _DemandeDocument extends State<DemandeDocument> {
   RxInt type = 0.obs;
   List listeProvince = [
     "Bas-Uele",
-    "Équateur",
+    "Equateur",
     "Haut-Katanga",
     "Haut-Lomami",
     "Haut-Uele",

@@ -12,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'e_sige/e_sige.dart';
 import 'identification/identification.dart';
 import 'identification/verification.dart';
 import 'mutuelle/mutuelle.dart';
@@ -29,15 +30,15 @@ class _Accueil extends State<Accueil> {
 
   List liste = [
     "EPST actualités",
-    "Dépôt plainte",
-    "Magazine de l’EPST",
     "Chat avec agent EPST",
+    "Magazine de l’EPST",
+    "Dépôt plainte",
     "Réformes EPST",
-    "Listing",
+    "DINACOPE Listing",
+    "Sécretariat général & Directions centrales",
+    "DIGE\nE-SIGE EPST",
+    "Demande documents EPST",
     "Formation à distance",
-    "Document officiel EPST",
-    "Demande documents scolaires",
-    "Sécretariat général",
     "Mutuelle de santé",
     "EPST Kelasi",
   ];
@@ -52,49 +53,51 @@ class _Accueil extends State<Accueil> {
         size: 70,
       ), //
       Image.asset(
-        "assets/LOGO-MINEPST-BON.png",
+        "assets/images-n.png",
         color: Colors.blue,
-        colorBlendMode: BlendMode.color,
+        colorBlendMode: BlendMode.colorDodge,
       ),
       Image.asset(
         "assets/logo-mag.png",
         color: Colors.blue,
         colorBlendMode: BlendMode.color,
       ),
+
       Image.asset(
-        "assets/images.png",
-        color: Colors.blue,
-        colorBlendMode: BlendMode.color,
+        "assets/LOGO-MINEPST-BON.png",
+        // color: Colors.blue,
+        // colorBlendMode: BlendMode.color,
       ),
       Image.asset(
         "assets/LOGO-MINEPST-BON.png",
-        color: Colors.blue,
-        colorBlendMode: BlendMode.color,
-      ),
-      Image.asset(
-        "assets/SECOPE.jpg",
-        color: Colors.blue,
-        colorBlendMode: BlendMode.color,
-      ),
-      Image.asset(
-        "assets/FOAD.jpg",
-        color: Colors.blue,
-        colorBlendMode: BlendMode.color,
+        // color: Colors.blue,
+        // colorBlendMode: BlendMode.color,
       ),
       Image.asset(
         "assets/LOGO-MINEPST-BON.png",
-        color: Colors.blue,
-        colorBlendMode: BlendMode.color,
-      ),
-      //
-      Image.asset(
-        "assets/LOGO-MINEPST-BON.png",
-        color: Colors.blue,
-        colorBlendMode: BlendMode.color,
+        //color: Colors.blue,
+        //colorBlendMode: BlendMode.color,
       ),
       Image.asset(
         "assets/LOGO-MINEPST-BON.png",
         fit: BoxFit.fill,
+        // color: Colors.blue,
+        // colorBlendMode: BlendMode.color,
+      ),
+
+      Image.asset(
+        "assets/LOGO-MINEPST-BON.png",
+        // color: Colors.blue,
+        // colorBlendMode: BlendMode.color,
+      ),
+      //
+      Image.asset(
+        "assets/LOGO-MINEPST-BON.png",
+        // color: Colors.blue,
+        // colorBlendMode: BlendMode.color,
+      ),
+      Image.asset(
+        "assets/FOAD.jpg",
         color: Colors.blue,
         colorBlendMode: BlendMode.color,
       ),
@@ -102,14 +105,18 @@ class _Accueil extends State<Accueil> {
       Image.asset(
         "assets/Logo_MESP_ok.png",
         fit: BoxFit.fill,
+        // height: 100,
+        // width: 100,
         color: Colors.blue,
         colorBlendMode: BlendMode.color,
       ),
       Image.asset(
-        "assets/icon 1024X1024.PNG",
+        "assets/epst_kelasi.png",
         fit: BoxFit.fill,
-        color: Colors.blue,
-        colorBlendMode: BlendMode.color,
+        height: 100,
+        width: 100,
+        // color: Colors.blue,
+        // colorBlendMode: BlendMode.color,
       ),
     ];
     SystemChrome.setPreferredOrientations(
@@ -165,15 +172,15 @@ class _Accueil extends State<Accueil> {
         ],
       ),
       body: GridView.count(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         crossAxisCount: 3,
-        mainAxisSpacing: 5,
-        crossAxisSpacing: 5,
+        mainAxisSpacing: 7,
+        crossAxisSpacing: 7,
         childAspectRatio: 0.7,
         children: List.generate(liste.length, (index) {
           return ElevatedButton(
             onPressed: () {
-              if (index == 3) {
+              if (index == 1) {
                 showDialog(
                     context: context,
                     builder: (context) {
@@ -224,7 +231,8 @@ class _Accueil extends State<Accueil> {
                       return LiveStream(
                         titre: liste[index],
                       );
-                    } else if (index == 1) {
+                    } else if (index == 3) {
+                      //
                       return DepotPlainte(
                         titre: liste[index],
                       );
@@ -240,14 +248,14 @@ class _Accueil extends State<Accueil> {
                       return Reforme(
                         titre: liste[index],
                       );
-                    } else if (index == 6) {
+                    } else if (index == 9) {
                       //print("Je suis le cours...");Ige,Ige
                       return Formation(
                         titre: liste[index],
                       );
                     } else if (index == 7) {
                       //print("Je suis le cours...");Ige,Ige
-                      return documents_officiels(
+                      return Esige(
                         titre: liste[index],
                       );
                     } else if (index == 8) {
@@ -255,13 +263,14 @@ class _Accueil extends State<Accueil> {
                       return Ige(
                         titre: liste[index],
                       );
-                    } else if (index == 9) {
+                    } else if (index == 6) {
                       //print("Je suis le cours...");Ige,Ige
                       return SecretariaGeneral(
                         titre: liste[index],
                       );
                     } else if (index == 10) {
                       //print("Je suis le cours...");Ige,Ige
+
                       return Mutuelle(
                         titre: liste[index],
                       );
@@ -313,8 +322,8 @@ class _Accueil extends State<Accueil> {
                         children: [
                           TextSpan(
                             text: liste[index],
-                            style: const TextStyle(
-                              fontSize: 15,
+                            style: TextStyle(
+                              fontSize: index == 6 ? 12 : 15,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),

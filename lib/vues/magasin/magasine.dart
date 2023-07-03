@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:epst_app/utils/connexion.dart';
+import 'package:epst_app/widgets/pdf_vue.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -132,6 +133,8 @@ class Magasine extends GetView<MagasinController> {
                                           "${directory.path}/${l[index]["id"]}.${l[index]["extention"]}");
                                       print(or.message);
                                       print(or.type);
+                                      // Get.to(PdfVue(
+                                      //     "${directory.path}/${l[index]["id"]}.${l[index]["extention"]}"));
                                     } else {
                                       load.value = 2;
                                       //
@@ -147,7 +150,7 @@ class Magasine extends GetView<MagasinController> {
                                     colorBlendMode: BlendMode.color,
                                   ),
                                   title: Text(l[index]["libelle"]),
-                                  subtitle: Text(l[index]["date"]),
+                                  subtitle: Text(l[index]["dateenligne"]),
                                   trailing: load.value == 1
                                       ? const Icon(
                                           Icons.check_circle_outline,

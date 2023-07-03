@@ -58,14 +58,14 @@ class _Chat extends State<Chat> {
         //
         //String idSessionHote = map["idSessionHote"] ?? "";
         //
-        String contenu = map["content"] ?? "";
-        String hostId = map["hostId"] ?? "";
-        String clientId = map["clientId"] ?? "";
-        String from = map["from"] ?? "";
-        String matricule = map["matricule"] ?? "";
+        String contenu = map["content_"] ?? "";
+        String hostId = map["hostId_"] ?? "";
+        String clientId = map["clientId_"] ?? "";
+        String from = map["from_"] ?? "";
+        String matricule = map["matricule_"] ?? "";
         //String from = map["from"] ?? "";
         //
-        if (map["conversation"] != true) {
+        if (map["conversation_"] != true) {
           print("efface tout!");
           //listeConSave
           // Connexion.saveArchive({
@@ -173,7 +173,10 @@ class _Chat extends State<Chat> {
       ),
       onWillPop: () {
         _channel!.sink.add(
-            """{"from":"","to":"","content":"","hostId":"","clientId":"","close":true,"all":false,"visible":"non","conversation": false,"matricule":"","date":"","heure":""}""");
+            """{"from_":"","to_":"","content_":"","hostId_":"","clientId_":"","close_":true,"all_":false,"visible_":"non","conversation_": false,"matricule_":"","date_":"","heure_":""}""");
+        //
+        _channel!.closeCode;
+        //
         Navigator.of(context).pop();
         return Future.value(true);
       },
@@ -271,7 +274,7 @@ class _ChattConv extends State<ChattConv> {
           ),
         ),
         Container(
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: 20,
             vertical: 10,
           ),
@@ -281,11 +284,7 @@ class _ChattConv extends State<ChattConv> {
           child: SafeArea(
             child: Row(
               children: [
-                Icon(
-                  Icons.mic,
-                  color: Colors.green.shade300,
-                ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Expanded(
@@ -297,13 +296,6 @@ class _ChattConv extends State<ChattConv> {
                     ),
                     child: Row(
                       children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.attach_file,
-                            color: Colors.blue.shade400,
-                          ),
-                        ),
                         SizedBox(
                           width: 10,
                         ),
@@ -319,13 +311,13 @@ class _ChattConv extends State<ChattConv> {
                         IconButton(
                           onPressed: () async {
                             print(
-                                """{"from":"${widget.user}","to":"","content":"${chatCont.text}","hostId":"${widget.hostId}","clientId":"${widget.clientId}","close":false,"all":false,"visible":"non","conversation": true}""");
+                                """{"from_":"${widget.user}","to_":"","content_":"${chatCont.text}","hostId_":"${widget.hostId}","clientId_":"${widget.clientId}","close_":false,"all_":false,"visible_":"non","conversation_": true}""");
                             //
                             setState(() {
                               widget.listeConv!
                                   .add(smsMessage(true, chatCont.text));
                               _channel!.sink.add(
-                                  """{"from":"${widget.user}","to":"","content":"${chatCont.text}","hostId":"${widget.hostId}","clientId":"${widget.clientId}","close":false,"all":false,"visible":"non","conversation": true,"matricule":"${widget.matricule}","date":"$date","heure":"$heure"}""");
+                                  """{"from_":"${widget.user}","to_":"","content_":"${chatCont.text}","hostId_":"${widget.hostId}","clientId_":"${widget.clientId}","close_":false,"all_":false,"visible_":"non","conversation_": true,"matricule_":"${widget.matricule}","date_":"$date","heure_":"$heure"}""");
                               chatCont.clear();
                             });
                           },

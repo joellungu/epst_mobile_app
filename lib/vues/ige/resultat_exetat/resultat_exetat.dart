@@ -27,7 +27,7 @@ class _ResultatExetat extends State<ResultatExetat> {
   //
   List listeProvince = [
     "Bas-Uele",
-    "Équateur",
+    "Equateur",
     "Haut-Katanga",
     "Haut-Lomami",
     "Haut-Uele",

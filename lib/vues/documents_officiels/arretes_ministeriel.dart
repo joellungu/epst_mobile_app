@@ -129,7 +129,7 @@ class ArretesMinisteriel extends GetView<MagasinController> {
                                     colorBlendMode: BlendMode.color,
                                   ),
                                   title: Text(l[index]["libelle"]),
-                                  subtitle: Text(l[index]["date"]),
+                                  subtitle: Text(l[index]["dateenligne"]),
                                   trailing: load.value == 1
                                       ? const Icon(
                                           Icons.check_circle_outline,

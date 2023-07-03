@@ -27,7 +27,7 @@ class _DemandePalmares extends State<DemandePalmares> {
   //
   List listeProvince = [
     "Bas-Uele",
-    "Équateur",
+    "Equateur",
     "Haut-Katanga",
     "Haut-Lomami",
     "Haut-Uele",

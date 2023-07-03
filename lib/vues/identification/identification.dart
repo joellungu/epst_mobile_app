@@ -27,11 +27,11 @@ class Identification extends GetView<IdentificationController> {
           List l = state!;
           return Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Container(
-                padding: EdgeInsets.only(
+                padding: const EdgeInsets.only(
                   left: 15,
                   right: 15,
                 ),

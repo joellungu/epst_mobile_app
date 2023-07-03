@@ -25,6 +25,15 @@ class _PayementMethode extends State<PayementMethode> {
   TextEditingController numero = TextEditingController();
   //
   String gender = "USD";
+  Timer? t;
+  //
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    t!.cancel();
+  }
+
   //
   @override
   Widget build(BuildContext context) {
@@ -150,7 +159,6 @@ class _PayementMethode extends State<PayementMethode> {
 
                   Timer(Duration(seconds: 5), () async {
                     //
-                    Timer? t;
                     t = Timer.periodic(const Duration(seconds: 5),
                         (timer) async {
                       int w = 0;

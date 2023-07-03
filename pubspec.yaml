@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+9
+version: 1.0.0+13
 
 environment:
   sdk: ">=2.16.0 <3.0.0"
@@ -34,38 +34,40 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  file_picker: ^4.4.0
+  file_picker:
   shimmer: ^2.0.0
   #easy_popup: ^1.0.0
   #syncfusion_flutter_pdfviewer: ^19.4.55-beta
   #pdfx:
-  flutter_mailer: ^2.0.1
-  dio: ^4.0.6
-  uuid: ^3.0.6
-  webview_flutter: ^3.0.4
+  flutter_mailer:
+  dio:
+  uuid:
+  webview_flutter:
   #flutter_plugin_record: ^1.0.1
-  image_picker: ^0.8.4+9
+  image_picker:
   accordion:
   #camera_camera: ^2.0.2
   flutter_chat_bubble:
-  sqflite: ^2.0.2
-  path_provider: ^2.0.9
-  connectivity_plus: ^2.2.1
-  web_socket_channel: ^2.1.0
-  open_file_safe: ^3.2.3
-  get: ^4.6.5
-  http: ^0.13.5
-  get_storage: ^2.0.3
-  isolated_worker: ^0.1.1
-  video_player: ^2.4.6
-  chewie: ^1.3.4
+  sqflite:
+  path_provider:
+  connectivity_plus:
+  web_socket_channel:
+  open_file_safe:
+  get:
+  http:
+  get_storage:
+  isolated_worker:
+  video_player:
+  chewie: 
   stomp_dart_client:
-  socket_io_client: ^2.0.0
-  flutter_widget_from_html: ^0.8.5
-  youtube_player_flutter: ^8.1.0
-  youtube_player_iframe: ^3.1.0
-  flutter_launcher_icons: "^0.11.0"
-  flutter_isolate: ^2.0.4
+  socket_io_client: 
+  flutter_widget_from_html: 
+  youtube_player_flutter: 
+  youtube_player_iframe:
+  flutter_launcher_icons: 
+  flutter_isolate: 
+  pdfx:
+  upgrader:
 
 flutter_icons:
   android: "launcher_icon"

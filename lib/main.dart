@@ -6,9 +6,11 @@ import 'package:epst_app/vues/ige/documents_certificatifs/document_certificatif_
 import 'package:epst_app/vues/magasin/magasin_controller.dart';
 import 'package:epst_app/vues/plainte/depotplainte_controller.dart';
 import 'package:epst_app/vues/reforme/reforme_controller.dart';
+import 'package:epst_app/vues/sg/sg_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:upgrader/upgrader.dart';
 import 'vues/identification/identification_controller.dart';
 import 'vues/ige/demande_identification/demande_identification_controller.dart';
 import 'vues/ige/demande_transfere/transfere_controller.dart';
@@ -35,6 +37,8 @@ void main() async {
   await GetStorage.init();
   //
   DepotController depotController = Get.put(DepotController());
+  //
+  SgController sgController = Get.put(SgController());
   //
   DepotPlainteController depotPlainteController =
       Get.put(DepotPlainteController());
@@ -92,7 +96,9 @@ class Epst extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: vue,
+      home: UpgradeAlert(
+        child: vue,
+      ),
     );
   }
 }

@@ -45,7 +45,7 @@ class _Demande extends State<Demande> {
   var Fichier = "";
   List listeProvince = [
     "Bas-Uele",
-    "Équateur",
+    "Equateur",
     "Haut-Katanga",
     "Haut-Lomami",
     "Haut-Uele",
@@ -124,9 +124,9 @@ class _Demande extends State<Demande> {
     {"p": "NORD-UBANGI", "d": "NORD-UBANGI 2"},
     {"p": "SANKURU", "d": "SANKURU 1"},
     {"p": "SANKURU", "d": "SANKURU 2"},
-    {"p": "SUD KIVU", "d": "SUD KIVU 2"},
-    {"p": "SUD KIVU", "d": "SUD-KIVU 1"},
-    {"p": "SUD KIVU", "d": "SUD-KIVU 3"},
+    {"p": "SUD-KIVU", "d": "SUD-KIVU 2"},
+    {"p": "SUD-KIVU", "d": "SUD-KIVU 1"},
+    {"p": "SUD-KIVU", "d": "SUD-KIVU 3"},
     {"p": "SUD-UBANGI", "d": "SUD-UBANGI 1"},
     {"p": "SUD-UBANGI", "d": "SUD-UBANGI 2"},
     {"p": "TANGANYIKA", "d": "TANGANYIKA 1"},
@@ -638,7 +638,7 @@ class _Demande extends State<Demande> {
                   i = 1.obs;
                   print("ext ${img1!.name}".split(".").last);
                   // Capture a photo
-                  Timer(Duration(seconds: 1), () {
+                  Timer(const Duration(seconds: 1), () {
                     setState(() {
                       //
                     });
@@ -745,7 +745,7 @@ class _Demande extends State<Demande> {
 
                       //
                       Map<String, dynamic> formulaireD = {
-                        "id": getCode(),
+                        //"id": getCode(),
                         "nom": nom.text,
                         "postnom": postnom.text,
                         "prenom": prenom.text,
