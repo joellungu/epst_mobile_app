@@ -417,7 +417,7 @@ class _DemandePalmares extends State<DemandePalmares> {
                           "codeecole": v,
                           "codeoption": "${listeOptions[option]}".split(",")[1],
                           "anneescolaire": annee.value,
-                        }, 0.5, send, "palmares", "palmares"),
+                        }, 0.6, send, "palmares", "palmares"),
                       ), //0.02
                     ),
                   );

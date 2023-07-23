@@ -36,7 +36,7 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
   }
 
   //
-  Future<int> getStatus(String id) async {
+  Future<Map> getStatus(String id) async {
     return demandeDocumentController.getStatus(id);
   }
 
@@ -258,31 +258,57 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
                         future: getStatus("${e['id']}"),
                         builder: (context, t) {
                           if (t.hasData) {
-                            int v = t.data as int;
+                            Map v = t.data as Map;
                             print("Valider ou: $v");
-                            show.value = v;
+                            show.value = v['valider'];
                             //setState((){});
                             return Container(
                               height: 100,
                               child: Column(
                                 children: [
-                                  v == 1
-                                      ? Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            "Validation: Validé",
-                                            style: TextStyle(fontSize: 20),
-                                          ),
-                                        )
-                                      : v == 2
-                                          ? Align(
+                                  v['valider'] == 1
+                                      ? Column(
+                                          children: [
+                                            Align(
                                               alignment: Alignment.centerLeft,
                                               child: Text(
-                                                "Validation: Refusé",
+                                                "Validation: Validé",
                                                 style: TextStyle(fontSize: 20),
                                               ),
+                                            ),
+                                            Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: Text(
+                                                "Passez à l'imprimerie de Kinshasa",
+                                                style: TextStyle(fontSize: 15),
+                                              ),
                                             )
-                                          : v == 3
+                                          ],
+                                        )
+                                      : v['valider'] == 2
+                                          ? Column(
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text(
+                                                    "Validation: Refusé",
+                                                    style:
+                                                        TextStyle(fontSize: 20),
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text(
+                                                    "Raison: ${v['raison']}",
+                                                    style:
+                                                        TextStyle(fontSize: 15),
+                                                  ),
+                                                )
+                                              ],
+                                            )
+                                          : v['valider'] == 3
                                               ? Align(
                                                   alignment:
                                                       Alignment.centerLeft,

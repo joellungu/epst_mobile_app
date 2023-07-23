@@ -96,9 +96,12 @@ class Epst extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      home: vue,
+      /*
       home: UpgradeAlert(
         child: vue,
       ),
+      */
     );
   }
 }

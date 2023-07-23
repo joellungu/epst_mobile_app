@@ -10,14 +10,14 @@ import '../../utils/requetes.dart';
 class MutuelleController extends GetxController {
   Requete requete = Requete();
 
-  Future<int> getStatus(String id) async {
-    Response response = await requete.getE("mutuelle/statusdem?id=$id");
-    print("mutuelle/statusdem?id=$id");
+  Future<Map> getStatus(String id) async {
+    Response response = await requete.getE("mutuelle/$id");
+    print("mutuelle/$id");
     if (response.statusCode == 200 || response.statusCode == 201) {
-      print("le status: ${response.body}");
+      print("mutuelle le status: ${response.body}");
       return response.body;
     } else {
-      return 0;
+      return {"valider": 0};
     }
   }
 
@@ -65,9 +65,10 @@ class MutuelleController extends GetxController {
     if (response.statusCode == 200 || response.statusCode == 201) {
       print(response.statusCode);
       print(response.body);
+      Map m = jsonDecode(response.body);
       List l = box.read("historique") ?? [];
-      map['carte'] = "";
-      l.add(map);
+      m['carte'] = "";
+      l.add(m);
       box.write("historique", l);
       Get.back();
       Get.snackbar("Succès", "Demande envoyé avec succès");

@@ -5,7 +5,7 @@ import 'connexion.dart';
 
 class Requete extends GetConnect {
   Future<Response> getE(String path) async {
-    print(path.split("&"));
+    print(path);
     return get("${Connexion.lien}$path");
   }
 
@@ -18,6 +18,16 @@ class Requete extends GetConnect {
     print("${Connexion.lien}$path");
     var url = Uri.parse("${Connexion.lien}$path");
     var response = await http.post(url, body: jsonEncode(e));
+    print('Response status: ${response.statusCode}');
+    print('Response body: ${response.body}');
+    //print(await http.read(Uri.https('example.com', 'foobar.txt')));
+    return response;
+  }
+
+  Future<http.Response> putE(String path, dynamic e) async {
+    print("${Connexion.lien}$path");
+    var url = Uri.parse("${Connexion.lien}$path");
+    var response = await http.put(url, body: jsonEncode(e));
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
     //print(await http.read(Uri.https('example.com', 'foobar.txt')));

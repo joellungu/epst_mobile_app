@@ -17,30 +17,12 @@ class Connexion {
   static var lien = 'https://epstserveur.herokuapp.com/';
   static var ws = 'epstserveur.herokuapp.com';
   //
-  //static var lien = 'http://45.90.220.130:8080/';
-  //static var ws = '45.90.220.130:8080/';
+  //static var lien = 'http://192.168.1.71:8080/';
+  //static var ws = '192.168.1.71:8080/';
 
   //static var lien = 'http://10.0.2.2:8080/';
   //static var ws = '10.0.2.2:8080';
 
-  //192.168.1.72
-  //static var lien_siite =
-  //  'https://app-02b35183-fec6-4c4b-99d9-fca268735259.cleverapps.io/';
-  //static var lien = 'https://dgc-epst.uc.r.appspot.com/';
-  //static var ws = 'dgc-epst.uc.r.appspot.com';
-  ////////////////////////////////////////////////////////////
-  //static var lien = 'http://10.0.2.2:8080/';
-  //static var ws = '10.0.2.2:8080/';
-  ////////////////////////////////////////////////////////////
-  //192.168.1.77
-  //static var lien = 'https://dgc-epst.uc.r.appspot.com/';
-  //static var ws = 'dgc-epst.uc.r.appspot.com';
-  //192.168.1.254
-  //static var lien = 'https://pepiteapp.herokuapp.com/';
-  //https://epstapp.herokuapp.com/
-  //pepiteapp.herokuapp.com/
-  //static var lien = 'http://192.168.43.2:8080/';
-  //
   static Future<String> enregistrement(Map<String, dynamic> utilisateur) async {
     //
     print("utilisateur: ${json.encode(utilisateur)}");

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:dio/dio.dart' as g;
 import 'package:epst_app/utils/connexion.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -7,6 +8,8 @@ import 'package:path_provider/path_provider.dart';
 
 class MagasinController extends GetxController with StateMixin<List> {
   //change(data, status: RxStatus.success());
+
+  //
   MagasinConnexion magasinConnexion = MagasinConnexion();
   List<Map<String, dynamic>> liste1 = [];
   List<Map<String, dynamic>> liste2 = [];
@@ -40,13 +43,13 @@ class MagasinController extends GetxController with StateMixin<List> {
     var l5 = box.read("nc") ?? [];
     var l6 = box.read("mp") ?? [];
     var l7 = box.read("sg") ?? [];
-    Response rep = await magasinConnexion.getListeMag(type);
-    print("le truc statu code: ${rep.body}");
+    g.Response rep = await magasinConnexion.getListeMag(type);
+    print("le truc statu code: ${rep.data}");
     print("Je suis à 7 == $type");
-    if (rep.isOk) {
-      print(rep.body);
+    if (rep.statusCode == 200 || rep.statusCode == 201) {
+      print(rep.data);
       //
-      List rep_liste = rep.body;
+      List rep_liste = rep.data;
       //
       rep_liste.forEach((element) {
         Map<String, dynamic> e = element;
@@ -168,25 +171,30 @@ class MagasinController extends GetxController with StateMixin<List> {
     //
     //var url = Uri.parse("${Connexion.lien}magasin/$id");
     var response = await magasinConnexion.getMagasin(id);
-    print(response.body);
+    print(response.data);
     //t = json.decode(response.body);
     //
     //==
     //
-    return response.body;
+    return response.data;
   }
 }
 
 class MagasinConnexion extends GetConnect {
-  Future<Response> getListeMag(int type) async {
+  //
+  final dio = g.Dio();
+  //
+  Future<g.Response> getListeMag(int type) async {
     print("${Connexion.lien}magasin/all/$type");
     //var url = Uri.parse('${Connexion.lien}magasin/all/$type');
-    var response = await get(
+    var response = await await dio.get(
       '${Connexion.lien}magasin/all/$type',
-      headers: {
-        "Accept": "application/json, text/plain;charset=UTF-8",
-        "Content-type": "application/json; charset=utf-8"
-      },
+      options: g.Options(
+        headers: {
+          "Accept": "application/json, text/plain;charset=UTF-8",
+          "Content-type": "application/json; charset=utf-8"
+        },
+      ),
     );
     return response;
     /*
@@ -199,9 +207,9 @@ class MagasinConnexion extends GetConnect {
     //return get("${Connexion.lien}magasin/all/$type");
   }
 
-  Future<Response> getMagasin(String id) async {
+  Future<g.Response> getMagasin(String id) async {
     var url = Uri.parse('${Connexion.lien}magasin/$id');
-    var response = await get("${Connexion.lien}magasin/$id");
+    var response = await await dio.get("${Connexion.lien}magasin/$id");
     return response;
     //return get("${Connexion.lien}magasin/$id");
   }

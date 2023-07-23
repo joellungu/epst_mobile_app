@@ -562,7 +562,12 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                     //showDialog(context: context, builder: builder);
                     final ImagePicker _picker = ImagePicker();
                     // Pick an image
-                    img1 = await _picker.pickImage(source: ImageSource.gallery);
+                    img1 = await _picker.pickImage(
+                      source: ImageSource.gallery,
+                      imageQuality: 75,
+                      maxWidth: 500,
+                      maxHeight: 500,
+                    );
                     ext1 = "${img1!.name}".split(".").last;
                     i = 1.obs;
                     print("ext ${img1!.name}".split(".").last);
@@ -592,11 +597,15 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                     i = 1.obs;
                     print("ext ${img1!.name}".split(".").last);
                     // Capture a photo
-                    Timer(Duration(seconds: 1), () {
-                      setState(() {
-                        //
+                    if (img1 != null) {
+                      //
+                      Timer(const Duration(seconds: 1), () {
+                        setState(() {
+                          //
+                        });
                       });
-                    });
+                      //
+                    }
                   },
                   icon: const Icon(Icons.photo_library),
                   label: const Text("Prendre une photo"),
@@ -1006,9 +1015,10 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                   Uint8List l1 = await img1!.readAsBytes();
                   //
                   String vd = d!.day < 9 ? "0${d!.day}" : "${d!.day}";
-                  String ddd = "${d!.year}-${d!.month}-$vd";
+                  String vm = d!.month < 9 ? "0${d!.month}" : "${d!.month}";
+                  String ddd = "${d!.year}-$vm-$vd";
                   Map<String, dynamic> formulaireD = {
-                    "id": getCode(),
+                    //"id": getCode(),
                     "nom": nom.text,
                     "postnom": postnom.text,
                     "prenom": prenom.text,
@@ -1121,7 +1131,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
         Get.find();
     //ByteArrayInputStream//formulaireD
     //
-    Timer(const Duration(seconds: 2), () {
+    Timer(const Duration(seconds: 0), () {
       demandeIdentificationController.faireUneInscription(formulaireD);
     });
   }
@@ -1603,12 +1613,15 @@ class _HistoriqueSend extends State<HistoriqueSend> {
         //
         List<String> extT = element.path.split(".");
         String ext = extT.last;
+        String name = extT.first;
+
         Uint8List l = await element.readAsBytes();
         depotController.listeFichier.value.add(
           {
             "length": l.length,
             "data": l,
             "type": ext,
+            "name": name,
           },
         );
       });

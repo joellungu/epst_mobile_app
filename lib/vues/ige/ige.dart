@@ -393,78 +393,6 @@ class _Ige extends State<Ige> {
           ElevatedButton(
             onPressed: () {
               //
-              Get.to(AttestationReussit(titre: "Attestation de réussite"));
-            },
-            style: ButtonStyle(
-                /*
-                backgroundColor: MaterialStateProperty.all(
-                Colors.green.shade700,
-              ),
-              */
-                ),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(pd),
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
-                      decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      )),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: Container(
-                      padding: EdgeInsets.only(bottom: 15),
-                      alignment: Alignment.center,
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          text: "Attestation de reussite exetat",
-                          children: [
-                            TextSpan(
-                              text: "",
-                              style: TextStyle(
-                                fontSize: taille,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                          style: TextStyle(
-                            fontSize: st,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              //
               Get.to(DemandePalmares());
             },
             style: ButtonStyle(
@@ -533,6 +461,79 @@ class _Ige extends State<Ige> {
               ),
             ),
           ),
+          ElevatedButton(
+            onPressed: () {
+              //
+              Get.to(AttestationReussit(titre: "Attestation de réussite"));
+            },
+            style: ButtonStyle(
+                /*
+                backgroundColor: MaterialStateProperty.all(
+                Colors.green.shade700,
+              ),
+              */
+                ),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(pd),
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
+                      ), //
+                      decoration: const BoxDecoration(
+                          //color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      )),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      padding: EdgeInsets.only(bottom: 15),
+                      alignment: Alignment.center,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "Fiche de paie",
+                          children: [
+                            TextSpan(
+                              text: "",
+                              style: TextStyle(
+                                fontSize: taille,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: st,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+
           ElevatedButton(
             onPressed: () {
               //

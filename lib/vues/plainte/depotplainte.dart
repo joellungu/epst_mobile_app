@@ -354,12 +354,14 @@ class _DepotPlainte extends State<DepotPlainte> {
                                       List<String> extT =
                                           element.path.split(".");
                                       String ext = extT.last;
+                                      String name = extT.first;
                                       Uint8List l = await element.readAsBytes();
                                       depotController.listeFichier.value.add(
                                         {
                                           "length": l.length,
                                           "data": l,
                                           "type": ext,
+                                          "name": name,
                                         },
                                       );
                                     });

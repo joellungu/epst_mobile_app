@@ -513,6 +513,7 @@ class _DemandeDocument extends State<DemandeDocument> {
           ),
           TextField(
             controller: telephone,
+            keyboardType: TextInputType.number,
             decoration: InputDecoration(
               //prefixIcon: Text("Email:"),
               border: OutlineInputBorder(
@@ -580,7 +581,11 @@ class _DemandeDocument extends State<DemandeDocument> {
                     //showDialog(context: context, builder: builder);
                     final ImagePicker _picker = ImagePicker();
                     // Pick an image
-                    img1 = await _picker.pickImage(source: ImageSource.camera);
+                    img1 = await _picker.pickImage(
+                        source: ImageSource.camera,
+                        imageQuality: 75,
+                        maxWidth: 500,
+                        maxHeight: 500);
                     ext1 = "${img1!.name}".split(".").last;
                     i = 1.obs;
                     print("ext ${img1!.name}".split(".").last);
@@ -905,44 +910,46 @@ class _DemandeDocument extends State<DemandeDocument> {
                   ),
                   Expanded(
                     flex: 1,
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<int>(
-                        value: type.value,
-                        underline: SizedBox(),
-                        style:
-                            const TextStyle(fontSize: 10, color: Colors.black),
-                        isExpanded: true,
-                        // decoration: const InputDecoration(
+                    child: Obx(
+                      () => DropdownButtonHideUnderline(
+                        child: DropdownButton<int>(
+                          value: type.value,
+                          underline: SizedBox(),
+                          style: const TextStyle(
+                              fontSize: 10, color: Colors.black),
+                          isExpanded: true,
+                          // decoration: const InputDecoration(
 
-                        //   border: OutlineInputBorder(
-                        //     gapPadding: 0,
+                          //   border: OutlineInputBorder(
+                          //     gapPadding: 0,
 
-                        //     borderSide: BorderSide(
-                        //       color: Colors.white,
-                        //       width: 0,
-                        //     ),
-                        //   ),
-                        // ),
+                          //     borderSide: BorderSide(
+                          //       color: Colors.white,
+                          //       width: 0,
+                          //     ),
+                          //   ),
+                          // ),
 
-                        onChanged: (value) {
-                          type.value = value as int;
-                          print("le id: $type");
-                        },
-                        items: List.generate(
-                          types.length,
-                          (index) {
-                            return DropdownMenuItem(
-                              value: index,
-                              child: Text(
-                                types[index],
-                                style: const TextStyle(fontSize: 12),
-                              ),
-                            );
+                          onChanged: (value) {
+                            type.value = value as int;
+                            print("le id: $type");
                           },
+                          items: List.generate(
+                            types.length,
+                            (index) {
+                              return DropdownMenuItem(
+                                value: index,
+                                child: Text(
+                                  types[index],
+                                  style: const TextStyle(fontSize: 12),
+                                ),
+                              );
+                            },
+                          ),
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -1016,9 +1023,10 @@ class _DemandeDocument extends State<DemandeDocument> {
                   Uint8List l1 = await img1!.readAsBytes();
                   //
                   String vd = d!.day < 9 ? "0${d!.day}" : "${d!.day}";
-                  String ddd = "${d!.year}-${d!.month}-$vd";
+                  String vm = d!.month < 9 ? "0${d!.month}" : "${d!.month}";
+                  String ddd = "${d!.year}-$vm-$vd";
                   Map<String, dynamic> formulaireD = {
-                    "id": getCode(),
+                    //"id": getCode(),
                     "nom": nom.text,
                     "postnom": postnom.text,
                     "prenom": prenom.text,
@@ -1046,6 +1054,9 @@ class _DemandeDocument extends State<DemandeDocument> {
                   */
                   //if (type.value == 0 || type.value == 4) {
                   //PayementMethode
+
+                  //send(formulaireD);
+
                   showDialog(
                     context: context,
                     builder: (c) {
@@ -1067,6 +1078,7 @@ class _DemandeDocument extends State<DemandeDocument> {
                       );
                     },
                   );
+
                   //} else {
                   //  send(formulaireD);
                   //}
@@ -1097,13 +1109,12 @@ class _DemandeDocument extends State<DemandeDocument> {
   }
 
   send(Map formulaireD) async {
-    Get.back();
-    DemandeIdentificationController demandeIdentificationController =
-        Get.find();
+    //Get.back();
+    DemandeDocumentController demandeDocumentController = Get.find();
     //ByteArrayInputStream//formulaireD
     //
     Timer(const Duration(seconds: 1), () {
-      demandeIdentificationController.faireUneInscription(formulaireD);
+      demandeDocumentController.faireUneInscription(formulaireD);
     });
   }
 

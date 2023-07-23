@@ -1,27 +1,31 @@
 import 'package:epst_app/utils/requetes.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
+import 'package:http/http.dart' as http;
 import 'identification.dart';
 
 class IdentificationController extends GetxController with StateMixin<List> {
   Requete requete = Requete();
   //
-  Future<int> getStatus(String id, bool v) async {
-    Response response = await requete
-        .getE("${v ? 'documentscolaire' : 'piecejointe'}/statusdem?id=$id");
-    print("${v ? 'documentscolaire' : 'piecejointe'}/statusdem?id=$id");
+  Future<Map> getStatus(String id, bool v) async {
+    Response response =
+        await requete.getE("${v ? 'identification' : 'piecejointe'}/$id");
+    print("${v ? 'identification' : 'piecejointe'}/$id");
     if (response.statusCode == 200 || response.statusCode == 201) {
       print("le status: ${response.body}");
-      return response.body;
+      Map r = response.body;
+      return r;
     } else {
-      return 0;
+      print("la reponse: ----------------");
+      print("la reponse: ${response.statusCode}");
+      print("la reponse: ${response.body}");
+      return {"valider": 0};
     }
   }
 
   Future<int> setUpdate(String id, int role, int t, String raison) async {
     //
-    Response rep = await requete.postE(
+    http.Response rep = await requete.putE(
       "${role == 7 ? 'documentscolaire' : role == 13 ? 'transfere' : 'identification'}/update/$id/$t",
       raison,
     );
@@ -36,7 +40,7 @@ class IdentificationController extends GetxController with StateMixin<List> {
       //
     } else {
       print(rep.statusCode);
-      print(rep.bodyString);
+      print(rep.body);
 
       //Get.snackbar("Erreur", "Un problème est survenu lors de la validation");
       return 0;
@@ -93,6 +97,9 @@ class IdentificationController extends GetxController with StateMixin<List> {
       change(l, status: RxStatus.success());
       //
     } else {
+      print("------------------------");
+      print("erreur: ${response.statusCode}");
+      print("erreur: ${response.body}");
       //
       change([], status: RxStatus.empty());
       //

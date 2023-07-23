@@ -5,6 +5,10 @@ import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:epst_app/utils/connexion.dart';
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
+import 'package:percent_indicator/percent_indicator.dart';
+
+final dio = Dio();
 
 class Transfere1 extends StatefulWidget {
   Map<String, dynamic>? utilisateur;
@@ -113,16 +117,8 @@ class _Transfere2 extends State<Transfere2> {
         };
         */
 
-        var request =
-            http.MultipartRequest("POST", url); //Uri.parse(urlInsertImage)
-        request.fields["ProductId"] =
-            widget.piecejointeId; // productId.toString();
-        request.files.add(
-          http.MultipartFile.fromBytes(
-            "picture", element["data"], //File(file!.path).readAsBytesSync(),
-            filename: element["type"], //file!.path,
-          ),
-        );
+        //
+
         // var res = await request.send();
         // if (res.statusCode == 201 || res.statusCode == 200) {
         //   print(res.statusCode);
@@ -181,7 +177,7 @@ class _Transfere2 extends State<Transfere2> {
   @override
   void initState() {
     //
-    send();
+    //send();
     //
     super.initState();
   }
@@ -189,37 +185,146 @@ class _Transfere2 extends State<Transfere2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Envois piece jointe"),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          mx
-              ? Card(
-                  elevation: 1,
-                  child: Container(
-                    height: 40,
-                    width: 40,
-                    child: CircularProgressIndicator(),
-                  ),
-                )
-              : Card(
-                  elevation: 1,
-                  child: Container(
-                    height: 100,
-                    width: 100,
-                    child: Icon(
-                      Icons.check_circle_outline,
-                      color: Colors.green,
-                    ),
-                  ),
-                ),
-          Container(
-            height: 40,
-            alignment: Alignment.center,
-            child: Text(
-                "Nombre d'element envoyé : $t sur un total de : ${widget.listeFichier.length}"),
+          Card(
+            elevation: 1,
+            child: Container(
+              height: 100,
+              width: 100,
+              child: const Icon(
+                Icons.check_circle_outline,
+                color: Colors.green,
+                size: 70,
+              ),
+            ),
           ),
+          Expanded(
+            flex: 1,
+            child: ListView(
+              padding: const EdgeInsets.all(20),
+              children: List.generate(
+                widget.listeFichier.length,
+                (index) => ProgressionIndication(
+                  widget.listeFichier[index],
+                  widget.piecejointeId,
+                ),
+              ),
+            ),
+          ),
+          // Container(
+          //   height: 40,
+          //   alignment: Alignment.center,
+          //   child: Text(
+          //       "Nombre d'element envoyé : $t sur un total de : ${widget.listeFichier.length}"),
+          // ),
         ],
       ),
+    );
+  }
+}
+
+class ProgressionIndication extends StatefulWidget {
+  Map? e;
+  String piecejointeId;
+  ProgressionIndication(this.e, this.piecejointeId);
+  @override
+  State<StatefulWidget> createState() {
+    //
+    return _ProgressionIndication();
+  }
+}
+
+class _ProgressionIndication extends State<ProgressionIndication> {
+  //
+  String percentage = "";
+  double pr = 0.0;
+  //
+
+  send() async {
+    var res = await dio.post(
+      "${Connexion.lien}piecejointe/${widget.piecejointeId}/${widget.e!["type"]}",
+      data: widget.e!["data"],
+      onSendProgress: (int sent, int total) {
+        percentage = (sent / total * 100).toStringAsFixed(2);
+        pr = double.parse(percentage);
+        print("::::::::: $percentage ");
+        setState(() {
+          /*
+              progress = "$sent" +
+                  " Bytes of " "$total Bytes - " +
+                  percentage +
+                  " % uploaded";
+                  */
+          print("::::::::: $sent" +
+              " Bytes of " "$total Bytes - " +
+              percentage +
+              " % uploaded");
+          //update the progress
+        });
+      },
+    );
+
+    if (res.statusCode == 200) {
+      print(res.toString());
+      //print response from server
+    } else {
+      print("Error during connection to server.");
+    }
+  }
+
+  @override
+  void initState() {
+    //
+    send();
+    //
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15),
+            child: Text(
+              "${widget.e!['name']}.${widget.e!['type']}",
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: const EdgeInsets.all(5),
+          height: 35,
+          width: double.maxFinite,
+          child: LinearPercentIndicator(
+            width: 300,
+            lineHeight: 20.0,
+            percent: pr / 100,
+            center: Text(
+              "$pr %",
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            backgroundColor: Colors.grey.shade400,
+            progressColor: Colors.blue.shade700,
+          ),
+        )
+      ],
     );
   }
 }

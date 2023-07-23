@@ -39,20 +39,16 @@ class _Details extends State<Details> {
           Container(
             height: 200,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  flex: 5,
-                  child: Container(),
-                ),
-                Expanded(
-                  flex: 5,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              "${Connexion.lien}${int.parse(widget.role) == 7 ? 'documentscolaire' : int.parse(widget.role) == 13 ? 'transfere' : 'identification'}/piecejointe/${widget.e['id']}")),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
+                Container(
+                  height: Get.size.height / 2.5,
+                  width: Get.size.width / 1.5,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            "${Connexion.lien}${int.parse(widget.role) == 7 ? 'documentscolaire' : int.parse(widget.role) == 13 ? 'transfere' : 'identification'}/piecejointe/${widget.e['id']}")),
+                    borderRadius: BorderRadius.circular(25),
                   ),
                 ),
               ],
@@ -652,6 +648,7 @@ class _Details extends State<Details> {
                           color: Colors.transparent,
                           child: Center(
                             child: Container(
+                              padding: const EdgeInsets.all(20),
                               height: 300,
                               width: Get.size.width / 1.2,
                               child: Column(
@@ -678,6 +675,14 @@ class _Details extends State<Details> {
                                       maxLines: 10,
                                       decoration: InputDecoration(
                                         hintText: "Raison du refus",
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          borderSide: const BorderSide(
+                                            color: Colors.black,
+                                            width: 1,
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -762,8 +767,8 @@ class _Details extends State<Details> {
 
   //
   //
-  Future<int> getStatus(String id) async {
-    return identificationController.getStatus(id, widget.v);
-  }
+  // Future<int> getStatus(String id) async {
+  //   return identificationController.getStatus(id, widget.v);
+  // }
   //
 }

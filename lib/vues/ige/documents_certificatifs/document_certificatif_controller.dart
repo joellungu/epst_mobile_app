@@ -10,14 +10,17 @@ import 'package:http/http.dart' as http;
 class DemandeDocumentController extends GetxController {
   Requete requete = Requete();
 
-  Future<int> getStatus(String id) async {
-    Response response = await requete.getE("documentscolaire/statusdem?id=$id");
-    print("mutuelle/statusdem?id=$id");
+  Future<Map> getStatus(String id) async {
+    Response response = await requete.getE("documentscolaire/$id");
+    print("documentscolaire/$id");
     if (response.statusCode == 200 || response.statusCode == 201) {
       print("le status: ${response.body}");
       return response.body;
     } else {
-      return 0;
+      print("-----------------------------");
+      print("erreur du à&: ${response.statusCode}");
+      print("erreur du à: ${response.body}");
+      return {"valider": 0};
     }
   }
 

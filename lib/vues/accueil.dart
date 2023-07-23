@@ -12,6 +12,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'chat/chat_page.dart';
+import 'chat/chat_page_2.dart';
 import 'e_sige/e_sige.dart';
 import 'identification/identification.dart';
 import 'identification/verification.dart';
@@ -87,8 +89,10 @@ class _Accueil extends State<Accueil> {
 
       Image.asset(
         "assets/LOGO-MINEPST-BON.png",
-        // color: Colors.blue,
-        // colorBlendMode: BlendMode.color,
+        color: Colors.white,
+        colorBlendMode: BlendMode.dst,
+        height: 100,
+        width: 100,
       ),
       //
       Image.asset(
@@ -164,9 +168,12 @@ class _Accueil extends State<Accueil> {
             ];
           }),
           // IconButton(
-          //   onPressed: () {},
-          //   icon: Icon(
-          //     Icons.more_vert,
+          //   onPressed: () {
+          //     // Get.to(const ChatPage()); //
+          //     Get.to(ChatPage2()); //
+          //   },
+          //   icon: const Icon(
+          //     Icons.more_horiz,
           //   ),
           // )
         ],
@@ -323,7 +330,11 @@ class _Accueil extends State<Accueil> {
                           TextSpan(
                             text: liste[index],
                             style: TextStyle(
-                              fontSize: index == 6 ? 12 : 15,
+                              fontSize: index == 6
+                                  ? 12
+                                  : index == 8
+                                      ? 13
+                                      : 15,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),

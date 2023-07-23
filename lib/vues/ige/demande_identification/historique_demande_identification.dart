@@ -36,8 +36,8 @@ class _HistoriqueDemandeIdentification
   }
 
   //
-  Future<int> getStatus(String id) async {
-    return identificationController.getStatus(id, false);
+  Future<Map> getStatus(String id) async {
+    return identificationController.getStatus(id, true);
   }
 
   //
@@ -261,31 +261,46 @@ class _HistoriqueDemandeIdentification
                         future: getStatus("${e['id']}"),
                         builder: (context, t) {
                           if (t.hasData) {
-                            int v = t.data as int;
-                            print("Valider ou: $v");
-                            show.value = v;
+                            Map v = t.data as Map;
+                            print("Valider ou: ${v['valider']}");
+                            show.value = v['valider'];
                             //setState((){});
                             return Container(
                               height: 100,
                               child: Column(
                                 children: [
-                                  v == 1
-                                      ? Align(
+                                  v['valider'] == 1
+                                      ? const Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
                                             "Validation: Validé",
                                             style: TextStyle(fontSize: 20),
                                           ),
                                         )
-                                      : v == 2
-                                          ? Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Text(
-                                                "Validation: Refusé",
-                                                style: TextStyle(fontSize: 20),
-                                              ),
+                                      : v['valider'] == 2
+                                          ? Column(
+                                              children: [
+                                                const Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text(
+                                                    "Validation: Refusé",
+                                                    style:
+                                                        TextStyle(fontSize: 20),
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Text(
+                                                    "Raison: ${v['raison']}",
+                                                    style: const TextStyle(
+                                                        fontSize: 15),
+                                                  ),
+                                                )
+                                              ],
                                             )
-                                          : v == 3
+                                          : v['valider'] == 3
                                               ? Align(
                                                   alignment:
                                                       Alignment.centerLeft,

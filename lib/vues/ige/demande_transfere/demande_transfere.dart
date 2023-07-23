@@ -1059,10 +1059,11 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                     //
                     DateTime dd = DateTime.now();
                     String vd = d!.day < 9 ? "0${d!.day}" : "${d!.day}";
-                    String ddd = "${d!.year}-${d!.month}-$vd";
+                    String vm = d!.month < 9 ? "0${d!.month}" : "${d!.month}";
+                    String ddd = "${d!.year}-$vm-$vd";
                     //
                     Map<String, dynamic> formulaireD = {
-                      "id": getCode(),
+                      //"id": getCode(),
                       "nom": nom.text,
                       "postnom": postnom.text,
                       "prenom": prenom.text,
@@ -1088,26 +1089,28 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                       "valider": 0,
                     };
                     //
+                    //send(formulaireD);
                     showDialog(
-                        context: context,
-                        builder: (c) {
-                          return Material(
-                            color: Colors.transparent,
-                            child: Center(
-                              child: Container(
-                                padding: const EdgeInsets.all(15),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                height: 250,
-                                width: 270,
-                                child: PayementMethode(formulaireD, 2, send,
-                                    "palmares", "palmares"),
+                      context: context,
+                      builder: (c) {
+                        return Material(
+                          color: Colors.transparent,
+                          child: Center(
+                            child: Container(
+                              padding: const EdgeInsets.all(15),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
                               ),
+                              height: 250,
+                              width: 270,
+                              child: PayementMethode(
+                                  formulaireD, 2, send, "palmares", "palmares"),
                             ),
-                          );
-                        });
+                          ),
+                        );
+                      },
+                    );
                     //____________________________________________________________
                   } else {}
                 }

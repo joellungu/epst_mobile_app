@@ -10,12 +10,15 @@ class TransfereController extends GetxController {
   Requete requete = Requete();
 
   Future<Map> getStatus(String id) async {
-    Response response = await requete.getE("transfere/statusdem?id=$id");
-    print("mutuelle/statusdem?id=$id");
+    Response response = await requete.getE("transfere/$id");
+    print("transfere/$id");
     if (response.statusCode == 200 || response.statusCode == 201) {
       print("le status: ${response.body}");
       return response.body;
     } else {
+      print("---------------------------");
+      print("le status: ${response.statusCode}");
+      print("le status: ${response.body}");
       return {"raison": "", "valider": 0};
     }
   }
