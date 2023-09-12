@@ -11,7 +11,7 @@ class Identification extends GetView<IdentificationController> {
   //
   RxString text = "".obs;
   //
-  Identification(this.inspecteur) {
+  Identification(this.inspecteur, {Key? key}) : super(key: key) {
     controller.getListe(
         inspecteur["role"], inspecteur["province"], inspecteur["district"]);
   }
@@ -43,7 +43,7 @@ class Identification extends GetView<IdentificationController> {
                     text.value = t;
                   },
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.search),
+                    prefixIcon: const Icon(Icons.search),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
                       borderSide: BorderSide(

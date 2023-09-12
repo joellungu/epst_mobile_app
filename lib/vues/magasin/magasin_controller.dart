@@ -49,9 +49,9 @@ class MagasinController extends GetxController with StateMixin<List> {
     if (rep.statusCode == 200 || rep.statusCode == 201) {
       print(rep.data);
       //
-      List rep_liste = rep.data;
+      List repListe = rep.data;
       //
-      rep_liste.forEach((element) {
+      for (var element in repListe) {
         Map<String, dynamic> e = element;
         print(e);
         if (type == 1) {
@@ -80,7 +80,7 @@ class MagasinController extends GetxController with StateMixin<List> {
           //print(":::: $l1");
         }
         */
-      });
+      }
       //print("fin de la boucle boss................................");
       //
       liste1.isEmpty ? box.write("magasin", l1) : box.write("magasin", liste1);
@@ -187,7 +187,7 @@ class MagasinConnexion extends GetConnect {
   Future<g.Response> getListeMag(int type) async {
     print("${Connexion.lien}magasin/all/$type");
     //var url = Uri.parse('${Connexion.lien}magasin/all/$type');
-    var response = await await dio.get(
+    var response = await dio.get(
       '${Connexion.lien}magasin/all/$type',
       options: g.Options(
         headers: {
@@ -209,7 +209,7 @@ class MagasinConnexion extends GetConnect {
 
   Future<g.Response> getMagasin(String id) async {
     var url = Uri.parse('${Connexion.lien}magasin/$id');
-    var response = await await dio.get("${Connexion.lien}magasin/$id");
+    var response = await dio.get("${Connexion.lien}magasin/$id");
     return response;
     //return get("${Connexion.lien}magasin/$id");
   }

@@ -1,11 +1,8 @@
-import 'dart:convert';
 
-import 'package:epst_app/utils/connexion.dart';
 import 'package:epst_app/utils/requetes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
 
 class PalmaresController extends GetxController with StateMixin<List> {
   Requete requete = Requete();

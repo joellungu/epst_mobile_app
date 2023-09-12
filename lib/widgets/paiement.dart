@@ -12,7 +12,7 @@ class PayementMethode extends StatefulWidget {
   String? type;
   String? demande;
   //
-  PayementMethode(this.requette, this.prix, this.f, this.demande, this.type);
+  PayementMethode(this.requette, this.prix, this.f, this.demande, this.type, {Key? key}) : super(key: key);
   //
   @override
   State<StatefulWidget> createState() {
@@ -37,14 +37,14 @@ class _PayementMethode extends State<PayementMethode> {
   //
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 300,
       width: 200,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
+          const Padding(
+            padding: EdgeInsets.only(left: 10, right: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [Text("Votre numéro de téléphone")],
@@ -56,11 +56,11 @@ class _PayementMethode extends State<PayementMethode> {
               prefix: const Text("+243"),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.blue,
                 ),
               ),
-              label: Text("Téléphone"),
+              label: const Text("Téléphone"),
               //prefixText: "De: "
             ),
           ),
@@ -76,7 +76,7 @@ class _PayementMethode extends State<PayementMethode> {
               Expanded(
                 flex: 5,
                 child: RadioListTile(
-                  title: Text(
+                  title: const Text(
                     "USD",
                     style: TextStyle(
                       fontSize: 13,
@@ -94,7 +94,7 @@ class _PayementMethode extends State<PayementMethode> {
               Expanded(
                 flex: 5,
                 child: RadioListTile(
-                  title: Text(
+                  title: const Text(
                     "CDF",
                     style: TextStyle(
                       fontSize: 13,
@@ -157,7 +157,7 @@ class _PayementMethode extends State<PayementMethode> {
 
                   //widget.f(widget.requette);
 
-                  Timer(Duration(seconds: 5), () async {
+                  Timer(const Duration(seconds: 5), () async {
                     //
                     t = Timer.periodic(const Duration(seconds: 5),
                         (timer) async {
@@ -313,7 +313,7 @@ class _PayementMethode extends State<PayementMethode> {
 
   //
   String getReference() {
-    var uuid = Uuid();
-    return "${uuid.v4()}";
+    var uuid = const Uuid();
+    return uuid.v4();
   }
 }

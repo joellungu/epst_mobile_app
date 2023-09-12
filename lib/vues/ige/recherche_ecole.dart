@@ -52,7 +52,7 @@ class RechercheEcole extends SearchDelegate {
         return ListTile(
           title: Text(
             "${result["ecole"]} (${result["province"]})",
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 13,
             ),
           ), //
@@ -86,7 +86,7 @@ class RechercheEcole extends SearchDelegate {
         return ListTile(
           title: Text(
             "${result["ecole"]} (${result["province"]})",
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 13,
             ),
           ), //
@@ -155,7 +155,7 @@ class RechercheEcole2 extends SearchDelegate {
         return ListTile(
           title: Text(
             "${result["ecole"]} (${result["province"]})",
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 13,
             ),
           ), //
@@ -189,7 +189,7 @@ class RechercheEcole2 extends SearchDelegate {
         return ListTile(
           title: Text(
             "${result["ecole"]} (${result["province"]})",
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 13,
             ),
           ), //

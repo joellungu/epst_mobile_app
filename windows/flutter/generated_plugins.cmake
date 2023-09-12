@@ -3,8 +3,11 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  connectivity_plus_windows
+  connectivity_plus
+  file_selector_windows
   pdfx
+  permission_handler_windows
+  record_windows
   url_launcher_windows
 )
 

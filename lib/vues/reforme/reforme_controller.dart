@@ -20,16 +20,16 @@ class ReformeController extends GetxController with StateMixin<List> {
     liste2 = [];
     //
     var box = GetStorage();
-    int v = 0;
+    //int v = 0;
     //
     var l1 = box.read("magasin") ?? [];
     var l2 = box.read("reforme") ?? [];
     Response rep = await magasinConnexion.getListeMag(type);
     if (rep.isOk) {
       print(rep.body);
-      List rep_liste = rep.body;
+      List repListe = rep.body;
       //
-      rep_liste.forEach((element) {
+      for (var element in repListe) {
         Map<String, dynamic> e = element;
         print(e);
         if (type == 1) {
@@ -48,7 +48,7 @@ class ReformeController extends GetxController with StateMixin<List> {
           //print(":::: $l1");
         }
         */
-      });
+      }
       print("fin de la boucle boss................................");
       //
       liste1.isEmpty ? box.write("magasin", l1) : box.write("magasin", liste1);
@@ -74,14 +74,14 @@ class ReformeController extends GetxController with StateMixin<List> {
     //
     final Directory directory = await getApplicationDocumentsDirectory();
     try {
-      final File file = File('${directory.path}/$id.$extension');
+      //final File file = File('${directory.path}/$id.$extension');
       print(':::${directory.path}/$id.$extension');
       //bool v = await Directory('${directory.path}/$id.$extension').exists();
       //if (!v) {
       Map<String, dynamic> m = await getMagasin(id);
       box.write(id, base64Decode(m["piecejointe"]));
-      File f = await file.writeAsBytes(base64Decode(m["piecejointe"])); //
-      bool b = await f.exists();
+      //File f = await file.writeAsBytes(base64Decode(m["piecejointe"])); //
+      //bool b = await f.exists();
       //liste11.add(e);
       //change(liste11, status: RxStatus.success());
       //print("Fichier crée avec succé ! $b");
@@ -99,7 +99,7 @@ class ReformeController extends GetxController with StateMixin<List> {
     Map<String, dynamic> t = {};
     //
     //var url = Uri.parse("${Connexion.lien}magasin/$id");
-    var response = await magasinConnexion.getMagasin("$id");
+    var response = await magasinConnexion.getMagasin(id);
     t = jsonDecode(response.body);
     //
     //==
@@ -110,7 +110,7 @@ class ReformeController extends GetxController with StateMixin<List> {
 
 class MagasinConnexion extends GetConnect {
   Future<Response> getListeMag(int type) async {
-    var url = Uri.parse('${Connexion.lien}magasin/all/$type');
+    //var url = Uri.parse('${Connexion.lien}magasin/all/$type');
     var response = await get('${Connexion.lien}magasin/all/$type');
     return response;
     //return get("${Connexion.lien}magasin/all/$type");

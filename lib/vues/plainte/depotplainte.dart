@@ -9,13 +9,14 @@ import 'package:get/get.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
 
 class DepotPlainte extends StatefulWidget {
   String? titre;
 
-  DepotPlainte({this.titre});
+  DepotPlainte({Key? key, this.titre}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -89,11 +90,11 @@ class _DepotPlainte extends State<DepotPlainte> {
         actions: [
           DropdownButton<int>(
               //value: 1,
-              icon: Icon(
+              icon: const Icon(
                 Icons.more_vert,
                 color: Colors.white,
               ),
-              items: [
+              items: const [
                 DropdownMenuItem<int>(
                   child: Text("Historique"),
                   value: 1,
@@ -106,12 +107,12 @@ class _DepotPlainte extends State<DepotPlainte> {
               onChanged: (e) {
                 //
                 if (e == 1) {
-                  Get.to(PlainteHis());
+                  Get.to(const PlainteHis());
                 } else {
-                  Get.to(References());
+                  Get.to(const References());
                 }
               }),
-          Padding(padding: EdgeInsets.only(right: 10))
+          const Padding(padding: EdgeInsets.only(right: 10))
         ],
       ),
       body: SingleChildScrollView(
@@ -130,11 +131,11 @@ class _DepotPlainte extends State<DepotPlainte> {
                   //prefixIcon: Text("De:"),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.blue,
                     ),
                   ),
-                  label: Text("De:"),
+                  label: const Text("De:"),
                   //prefixText: "De: "
                 ),
               ),
@@ -147,11 +148,11 @@ class _DepotPlainte extends State<DepotPlainte> {
                     //prefixIcon: Text("Téléphone:"),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.blue,
                       ),
                     ),
-                    label: Text("Téléphone:")
+                    label: const Text("Téléphone:")
                     //prefixText: "De: "
                     ),
               ),
@@ -164,11 +165,11 @@ class _DepotPlainte extends State<DepotPlainte> {
                   //prefixIcon: Text("Email:"),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.blue,
                     ),
                   ),
-                  label: Text("Email:"),
+                  label: const Text("Email:"),
                   //prefixText: "De: "
                 ),
               ),
@@ -194,10 +195,10 @@ class _DepotPlainte extends State<DepotPlainte> {
               ),
               Card(
                 elevation: 0,
-                margin: EdgeInsets.all(0),
+                margin: const EdgeInsets.all(0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
-                  side: BorderSide(color: Colors.grey),
+                  side: const BorderSide(color: Colors.grey),
                 ),
                 child: Container(
                   height: 50,
@@ -207,8 +208,8 @@ class _DepotPlainte extends State<DepotPlainte> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("  Province:"),
-                      SizedBox(
+                      const Text("  Province:"),
+                      const SizedBox(
                         width: 20,
                       ),
                       Expanded(
@@ -240,10 +241,10 @@ class _DepotPlainte extends State<DepotPlainte> {
               ),
               Card(
                 elevation: 0,
-                margin: EdgeInsets.all(0),
+                margin: const EdgeInsets.all(0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
-                  side: BorderSide(color: Colors.grey),
+                  side: const BorderSide(color: Colors.grey),
                 ),
                 child: Container(
                   height: 50,
@@ -253,11 +254,11 @@ class _DepotPlainte extends State<DepotPlainte> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(
+                      const Text(
                         "  Thématique:",
                         style: TextStyle(fontSize: 10),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                       Expanded(
@@ -265,7 +266,8 @@ class _DepotPlainte extends State<DepotPlainte> {
                         child: DropdownButtonHideUnderline(
                           child: DropdownButtonFormField<int>(
                             value: a,
-                            style: TextStyle(fontSize: 12, color: Colors.black),
+                            style: const TextStyle(
+                                fontSize: 12, color: Colors.black),
                             isExpanded: true,
                             onChanged: (value) {
                               a = value as int;
@@ -300,7 +302,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                     width: 1,
                   ),
                 ),
-                child: Container(
+                child: SizedBox(
                   height: MediaQuery.of(context).size.height / 2.5,
                   child: Column(
                     children: [
@@ -310,7 +312,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                           controller: messageC,
                           //maxLength: 10,
                           maxLines: 5,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: "  Message",
                             border: InputBorder.none,
                             //prefixText: "De: "
@@ -321,9 +323,9 @@ class _DepotPlainte extends State<DepotPlainte> {
                         flex: 3,
                         child: Container(
                           height: 50,
-                          padding: EdgeInsets.only(right: 10),
+                          padding: const EdgeInsets.only(right: 10),
                           alignment: Alignment.centerRight,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             //color: Colors.yellow,
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(10),
@@ -342,31 +344,54 @@ class _DepotPlainte extends State<DepotPlainte> {
                               ),
                               InkWell(
                                 onTap: () async {
-                                  FilePickerResult? result = await FilePicker
-                                      .platform
-                                      .pickFiles(allowMultiple: false);
-                                  if (result != null) {
-                                    List<File> files = result.paths
-                                        .map((path) => File(path!))
-                                        .toList();
-                                    files.forEach((element) async {
-                                      //
-                                      List<String> extT =
-                                          element.path.split(".");
-                                      String ext = extT.last;
-                                      String name = extT.first;
-                                      Uint8List l = await element.readAsBytes();
-                                      depotController.listeFichier.value.add(
-                                        {
-                                          "length": l.length,
-                                          "data": l,
-                                          "type": ext,
-                                          "name": name,
-                                        },
-                                      );
-                                    });
+                                  bool v1 = await Permission.storage.isGranted;
+                                  bool v2 = await Permission
+                                      .manageExternalStorage.isGranted;
+                                  //
+                                  Map<Permission, PermissionStatus> statuses =
+                                      await [
+                                    Permission.storage,
+                                    Permission.manageExternalStorage,
+                                  ].request();
+                                  //
+                                  var storage = statuses[Permission.storage];
+                                  var manageExternalStorage = statuses[
+                                      Permission.manageExternalStorage];
+                                  if (storage!.isGranted ||
+                                      manageExternalStorage!.isGranted) {
+                                    // do something
+                                    FilePickerResult? result = await FilePicker
+                                        .platform
+                                        .pickFiles(allowMultiple: false);
+                                    if (result != null) {
+                                      List<File> files = result.paths
+                                          .map((path) => File(path!))
+                                          .toList();
+                                      files.forEach((element) async {
+                                        //
+                                        List<String> extT =
+                                            element.path.split(".");
+                                        String ext = extT.last;
+                                        String name = extT.first;
+                                        Uint8List l =
+                                            await element.readAsBytes();
+                                        depotController.listeFichier.value.add(
+                                          {
+                                            "length": l.length,
+                                            "data": l,
+                                            "type": ext,
+                                            "name": name,
+                                          },
+                                        );
+                                      });
+                                    }
+                                    setState(() {});
+                                  } else {
+                                    Get.snackbar("Permission", "Oups !");
                                   }
-                                  setState(() {});
+                                  //
+
+                                  //
                                 },
                                 child: Container(
                                   height: 40,
@@ -386,7 +411,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                                           color: Colors.blue.shade900,
                                         ),
                                       ),
-                                      Icon(
+                                      const Icon(
                                         Icons.attach_file,
                                       )
                                     ],
@@ -410,7 +435,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                   children: List.generate(
                       depotController.listeFichier.value.length, (x) {
                     return ListTile(
-                      leading: Icon(Icons.file_present),
+                      leading: const Icon(Icons.file_present),
                       title: Text("Piece n° $x"),
                       trailing: IconButton(
                         onPressed: () {
@@ -420,7 +445,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                           });
                           //
                         },
-                        icon: Icon(Icons.close),
+                        icon: const Icon(Icons.close),
                       ),
                     );
                   }),
@@ -475,10 +500,10 @@ class _DepotPlainte extends State<DepotPlainte> {
                       print("_____________________: $utilisateur");
                       List<Map<String, dynamic>> l = [];
                       //____________________________________________________________
-                      depotController.listeFichier.value.forEach((element) {
+                      for (var element in depotController.listeFichier.value) {
                         Map<String, dynamic> e = element;
                         l.add(e);
-                      });
+                      }
                       //____________________________________________________________
                       Navigator.of(context).push(
                         MaterialPageRoute(
@@ -491,10 +516,10 @@ class _DepotPlainte extends State<DepotPlainte> {
                     } else {
                       List<Map<String, dynamic>> l = [];
                       //____________________________________________________________
-                      depotController.listeFichier.value.forEach((element) {
+                      for (var element in depotController.listeFichier.value) {
                         Map<String, dynamic> e = element;
                         l.add(e);
-                      });
+                      }
 
                       var ref = getReference();
                       Map<String, dynamic> utilisateur = {
@@ -556,10 +581,10 @@ class _DepotPlainte extends State<DepotPlainte> {
                 child: Container(
                   alignment: Alignment.center,
                   height: 40,
-                  child: Text("Envoyer"),
+                  child: const Text("Envoyer"),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               const SizedBox(
@@ -585,7 +610,7 @@ class _DepotPlainte extends State<DepotPlainte> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.close,
               ),
             )
@@ -596,8 +621,8 @@ class _DepotPlainte extends State<DepotPlainte> {
   }
 
   String getReference() {
-    var uuid = Uuid();
-    return "${uuid.v4()}";
+    var uuid = const Uuid();
+    return uuid.v4();
   }
 
   Future<void> _createFolderAndSave(
@@ -689,6 +714,8 @@ SizedBox(height: 20,),
  */
 
 class PlainteHis extends StatefulWidget {
+  const PlainteHis({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _PlainteHis();
@@ -704,11 +731,11 @@ class _PlainteHis extends State<PlainteHis> {
         await db.rawQuery('SELECT * FROM historique');
 
     return ListView(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       children: List.generate(listPlainte.length, (index) {
         print(listPlainte[index]["envoyer"]);
         return ListTile(
-          leading: Icon(Icons.menu),
+          leading: const Icon(Icons.menu),
           title: Text(listPlainte[index]["envoyeur"]),
           subtitle: Text(listPlainte[index]["date"]),
           trailing: IconButton(
@@ -725,8 +752,8 @@ class _PlainteHis extends State<PlainteHis> {
               }
             },
             icon: listPlainte[index]["envoyer"] == "non"
-                ? Icon(Icons.sync)
-                : Icon(
+                ? const Icon(Icons.sync)
+                : const Icon(
                     Icons.check_circle_outline,
                     color: Colors.green,
                   ),
@@ -740,7 +767,7 @@ class _PlainteHis extends State<PlainteHis> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Historique"),
+        title: const Text("Historique"),
       ),
       body: FutureBuilder(
         future: getPlaite(),
@@ -757,7 +784,7 @@ class _PlainteHis extends State<PlainteHis> {
               height: 40,
               width: 40,
               alignment: Alignment.center,
-              child: CircularProgressIndicator(),
+              child: const CircularProgressIndicator(),
             ),
           );
         },
@@ -769,7 +796,7 @@ class _PlainteHis extends State<PlainteHis> {
 class HistoriqueSend extends StatefulWidget {
   Map<String, dynamic> pl = {};
 
-  HistoriqueSend(this.pl);
+  HistoriqueSend(this.pl, {Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -788,12 +815,12 @@ class _HistoriqueSend extends State<HistoriqueSend> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
           ),
         ],
       ),
       body: ListView(
-        padding: EdgeInsets.all(5),
+        padding: const EdgeInsets.all(5),
         children: [
           Text.rich(
             TextSpan(
@@ -857,9 +884,9 @@ class _HistoriqueSend extends State<HistoriqueSend> {
           ),
           Container(
             height: 50,
-            padding: EdgeInsets.only(right: 10),
+            padding: const EdgeInsets.only(right: 10),
             alignment: Alignment.centerRight,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               //color: Colors.yellow,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(10),
@@ -880,7 +907,7 @@ class _HistoriqueSend extends State<HistoriqueSend> {
                   onSelected: (e) {
                     //getFile();
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.attach_file,
                   ),
                   itemBuilder: (context) => [
@@ -899,9 +926,9 @@ class _HistoriqueSend extends State<HistoriqueSend> {
                               color: Colors.blue.shade200,
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            child: Icon(Icons.file_copy_outlined),
+                            child: const Icon(Icons.file_copy_outlined),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Text(
@@ -930,7 +957,7 @@ class _HistoriqueSend extends State<HistoriqueSend> {
               children:
                   List.generate(depotController.listeFichier.value.length, (x) {
                 return ListTile(
-                  leading: Icon(Icons.file_present),
+                  leading: const Icon(Icons.file_present),
                   title: Text("Piece n° $x"),
                   trailing: IconButton(
                     onPressed: () {
@@ -940,7 +967,7 @@ class _HistoriqueSend extends State<HistoriqueSend> {
                       });
                       //
                     },
-                    icon: Icon(Icons.close),
+                    icon: const Icon(Icons.close),
                   ),
                 );
               }),
@@ -992,8 +1019,8 @@ class _HistoriqueSend extends State<HistoriqueSend> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text("Problème de connexion"),
-                      content: Text(
+                      title: const Text("Problème de connexion"),
+                      content: const Text(
                         "Vous n'etes pas connecté à internet, veuillez vous reconnecter puis reessayer",
                         textAlign: TextAlign.center,
                       ),
@@ -1002,7 +1029,7 @@ class _HistoriqueSend extends State<HistoriqueSend> {
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.close,
                           ),
                         )
@@ -1012,20 +1039,20 @@ class _HistoriqueSend extends State<HistoriqueSend> {
                 );
               }
             },
-            child: Text("Reenvoyer"),
+            child: const Text("Reenvoyer"),
           ),
         ],
       ),
     );
   }
 
-  var st = TextStyle(
+  var st = const TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 13,
     color: Colors.black,
   );
 
-  var st2 = TextStyle(
+  var st2 = const TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 13,
     color: Colors.green,

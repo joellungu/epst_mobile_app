@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
@@ -6,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
 class DirectEductivi extends StatefulWidget {
+  const DirectEductivi({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _DirectEductivi();
@@ -166,7 +167,7 @@ class _DirectEductivi extends State<DirectEductivi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Direct"),
+        title: const Text("Direct"),
       ),
       backgroundColor: Colors.black,
       body: HtmlWidget(
@@ -196,14 +197,14 @@ class _DirectEductivi extends State<DirectEductivi> {
         },
 
         // turn on selectable if required (it's disabled by default)
-        isSelectable: true,
+        //isSelectable: true,
 
         // these callbacks are called when a complicated element is loading
         // or failed to render allowing the app to render progress indicator
         // and fallback widget
         onErrorBuilder: (context, element, error) =>
             Text('$element error: $error'),
-        onLoadingBuilder: (context, element, loadingProgress) => Center(
+        onLoadingBuilder: (context, element, loadingProgress) => const Center(
           child: SizedBox(
             height: 50,
             width: 50,
@@ -218,9 +219,9 @@ class _DirectEductivi extends State<DirectEductivi> {
         // consider using `ListView` or `SliverList` for better performance
         renderMode: RenderMode.column,
         // set the default styling for text
-        textStyle: TextStyle(fontSize: 14),
+        textStyle: const TextStyle(fontSize: 14),
         // turn on `webView` if you need IFRAME support (it's disabled by default)
-        webView: true,
+        //webView: true,
       ),
     );
   }

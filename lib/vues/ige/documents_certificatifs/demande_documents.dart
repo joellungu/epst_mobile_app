@@ -12,13 +12,12 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
-import '../demande_identification/demande_identification_controller.dart';
 import 'document_certificatif_controller.dart';
 
 class DemandeDocument extends StatefulWidget {
   String? titre;
   //
-  DemandeDocument(this.titre);
+  DemandeDocument(this.titre, {Key? key}) : super(key: key);
   //
   @override
   State<StatefulWidget> createState() {
@@ -221,12 +220,12 @@ class _DemandeDocument extends State<DemandeDocument> {
 
     listeDistrict.clear();
     //
-    listeDistrict2.forEach((element) {
+    for (var element in listeDistrict2) {
       if ("${element['p']}".toLowerCase() ==
           ("${listeProvince[0]}".toLowerCase())) {
         listeDistrict.add("${element['d']}");
       }
-    });
+    }
     //
   }
 
@@ -238,7 +237,7 @@ class _DemandeDocument extends State<DemandeDocument> {
         centerTitle: true,
         title: Text(
           widget.titre!,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 17,
           ),
         ),
@@ -256,11 +255,11 @@ class _DemandeDocument extends State<DemandeDocument> {
               //prefixIcon: Text("De:"),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.blue,
                 ),
               ),
-              label: Text("Nom"),
+              label: const Text("Nom"),
               //prefixText: "De: "
             ),
           ),
@@ -273,11 +272,11 @@ class _DemandeDocument extends State<DemandeDocument> {
                 //prefixIcon: Text("Téléphone:"),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.blue,
                   ),
                 ),
-                label: Text("Postnom")
+                label: const Text("Postnom")
                 //prefixText: "De: "
                 ),
           ),
@@ -290,11 +289,11 @@ class _DemandeDocument extends State<DemandeDocument> {
               //prefixIcon: Text("Email:"),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.blue,
                 ),
               ),
-              label: Text("Prenom"),
+              label: const Text("Prenom"),
               //prefixText: "De: "
             ),
           ),
@@ -303,10 +302,10 @@ class _DemandeDocument extends State<DemandeDocument> {
           ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: Container(
               height: 50,
@@ -316,11 +315,11 @@ class _DemandeDocument extends State<DemandeDocument> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
+                  const Text(
                     "  Genre:",
                     style: TextStyle(fontSize: 10),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Expanded(
@@ -364,23 +363,23 @@ class _DemandeDocument extends State<DemandeDocument> {
               //prefixIcon: Text("Email:"),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.blue,
                 ),
               ),
-              label: Text("Lieu de naissance"),
+              label: const Text("Lieu de naissance"),
               //prefixText: "De: "
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: Container(
               height: 50,
@@ -391,10 +390,10 @@ class _DemandeDocument extends State<DemandeDocument> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   d == null
-                      ? Text("  Date de naissance: ")
+                      ? const Text("  Date de naissance: ")
                       : Text(
                           "  Date de naissance: ${d!.day}/${d!.month}/${d!.year}"),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Expanded(
@@ -434,11 +433,11 @@ class _DemandeDocument extends State<DemandeDocument> {
               //prefixIcon: Text("Email:"),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.blue,
                 ),
               ),
-              label: Text("Nom père"),
+              label: const Text("Nom père"),
               //prefixText: "De: "
             ),
           ),
@@ -451,11 +450,11 @@ class _DemandeDocument extends State<DemandeDocument> {
               //prefixIcon: Text("Email:"),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.blue,
                 ),
               ),
-              label: Text("Nom mère"),
+              label: const Text("Nom mère"),
               //prefixText: "De: "
             ),
           ),
@@ -464,10 +463,10 @@ class _DemandeDocument extends State<DemandeDocument> {
           ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: Container(
               height: 50,
@@ -477,8 +476,8 @@ class _DemandeDocument extends State<DemandeDocument> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text("  Province d'origine:"),
-                  SizedBox(
+                  const Text("  Province d'origine:"),
+                  const SizedBox(
                     width: 20,
                   ),
                   Expanded(
@@ -518,11 +517,11 @@ class _DemandeDocument extends State<DemandeDocument> {
               //prefixIcon: Text("Email:"),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.blue,
                 ),
               ),
-              label: Text("Numéro de téléphone"),
+              label: const Text("Numéro de téléphone"),
               //prefixText: "De: "
             ),
           ),
@@ -535,11 +534,11 @@ class _DemandeDocument extends State<DemandeDocument> {
               //prefixIcon: Text("Email:"),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.blue,
                 ),
               ),
-              label: Text("Adresse"),
+              label: const Text("Adresse"),
               //prefixText: "De: "
             ),
           ),
@@ -557,11 +556,11 @@ class _DemandeDocument extends State<DemandeDocument> {
                     final ImagePicker _picker = ImagePicker();
                     // Pick an image
                     img1 = await _picker.pickImage(source: ImageSource.gallery);
-                    ext1 = "${img1!.name}".split(".").last;
+                    ext1 = img1!.name.split(".").last;
                     i = 1.obs;
                     print("ext ${img1!.name}".split(".").last);
                     // Capture a photo
-                    Timer(Duration(seconds: 1), () {
+                    Timer(const Duration(seconds: 1), () {
                       setState(() {
                         //
                       });
@@ -586,11 +585,11 @@ class _DemandeDocument extends State<DemandeDocument> {
                         imageQuality: 75,
                         maxWidth: 500,
                         maxHeight: 500);
-                    ext1 = "${img1!.name}".split(".").last;
+                    ext1 = img1!.name.split(".").last;
                     i = 1.obs;
                     print("ext ${img1!.name}".split(".").last);
                     // Capture a photo
-                    Timer(Duration(seconds: 1), () {
+                    Timer(const Duration(seconds: 1), () {
                       setState(() {
                         //
                       });
@@ -629,7 +628,7 @@ class _DemandeDocument extends State<DemandeDocument> {
           ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
               side: const BorderSide(color: Colors.grey),
@@ -647,7 +646,7 @@ class _DemandeDocument extends State<DemandeDocument> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       "  Ecole: ",
                       style: TextStyle(fontSize: 12),
                     ),
@@ -659,7 +658,7 @@ class _DemandeDocument extends State<DemandeDocument> {
                         child: Obx(
                           () => Text(
                             "${ecole.value["ecole"] ?? ''} / ${ecole.value["province"] ?? ''}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.black,
                               fontSize: 13,
                             ),
@@ -678,10 +677,10 @@ class _DemandeDocument extends State<DemandeDocument> {
           ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: Container(
               height: 50,
@@ -704,13 +703,13 @@ class _DemandeDocument extends State<DemandeDocument> {
                           p_e = value as int;
                           listeDistrict.clear();
                           setState(() {
-                            listeDistrict2.forEach((element) {
+                            for (var element in listeDistrict2) {
                               if ("${element['p']}".toLowerCase() ==
                                   ("${listeProvince[p_e]}".toLowerCase())) {
                                 print("$element");
                                 listeDistrict.add("${element['d']}");
                               }
-                            });
+                            }
                           });
                           print(listeDistrict);
                           //value = s;
@@ -790,10 +789,10 @@ class _DemandeDocument extends State<DemandeDocument> {
           ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: Container(
               height: 50,
@@ -803,11 +802,11 @@ class _DemandeDocument extends State<DemandeDocument> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
+                  const Text(
                     "  Option:",
                     style: TextStyle(fontSize: 10),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Expanded(
@@ -845,7 +844,7 @@ class _DemandeDocument extends State<DemandeDocument> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Card(
@@ -888,10 +887,10 @@ class _DemandeDocument extends State<DemandeDocument> {
           ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: Container(
               height: 50,
@@ -914,7 +913,7 @@ class _DemandeDocument extends State<DemandeDocument> {
                       () => DropdownButtonHideUnderline(
                         child: DropdownButton<int>(
                           value: type.value,
-                          underline: SizedBox(),
+                          underline: const SizedBox(),
                           style: const TextStyle(
                               fontSize: 10, color: Colors.black),
                           isExpanded: true,
@@ -1012,7 +1011,7 @@ class _DemandeDocument extends State<DemandeDocument> {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: CircularProgressIndicator(
+                      child: const CircularProgressIndicator(
                         strokeWidth: 7,
                       ),
                     ),
@@ -1097,7 +1096,7 @@ class _DemandeDocument extends State<DemandeDocument> {
             child: Container(
               alignment: Alignment.center,
               height: 40,
-              child: Text("Envoyer"),
+              child: const Text("Envoyer"),
             ),
           ),
           const SizedBox(
@@ -1140,7 +1139,7 @@ class _DemandeDocument extends State<DemandeDocument> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.close,
               ),
             )
@@ -1151,8 +1150,8 @@ class _DemandeDocument extends State<DemandeDocument> {
   }
 
   String getReference() {
-    var uuid = Uuid();
-    return "${uuid.v4()}";
+    var uuid = const Uuid();
+    return uuid.v4();
   }
 
   Future<void> _createFolderAndSave(

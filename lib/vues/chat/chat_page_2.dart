@@ -13,6 +13,8 @@ String randomString() {
 }
 
 class ChatPage2 extends StatefulWidget {
+  const ChatPage2({Key? key}) : super(key: key);
+
   // const MyHomePage({super.key});
 
   @override

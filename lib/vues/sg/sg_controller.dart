@@ -36,9 +36,9 @@ class SgController extends GetxController with StateMixin<List> {
     if (rep.statusCode == 200) {
       print(rep.body);
       //
-      List rep_liste = jsonDecode(rep.body);
+      List repListe = jsonDecode(rep.body);
       //
-      rep_liste.forEach((element) {
+      for (var element in repListe) {
         Map<String, dynamic> e = element;
         print(e);
         liste7.add(e);
@@ -53,7 +53,7 @@ class SgController extends GetxController with StateMixin<List> {
           //print(":::: $l1");
         }
         */
-      });
+      }
       //print("fin de la boucle boss................................");
       //
 

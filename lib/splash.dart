@@ -22,6 +22,20 @@ class Splash extends StatelessWidget {
       });
     }
     //print("cool c'est finit $t");
+    var a = await rootBundle.loadString("assets/antenne.txt");
+    List la = a.split('\n');
+    int x = 0;
+    for (String e in la) {
+      //print("la valeur: $e");
+      //t++;
+      if (e.split(';').length > 2) {
+        liste_antennes.add({
+          "antenne": e.split(';')[1],
+          "code": e.split(';')[2],
+          "province": e.split(';')[3]
+        });
+      }
+    }
     //
     return 1;
     //
@@ -30,12 +44,12 @@ class Splash extends StatelessWidget {
     // });
   }
 
-  Splash() {
+  Splash({Key? key}) : super(key: key) {
     //
   }
   Widget getView() {
     Timer(const Duration(seconds: 4), () {
-      Get.off(Accueil());
+      Get.off(const Accueil());
     });
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

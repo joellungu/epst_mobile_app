@@ -4,14 +4,14 @@ import 'package:epst_app/vues/reforme/reforme_controller.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:open_file_safe/open_file_safe.dart';
+import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class Reforme extends GetView<ReformeController> {
   //
-  Reforme({this.titre}) {
+  Reforme({Key? key, this.titre}) : super(key: key) {
     controller.getListeMag(2);
   }
   //
@@ -30,7 +30,7 @@ class Reforme extends GetView<ReformeController> {
       appBar: AppBar(
         centerTitle: true,
         title: Text("$titre"),
-        actions: [
+        actions: const [
           /*IconButton(
             onPressed: () {},
             icon: const Icon(
@@ -52,7 +52,7 @@ class Reforme extends GetView<ReformeController> {
                   height: 5,
                 ),
                 Container(
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     left: 15,
                     right: 15,
                   ),
@@ -64,7 +64,7 @@ class Reforme extends GetView<ReformeController> {
                       text.value = t;
                     },
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search),
+                      prefixIcon: const Icon(Icons.search),
                       hintText: "Recherche élève",
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
@@ -160,7 +160,7 @@ class Reforme extends GetView<ReformeController> {
             );
           } else {
             return Container(
-              child: Text(""),
+              child: const Text(""),
             );
           }
         },
@@ -241,7 +241,7 @@ onTap: () async {
 class Lire extends StatefulWidget {
   String? titre;
 
-  Lire({this.titre});
+  Lire({Key? key, this.titre}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -250,9 +250,9 @@ class Lire extends StatefulWidget {
 }
 
 class _Lire extends State<Lire> {
-  YoutubePlayerController _controller = YoutubePlayerController(
+  final YoutubePlayerController _controller = YoutubePlayerController(
     initialVideoId: '74EdyJzluWY',
-    flags: YoutubePlayerFlags(
+    flags: const YoutubePlayerFlags(
       autoPlay: true,
       mute: false,
     ),

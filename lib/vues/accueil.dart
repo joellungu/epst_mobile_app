@@ -1,27 +1,25 @@
 import 'dart:convert';
-import 'package:epst_app/vues/documents_officiels/documents_officiels.dart';
 import 'package:epst_app/vues/epst_kelasi/epst_kelasi.dart';
 import 'package:epst_app/vues/formation/formation.dart';
 import 'package:epst_app/vues/ige/ige.dart';
+import 'package:epst_app/vues/ige/sernie/sernie.dart';
 import 'package:epst_app/vues/plainte/depotplainte.dart';
 import 'package:epst_app/vues/listing.dart';
 import 'package:epst_app/vues/actualite/live.dart';
 import 'package:epst_app/vues/magasin/magasine.dart';
 import 'package:epst_app/vues/sg/sg.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'chat/chat_page.dart';
-import 'chat/chat_page_2.dart';
 import 'e_sige/e_sige.dart';
-import 'identification/identification.dart';
 import 'identification/verification.dart';
 import 'mutuelle/mutuelle.dart';
 import 'reforme/reforme.dart';
 import 'chat.dart';
 
 class Accueil extends StatefulWidget {
+  const Accueil({Key? key}) : super(key: key);
+
   @override
   State<Accueil> createState() => _Accueil();
 }
@@ -143,18 +141,20 @@ class _Accueil extends State<Accueil> {
           PopupMenuButton(onSelected: (e) {
             //Identification
             print(e);
-            Get.to(Verification());
+            if (e == 0) {
+              Get.to(const Verification());
+            }
             //
           }, itemBuilder: (c) {
             return [
-              PopupMenuItem(
-                value: 1,
+              const PopupMenuItem(
+                value: 0,
                 //onTap: () => Get.to(Identification()),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
-                  children: const [
+                  children: [
                     Icon(
-                      Icons.person,
+                      Icons.person_add,
                       size: 25,
                       color: Colors.blue,
                     ),
@@ -164,7 +164,25 @@ class _Accueil extends State<Accueil> {
                     Text("Identification")
                   ],
                 ),
-              )
+              ),
+              // const PopupMenuItem(
+              //   value: 1,
+              //   //onTap: () => Get.to(Identification()),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.start,
+              //     children: [
+              //       Icon(
+              //         Icons.person,
+              //         size: 25,
+              //         color: Colors.blue,
+              //       ),
+              //       SizedBox(
+              //         width: 5,
+              //       ),
+              //       Text("Validation")
+              //     ],
+              //   ),
+              // ),
             ];
           }),
           // IconButton(
@@ -192,8 +210,8 @@ class _Accueil extends State<Accueil> {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: Text("Votre nom"),
-                        content: Container(
+                        title: const Text("Votre nom"),
+                        content: SizedBox(
                           height: 150,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -224,7 +242,7 @@ class _Accueil extends State<Accueil> {
                                     );
                                   }
                                 },
-                                child: Text("Commencer"),
+                                child: const Text("Commencer"),
                               )
                             ],
                           ),
@@ -306,7 +324,7 @@ class _Accueil extends State<Accueil> {
                 Expanded(
                   flex: 7,
                   child: Container(
-                    padding: EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                     alignment: Alignment.center,
                     child: listeIcons[index],
                     decoration: const BoxDecoration(
@@ -334,7 +352,9 @@ class _Accueil extends State<Accueil> {
                                   ? 12
                                   : index == 8
                                       ? 13
-                                      : 15,
+                                      : index == 1
+                                          ? 10
+                                          : 15,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),

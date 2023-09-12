@@ -1,4 +1,3 @@
-import 'package:accordion/accordion.dart';
 import 'package:epst_app/utils/connexion.dart';
 import 'package:epst_app/vues/identification/identification_controller.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +7,8 @@ class Details extends StatefulWidget {
   Map e;
   bool v;
   String role, province, district;
-  Details(this.e, this.v, this.role, this.province, this.district);
+  Details(this.e, this.v, this.role, this.province, this.district, {Key? key})
+      : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _Details();
@@ -34,9 +34,9 @@ class _Details extends State<Details> {
         title: const Text("Details"),
       ),
       body: ListView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         children: [
-          Container(
+          SizedBox(
             height: 200,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +59,7 @@ class _Details extends State<Details> {
                   children: [
                     Text(
                       "${e['annee']}",
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 17,
                           fontWeight: FontWeight.bold),
@@ -69,7 +69,7 @@ class _Details extends State<Details> {
                       child: Text(
                         "réfèrence de la demande: ${e['id']}",
                         textAlign: TextAlign.left,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -79,7 +79,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Nom: ${e['nom']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -88,7 +88,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Postnom: ${e['postnom']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -97,7 +97,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Prenom: ${e['prenom']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -106,7 +106,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "sexe: ${e['sexe']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -115,7 +115,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "lieuNaissance: ${e['lieuNaissance']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -124,7 +124,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "dateNaissance: ${e['dateNaissance']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -133,7 +133,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "telephone: ${e['telephone']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -142,7 +142,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "nompere: ${e['nompere']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -151,7 +151,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "adresse: ${e['adresse']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.bold),
@@ -160,7 +160,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "provinceOrigine: ${e['provinceOrigine']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -169,7 +169,7 @@ class _Details extends State<Details> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "ecole: ${e['ecole']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -179,7 +179,7 @@ class _Details extends State<Details> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "provinceEcole: ${e['provinceEcole']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -189,7 +189,7 @@ class _Details extends State<Details> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "provinceEducationnel: ${e['provinceEducationnel']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -199,7 +199,7 @@ class _Details extends State<Details> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "option: ${e['option']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -209,7 +209,7 @@ class _Details extends State<Details> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "annee: ${e['annee']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -219,7 +219,7 @@ class _Details extends State<Details> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "documenrDemandecode: ${widget.v ? e['documenrDemandecode'] : e['typeIdentificationcode']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -247,7 +247,7 @@ class _Details extends State<Details> {
                       child: Text(
                         "id: ${e['id']}",
                         textAlign: TextAlign.left,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -257,7 +257,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Nom: ${e['nom']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -266,7 +266,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Postnom: ${e['postnom']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -275,7 +275,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Prenom: ${e['prenom']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -284,7 +284,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "sexe: ${e['sexe']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -293,7 +293,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "lieuNaissance: ${e['lieuNaissance']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -302,7 +302,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "dateNaissance: ${e['dateNaissance']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -311,7 +311,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "telephone: ${e['telephone']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -320,7 +320,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "nompere: ${e['nompere']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -329,7 +329,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "nommere: ${e['nommere']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -338,7 +338,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Téléphone: ${e['telephone']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.bold),
@@ -347,7 +347,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "adresse: ${e['adresse']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.bold),
@@ -356,7 +356,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "option avant: ${e['option_avant']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -365,7 +365,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "option apres: ${e['option_apres']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -374,7 +374,7 @@ class _Details extends State<Details> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "provinceOrigine: ${e['provinceOrigine']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -383,7 +383,7 @@ class _Details extends State<Details> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "ecole provenance: ${e['ecoleProvenance']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -393,7 +393,7 @@ class _Details extends State<Details> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "ecoleProvenanceProv: ${e['ecoleProvenanceProv']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -403,7 +403,7 @@ class _Details extends State<Details> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "ecoleProvenanceDistric: ${e['ecoleProvenanceDistric']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -413,7 +413,7 @@ class _Details extends State<Details> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "ecoleDestination: ${e['ecoleDestination']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -423,7 +423,7 @@ class _Details extends State<Details> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "ecoleDestinationProv: ${e['ecoleDestinationProv']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -433,7 +433,7 @@ class _Details extends State<Details> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "ecoleDestinationDistric: ${e['ecoleDestinationDistric']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -574,7 +574,7 @@ class _Details extends State<Details> {
         ],
       ),
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         height: 50,
         child: Row(
           children: [
@@ -626,7 +626,7 @@ class _Details extends State<Details> {
                 child: const Text("Valider"),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             ),
             Expanded(
@@ -662,7 +662,7 @@ class _Details extends State<Details> {
                                       onPressed: () {
                                         Get.back();
                                       },
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.close,
                                         color: Colors.black,
                                       ),

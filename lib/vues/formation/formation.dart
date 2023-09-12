@@ -1,15 +1,12 @@
-import 'package:epst_app/vues/actualite/site.dart';
 import 'package:epst_app/vues/formation/enseignement_eleve_enligne.dart';
 import 'package:epst_app/vues/formation/foad.dart';
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import 'ma_classe.dart';
 
 class Formation extends StatefulWidget {
   String? titre;
-  Formation({this.titre});
+  Formation({Key? key, this.titre}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -36,7 +33,7 @@ class _Formation extends State<Formation> {
         title: Text(widget.titre!),
       ),
       body: GridView.count(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         crossAxisCount: 2,
         mainAxisSpacing: 5,
         crossAxisSpacing: 5,
@@ -47,12 +44,12 @@ class _Formation extends State<Formation> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return FOAD();
+                      return const FOAD();
                     },
                   ),
                 );
               },
-              style: ButtonStyle(),
+              style: const ButtonStyle(),
               child: Container(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -78,13 +75,13 @@ class _Formation extends State<Formation> {
                     Expanded(
                       flex: 5,
                       child: Container(
-                        padding: EdgeInsets.only(bottom: 15),
+                        padding: const EdgeInsets.only(bottom: 15),
                         alignment: Alignment.center,
                         child: RichText(
                           textAlign: TextAlign.center,
                           text: TextSpan(
                             text: "",
-                            children: [
+                            children: const [
                               TextSpan(
                                 text: "FOAD",
                                 style: TextStyle(
@@ -116,12 +113,12 @@ class _Formation extends State<Formation> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return EnseignementEleve();
+                    return const EnseignementEleve();
                   },
                 ),
               );
             },
-            style: ButtonStyle(
+            style: const ButtonStyle(
                 /*
               backgroundColor: MaterialStateProperty.all(
                 Colors.blue.shade400,
@@ -153,13 +150,13 @@ class _Formation extends State<Formation> {
                   Expanded(
                     flex: 5,
                     child: Container(
-                      padding: EdgeInsets.only(bottom: 15),
+                      padding: const EdgeInsets.only(bottom: 15),
                       alignment: Alignment.center,
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
                           text: "E-Classe",
-                          children: [
+                          children: const [
                             TextSpan(
                               text: "",
                               style: TextStyle(
@@ -192,12 +189,12 @@ class _Formation extends State<Formation> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return MaClasse();
+                    return const MaClasse();
                   },
                 ),
               );
             },
-            style: ButtonStyle(
+            style: const ButtonStyle(
                 /*
               backgroundColor: MaterialStateProperty.all(
                 Colors.blue.shade400,
@@ -229,13 +226,13 @@ class _Formation extends State<Formation> {
                   Expanded(
                     flex: 5,
                     child: Container(
-                      padding: EdgeInsets.only(bottom: 15),
+                      padding: const EdgeInsets.only(bottom: 15),
                       alignment: Alignment.center,
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
                           text: "MA CLASSE",
-                          children: [
+                          children: const [
                             TextSpan(
                               text: "",
                               style: TextStyle(

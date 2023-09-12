@@ -1,18 +1,15 @@
-import 'package:epst_app/utils/connexion.dart';
 import 'package:epst_app/vues/documents_officiels/arretes_ministeriel.dart';
 import 'package:epst_app/vues/documents_officiels/message_phonique.dart';
 import 'package:epst_app/vues/documents_officiels/notes_circulaire.dart';
 import 'package:epst_app/vues/documents_officiels/notifications_arretes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
 
-import 'arretes_ministeriel.dart';
 
 class documents_officiels extends StatefulWidget {
   String? titre;
   //
-  documents_officiels({this.titre});
+  documents_officiels({Key? key, this.titre}) : super(key: key);
   //
   @override
   State<StatefulWidget> createState() {
@@ -32,7 +29,7 @@ class _Coure extends State<documents_officiels> {
         title: Text("${widget.titre}"),
       ),
       body: GridView.count(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         crossAxisCount: 2,
         mainAxisSpacing: 5,
         crossAxisSpacing: 5,

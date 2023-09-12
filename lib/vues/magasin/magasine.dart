@@ -1,16 +1,11 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:epst_app/utils/connexion.dart';
-import 'package:epst_app/widgets/pdf_vue.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:isolated_worker/isolated_worker.dart';
-import 'package:open_file_safe/open_file_safe.dart';
+import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shimmer/shimmer.dart';
-import 'dart:isolate';
 
 import 'magasin_controller.dart';
 //import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -29,7 +24,7 @@ class Magasinee extends StatefulWidget {
 
 class Magasine extends GetView<MagasinController> {
   //
-  Magasine({this.titre}) {
+  Magasine({Key? key, this.titre}) : super(key: key) {
     controller.getListeMag(1);
   }
   //
@@ -48,7 +43,7 @@ class Magasine extends GetView<MagasinController> {
       appBar: AppBar(
         centerTitle: true,
         title: Text("$titre"),
-        actions: [
+        actions: const [
           /*IconButton(
             onPressed: () {},
             icon: const Icon(
@@ -82,7 +77,7 @@ class Magasine extends GetView<MagasinController> {
                       text.value = t;
                     },
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search),
+                      prefixIcon: const Icon(Icons.search),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
                         borderSide: BorderSide(
@@ -179,7 +174,7 @@ class Magasine extends GetView<MagasinController> {
             );
           } else {
             return Container(
-              child: Text(""),
+              child: const Text(""),
             );
           }
         },

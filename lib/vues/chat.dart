@@ -2,9 +2,7 @@ import 'dart:convert';
 import 'package:epst_app/utils/connexion.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_bubble/bubble_type.dart';
 import 'package:flutter_chat_bubble/chat_bubble.dart';
-import 'package:flutter_chat_bubble/clippers/chat_bubble_clipper_1.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 WebSocketChannel? _channel;
@@ -16,7 +14,7 @@ class Chat extends StatefulWidget {
   String? titre;
   String? nom;
 
-  Chat({this.titre, this.nom});
+  Chat({Key? key, this.titre, this.nom}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _Chat();
@@ -77,10 +75,10 @@ class _Chat extends State<Chat> {
           listeConSave.clear();
           //
           listeConv.clear();
-          listeConv.forEach((element) {
+          for (var element in listeConv) {
             bool v = listeConv.remove(element);
             v ? print("Effectué") : print("Pas éffectué");
-          });
+          }
           chatt = Container();
         } else {
           listeConSave.add(contenu + "\n");
@@ -112,9 +110,9 @@ class _Chat extends State<Chat> {
               height: 5,
               width: 100,
               alignment: Alignment.center,
-              child: LinearProgressIndicator(),
+              child: const LinearProgressIndicator(),
             ),
-            Text("Etablissement de la communication avec un agent de la DGC")
+            const Text("Etablissement de la communication avec un agent de la DGC")
           ],
         ),
       ),
@@ -139,7 +137,7 @@ class _Chat extends State<Chat> {
         appBar: AppBar(
           centerTitle: true,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () async {
               Navigator.of(context).pop();
               _channel!.sink.add(
@@ -153,7 +151,7 @@ class _Chat extends State<Chat> {
                 height: 40,
                 width: 40,
                 alignment: Alignment.center,
-                child: Icon(
+                child: const Icon(
                   CupertinoIcons.person,
                   color: Colors.white,
                 ),
@@ -162,10 +160,10 @@ class _Chat extends State<Chat> {
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
-              Text("Agent DGC/EPST"),
+              const Text("Agent DGC/EPST"),
             ],
           ),
         ),
@@ -192,7 +190,7 @@ class _Chat extends State<Chat> {
       return ChatBubble(
         clipper: ChatBubbleClipper1(type: BubbleType.sendBubble),
         alignment: Alignment.topRight,
-        margin: EdgeInsets.only(top: 20),
+        margin: const EdgeInsets.only(top: 20),
         backGroundColor: Colors.blue,
         child: Container(
           constraints: BoxConstraints(
@@ -200,22 +198,22 @@ class _Chat extends State<Chat> {
           ),
           child: Text(
             decoded,
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
         ),
       );
     } else {
       return ChatBubble(
         clipper: ChatBubbleClipper1(type: BubbleType.receiverBubble),
-        backGroundColor: Color(0xffE7E7ED),
-        margin: EdgeInsets.only(top: 20),
+        backGroundColor: const Color(0xffE7E7ED),
+        margin: const EdgeInsets.only(top: 20),
         child: Container(
           constraints: BoxConstraints(
             maxWidth: MediaQuery.of(context).size.width * 0.7,
           ),
           child: Text(
             decoded,
-            style: TextStyle(color: Colors.black),
+            style: const TextStyle(color: Colors.black),
           ),
         ),
       );
@@ -232,7 +230,7 @@ class ChattConv extends StatefulWidget {
 
   ChattConv(this.idSessionHote, this.listeConv, this.hostId, this.clientId,
       this.from, this.matricule,
-      {this.user});
+      {Key? key, this.user}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -278,7 +276,7 @@ class _ChattConv extends State<ChattConv> {
             horizontal: 20,
             vertical: 10,
           ),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.transparent,
           ),
           child: SafeArea(
@@ -296,14 +294,14 @@ class _ChattConv extends State<ChattConv> {
                     ),
                     child: Row(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Expanded(
                           flex: 1,
                           child: TextField(
                             controller: chatCont,
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               border: InputBorder.none,
                             ),
                           ),
@@ -362,7 +360,7 @@ class _ChattConv extends State<ChattConv> {
     } else {
       return ChatBubble(
         clipper: ChatBubbleClipper1(type: BubbleType.receiverBubble),
-        backGroundColor: Color(0xffE7E7ED),
+        backGroundColor: const Color(0xffE7E7ED),
         margin: const EdgeInsets.only(top: 20),
         child: Container(
           constraints: BoxConstraints(

@@ -1,5 +1,3 @@
-import 'package:epst_app/utils/connexion.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -10,7 +8,7 @@ class ListResultat extends StatelessWidget {
   //String? codeoption;
   ///String? anneescolaire;
   RxList l = [].obs;
-  ListResultat() {
+  ListResultat({Key? key}) : super(key: key) {
     //
     //controller.getListe(nomecole!, codeoption!, anneescolaire!);
     //
@@ -72,7 +70,7 @@ class ListResultat extends StatelessWidget {
 class DetailsPalmares extends StatelessWidget {
   Map? l;
   Map e;
-  DetailsPalmares(this.l, this.e) {
+  DetailsPalmares(this.l, this.e, {Key? key}) : super(key: key) {
     print(l);
   }
   @override
@@ -84,7 +82,7 @@ class DetailsPalmares extends StatelessWidget {
         title: Text(
           "${l!['nomecole']}\n${l!['option']}: ${e['anneescolaire']}",
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 13),
+          style: const TextStyle(fontSize: 13),
         ),
       ),
       body: ListView(padding: const EdgeInsets.all(10), children: [
@@ -103,7 +101,7 @@ class DetailsPalmares extends StatelessWidget {
             ? Container(
                 padding: const EdgeInsets.only(top: 50),
                 alignment: Alignment.center,
-                child: Text.rich(
+                child: const Text.rich(
                   TextSpan(
                     text:
                         "Aucun resultat n'a été trouvé, veuillez recommencer ou contacter le ",
@@ -126,22 +124,22 @@ class DetailsPalmares extends StatelessWidget {
                 textAlign: TextAlign.center,
                 text: TextSpan(
                   text: "Felicitation ",
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 30,
                   ),
                   children: [
                     TextSpan(
                       text: "${l!['nomcandidat']}",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
                       ),
                     ),
-                    TextSpan(text: " Vous-avez réussi aux Examens d'Etat avec"),
+                    const TextSpan(text: " Vous-avez réussi aux Examens d'Etat avec"),
                     TextSpan(
                       text: " ${l!['note']} % \n\n",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 30,
                       ),

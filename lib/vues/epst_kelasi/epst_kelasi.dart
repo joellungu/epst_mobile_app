@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class EpstKelasi extends StatefulWidget {
   String titre;
-  EpstKelasi(this.titre);
+  EpstKelasi(this.titre, {Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return _EpstKelasi();

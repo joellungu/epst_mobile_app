@@ -1,10 +1,11 @@
-import 'package:epst_app/vues/identification/identification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'identification_controller.dart';
 
 class Verification extends StatefulWidget {
+  const Verification({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _Verification();
@@ -130,7 +131,7 @@ class _Verification extends State<Verification> {
         title: const Text("Vérification"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: SingleChildScrollView(
           child: Column(
             //
@@ -205,7 +206,7 @@ class _Verification extends State<Verification> {
                           obscuretext = obscuretext ? false : true;
                         });
                       },
-                      icon: Icon(Icons.remove_red_eye),
+                      icon: const Icon(Icons.remove_red_eye),
                     )),
               ),
               const SizedBox(

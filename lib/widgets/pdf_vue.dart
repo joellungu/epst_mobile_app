@@ -3,7 +3,7 @@ import 'package:pdfx/pdfx.dart';
 
 class PdfVue extends StatelessWidget {
   String path;
-  PdfVue(this.path) {
+  PdfVue(this.path, {Key? key}) : super(key: key) {
     //
     print("le path: $path");
     //

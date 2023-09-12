@@ -5,9 +5,7 @@ import 'dart:typed_data';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:epst_app/models/historiquedb.dart';
 import 'package:epst_app/utils/depotcontroler.dart';
-import 'package:epst_app/vues/reference.dart';
 import 'package:epst_app/vues/transsfere.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'mutuelle_controller.dart';
 import 'package:get/get.dart';
@@ -20,7 +18,7 @@ import 'package:uuid/uuid.dart';
 class Demande extends StatefulWidget {
   String? titre;
 
-  Demande({this.titre});
+  Demande({Key? key, this.titre}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -205,12 +203,12 @@ class _Demande extends State<Demande> {
     //
     listeDistrict.clear();
     //
-    listeDistrict2.forEach((element) {
+    for (var element in listeDistrict2) {
       if ("${element['p']}".toLowerCase() ==
           ("${listeProvince[0]}".toLowerCase())) {
         listeDistrict.add("${element['d']}");
       }
-    });
+    }
     //
   }
 
@@ -222,7 +220,7 @@ class _Demande extends State<Demande> {
         centerTitle: true,
         title: Text(
           widget.titre!,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 17,
           ),
         ),
@@ -237,8 +235,8 @@ class _Demande extends State<Demande> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text("Identité agent EPST"),
-              SizedBox(
+              const Text("Identité agent EPST"),
+              const SizedBox(
                 height: 10,
               ),
               TextField(
@@ -247,11 +245,11 @@ class _Demande extends State<Demande> {
                   //prefixIcon: Text("De:"),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.blue,
                     ),
                   ),
-                  label: Text("Nom"),
+                  label: const Text("Nom"),
                   //prefixText: "De: "
                 ),
               ),
@@ -264,11 +262,11 @@ class _Demande extends State<Demande> {
                     //prefixIcon: Text("Téléphone:"),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.blue,
                       ),
                     ),
-                    label: Text("Postnom")
+                    label: const Text("Postnom")
                     //prefixText: "De: "
                     ),
               ),
@@ -281,11 +279,11 @@ class _Demande extends State<Demande> {
                   //prefixIcon: Text("Email:"),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.blue,
                     ),
                   ),
-                  label: Text("Prenom"),
+                  label: const Text("Prenom"),
                   //prefixText: "De: "
                 ),
               ),
@@ -298,11 +296,11 @@ class _Demande extends State<Demande> {
                   //prefixIcon: Text("Email:"),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.blue,
                     ),
                   ),
-                  label: Text("Matricule SECOPE"),
+                  label: const Text("Matricule SECOPE"),
                   //prefixText: "De: "
                 ),
               ),
@@ -311,10 +309,10 @@ class _Demande extends State<Demande> {
               ),
               Card(
                 elevation: 0,
-                margin: EdgeInsets.all(0),
+                margin: const EdgeInsets.all(0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
-                  side: BorderSide(color: Colors.grey),
+                  side: const BorderSide(color: Colors.grey),
                 ),
                 child: Container(
                   height: 50,
@@ -324,11 +322,11 @@ class _Demande extends State<Demande> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(
+                      const Text(
                         "  Direction:",
                         style: TextStyle(fontSize: 10),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                       Expanded(
@@ -366,16 +364,16 @@ class _Demande extends State<Demande> {
               const SizedBox(
                 height: 10,
               ),
-              Text("Services"),
-              SizedBox(
+              const Text("Services"),
+              const SizedBox(
                 height: 10,
               ),
               Card(
                 elevation: 0,
-                margin: EdgeInsets.all(0),
+                margin: const EdgeInsets.all(0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
-                  side: BorderSide(color: Colors.grey),
+                  side: const BorderSide(color: Colors.grey),
                 ),
                 child: Container(
                   height: 50,
@@ -385,8 +383,8 @@ class _Demande extends State<Demande> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("  Sevices:"),
-                      SizedBox(
+                      const Text("  Sevices:"),
+                      const SizedBox(
                         width: 20,
                       ),
                       Expanded(
@@ -430,16 +428,16 @@ class _Demande extends State<Demande> {
               const SizedBox(
                 height: 10,
               ),
-              Text("Province"),
-              SizedBox(
+              const Text("Province"),
+              const SizedBox(
                 height: 10,
               ),
               Card(
                 elevation: 0,
-                margin: EdgeInsets.all(0),
+                margin: const EdgeInsets.all(0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
-                  side: BorderSide(color: Colors.grey),
+                  side: const BorderSide(color: Colors.grey),
                 ),
                 child: Container(
                   height: 50,
@@ -449,8 +447,8 @@ class _Demande extends State<Demande> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("  Province:"),
-                      SizedBox(
+                      const Text("  Province:"),
+                      const SizedBox(
                         width: 20,
                       ),
                       Expanded(
@@ -462,13 +460,13 @@ class _Demande extends State<Demande> {
                               p = value as int;
                               listeDistrict.clear();
                               setState(() {
-                                listeDistrict2.forEach((element) {
+                                for (var element in listeDistrict2) {
                                   if ("${element['p']}".toLowerCase() ==
                                       ("${listeProvince[p]}".toLowerCase())) {
                                     print("$element");
                                     listeDistrict.add("${element['d']}");
                                   }
-                                });
+                                }
                               });
                               //value = s;
                             },
@@ -492,16 +490,16 @@ class _Demande extends State<Demande> {
               const SizedBox(
                 height: 10,
               ),
-              Text("Province éducationnel"),
-              SizedBox(
+              const Text("Province éducationnel"),
+              const SizedBox(
                 height: 10,
               ),
               Card(
                 elevation: 0,
-                margin: EdgeInsets.all(0),
+                margin: const EdgeInsets.all(0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
-                  side: BorderSide(color: Colors.grey),
+                  side: const BorderSide(color: Colors.grey),
                 ),
                 child: Container(
                   height: 50,
@@ -511,8 +509,8 @@ class _Demande extends State<Demande> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("  Province éducationnel:"),
-                      SizedBox(
+                      const Text("  Province éducationnel:"),
+                      const SizedBox(
                         width: 20,
                       ),
                       Expanded(
@@ -559,7 +557,7 @@ class _Demande extends State<Demande> {
                     width: 1,
                   ),
                 ),
-                child: Container(
+                child: SizedBox(
                   height: MediaQuery.of(context).size.height / 8,
                   child: Column(
                     children: [
@@ -569,7 +567,7 @@ class _Demande extends State<Demande> {
                           controller: notes,
                           //maxLength: 10,
                           maxLines: 3,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: "  Hopital et/ou Médicaments solicités",
                             border: InputBorder.none,
                             //prefixText: "De: "
@@ -585,10 +583,10 @@ class _Demande extends State<Demande> {
               ),
               Card(
                 elevation: 0,
-                margin: EdgeInsets.all(0),
+                margin: const EdgeInsets.all(0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
-                  side: BorderSide(color: Colors.grey),
+                  side: const BorderSide(color: Colors.grey),
                 ),
                 child: Container(
                   height: 50,
@@ -598,8 +596,8 @@ class _Demande extends State<Demande> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("  Bénéficières:"),
-                      SizedBox(
+                      const Text("  Bénéficières:"),
+                      const SizedBox(
                         width: 20,
                       ),
                       Expanded(
@@ -626,7 +624,7 @@ class _Demande extends State<Demande> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ElevatedButton.icon(
@@ -634,7 +632,7 @@ class _Demande extends State<Demande> {
                   final ImagePicker _picker = ImagePicker();
                   // Pick an image
                   img1 = await _picker.pickImage(source: ImageSource.gallery);
-                  ext1 = "${img1!.name}".split(".").last;
+                  ext1 = img1!.name.split(".").last;
                   i = 1.obs;
                   print("ext ${img1!.name}".split(".").last);
                   // Capture a photo
@@ -644,8 +642,8 @@ class _Demande extends State<Demande> {
                     });
                   });
                 },
-                icon: Icon(Icons.file_present),
-                label: Text("Joindre la carte MESP du bénéficiaire"),
+                icon: const Icon(Icons.file_present),
+                label: const Text("Joindre la carte MESP du bénéficiaire"),
               ),
               Obx(() => i.value != 0
                   ? Container(
@@ -657,7 +655,7 @@ class _Demande extends State<Demande> {
                       //child: Image.file(File(img!.path)),
                     )
                   : Container()),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Obx(
@@ -668,17 +666,17 @@ class _Demande extends State<Demande> {
                           // Pick an image
                           img2 = await _picker.pickImage(
                               source: ImageSource.gallery);
-                          ext2 = "${img2!.name}".split(".").last;
+                          ext2 = img2!.name.split(".").last;
                           i2 = 1.obs;
                           print("ext ${img2!.name}".split(".").last);
                           // Capture a photo
-                          Timer(Duration(seconds: 1), () {
+                          Timer(const Duration(seconds: 1), () {
                             setState(() {
                               //
                             });
                           });
                         },
-                        icon: Icon(Icons.file_present),
+                        icon: const Icon(Icons.file_present),
                         label: Text(piecejointe_text.value),
                       )
                     : Container(),
@@ -729,7 +727,7 @@ class _Demande extends State<Demande> {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: CircularProgressIndicator(
+                          child: const CircularProgressIndicator(
                             strokeWidth: 7,
                           ),
                         ),
@@ -741,7 +739,7 @@ class _Demande extends State<Demande> {
                       Uint8List l1 = await img1!.readAsBytes();
                       Uint8List l2 = img2 != null
                           ? await img2!.readAsBytes()
-                          : await Uint8List.fromList([1]);
+                          : Uint8List.fromList([1]);
 
                       //
                       Map<String, dynamic> formulaireD = {
@@ -767,7 +765,7 @@ class _Demande extends State<Demande> {
                       MutuelleController mutuelleController = Get.find();
                       //ByteArrayInputStream//formulaireD
                       //
-                      Timer(Duration(seconds: 1), () {
+                      Timer(const Duration(seconds: 1), () {
                         mutuelleController.faireUnDemande(formulaireD);
                       });
 
@@ -778,7 +776,7 @@ class _Demande extends State<Demande> {
                 child: Container(
                   alignment: Alignment.center,
                   height: 40,
-                  child: Text("Envoyer"),
+                  child: const Text("Envoyer"),
                 ),
               ),
               const SizedBox(
@@ -813,7 +811,7 @@ class _Demande extends State<Demande> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.close,
               ),
             )
@@ -824,8 +822,8 @@ class _Demande extends State<Demande> {
   }
 
   String getReference() {
-    var uuid = Uuid();
-    return "${uuid.v4()}";
+    var uuid = const Uuid();
+    return uuid.v4();
   }
 
   Future<void> _createFolderAndSave(
@@ -917,6 +915,8 @@ SizedBox(height: 20,),
  */
 
 class PlainteHis extends StatefulWidget {
+  const PlainteHis({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _PlainteHis();
@@ -932,11 +932,11 @@ class _PlainteHis extends State<PlainteHis> {
         await db.rawQuery('SELECT * FROM historique');
 
     return ListView(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       children: List.generate(listPlainte.length, (index) {
         print(listPlainte[index]["envoyer"]);
         return ListTile(
-          leading: Icon(Icons.menu),
+          leading: const Icon(Icons.menu),
           title: Text(listPlainte[index]["envoyeur"]),
           subtitle: Text(listPlainte[index]["date"]),
           trailing: IconButton(
@@ -953,8 +953,8 @@ class _PlainteHis extends State<PlainteHis> {
               }
             },
             icon: listPlainte[index]["envoyer"] == "non"
-                ? Icon(Icons.sync)
-                : Icon(
+                ? const Icon(Icons.sync)
+                : const Icon(
                     Icons.check_circle_outline,
                     color: Colors.green,
                   ),
@@ -968,7 +968,7 @@ class _PlainteHis extends State<PlainteHis> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Historique"),
+        title: const Text("Historique"),
       ),
       body: FutureBuilder(
         future: getPlaite(),
@@ -985,7 +985,7 @@ class _PlainteHis extends State<PlainteHis> {
               height: 40,
               width: 40,
               alignment: Alignment.center,
-              child: CircularProgressIndicator(),
+              child: const CircularProgressIndicator(),
             ),
           );
         },
@@ -997,7 +997,7 @@ class _PlainteHis extends State<PlainteHis> {
 class HistoriqueSend extends StatefulWidget {
   Map<String, dynamic> pl = {};
 
-  HistoriqueSend(this.pl);
+  HistoriqueSend(this.pl, {Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -1016,12 +1016,12 @@ class _HistoriqueSend extends State<HistoriqueSend> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
           ),
         ],
       ),
       body: ListView(
-        padding: EdgeInsets.all(5),
+        padding: const EdgeInsets.all(5),
         children: [
           Text.rich(
             TextSpan(
@@ -1085,9 +1085,9 @@ class _HistoriqueSend extends State<HistoriqueSend> {
           ),
           Container(
             height: 50,
-            padding: EdgeInsets.only(right: 10),
+            padding: const EdgeInsets.only(right: 10),
             alignment: Alignment.centerRight,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               //color: Colors.yellow,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(10),
@@ -1108,7 +1108,7 @@ class _HistoriqueSend extends State<HistoriqueSend> {
                   onSelected: (e) {
                     //getFile();
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.attach_file,
                   ),
                   itemBuilder: (context) => [
@@ -1127,9 +1127,9 @@ class _HistoriqueSend extends State<HistoriqueSend> {
                               color: Colors.blue.shade200,
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            child: Icon(Icons.file_copy_outlined),
+                            child: const Icon(Icons.file_copy_outlined),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Text(
@@ -1158,7 +1158,7 @@ class _HistoriqueSend extends State<HistoriqueSend> {
               children:
                   List.generate(depotController.listeFichier.value.length, (x) {
                 return ListTile(
-                  leading: Icon(Icons.file_present),
+                  leading: const Icon(Icons.file_present),
                   title: Text("Piece n° $x"),
                   trailing: IconButton(
                     onPressed: () {
@@ -1168,7 +1168,7 @@ class _HistoriqueSend extends State<HistoriqueSend> {
                       });
                       //
                     },
-                    icon: Icon(Icons.close),
+                    icon: const Icon(Icons.close),
                   ),
                 );
               }),
@@ -1220,8 +1220,8 @@ class _HistoriqueSend extends State<HistoriqueSend> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: Text("Problème de connexion"),
-                      content: Text(
+                      title: const Text("Problème de connexion"),
+                      content: const Text(
                         "Vous n'etes pas connecté à internet, veuillez vous reconnecter puis reessayer",
                         textAlign: TextAlign.center,
                       ),
@@ -1230,7 +1230,7 @@ class _HistoriqueSend extends State<HistoriqueSend> {
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.close,
                           ),
                         )
@@ -1240,20 +1240,20 @@ class _HistoriqueSend extends State<HistoriqueSend> {
                 );
               }
             },
-            child: Text("Reenvoyer"),
+            child: const Text("Reenvoyer"),
           ),
         ],
       ),
     );
   }
 
-  var st = TextStyle(
+  var st = const TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 13,
     color: Colors.black,
   );
 
-  var st2 = TextStyle(
+  var st2 = const TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 13,
     color: Colors.green,

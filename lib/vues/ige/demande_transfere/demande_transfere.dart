@@ -13,6 +13,8 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class DemandeTransfere extends StatefulWidget {
+  const DemandeTransfere({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _DemandeTransfere();
@@ -205,11 +207,11 @@ class _DemandeTransfere extends State<DemandeTransfere> {
         title: const Text("Demande de transfère"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: ListView(
           children: [
             const Text("Informations personnel"),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             TextField(
@@ -218,11 +220,11 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                 //prefixIcon: Text("De:"),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.blue,
                   ),
                 ),
-                label: Text("Nom"),
+                label: const Text("Nom"),
                 //prefixText: "De: "
               ),
             ),
@@ -235,11 +237,11 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                   //prefixIcon: Text("Téléphone:"),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
+                    borderSide: const BorderSide(
                       color: Colors.blue,
                     ),
                   ),
-                  label: Text("Postnom")
+                  label: const Text("Postnom")
                   //prefixText: "De: "
                   ),
             ),
@@ -252,11 +254,11 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                 //prefixIcon: Text("Email:"),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.blue,
                   ),
                 ),
-                label: Text("Prenom"),
+                label: const Text("Prenom"),
                 //prefixText: "De: "
               ),
             ),
@@ -265,10 +267,10 @@ class _DemandeTransfere extends State<DemandeTransfere> {
             ),
             Card(
               elevation: 0,
-              margin: EdgeInsets.all(0),
+              margin: const EdgeInsets.all(0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
-                side: BorderSide(color: Colors.grey),
+                side: const BorderSide(color: Colors.grey),
               ),
               child: Container(
                 height: 50,
@@ -278,11 +280,11 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(
+                    const Text(
                       "  Genre:",
                       style: TextStyle(fontSize: 10),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Expanded(
@@ -326,11 +328,11 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                 //prefixIcon: Text("Email:"),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.blue,
                   ),
                 ),
-                label: Text("Lieu de naissance"),
+                label: const Text("Lieu de naissance"),
                 //prefixText: "De: "
               ),
             ),
@@ -339,10 +341,10 @@ class _DemandeTransfere extends State<DemandeTransfere> {
             ),
             Card(
               elevation: 0,
-              margin: EdgeInsets.all(0),
+              margin: const EdgeInsets.all(0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
-                side: BorderSide(color: Colors.grey),
+                side: const BorderSide(color: Colors.grey),
               ),
               child: Container(
                 height: 50,
@@ -353,10 +355,10 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     d == null
-                        ? Text("  Date de naissance: ")
+                        ? const Text("  Date de naissance: ")
                         : Text(
                             "  Date de naissance: ${d!.day}/${d!.month}/${d!.year}"),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Expanded(
@@ -396,11 +398,11 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                 //prefixIcon: Text("Email:"),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.blue,
                   ),
                 ),
-                label: Text("Nom père"),
+                label: const Text("Nom père"),
                 //prefixText: "De: "
               ),
             ),
@@ -413,11 +415,11 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                 //prefixIcon: Text("Email:"),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.blue,
                   ),
                 ),
-                label: Text("Nom mère"),
+                label: const Text("Nom mère"),
                 //prefixText: "De: "
               ),
             ),
@@ -430,11 +432,11 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                 //prefixIcon: Text("Email:"),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.blue,
                   ),
                 ),
-                label: Text("Numéro de téléphone"),
+                label: const Text("Numéro de téléphone"),
                 //prefixText: "De: "
               ),
             ),
@@ -447,11 +449,11 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                 //prefixIcon: Text("Email:"),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.blue,
                   ),
                 ),
-                label: Text("Adresse"),
+                label: const Text("Adresse"),
                 //prefixText: "De: "
               ),
             ),
@@ -461,10 +463,10 @@ class _DemandeTransfere extends State<DemandeTransfere> {
             ),
             Card(
               elevation: 0,
-              margin: EdgeInsets.all(0),
+              margin: const EdgeInsets.all(0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
-                side: BorderSide(color: Colors.grey),
+                side: const BorderSide(color: Colors.grey),
               ),
               child: Container(
                 height: 50,
@@ -474,11 +476,11 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(
+                    const Text(
                       "  Option avant:",
                       style: TextStyle(fontSize: 10),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Expanded(
@@ -521,10 +523,10 @@ class _DemandeTransfere extends State<DemandeTransfere> {
             ),
             Card(
               elevation: 0,
-              margin: EdgeInsets.all(0),
+              margin: const EdgeInsets.all(0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
-                side: BorderSide(color: Colors.grey),
+                side: const BorderSide(color: Colors.grey),
               ),
               child: Container(
                 height: 50,
@@ -534,11 +536,11 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(
+                    const Text(
                       "  Option après",
                       style: TextStyle(fontSize: 10),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     Expanded(
@@ -581,10 +583,10 @@ class _DemandeTransfere extends State<DemandeTransfere> {
             ),
             Card(
               elevation: 0,
-              margin: EdgeInsets.all(0),
+              margin: const EdgeInsets.all(0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
-                side: BorderSide(color: Colors.grey),
+                side: const BorderSide(color: Colors.grey),
               ),
               child: Container(
                 height: 50,
@@ -594,8 +596,8 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text("  Province d'origine:"),
-                    SizedBox(
+                    const Text("  Province d'origine:"),
+                    const SizedBox(
                       width: 20,
                     ),
                     Expanded(
@@ -642,7 +644,7 @@ class _DemandeTransfere extends State<DemandeTransfere> {
             ),
             Card(
               elevation: 0,
-              margin: EdgeInsets.all(0),
+              margin: const EdgeInsets.all(0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
                 side: const BorderSide(color: Colors.grey),
@@ -660,7 +662,7 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "  Ecole: ",
                         style: TextStyle(fontSize: 12),
                       ),
@@ -672,7 +674,7 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                           child: Obx(
                             () => Text(
                               "${ecole1.value["ecole"] ?? ''} / ${ecole1.value["province"] ?? ''}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 13,
                               ),
@@ -691,10 +693,10 @@ class _DemandeTransfere extends State<DemandeTransfere> {
             ),
             Card(
               elevation: 0,
-              margin: EdgeInsets.all(0),
+              margin: const EdgeInsets.all(0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
-                side: BorderSide(color: Colors.grey),
+                side: const BorderSide(color: Colors.grey),
               ),
               child: Container(
                 height: 50,
@@ -717,13 +719,13 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                             p_e_1 = value as int;
                             listeDistrict_1.clear();
                             setState(() {
-                              listeDistrict2.forEach((element) {
+                              for (var element in listeDistrict2) {
                                 if ("${element['p']}".toLowerCase() ==
                                     ("${listeProvince[p_e_1]}".toLowerCase())) {
                                   print("$element");
                                   listeDistrict_1.add("${element['d']}");
                                 }
-                              });
+                              }
                             });
                             print(listeDistrict_1);
                             //value = s;
@@ -815,7 +817,7 @@ class _DemandeTransfere extends State<DemandeTransfere> {
             ),
             Card(
               elevation: 0,
-              margin: EdgeInsets.all(0),
+              margin: const EdgeInsets.all(0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
                 side: const BorderSide(color: Colors.grey),
@@ -833,7 +835,7 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "  Ecole: ",
                         style: TextStyle(fontSize: 12),
                       ),
@@ -845,7 +847,7 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                           child: Obx(
                             () => Text(
                               "${ecole2.value["ecole"] ?? ''} / ${ecole2.value["province"] ?? ''}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 13,
                               ),
@@ -864,10 +866,10 @@ class _DemandeTransfere extends State<DemandeTransfere> {
             ),
             Card(
               elevation: 0,
-              margin: EdgeInsets.all(0),
+              margin: const EdgeInsets.all(0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
-                side: BorderSide(color: Colors.grey),
+                side: const BorderSide(color: Colors.grey),
               ),
               child: Container(
                 height: 50,
@@ -890,13 +892,13 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                             p_e_2 = value as int;
                             listeDistrict_2.clear();
                             setState(() {
-                              listeDistrict2.forEach((element) {
+                              for (var element in listeDistrict2) {
                                 if ("${element['p']}".toLowerCase() ==
                                     ("${listeProvince[p_e_2]}".toLowerCase())) {
                                   print("$element");
                                   listeDistrict_2.add("${element['d']}");
                                 }
-                              });
+                              }
                             });
                             print(listeDistrict_2);
                             //value = s;
@@ -978,11 +980,11 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                 final ImagePicker _picker = ImagePicker();
                 // Pick an image
                 img1 = await _picker.pickImage(source: ImageSource.gallery);
-                ext1 = "${img1!.name}".split(".").last;
+                ext1 = img1!.name.split(".").last;
                 i = 1.obs;
                 print("ext ${img1!.name}".split(".").last);
                 // Capture a photo
-                Timer(Duration(seconds: 1), () {
+                Timer(const Duration(seconds: 1), () {
                   setState(() {
                     //
                   });
@@ -1046,7 +1048,7 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: CircularProgressIndicator(
+                        child: const CircularProgressIndicator(
                           strokeWidth: 7,
                         ),
                       ),
@@ -1141,7 +1143,7 @@ class _DemandeTransfere extends State<DemandeTransfere> {
     TransfereController transfereController = Get.find();
     //ByteArrayInputStream//formulaireD
     //
-    Timer(Duration(seconds: 1), () {
+    Timer(const Duration(seconds: 1), () {
       transfereController.faireUneInscription(formulaireD);
     });
   }
@@ -1170,7 +1172,7 @@ class _DemandeTransfere extends State<DemandeTransfere> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.close,
               ),
             )

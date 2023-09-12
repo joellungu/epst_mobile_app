@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
-import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class ClinOeil extends StatefulWidget {
+  const ClinOeil({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _ClinOeil();
@@ -52,9 +53,9 @@ class _ClinOeil extends State<ClinOeil> {
 
           return null;
         },
-        isSelectable: true,
+        //isSelectable: true,
         //onTapUrl: (url) => print('tapped $url'),
-        webView: true,
+        //webView: true,
       ),
     );
   }

@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
-import 'dart:typed_data';
 import 'package:http/http.dart' as http;
 import 'package:epst_app/utils/connexion.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +12,7 @@ class Transfere1 extends StatefulWidget {
   Map<String, dynamic>? utilisateur;
   List<Map<String, dynamic>> listeFichier = [];
   //
-  Transfere1(this.utilisateur, this.listeFichier);
+  Transfere1(this.utilisateur, this.listeFichier, {Key? key}) : super(key: key);
   //
   @override
   State<StatefulWidget> createState() {
@@ -37,16 +35,16 @@ class _Transfere1 extends State<Transfere1> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data != "0") {
-              if (widget.listeFichier.length != 0) {
+              if (widget.listeFichier.isNotEmpty) {
                 return Transfere2(
                     "${json.decode("${snapshot.data}")}", widget.listeFichier);
               } else {
-                return Center(
+                return const Center(
                   child: Text("Plainte envoyé!"),
                 );
               }
             } else {
-              return Center(
+              return const Center(
                 child:
                     Text("La plainte n'a pas été déposé! erreur au serveur."),
               );
@@ -65,12 +63,12 @@ class _Transfere1 extends State<Transfere1> {
                 height: 40,
                 width: 40,
                 alignment: Alignment.center,
-                child: CircularProgressIndicator(),
+                child: const CircularProgressIndicator(),
               ),
               Container(
                 height: 50,
                 alignment: Alignment.center,
-                child: Text("Envois de votre plainte en cours..."),
+                child: const Text("Envois de votre plainte en cours..."),
               ),
             ],
           );
@@ -83,7 +81,7 @@ class _Transfere1 extends State<Transfere1> {
 class Transfere2 extends StatefulWidget {
   String piecejointeId;
   List<Map<String, dynamic>> listeFichier = [];
-  Transfere2(this.piecejointeId, this.listeFichier);
+  Transfere2(this.piecejointeId, this.listeFichier, {Key? key}) : super(key: key);
   //
   @override
   State<StatefulWidget> createState() {
@@ -154,7 +152,7 @@ class _Transfere2 extends State<Transfere2> {
         print("_____________: ${response.contentLength}");
       },
     );
-    Timer(Duration(seconds: 1), () {
+    Timer(const Duration(seconds: 1), () {
       setState(() {
         mx = false;
       });
@@ -163,14 +161,14 @@ class _Transfere2 extends State<Transfere2> {
   }
 
   Widget message(String message) {
-    Timer(Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 5), () {
       //
       Navigator.of(context).pop();
     });
     return Container(
       height: 50,
       alignment: Alignment.center,
-      child: Text("$message"),
+      child: Text(message),
     );
   }
 
@@ -191,12 +189,12 @@ class _Transfere2 extends State<Transfere2> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Card(
+          const Card(
             elevation: 1,
-            child: Container(
+            child: SizedBox(
               height: 100,
               width: 100,
-              child: const Icon(
+              child: Icon(
                 Icons.check_circle_outline,
                 color: Colors.green,
                 size: 70,
@@ -231,7 +229,7 @@ class _Transfere2 extends State<Transfere2> {
 class ProgressionIndication extends StatefulWidget {
   Map? e;
   String piecejointeId;
-  ProgressionIndication(this.e, this.piecejointeId);
+  ProgressionIndication(this.e, this.piecejointeId, {Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     //
@@ -260,8 +258,7 @@ class _ProgressionIndication extends State<ProgressionIndication> {
                   percentage +
                   " % uploaded";
                   */
-          print("::::::::: $sent" +
-              " Bytes of " "$total Bytes - " +
+          print("::::::::: $sent" " Bytes of " "$total Bytes - " +
               percentage +
               " % uploaded");
           //update the progress

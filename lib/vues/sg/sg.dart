@@ -1,28 +1,13 @@
-import 'package:epst_app/utils/connexion.dart';
-import 'package:epst_app/vues/documents_officiels/arretes_ministeriel.dart';
-import 'package:epst_app/vues/documents_officiels/message_phonique.dart';
-import 'package:epst_app/vues/documents_officiels/notes_circulaire.dart';
-import 'package:epst_app/vues/documents_officiels/notifications_arretes.dart';
 import 'package:epst_app/vues/sg/sg_controller.dart';
-import 'package:epst_app/widgets/pdf_vue.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:open_file_safe/open_file_safe.dart';
-import 'package:video_player/video_player.dart';
-import 'dart:async';
-import 'dart:io';
-import 'package:epst_app/vues/magasin/magasin_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:shimmer/shimmer.dart';
 
 import 'details_sg.dart';
 
 class SecretariaGeneral extends GetView<SgController> {
   //
-  SecretariaGeneral({this.titre}) {
+  SecretariaGeneral({Key? key, this.titre}) : super(key: key) {
     //controller.getListeMag(7);
   }
   //
@@ -41,7 +26,7 @@ class SecretariaGeneral extends GetView<SgController> {
       appBar: AppBar(
         centerTitle: true,
         title: Text("$titre"),
-        actions: [
+        actions: const [
           /*IconButton(
             onPressed: () {},
             icon: const Icon(
@@ -51,22 +36,23 @@ class SecretariaGeneral extends GetView<SgController> {
         ],
       ),
       body: ListView(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         children: [
           ListTile(
             onTap: () {
               //
-              Get.to(DetailsSG({}));
+              Get.to(DetailsSG(const {}));
               //
             },
             leading: Container(
               height: 50,
               width: 50,
               alignment: Alignment.center,
-              child: Text(
-                "DG",
+              child: const Text(
+                "D.I.G.E",
+                textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 15,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -76,9 +62,11 @@ class SecretariaGeneral extends GetView<SgController> {
                 borderRadius: BorderRadius.circular(25),
               ),
             ),
-            title: Text("Direction de ..."),
-            subtitle: Text("Département de ..."),
-            trailing: Icon(Icons.arrow_forward_ios),
+            title: const Text(
+                "Direction de l'information pour la gestion de l'éducation"),
+            //subtitle: const Text(
+            //  "Direction de l'information pour la gestion de l'éducation"),
+            trailing: const Icon(Icons.arrow_forward_ios),
           ),
         ],
       ),

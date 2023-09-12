@@ -1,19 +1,17 @@
 import 'dart:async';
 
-import 'package:accordion/accordion.dart';
 import 'package:epst_app/main.dart';
-import 'package:epst_app/vues/ige/palmares/liste_palmares.dart';
-import 'package:epst_app/vues/ige/palmares/palmares_controller.dart';
 import 'package:epst_app/vues/ige/resultat_exetat/resultat_controller.dart';
 import 'package:epst_app/widgets/paiement.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import '../recherche_annee.dart';
-import '../recherche_ecole.dart';
 import 'resultat_liste.dart';
 
 class ResultatExetat extends StatefulWidget {
+  const ResultatExetat({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _ResultatExetat();
@@ -127,7 +125,7 @@ class _ResultatExetat extends State<ResultatExetat> {
       a++;
     }
     //
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       loadPayment.value = true;
     });
     //
@@ -141,7 +139,7 @@ class _ResultatExetat extends State<ResultatExetat> {
         title: const Text("Resultat EXETAT"),
       ),
       body: ListView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Image.asset(
@@ -207,7 +205,7 @@ class _ResultatExetat extends State<ResultatExetat> {
                   child: Obx(
                     () => Text(
                       annee.value,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                       ),
                     ),
@@ -299,7 +297,7 @@ class _ResultatExetat extends State<ResultatExetat> {
                 showDialog(
                   context: context,
                   builder: (context) {
-                    return AlertDialog(
+                    return const AlertDialog(
                       title: Text("Erreur"),
                       content: Text("Votre code est incorrect"),
                     );

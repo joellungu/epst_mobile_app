@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import 'clin_oeil.dart';
 import 'direct_eductivi.dart';
 
 class LiveStream extends StatefulWidget {
   String? titre;
-  LiveStream({this.titre});
+  LiveStream({Key? key, this.titre}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -47,7 +46,7 @@ class _LiveStream extends State<LiveStream> {
         title: Text(widget.titre!),
       ),
       body: GridView.count(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         crossAxisCount: 2,
         mainAxisSpacing: 5,
         crossAxisSpacing: 5,
@@ -58,12 +57,12 @@ class _LiveStream extends State<LiveStream> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return DirectEductivi();
+                    return const DirectEductivi();
                   },
                 ),
               );
             },
-            style: ButtonStyle(),
+            style: const ButtonStyle(),
             child: Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -72,7 +71,7 @@ class _LiveStream extends State<LiveStream> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Icon(
+                      child: const Icon(
                         Icons.live_tv,
                         size: 100,
                       ), //
@@ -125,12 +124,12 @@ class _LiveStream extends State<LiveStream> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return ClinOeil();
+                    return const ClinOeil();
                   },
                 ),
               );
             },
-            style: ButtonStyle(),
+            style: const ButtonStyle(),
             child: Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -139,7 +138,7 @@ class _LiveStream extends State<LiveStream> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Icon(
+                      child: const Icon(
                         Icons.remove_red_eye,
                         size: 100,
                       ), //
@@ -190,7 +189,7 @@ class _LiveStream extends State<LiveStream> {
           ElevatedButton(
             onPressed: () {
               //
-              Get.to(Actualites());
+              Get.to(const Actualites());
               /*
               Navigator.of(context).push(
                 MaterialPageRoute(
@@ -201,7 +200,7 @@ class _LiveStream extends State<LiveStream> {
               );
               */
             },
-            style: ButtonStyle(
+            style: const ButtonStyle(
                 /*
               backgroundColor: MaterialStateProperty.all(
                 Colors.blue.shade400,
@@ -216,7 +215,7 @@ class _LiveStream extends State<LiveStream> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      child: Icon(
+                      child: const Icon(
                         Icons.language,
                         size: 100,
                       ), //

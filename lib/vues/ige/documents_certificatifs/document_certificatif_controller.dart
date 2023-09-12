@@ -84,7 +84,7 @@ class DemandeDocumentController extends GetxController {
               onPressed: () {
                 Get.back();
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.check,
                 color: Colors.green,
               ),
@@ -106,7 +106,7 @@ class DemandeDocumentController extends GetxController {
               onPressed: () {
                 Get.back();
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.check,
                 color: Colors.green,
               ),

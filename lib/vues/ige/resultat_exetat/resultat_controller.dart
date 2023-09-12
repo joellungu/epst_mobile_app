@@ -1,11 +1,8 @@
-import 'dart:convert';
 
-import 'package:epst_app/utils/connexion.dart';
 import 'package:epst_app/utils/requetes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
 
 class ResultatController extends GetxController with StateMixin<List> {
   Requete requete = Requete();
@@ -37,7 +34,7 @@ class ResultatController extends GetxController with StateMixin<List> {
     //print("province: $province => distric: $distric");
     //identification/all/demande?province=$province&district=$distric&valider=0
     //{nomecole}/{codeoption}/{anneescolaire}
-    print(":: ::${codecandidat}");
+    print(":: ::$codecandidat");
     print(":: ::$anneescolaire");
     //${Connexion.lien}
     Response response = await requete.getE(

@@ -1,6 +1,3 @@
-import 'package:epst_app/vues/documents_officiels/message_phonique.dart';
-import 'package:epst_app/vues/mutuelle/demande.dart';
-import 'package:epst_app/vues/mutuelle/historique_demande.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +7,7 @@ import 'historique_demande_identification.dart';
 class Identification extends StatefulWidget {
   String? titre;
   //
-  Identification({this.titre});
+  Identification({Key? key, this.titre}) : super(key: key);
   //
   @override
   State<StatefulWidget> createState() {
@@ -26,7 +23,7 @@ class _Identification extends State<Identification> {
         title: Text("${widget.titre}"),
       ),
       body: GridView.count(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         crossAxisCount: 2,
         mainAxisSpacing: 5,
         crossAxisSpacing: 7,
@@ -45,7 +42,7 @@ class _Identification extends State<Identification> {
               */
                 ),
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -105,7 +102,7 @@ class _Identification extends State<Identification> {
           ElevatedButton(
             onPressed: () {
               //
-              Get.to(HistoriqueDemandeIdentification());
+              Get.to(const HistoriqueDemandeIdentification());
             },
             style: const ButtonStyle(
                 /*
@@ -115,7 +112,7 @@ class _Identification extends State<Identification> {
               */
                 ),
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [

@@ -1,7 +1,4 @@
-import 'package:epst_app/vues/documents_officiels/message_phonique.dart';
 import 'package:epst_app/vues/ige/demande_transfere/demande_transfere.dart';
-import 'package:epst_app/vues/mutuelle/demande.dart';
-import 'package:epst_app/vues/mutuelle/historique_demande.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +7,7 @@ import 'historique_transfere.dart';
 class Transfere extends StatefulWidget {
   String? titre;
   //
-  Transfere({this.titre});
+  Transfere({Key? key, this.titre}) : super(key: key);
   //
   @override
   State<StatefulWidget> createState() {
@@ -26,7 +23,7 @@ class _Transfere extends State<Transfere> {
         title: Text("${widget.titre}"),
       ),
       body: GridView.count(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         crossAxisCount: 2,
         mainAxisSpacing: 5,
         crossAxisSpacing: 7,
@@ -35,7 +32,7 @@ class _Transfere extends State<Transfere> {
           ElevatedButton(
             onPressed: () {
               //
-              Get.to(DemandeTransfere());
+              Get.to(const DemandeTransfere());
             },
             style: const ButtonStyle(
                 /*
@@ -45,7 +42,7 @@ class _Transfere extends State<Transfere> {
               */
                 ),
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -105,7 +102,7 @@ class _Transfere extends State<Transfere> {
           ElevatedButton(
             onPressed: () {
               //
-              Get.to(HistoriqueTransfere());
+              Get.to(const HistoriqueTransfere());
             },
             style: const ButtonStyle(
                 /*
@@ -115,7 +112,7 @@ class _Transfere extends State<Transfere> {
               */
                 ),
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [

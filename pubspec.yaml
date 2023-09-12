@@ -34,16 +34,17 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  file_picker:
+  file_picker: ^5.0.2
+  #easy_permissions_handler: ^1.0.0
   shimmer: ^2.0.0
   #easy_popup: ^1.0.0
   dio: ^5.2.1+1
   #syncfusion_flutter_pdfviewer: ^19.4.55-beta
   flutter_chat_ui:
   #pdfx:
-  flutter_mailer:
+  #flutter_mailer:
   uuid:
-  webview_flutter:
+  webview_flutter: ^4.2.3
   #flutter_plugin_record: ^1.0.1
   percent_indicator: ^4.2.3
   image_picker:
@@ -52,9 +53,9 @@ dependencies:
   flutter_chat_bubble:
   sqflite:
   path_provider:
-  connectivity_plus:
+  connectivity_plus: ^4.0.2
   web_socket_channel:
-  open_file_safe:
+  open_file: ^3.3.2
   get:
   http:
   get_storage:
@@ -72,12 +73,17 @@ dependencies:
   upgrader:
   #open_filex:
   mime: ^1.0.4
+  record: ^4.4.4
+  permission_handler:
 
 flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/ICONE EPST APP 30 SUR 30 CM.png"
   min_sdk_android: 21
+  
+dependency_overrides:
+  package_info_plus: any
 
 dev_dependencies:
   flutter_test:
@@ -89,6 +95,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+  package_info_plus: any
+  wakelock_windows: any
+  win32: any
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

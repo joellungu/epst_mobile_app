@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 class DetailsSG extends StatelessWidget {
   Map e;
-  DetailsSG(this.e);
+  DetailsSG(this.e, {Key? key}) : super(key: key);
   //
   RxInt ie = 0.obs;
   //
@@ -13,13 +13,13 @@ class DetailsSG extends StatelessWidget {
     //
     return Scaffold(
       appBar: AppBar(
-        title: Text("""DIGE"""),
+        title: const Text("""DIGE"""),
       ),
       backgroundColor: Colors.grey.shade200,
       body: Obx(
         () => ie.value == 0
             ? ListView(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 children: [
                   // const Text(
                   //   "Direction de communication et ...",
@@ -33,9 +33,8 @@ class DetailsSG extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.only(top: 10),
                   ),
-                  HtmlWidget(
-                    """Direction de l'Information pour la Gestion de l'Education<span style="font-family: Segoe UI Light;font-size: 16px;color: #000000;"> </span>
-""",
+                  const HtmlWidget(
+                    """Direction de l'Information pour la Gestion de l'Education<span style="font-family: Segoe UI Light; font-width: bold ; font-size: 16px;color: #000000;"> </span>""",
                   ),
                   const Padding(
                     padding: EdgeInsets.only(top: 10),
@@ -45,13 +44,13 @@ class DetailsSG extends StatelessWidget {
                     child: SizedBox(
                       height: 150,
                       width: Get.size.width,
-                      child: Column(
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ListTile(
                             leading: Icon(Icons.person),
-                            title: Text("NOM"),
-                            subtitle: Text("DJ BLJDLBJBDJ LJDHLJ"),
+                            title: Text("NOM DU RESPONSABLE"),
+                            subtitle: Text("CHRISTIAN"),
                           ),
                           ListTile(
                             leading: Icon(Icons.phone_android),
@@ -65,7 +64,7 @@ class DetailsSG extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.only(top: 10),
                   ),
-                  Align(
+                  const Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "ADRESSE",
@@ -77,21 +76,21 @@ class DetailsSG extends StatelessWidget {
                   const SizedBox(
                     height: 5,
                   ),
-                  Text(
+                  const Text(
                     """sur l’avenue de la Science, au n°7 dans la Commune de la Gombe, quartier Haut commandement à Kinshasa, Capitale de la République Démocratique du Congo""",
                   ),
                 ],
               )
             : ie.value == 1
                 ? ListView(
-                    padding: EdgeInsets.all(10),
-                    children: [],
+                    padding: const EdgeInsets.all(10),
+                    children: const [],
                   )
                 : ie.value == 2
                     ? ListView(
-                        padding: EdgeInsets.all(10),
-                        children: [
-                          const Padding(
+                        padding: const EdgeInsets.all(10),
+                        children: const [
+                          Padding(
                             padding: EdgeInsets.only(top: 10),
                           ),
                           Align(
@@ -103,13 +102,14 @@ class DetailsSG extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 5,
                           ),
                           HtmlWidget(
                               """ La mission principale assignée par le Ministère de l'EPST est celle de former la jeunesse, par une éducation perméable à toutes les catégories sociales, afin de combattre le phénomène d’analphabétisme sur toute l’étendue du territoire national et faire de chaque Enfant Congolais un élève complet, un citoyen honnête, consciencieux et utile à la société.
 En effet, les attributions de la Direction de la Planification et des Statistiques Scolaires (DPSS) devenue aujourd'hui la Direction de l'Information pour la Gestion de l'Education, en sigle: "DIGE" se trouvent être définie  dans l'arrêté ministériel n° EDN/DG/3156/75 du 30 octobre 1975, révisé en 1990 par le numéro MIN EPSP/CABMN/ 001/01488/90 du 31/12/1990, en 1992 par le numéro 02326/42 DU 14/08/1992,et très récemment en 2017 dans le cadre de la mise en œuvre de la stratégie de la Réforme et Modernisation de l’Administration publique (CPMAP), en application du décret N°15/043 du 28 décembre 2015 faisant suite à l’Arrêté n° CAB .MIN/FP/J-CK/SGA/ CMRAP/JSB/GMK/013/2015 du 30 juillet 2015 portant fixation du cadre organique des structures standards à compétences horizontales communes à toutes les administrations centrales des ministères, institutions et services publics. 
 A cet effet, On reconnait à la DIGE la mission de :
+
 1. Constituer ou Collecter, traiter et publier les statistiques officielles de l’enseignement pré-primaire, primaire et secondaire ;
 2. Gérer le système d’information du Ministère de l’Enseignement Primaire, Secondaire et Technique ;  
 3. Elaborer et produire le rapport d’indicateurs statistiques scolaires ;
@@ -121,9 +121,9 @@ A cet effet, On reconnait à la DIGE la mission de :
                       )
                     : ie.value == 3
                         ? ListView(
-                            padding: EdgeInsets.all(10),
-                            children: [
-                              const Padding(
+                            padding: const EdgeInsets.all(10),
+                            children: const [
+                              Padding(
                                 padding: EdgeInsets.only(top: 10),
                               ),
                               Align(
@@ -135,7 +135,7 @@ A cet effet, On reconnait à la DIGE la mission de :
                                   ),
                                 ),
                               ),
-                              const SizedBox(
+                              SizedBox(
                                 height: 5,
                               ),
                               HtmlWidget(
@@ -159,9 +159,9 @@ Les statistiques sont utiles pour une gestion efficace du sous-secteur de l’é
                             ],
                           )
                         : ListView(
-                            padding: EdgeInsets.all(10),
-                            children: [
-                              const Padding(
+                            padding: const EdgeInsets.all(10),
+                            children: const [
+                              Padding(
                                 padding: EdgeInsets.only(top: 10),
                               ),
                               Align(
@@ -173,7 +173,7 @@ Les statistiques sont utiles pour une gestion efficace du sous-secteur de l’é
                                   ),
                                 ),
                               ),
-                              const SizedBox(
+                              SizedBox(
                                 height: 5,
                               ),
                               HtmlWidget("""1. Introduction 
@@ -212,9 +212,11 @@ La direction de la planification de l’enseignement secondaire dirigé par mons
           selectedItemColor: Colors.blue.shade700,
           unselectedItemColor: Colors.grey.shade700,
           backgroundColor: Colors.grey.shade200,
-          items: [
+          items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.mode_edit_rounded), label: "DETAILS"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.mode_edit_rounded), label: "DEPARTEMENTS"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.edit_document), label: "ARRETS"),
             BottomNavigationBarItem(

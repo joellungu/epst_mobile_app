@@ -5,6 +5,8 @@ import 'package:stomp_dart_client/stomp_config.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class ChatTest extends StatefulWidget {
+  const ChatTest({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _ChatTest();
@@ -103,7 +105,7 @@ class _ChatTest extends State<ChatTest> {
                 print("Even: $e");
               });
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

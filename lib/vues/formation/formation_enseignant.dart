@@ -1,13 +1,10 @@
-import 'dart:io';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class FormationEnseignent extends StatefulWidget {
   String? titre;
 
-  FormationEnseignent({this.titre});
+  FormationEnseignent({Key? key, this.titre}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -27,7 +24,7 @@ class _FormationEnseignent extends State<FormationEnseignent> {
   void initState() {
     super.initState();
     // Enable virtual display.
-    if (Platform.isAndroid) WebView.platform = AndroidWebView();
+    //if (Platform.isAndroid) WebView.platform = AndroidWebView();
   }
 
   @override
@@ -61,17 +58,17 @@ class _FormationEnseignent extends State<FormationEnseignent> {
               );
               */
             },
-            leading: Icon(
+            leading: const Icon(
               Icons.school,
               color: Colors.black,
             ),
             title: Text(
               "${actus[index]}",
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),
-            subtitle: Text(" Mise à jour le 12/12/2022"),
+            subtitle: const Text(" Mise à jour le 12/12/2022"),
           );
         }),
       ),
@@ -82,7 +79,7 @@ class _FormationEnseignent extends State<FormationEnseignent> {
 class Lire extends StatefulWidget {
   String? titre;
 
-  Lire({this.titre});
+  Lire({Key? key, this.titre}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -91,9 +88,9 @@ class Lire extends StatefulWidget {
 }
 
 class _Lire extends State<Lire> {
-  YoutubePlayerController _controller = YoutubePlayerController(
+  final YoutubePlayerController _controller = YoutubePlayerController(
     initialVideoId: '74EdyJzluWY',
-    flags: YoutubePlayerFlags(
+    flags: const YoutubePlayerFlags(
       autoPlay: true,
       mute: false,
     ),

@@ -75,14 +75,14 @@ class DemandeIdentificationController extends GetxController {
       Get.snackbar("Succès", "Demande envoyé avec succès");
       Get.dialog(
         AlertDialog(
-          title: Text("Succès"),
-          content: Text("Demande envoyé avec succès"),
+          title: const Text("Succès"),
+          content: const Text("Demande envoyé avec succès"),
           actions: [
             IconButton(
               onPressed: () {
                 Get.back();
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.check,
                 color: Colors.green,
               ),
@@ -97,14 +97,14 @@ class DemandeIdentificationController extends GetxController {
       Get.snackbar("Erreur", "Un problème est survenu lors l'envois");
       Get.dialog(
         AlertDialog(
-          title: Text("Erreur"),
-          content: Text("Un problème est survenu lors l'envois"),
+          title: const Text("Erreur"),
+          content: const Text("Un problème est survenu lors l'envois"),
           actions: [
             IconButton(
               onPressed: () {
                 Get.back();
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.check,
                 color: Colors.green,
               ),

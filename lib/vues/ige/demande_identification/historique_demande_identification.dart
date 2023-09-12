@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class HistoriqueDemandeIdentification extends StatefulWidget {
+  const HistoriqueDemandeIdentification({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _HistoriqueDemandeIdentification();
@@ -45,7 +47,7 @@ class _HistoriqueDemandeIdentification
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Validation"),
+          title: const Text("Validation"),
         ),
         body: Accordion(
           maxOpenSections: 2,
@@ -63,7 +65,7 @@ class _HistoriqueDemandeIdentification
             return AccordionSection(
                 header: Text(
                   "${e['nom']} ${e['postnom']} ${e['prenom']}",
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 17,
                       fontWeight: FontWeight.bold),
@@ -75,7 +77,7 @@ class _HistoriqueDemandeIdentification
                       child: Text(
                         "id: ${e['id']}",
                         textAlign: TextAlign.left,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -85,7 +87,7 @@ class _HistoriqueDemandeIdentification
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Nom: ${e['nom']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -94,7 +96,7 @@ class _HistoriqueDemandeIdentification
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Postnom: ${e['postnom']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -103,7 +105,7 @@ class _HistoriqueDemandeIdentification
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Prenom: ${e['prenom']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -112,7 +114,7 @@ class _HistoriqueDemandeIdentification
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "sexe: ${e['sexe']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -121,7 +123,7 @@ class _HistoriqueDemandeIdentification
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "lieuNaissance: ${e['lieuNaissance']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -130,7 +132,7 @@ class _HistoriqueDemandeIdentification
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "dateNaissance: ${e['dateNaissance']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -139,7 +141,7 @@ class _HistoriqueDemandeIdentification
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "telephone: ${e['telephone']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -148,7 +150,7 @@ class _HistoriqueDemandeIdentification
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "nompere: ${e['nompere']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -157,7 +159,7 @@ class _HistoriqueDemandeIdentification
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "nommere: ${e['nommere']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -166,7 +168,7 @@ class _HistoriqueDemandeIdentification
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "adresse: ${e['adresse']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.bold),
@@ -175,7 +177,7 @@ class _HistoriqueDemandeIdentification
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "provinceOrigine: ${e['provinceOrigine']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -184,7 +186,7 @@ class _HistoriqueDemandeIdentification
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "ecole: ${e['ecole']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -194,7 +196,7 @@ class _HistoriqueDemandeIdentification
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "provinceEcole: ${e['provinceEcole']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -204,7 +206,7 @@ class _HistoriqueDemandeIdentification
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "provinceEducationnel: ${e['provinceEducationnel']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -214,7 +216,7 @@ class _HistoriqueDemandeIdentification
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "option: ${e['option']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -224,7 +226,7 @@ class _HistoriqueDemandeIdentification
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "annee: ${e['annee']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -265,7 +267,7 @@ class _HistoriqueDemandeIdentification
                             print("Valider ou: ${v['valider']}");
                             show.value = v['valider'];
                             //setState((){});
-                            return Container(
+                            return SizedBox(
                               height: 100,
                               child: Column(
                                 children: [
@@ -301,7 +303,7 @@ class _HistoriqueDemandeIdentification
                                               ],
                                             )
                                           : v['valider'] == 3
-                                              ? Align(
+                                              ? const Align(
                                                   alignment:
                                                       Alignment.centerLeft,
                                                   child: Text(
@@ -310,7 +312,7 @@ class _HistoriqueDemandeIdentification
                                                         TextStyle(fontSize: 20),
                                                   ),
                                                 )
-                                              : Align(
+                                              : const Align(
                                                   alignment:
                                                       Alignment.centerLeft,
                                                   child: Text(
@@ -327,14 +329,14 @@ class _HistoriqueDemandeIdentification
                             );
                             //return
                           } else if (t.hasError) {
-                            return Text("...");
+                            return const Text("...");
                           }
 
                           return Container(
                             height: 50,
                             width: 50,
                             alignment: Alignment.center,
-                            child: CircularProgressIndicator(),
+                            child: const CircularProgressIndicator(),
                           );
                         },
                       ),

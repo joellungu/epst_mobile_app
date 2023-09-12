@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:epst_app/splash.dart';
 import 'package:epst_app/utils/depotcontroler.dart';
 import 'package:epst_app/vues/accueil.dart';
@@ -10,19 +9,24 @@ import 'package:epst_app/vues/sg/sg_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:upgrader/upgrader.dart';
 import 'vues/identification/identification_controller.dart';
 import 'vues/ige/demande_identification/demande_identification_controller.dart';
 import 'vues/ige/demande_transfere/transfere_controller.dart';
 import 'vues/ige/palmares/palmares_controller.dart';
 import 'vues/ige/resultat_exetat/resultat_controller.dart';
+import 'vues/ige/sernie/sernie_controller.dart';
 import 'vues/mutuelle/mutuelle_controller.dart';
 import 'widgets/paiement_controller.dart';
 
 //
 List liste_ecoles = [];
+List liste_antennes = [];
 RxString annee = "".obs;
 RxMap ecole = {"ecole": "", "province": ""}.obs;
+//
+RxMap antenne = {"antenne": "", "province": ""}.obs;
+RxMap code_antenne = {"ecole": "", "province": ""}.obs;
+//
 RxString option = "Option".obs;
 RxMap ecole1 = {"ecole": "", "province": ""}.obs;
 RxMap ecole2 = {"ecole": "", "province": ""}.obs;
@@ -53,7 +57,8 @@ void main() async {
   Get.put(TransfereController());
   Get.put(ResultatController());
   MutuelleController mutuelleController = Get.put(MutuelleController());
-  //MagasinController magasinController =
+  SernieController sernieController = Get.put(SernieController());
+  //
   runApp(
     Epst(
       vue: Splash(),
@@ -70,7 +75,7 @@ load() async {
   if (v) {
     runApp(
       Epst(
-        vue: Accueil(),
+        vue: const Accueil(),
       ),
     );
   } else {

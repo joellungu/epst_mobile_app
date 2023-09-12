@@ -1,6 +1,4 @@
 import 'package:accordion/accordion.dart';
-import 'package:epst_app/vues/identification/identification_controller.dart';
-import 'package:epst_app/vues/mutuelle/mutuelle_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -8,6 +6,8 @@ import 'package:get_storage/get_storage.dart';
 import 'transfere_controller.dart';
 
 class HistoriqueTransfere extends StatefulWidget {
+  const HistoriqueTransfere({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _HistoriqueTransfere();
@@ -46,7 +46,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Validation"),
+        title: const Text("Validation"),
       ),
       body: Accordion(
         maxOpenSections: 2,
@@ -62,7 +62,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
           return AccordionSection(
               header: Text(
                 "${e['nom']} ${e['postnom']} ${e['prenom']}",
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.white,
                     fontSize: 17,
                     fontWeight: FontWeight.bold),
@@ -74,7 +74,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                     child: Text(
                       "id: ${e['id']}",
                       textAlign: TextAlign.left,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 17,
                           fontWeight: FontWeight.normal),
@@ -84,7 +84,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Nom: ${e['nom']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -93,7 +93,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Postnom: ${e['postnom']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -102,7 +102,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Prenom: ${e['prenom']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -111,7 +111,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "sexe: ${e['sexe']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -120,7 +120,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "lieuNaissance: ${e['lieuNaissance']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -129,7 +129,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "dateNaissance: ${e['dateNaissance']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -138,7 +138,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "telephone: ${e['telephone']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -147,7 +147,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "nompere: ${e['nompere']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -156,7 +156,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "nommere: ${e['nommere']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -165,7 +165,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "Téléphone: ${e['telephone']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.bold),
@@ -174,7 +174,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "adresse: ${e['adresse']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.bold),
@@ -183,7 +183,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "option avant: ${e['option_avant']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -192,7 +192,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "option apres: ${e['option_apres']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -201,7 +201,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         "provinceOrigine: ${e['provinceOrigine']}",
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -210,7 +210,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "ecole provenance: ${e['ecoleProvenance']}",
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 17,
                           fontWeight: FontWeight.normal),
@@ -220,7 +220,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "ecoleProvenanceProv: ${e['ecoleProvenanceProv']}",
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 17,
                           fontWeight: FontWeight.normal),
@@ -230,7 +230,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "ecoleProvenanceDistric: ${e['ecoleProvenanceDistric']}",
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 17,
                           fontWeight: FontWeight.normal),
@@ -240,7 +240,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "ecoleDestination: ${e['ecoleDestination']}",
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 17,
                           fontWeight: FontWeight.normal),
@@ -250,7 +250,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "ecoleDestinationProv: ${e['ecoleDestinationProv']}",
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 17,
                           fontWeight: FontWeight.normal),
@@ -260,7 +260,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "ecoleDestinationDistric: ${e['ecoleDestinationDistric']}",
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 17,
                           fontWeight: FontWeight.normal),
@@ -289,12 +289,12 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                           print("Valider ou: $v");
                           show.value = v['valider'];
                           //setState((){});
-                          return Container(
+                          return SizedBox(
                             height: 100,
                             child: Column(
                               children: [
                                 v['valider'] == 1
-                                    ? Align(
+                                    ? const Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text(
                                           "Validation: Validé",
@@ -306,14 +306,14 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                                             alignment: Alignment.centerLeft,
                                             child: Text(
                                               "Validation: Refusé\nRaison: ${v['raison']}",
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontSize: 17,
                                                 fontWeight: FontWeight.bold,
                                               ),
                                             ),
                                           )
                                         : v['valider'] == 3
-                                            ? Align(
+                                            ? const Align(
                                                 alignment: Alignment.centerLeft,
                                                 child: Text(
                                                   "Validation: Expiré",
@@ -321,7 +321,7 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                                                       TextStyle(fontSize: 20),
                                                 ),
                                               )
-                                            : Align(
+                                            : const Align(
                                                 alignment: Alignment.centerLeft,
                                                 child: Text(
                                                   "Validation: En attente",
@@ -337,14 +337,14 @@ class _HistoriqueTransfere extends State<HistoriqueTransfere> {
                           );
                           //return
                         } else if (t.hasError) {
-                          return Text("...");
+                          return const Text("...");
                         }
 
                         return Container(
                           height: 50,
                           width: 50,
                           alignment: Alignment.center,
-                          child: CircularProgressIndicator(),
+                          child: const CircularProgressIndicator(),
                         );
                       },
                     ),

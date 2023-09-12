@@ -14,12 +14,12 @@ class Connexion {
   //static var lien = 'http://localhost:8080/';
   //static var ws = 'localhost:8080';
 
-  static var lien = 'https://epstserveur.herokuapp.com/';
-  static var ws = 'epstserveur.herokuapp.com';
+  //static var lien = 'https://epstserveur.herokuapp.com/';
+  //static var ws = 'epstserveur.herokuapp.com';
   //
-  //static var lien = 'http://192.168.1.71:8080/';
-  //static var ws = '192.168.1.71:8080/';
-
+  static var lien = 'http://192.168.1.76:8080/';
+  static var ws = '192.168.1.76:8080/';
+  //
   //static var lien = 'http://10.0.2.2:8080/';
   //static var ws = '10.0.2.2:8080';
 
@@ -135,10 +135,10 @@ class Connexion {
     //
     if (l1 != null) {}
     //
-    List rep_liste = json.decode(response.body);
+    List repListe = json.decode(response.body);
     //
     //
-    rep_liste.forEach((element) {
+    for (var element in repListe) {
       Map<String, dynamic> e = element;
       //print(e);
       if (type == 1) {
@@ -154,7 +154,7 @@ class Connexion {
         //print("+++++++++***:deja:***");
         //print(":::: $l1");
       }
-    });
+    }
 
     //
     liste1.isEmpty ? box.write("magasin", l1) : box.write("magasin", liste1);
@@ -186,9 +186,9 @@ class Connexion {
       if (l1 != null) {}
       //
       print(response.data);
-      List rep_liste = response.data;
+      List repListe = response.data;
       //
-      rep_liste.forEach((element) {
+      for (var element in repListe) {
         Map<String, dynamic> e = element;
         print(e);
         if (type == 1) {
@@ -204,7 +204,7 @@ class Connexion {
           print("+++++++++***:deja:***");
           //print(":::: $l1");
         }
-      });
+      }
 
       //
       liste1.isEmpty ? box.write("magasin", l1) : box.write("magasin", liste1);
@@ -230,7 +230,7 @@ class Connexion {
     if (!v) {
       Map<String, dynamic> m = await getMagasin(id);
       box.write(id, base64Decode(m["piecejointe"]));
-      File f = await await file.writeAsBytes(base64Decode(m["piecejointe"])); //
+      File f = await file.writeAsBytes(base64Decode(m["piecejointe"])); //
       bool b = await f.exists();
       print("Fichier crée avec succé ! $b");
     }

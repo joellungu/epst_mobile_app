@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class HistoriqueDemande extends StatefulWidget {
+  const HistoriqueDemande({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _HistoriqueDemande();
@@ -42,7 +44,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Validation"),
+          title: const Text("Validation"),
         ),
         body: Accordion(
           maxOpenSections: 2,
@@ -58,7 +60,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
             return AccordionSection(
                 header: Text(
                   "${e['services']} du $dd",
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 17,
                       fontWeight: FontWeight.bold),
@@ -70,7 +72,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                       child: Text(
                         "id: ${e['id']}",
                         textAlign: TextAlign.left,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black,
                             fontSize: 17,
                             fontWeight: FontWeight.normal),
@@ -80,7 +82,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Nom: ${e['nom']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -89,7 +91,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Postnom: ${e['postnom']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -98,7 +100,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Prenom: ${e['prenom']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -107,7 +109,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Matricule: ${e['matricule']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -116,7 +118,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Direction: ${e['direction']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -125,7 +127,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Services: ${e['services']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -134,7 +136,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Beneficiaire: ${e['beneficiaire']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -143,7 +145,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Notes: ${e['notes']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -158,7 +160,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Province: ${e['province']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -167,7 +169,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "District: ${e['district']}",
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 17,
                               fontWeight: FontWeight.normal),
@@ -185,12 +187,12 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                             print("Valider ou: $v");
                             show.value = v['valider'];
                             //setState((){});
-                            return Container(
+                            return SizedBox(
                               height: 100,
                               child: Column(
                                 children: [
                                   v['valider'] == 1
-                                      ? Align(
+                                      ? const Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
                                             "Validation MESP: Validé",
@@ -200,7 +202,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                                       : v['valider'] == 2
                                           ? Column(
                                               children: [
-                                                Align(
+                                                const Align(
                                                   alignment:
                                                       Alignment.centerLeft,
                                                   child: Text(
@@ -221,7 +223,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                                               ],
                                             )
                                           : v['valider'] == 3
-                                              ? Align(
+                                              ? const Align(
                                                   alignment:
                                                       Alignment.centerLeft,
                                                   child: Text(
@@ -230,7 +232,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                                                         TextStyle(fontSize: 20),
                                                   ),
                                                 )
-                                              : Align(
+                                              : const Align(
                                                   alignment:
                                                       Alignment.centerLeft,
                                                   child: Text(
@@ -242,7 +244,7 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                                   const SizedBox(
                                     height: 20,
                                   ),
-                                  Container(
+                                  SizedBox(
                                     height: 50,
                                     child: v == 1
                                         ? Row(
@@ -297,14 +299,14 @@ class _HistoriqueDemande extends State<HistoriqueDemande> {
                             );
                             //return
                           } else if (t.hasError) {
-                            return Text("...");
+                            return const Text("...");
                           }
 
                           return Container(
                             height: 50,
                             width: 50,
                             alignment: Alignment.center,
-                            child: CircularProgressIndicator(),
+                            child: const CircularProgressIndicator(),
                           );
                         },
                       ),

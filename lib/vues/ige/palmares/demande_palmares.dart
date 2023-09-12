@@ -1,12 +1,10 @@
 import 'dart:async';
 
-import 'package:accordion/accordion.dart';
 import 'package:epst_app/main.dart';
 import 'package:epst_app/vues/ige/palmares/liste_palmares.dart';
 import 'package:epst_app/vues/ige/palmares/palmares_controller.dart';
 import 'package:epst_app/widgets/paiement.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -14,6 +12,8 @@ import '../recherche_annee.dart';
 import '../recherche_ecole.dart';
 
 class DemandePalmares extends StatefulWidget {
+  const DemandePalmares({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _DemandePalmares();
@@ -126,7 +126,7 @@ class _DemandePalmares extends State<DemandePalmares> {
       a++;
     }
     //
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       loadPayment.value = true;
     });
     //
@@ -140,7 +140,7 @@ class _DemandePalmares extends State<DemandePalmares> {
         title: const Text("Demande palmares"),
       ),
       body: ListView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Image.asset(
@@ -164,10 +164,10 @@ class _DemandePalmares extends State<DemandePalmares> {
           ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: InkWell(
               onTap: () {
@@ -185,7 +185,7 @@ class _DemandePalmares extends State<DemandePalmares> {
                   child: Obx(
                     () => Text(
                       "${ecole.value["ecole"] ?? ''} / ${ecole.value["province"] ?? ''}",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                       ),
                     ),
@@ -210,10 +210,10 @@ class _DemandePalmares extends State<DemandePalmares> {
 
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: Container(
               height: 50,
@@ -223,11 +223,11 @@ class _DemandePalmares extends State<DemandePalmares> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
+                  const Text(
                     "  ",
                     style: TextStyle(fontSize: 10),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Expanded(
@@ -300,7 +300,7 @@ class _DemandePalmares extends State<DemandePalmares> {
                   child: Obx(
                     () => Text(
                       annee.value,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                       ),
                     ),

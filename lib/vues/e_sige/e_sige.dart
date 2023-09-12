@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Esige extends StatelessWidget {
   String? titre;
-  Esige({this.titre});
+  Esige({Key? key, this.titre}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     //

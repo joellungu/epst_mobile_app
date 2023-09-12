@@ -1,11 +1,15 @@
 import 'package:epst_app/utils/requetes.dart';
+import 'package:epst_app/vues/ige/sernie/sernie.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'identification.dart';
+import 'identification_sernie.dart';
 
 class IdentificationController extends GetxController with StateMixin<List> {
   Requete requete = Requete();
+  //
+  var box = GetStorage();
   //
   Future<Map> getStatus(String id, bool v) async {
     Response response =
@@ -61,10 +65,17 @@ class IdentificationController extends GetxController with StateMixin<List> {
           e["role"] == 8 ||
           e["role"] == 9 ||
           e["role"] == 10 ||
-          e["role"] == 11 ||
-          e["role"] == 12 ||
-          e["role"] == 13) {
+          e["role"] == 13 ||
+          e["role"] == 14) {
         Get.to(Identification(e));
+        //
+        //"Agent sernie id",
+      } else if (e["role"] == 11) {
+        //Les validateur
+        Get.to(IdentificationSernie(e));
+      } else if (e["role"] == 12) {
+        //Les enregistreurs
+        Get.to(Sernie(titre: "SERNIE"));
       } else {
         Get.snackbar("Erreur", "Vous n'etes pas autorisé à y acceder");
       }
@@ -75,7 +86,7 @@ class IdentificationController extends GetxController with StateMixin<List> {
     }
   }
 
-  //
+  //sernie/getallby/Kinshasa/KINSHASA-FUNA
   getListe(int role, String province, String distric) async {
     print("province: $province => distric: $distric");
     //identification/all/demande?province=$province&district=$distric&valider=0
@@ -102,6 +113,51 @@ class IdentificationController extends GetxController with StateMixin<List> {
       print("erreur: ${response.body}");
       //
       change([], status: RxStatus.empty());
+      //
+    }
+  }
+
+  //sernie/getallby/Kinshasa/KINSHASA-FUNA
+  getListeSernie(String province, String distric, String antenne) async {
+    //print("province: $province => distric: $distric");
+    //identification/all/demande?province=$province&district=$distric&valider=0
+    //print("sernie/getallby/Kinshasa/KINSHASA-FUNA");
+    Response response =
+        await requete.getE("sernie/getallby/$province/$distric/$antenne");
+    //
+    List la = box.read("historique_demande_sernie") ?? [];
+    //
+    if (response.isOk) {
+      //
+      List l = await response.body;
+
+      l.forEach((element) {
+        bool add = true;
+        la.forEach((element2) {
+          if (element2['code'] == element['code']) {
+            add = false;
+          }
+        });
+        //
+        if (add) {
+          la.add(element);
+        }
+
+        //
+      });
+      //map['photo'] = "";
+      //l.add(formulaireD);
+      box.write("historique_demande_sernie", la);
+      //print("la reponse: $la");
+      //
+      change(la, status: RxStatus.success());
+      //
+    } else {
+      print("------------------------");
+      print("erreur: ${response.statusCode}");
+      print("erreur: ${response.body}");
+      //
+      change(la, status: RxStatus.empty());
       //
     }
   }

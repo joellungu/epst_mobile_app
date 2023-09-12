@@ -1,9 +1,7 @@
-import 'package:epst_app/utils/connexion.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'palmares_controller.dart';
 
 class ListPalmares extends StatelessWidget {
   //
@@ -11,7 +9,7 @@ class ListPalmares extends StatelessWidget {
   //String? codeoption;
   ///String? anneescolaire;
   RxList l = [].obs;
-  ListPalmares() {
+  ListPalmares({Key? key}) : super(key: key) {
     //
     //controller.getListe(nomecole!, codeoption!, anneescolaire!);
     //
@@ -72,7 +70,7 @@ class ListPalmares extends StatelessWidget {
 class DetailsPalmares extends StatelessWidget {
   List l;
   Map e;
-  DetailsPalmares(this.l, this.e) {
+  DetailsPalmares(this.l, this.e, {Key? key}) : super(key: key) {
     print(l);
   }
   @override
@@ -83,7 +81,7 @@ class DetailsPalmares extends StatelessWidget {
         title: Text(
           "${e['nomecole']}\n${e['option']}: ${e['anneescolaire']}",
           textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 13),
+          style: const TextStyle(fontSize: 13),
         ),
       ),
       body: ListView(padding: const EdgeInsets.all(10), children: [
@@ -131,7 +129,7 @@ class DetailsPalmares extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: ListTile(
-                          leading: Icon(CupertinoIcons.person),
+                          leading: const Icon(CupertinoIcons.person),
                           title: Text("${e['nomcandidat']}"),
                           subtitle: Text("${e['option']}"),
                           trailing: Text("${e['note']} %"),

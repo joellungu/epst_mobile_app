@@ -8,10 +8,8 @@ import 'package:epst_app/models/historiquedb.dart';
 import 'package:epst_app/utils/depotcontroler.dart';
 import 'package:epst_app/vues/ige/recherche_annee.dart';
 import 'package:epst_app/vues/ige/recherche_ecole.dart';
-import 'package:epst_app/vues/reference.dart';
 import 'package:epst_app/vues/transsfere.dart';
 import 'package:epst_app/widgets/paiement.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 //import 'mutuelle_controller.dart';
 import 'package:get/get.dart';
@@ -26,7 +24,7 @@ import 'demande_identification_controller.dart';
 class DemandeIdentification extends StatefulWidget {
   String? titre;
 
-  DemandeIdentification({this.titre});
+  DemandeIdentification({Key? key, this.titre}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -45,13 +43,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
   TextEditingController lieu_de_naissance = TextEditingController();
   List genres = ["Homme", "Femme"];
   int genre = 0;
-  List types = [
-    "Examens d'Etat",
-    "TENASOSP",
-    "ENAFEP",
-    "Identification SERNIE",
-    "JURY NATIONAL C.C"
-  ];
+  List types = ["Examens d'Etat", "TENASOSP", "ENAFEP", "JURY NATIONAL C.C"];
   //
   List listeOptions = [
     "LATIN-PHILOSOPHIE,101",
@@ -227,12 +219,12 @@ class _DemandeIdentification extends State<DemandeIdentification> {
 
     listeDistrict.clear();
     //
-    listeDistrict2.forEach((element) {
+    for (var element in listeDistrict2) {
       if ("${element['p']}".toLowerCase() ==
           ("${listeProvince[0]}".toLowerCase())) {
         listeDistrict.add("${element['d']}");
       }
-    });
+    }
     //
   }
 
@@ -244,13 +236,13 @@ class _DemandeIdentification extends State<DemandeIdentification> {
         centerTitle: true,
         title: Text(
           widget.titre!,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 17,
           ),
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         children: [
           const Text("Identité de l'élève"),
           const SizedBox(
@@ -262,11 +254,11 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               //prefixIcon: Text("De:"),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.blue,
                 ),
               ),
-              label: Text("Nom"),
+              label: const Text("Nom"),
               //prefixText: "De: "
             ),
           ),
@@ -279,11 +271,11 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                 //prefixIcon: Text("Téléphone:"),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(
+                  borderSide: const BorderSide(
                     color: Colors.blue,
                   ),
                 ),
-                label: Text("Postnom")
+                label: const Text("Postnom")
                 //prefixText: "De: "
                 ),
           ),
@@ -296,11 +288,11 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               //prefixIcon: Text("Email:"),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.blue,
                 ),
               ),
-              label: Text("Prenom"),
+              label: const Text("Prenom"),
               //prefixText: "De: "
             ),
           ),
@@ -309,10 +301,10 @@ class _DemandeIdentification extends State<DemandeIdentification> {
           ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: Container(
               height: 50,
@@ -322,11 +314,11 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
+                  const Text(
                     "  Genre:",
                     style: TextStyle(fontSize: 10),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Expanded(
@@ -370,23 +362,23 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               //prefixIcon: Text("Email:"),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.blue,
                 ),
               ),
-              label: Text("Lieu de naissance"),
+              label: const Text("Lieu de naissance"),
               //prefixText: "De: "
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: Container(
               height: 50,
@@ -397,10 +389,10 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   d == null
-                      ? Text("  Date de naissance: ")
+                      ? const Text("  Date de naissance: ")
                       : Text(
                           "  Date de naissance: ${d!.day}/${d!.month}/${d!.year}"),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Expanded(
@@ -440,11 +432,11 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               //prefixIcon: Text("Email:"),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.blue,
                 ),
               ),
-              label: Text("Nom père"),
+              label: const Text("Nom père"),
               //prefixText: "De: "
             ),
           ),
@@ -457,11 +449,11 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               //prefixIcon: Text("Email:"),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.blue,
                 ),
               ),
-              label: Text("Nom mère"),
+              label: const Text("Nom mère"),
               //prefixText: "De: "
             ),
           ),
@@ -470,10 +462,10 @@ class _DemandeIdentification extends State<DemandeIdentification> {
           ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: Container(
               height: 50,
@@ -483,8 +475,8 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text("  Province d'origine:"),
-                  SizedBox(
+                  const Text("  Province d'origine:"),
+                  const SizedBox(
                     width: 20,
                   ),
                   Expanded(
@@ -524,11 +516,11 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               //prefixIcon: Text("Email:"),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.blue,
                 ),
               ),
-              label: Text("Numéro de téléphone"),
+              label: const Text("Numéro de téléphone"),
               //prefixText: "De: "
             ),
           ),
@@ -541,11 +533,11 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               //prefixIcon: Text("Email:"),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.blue,
                 ),
               ),
-              label: Text("Adresse"),
+              label: const Text("Adresse"),
               //prefixText: "De: "
             ),
           ),
@@ -568,15 +560,18 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                       maxWidth: 500,
                       maxHeight: 500,
                     );
-                    ext1 = "${img1!.name}".split(".").last;
-                    i = 1.obs;
-                    print("ext ${img1!.name}".split(".").last);
-                    // Capture a photo
-                    Timer(Duration(seconds: 1), () {
-                      setState(() {
-                        //
+                    if (img1 != null) {
+                      ext1 = img1!.name.split(".").last;
+                      //
+                      i = 1.obs;
+                      print("ext ${img1!.name}".split(".").last);
+                      // Capture a photo
+                      Timer(const Duration(seconds: 1), () {
+                        setState(() {
+                          //
+                        });
                       });
-                    });
+                    }
                   },
                   icon: const Icon(Icons.file_present),
                   label: const Text("Joindre la photo"),
@@ -593,7 +588,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                     final ImagePicker _picker = ImagePicker();
                     // Pick an image
                     img1 = await _picker.pickImage(source: ImageSource.camera);
-                    ext1 = "${img1!.name}".split(".").last;
+                    ext1 = img1!.name.split(".").last;
                     i = 1.obs;
                     print("ext ${img1!.name}".split(".").last);
                     // Capture a photo
@@ -640,7 +635,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
           ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
               side: const BorderSide(color: Colors.grey),
@@ -658,7 +653,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       "  Ecole: ",
                       style: TextStyle(fontSize: 12),
                     ),
@@ -670,7 +665,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                         child: Obx(
                           () => Text(
                             "${ecole.value["ecole"] ?? ''} / ${ecole.value["province"] ?? ''}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.black,
                               fontSize: 13,
                             ),
@@ -689,10 +684,10 @@ class _DemandeIdentification extends State<DemandeIdentification> {
           ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: Container(
               height: 50,
@@ -715,13 +710,13 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                           p_e = value as int;
                           listeDistrict.clear();
                           setState(() {
-                            listeDistrict2.forEach((element) {
+                            for (var element in listeDistrict2) {
                               if ("${element['p']}".toLowerCase() ==
                                   ("${listeProvince[p_e]}".toLowerCase())) {
                                 print("$element");
                                 listeDistrict.add("${element['d']}");
                               }
-                            });
+                            }
                           });
                           print(listeDistrict);
                           //value = s;
@@ -801,10 +796,10 @@ class _DemandeIdentification extends State<DemandeIdentification> {
           ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: Container(
               height: 50,
@@ -814,11 +809,11 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
+                  const Text(
                     "  Option:",
                     style: TextStyle(fontSize: 10),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Expanded(
@@ -900,10 +895,10 @@ class _DemandeIdentification extends State<DemandeIdentification> {
           ),
           Card(
             elevation: 0,
-            margin: EdgeInsets.all(0),
+            margin: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
-              side: BorderSide(color: Colors.grey),
+              side: const BorderSide(color: Colors.grey),
             ),
             child: Container(
               height: 50,
@@ -913,11 +908,11 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text(
+                  const Text(
                     "  Type d'identification:",
                     style: TextStyle(fontSize: 10),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Expanded(
@@ -1085,7 +1080,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          child: CircularProgressIndicator(
+                          child: const CircularProgressIndicator(
                             strokeWidth: 7,
                           ),
                         ),
@@ -1158,7 +1153,7 @@ class _DemandeIdentification extends State<DemandeIdentification> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.close,
               ),
             )
@@ -1169,8 +1164,8 @@ class _DemandeIdentification extends State<DemandeIdentification> {
   }
 
   String getReference() {
-    var uuid = Uuid();
-    return "${uuid.v4()}";
+    var uuid = const Uuid();
+    return uuid.v4();
   }
 
   Future<void> _createFolderAndSave(
@@ -1261,373 +1256,3 @@ SizedBox(height: 20,),
               ),
  */
 
-class PlainteHis extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _PlainteHis();
-  }
-}
-
-class _PlainteHis extends State<PlainteHis> {
-  Future<Widget> getPlaite() async {
-    Historique historique = Historique();
-    Database? db = await historique.openDB();
-    //
-    List<Map<String, dynamic>> listPlainte =
-        await db.rawQuery('SELECT * FROM historique');
-
-    return ListView(
-      padding: EdgeInsets.all(10),
-      children: List.generate(listPlainte.length, (index) {
-        print(listPlainte[index]["envoyer"]);
-        return ListTile(
-          leading: Icon(Icons.menu),
-          title: Text(listPlainte[index]["envoyeur"]),
-          subtitle: Text(listPlainte[index]["date"]),
-          trailing: IconButton(
-            onPressed: () {
-              //
-              if (listPlainte[index]["envoyer"] == "non") {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return HistoriqueSend(listPlainte[index]);
-                    },
-                  ),
-                );
-              }
-            },
-            icon: listPlainte[index]["envoyer"] == "non"
-                ? Icon(Icons.sync)
-                : Icon(
-                    Icons.check_circle_outline,
-                    color: Colors.green,
-                  ),
-          ),
-        );
-      }),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Historique"),
-      ),
-      body: FutureBuilder(
-        future: getPlaite(),
-        builder: (context, b) {
-          if (b.hasData) {
-            return b.data as Widget;
-          } else if (b.hasError) {
-            return Center(
-              child: Text("Erreur lors du chargement: ${b.error}"),
-            );
-          }
-          return Center(
-            child: Container(
-              height: 40,
-              width: 40,
-              alignment: Alignment.center,
-              child: CircularProgressIndicator(),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class HistoriqueSend extends StatefulWidget {
-  Map<String, dynamic> pl = {};
-
-  HistoriqueSend(this.pl);
-
-  @override
-  State<StatefulWidget> createState() {
-    return _HistoriqueSend();
-  }
-}
-
-class _HistoriqueSend extends State<HistoriqueSend> {
-  //
-  DepotController depotController = Get.find();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.delete),
-          ),
-        ],
-      ),
-      body: ListView(
-        padding: EdgeInsets.all(5),
-        children: [
-          Text.rich(
-            TextSpan(
-              text: "De: ",
-              style: st,
-              children: [
-                TextSpan(
-                  text: "${widget.pl['envoyeur']}",
-                  style: st2,
-                ),
-              ],
-            ),
-          ),
-          Text.rich(
-            TextSpan(
-              text: "Téléphone: ",
-              style: st,
-              children: [
-                TextSpan(
-                  text: "${widget.pl['telephone']}",
-                  style: st2,
-                ),
-              ],
-            ),
-          ),
-          Text.rich(
-            TextSpan(
-              text: "Email: ",
-              style: st,
-              children: [
-                TextSpan(
-                  text: "${widget.pl['email']}",
-                  style: st2,
-                ),
-              ],
-            ),
-          ),
-          Text.rich(
-            TextSpan(
-              text: "À: ",
-              style: st,
-              children: [
-                TextSpan(
-                  text: "${widget.pl['destinateur']}",
-                  style: st2,
-                ),
-              ],
-            ),
-          ),
-          Text.rich(
-            TextSpan(
-              text: "Message: \n",
-              style: st,
-              children: [
-                TextSpan(
-                  text: "${widget.pl['message']}^n\n",
-                  style: st2,
-                ),
-              ],
-            ),
-          ),
-          Container(
-            height: 50,
-            padding: EdgeInsets.only(right: 10),
-            alignment: Alignment.centerRight,
-            decoration: BoxDecoration(
-              //color: Colors.yellow,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Expanded(
-                  flex: 7,
-                  child: Container(
-                    alignment: Alignment.centerLeft,
-                    //child: Text(Fichier),
-                  ),
-                ),
-                PopupMenuButton(
-                  onSelected: (e) {
-                    //getFile();
-                  },
-                  icon: Icon(
-                    Icons.attach_file,
-                  ),
-                  itemBuilder: (context) => [
-                    PopupMenuItem(
-                      onTap: () {
-                        getFile();
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 40,
-                            width: 40,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: Colors.blue.shade200,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Icon(Icons.file_copy_outlined),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Piece jointe",
-                            style: TextStyle(
-                              color: Colors.grey.shade700,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17,
-                            ),
-                          )
-                        ],
-                      ),
-                      value: 4,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Obx(
-            () => Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children:
-                  List.generate(depotController.listeFichier.value.length, (x) {
-                return ListTile(
-                  leading: Icon(Icons.file_present),
-                  title: Text("Piece n° $x"),
-                  trailing: IconButton(
-                    onPressed: () {
-                      //
-                      setState(() {
-                        depotController.listeFichier.value.removeAt(x);
-                      });
-                      //
-                    },
-                    icon: Icon(Icons.close),
-                  ),
-                );
-              }),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              //
-              var connectivityResult =
-                  await (Connectivity().checkConnectivity());
-              //
-              if (connectivityResult == ConnectivityResult.mobile ||
-                  connectivityResult == ConnectivityResult.wifi) {
-                // I am connected to a mobile network. I am connected to a wifi network.
-                //
-                //widget.pl["envoyer"] = "oui";
-                Map<String, dynamic> utilisateur = widget.pl;
-                utilisateur["envoyer"] = "oui";
-                // deC.clear();
-                // telephoneC.clear();
-                // emailC.clear();
-                // aC.clear();
-                // messageC.clear();
-                // a = 0;
-                // p = 0;
-                print("_____________________: $utilisateur");
-                List<Map<String, dynamic>> l = [];
-                /*
-                      //____________________________________________________________
-                      depotController.listeFichier.value.forEach((element) {
-                        Map<String, dynamic> e = element;
-                        l.add(e);
-                      });
-                      */
-                //____________________________________________________________
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Transfere1(utilisateur, l);
-                    },
-                  ),
-                );
-              } else {
-                //GetSnackBar(title: titre, message: message);
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text("Problème de connexion"),
-                      content: Text(
-                        "Vous n'etes pas connecté à internet, veuillez vous reconnecter puis reessayer",
-                        textAlign: TextAlign.center,
-                      ),
-                      actions: [
-                        IconButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          icon: Icon(
-                            Icons.close,
-                          ),
-                        )
-                      ],
-                    );
-                  },
-                );
-              }
-            },
-            child: Text("Reenvoyer"),
-          ),
-        ],
-      ),
-    );
-  }
-
-  var st = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 13,
-    color: Colors.black,
-  );
-
-  var st2 = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 13,
-    color: Colors.green,
-  );
-
-  getFile() async {
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(allowMultiple: false);
-    if (result != null) {
-      List<File> files = result.paths.map((path) => File(path!)).toList();
-      files.forEach((element) async {
-        //
-        List<String> extT = element.path.split(".");
-        String ext = extT.last;
-        String name = extT.first;
-
-        Uint8List l = await element.readAsBytes();
-        depotController.listeFichier.value.add(
-          {
-            "length": l.length,
-            "data": l,
-            "type": ext,
-            "name": name,
-          },
-        );
-      });
-      setState(() {});
-    } else {
-      // User canceled the picker
-    }
-  }
-}

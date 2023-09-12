@@ -1,13 +1,13 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:open_file_safe/open_file_safe.dart';
+import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'magasin_controller.dart';
 
 class LireMag extends StatefulWidget {
   Map<String, dynamic> mag;
-  LireMag(this.mag);
+  LireMag(this.mag, {Key? key}) : super(key: key);
   //
   @override
   State<StatefulWidget> createState() {

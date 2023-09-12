@@ -1,15 +1,13 @@
-import 'package:epst_app/vues/documents_officiels/message_phonique.dart';
 import 'package:epst_app/vues/mutuelle/demande.dart';
 import 'package:epst_app/vues/mutuelle/historique_demande.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'mutuelle_controller.dart';
 
 class Mutuelle extends StatefulWidget {
   String? titre;
   //
-  Mutuelle({this.titre});
+  Mutuelle({Key? key, this.titre}) : super(key: key);
   //
   @override
   State<StatefulWidget> createState() {
@@ -25,7 +23,7 @@ class _Mutuelle extends State<Mutuelle> {
         title: Text("${widget.titre}"),
       ),
       body: GridView.count(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         crossAxisCount: 2,
         mainAxisSpacing: 5,
         crossAxisSpacing: 7,
@@ -44,7 +42,7 @@ class _Mutuelle extends State<Mutuelle> {
               */
                 ),
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -104,7 +102,7 @@ class _Mutuelle extends State<Mutuelle> {
           ElevatedButton(
             onPressed: () {
               //
-              Get.to(HistoriqueDemande());
+              Get.to(const HistoriqueDemande());
             },
             style: const ButtonStyle(
                 /*
@@ -114,7 +112,7 @@ class _Mutuelle extends State<Mutuelle> {
               */
                 ),
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
