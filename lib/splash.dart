@@ -5,10 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'main.dart';
+import 'utils/synchronisation.dart';
 
 class Splash extends StatelessWidget {
   //
   Future<int> load() async {
+    //
+    Synchronisation.synchroEcole();
+    Synchronisation.synchroAgens();
     //
     var r = await rootBundle.loadString("assets/ecoles.txt");
     List l1 = r.split('\n');

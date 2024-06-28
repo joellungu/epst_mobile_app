@@ -32,6 +32,7 @@ class _Details extends State<DetailSernie> {
     //
     e = widget.e;
     index = widget.index;
+    print('validé: ${e['valider']}');
     //
   }
 

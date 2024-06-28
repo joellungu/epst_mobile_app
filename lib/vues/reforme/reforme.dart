@@ -4,7 +4,7 @@ import 'package:epst_app/vues/reforme/reforme_controller.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:open_file/open_file.dart';
+import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -112,7 +112,7 @@ class Reforme extends GetView<ReformeController> {
                                           await getApplicationDocumentsDirectory();
                                       print(
                                           "${directory.path}/${l[index]["id"]}.${l[index]["extention"]}");
-                                      OpenResult or = await OpenFile.open(
+                                      final or = await OpenFilex.open(
                                           "${directory.path}/${l[index]["id"]}.${l[index]["extention"]}");
                                       print(or.message);
                                       print(or.type);

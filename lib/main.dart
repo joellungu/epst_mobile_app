@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:epst_app/splash.dart';
 import 'package:epst_app/utils/depotcontroler.dart';
 import 'package:epst_app/vues/accueil.dart';
 import 'package:epst_app/vues/ige/documents_certificatifs/document_certificatif_controller.dart';
 import 'package:epst_app/vues/magasin/magasin_controller.dart';
+import 'package:epst_app/vues/ministre/linistre_controller.dart';
 import 'package:epst_app/vues/plainte/depotplainte_controller.dart';
 import 'package:epst_app/vues/reforme/reforme_controller.dart';
 import 'package:epst_app/vues/sg/sg_controller.dart';
@@ -25,7 +28,7 @@ RxString annee = "".obs;
 RxMap ecole = {"ecole": "", "province": ""}.obs;
 //
 RxMap antenne = {"antenne": "", "province": ""}.obs;
-RxMap code_antenne = {"ecole": "", "province": ""}.obs;
+RxMap ecole_sernie = {"ecole": "", "code_ecole": ""}.obs;
 //
 RxString option = "Option".obs;
 RxMap ecole1 = {"ecole": "", "province": ""}.obs;
@@ -39,6 +42,29 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //
   await GetStorage.init();
+  //
+  /*
+  HttpClient client = HttpClient()
+    ..connectionFactory = (Uri uri, String? proxyHost, int? proxyPort) async {
+      if (proxyHost != null && proxyPort != null) {
+        return Socket.startConnect(proxyHost, proxyPort);
+      }
+      final ipv4addresses = await InternetAddress.lookup(uri.host,
+          type: InternetAddressType.IPv4);
+      // Should actually iterate over every address until we get a successful
+      // connection.
+      return Socket.startConnect(ipv4addresses.first, uri.port);
+    };
+
+  final request =
+      await client.getUrl(Uri.https('epstserveur.herokuapp.com', '/'));
+  final response = await request.done;
+  print("statusCode: ${response.statusCode}");
+  print("statusCode: ${response.contentLength}");
+  print("statusCode: ${response.toString()}");
+  client.close();
+  */
+
   //
   DepotController depotController = Get.put(DepotController());
   //
@@ -58,6 +84,7 @@ void main() async {
   Get.put(ResultatController());
   MutuelleController mutuelleController = Get.put(MutuelleController());
   SernieController sernieController = Get.put(SernieController());
+  MinistreController ministreController = Get.put(MinistreController());
   //
   runApp(
     Epst(

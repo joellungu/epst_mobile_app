@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:socket_io_client/socket_io_client.dart';
-import 'package:stomp_dart_client/stomp.dart';
-import 'package:stomp_dart_client/stomp_config.dart';
+//import 'package:stomp_dart_client/stomp.dart';
+//import 'package:stomp_dart_client/stomp_config.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 class ChatTest extends StatefulWidget {
@@ -14,7 +14,7 @@ class ChatTest extends StatefulWidget {
 }
 
 class _ChatTest extends State<ChatTest> {
-  late StompClient client;
+  //late StompClient client;
   WebSocketChannel? _channel;
   //
   var socket = io('http://10.0.2.2:8080/', <String, dynamic>{
@@ -64,7 +64,7 @@ class _ChatTest extends State<ChatTest> {
     );
     client.activate();
     */
-    //
+    /*
     client = StompClient(
         config: StompConfig(
             url: 'ws://10.0.2.2:8080/websocket-server',
@@ -79,7 +79,7 @@ class _ChatTest extends State<ChatTest> {
               print("connecté et tout");
             }));
     client.activate();
-    //
+    */
 
     super.initState();
   }
@@ -87,7 +87,7 @@ class _ChatTest extends State<ChatTest> {
   @override
   void dispose() {
     //
-    client.deactivate();
+    //client.deactivate();
     //
     super.dispose();
   }
@@ -99,11 +99,13 @@ class _ChatTest extends State<ChatTest> {
       body: Container(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          /*
           client.subscribe(
               destination: "/topic/messages",
               callback: (e) {
                 print("Even: $e");
               });
+          */
         },
         child: const Icon(Icons.add),
       ),

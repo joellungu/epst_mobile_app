@@ -9,8 +9,9 @@ import 'package:epst_app/utils/depotcontroler.dart';
 import 'package:epst_app/vues/ige/recherche_annee.dart';
 import 'package:epst_app/vues/ige/recherche_ecole.dart';
 import 'package:epst_app/vues/ige/recherche_antenne.dart';
+import 'package:epst_app/vues/ige/recherche_ecole_sernie.dart';
 import 'package:epst_app/vues/ige/sernie/sernie_controller.dart';
-import 'package:epst_app/vues/transsfere.dart';
+//import 'package:epst_app/vues/transsfere.dart';
 import 'package:epst_app/widgets/paiement.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
@@ -723,7 +724,12 @@ class _EnregistrementSernie extends State<EnregistrementSernie> {
                     //showDialog(context: context, builder: builder);
                     final ImagePicker _picker = ImagePicker();
                     // Pick an image
-                    img1 = await _picker.pickImage(source: ImageSource.camera);
+                    img1 = await _picker.pickImage(
+                      source: ImageSource.camera,
+                      imageQuality: 75,
+                      maxWidth: 500,
+                      maxHeight: 500,
+                    );
                     ext1 = img1!.name.split(".").last;
                     i = 1.obs;
                     print("ext ${img1!.name}".split(".").last);
@@ -769,18 +775,50 @@ class _EnregistrementSernie extends State<EnregistrementSernie> {
           const SizedBox(
             height: 10,
           ),
-          TextField(
-            controller: acoleNom,
-            decoration: InputDecoration(
-              //prefixIcon: Text("Email:"),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(
-                  color: Colors.blue,
+
+          Card(
+            elevation: 0,
+            margin: const EdgeInsets.all(0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+              side: const BorderSide(color: Colors.grey),
+            ),
+            child: InkWell(
+              onTap: () {
+                //
+                showSearch(context: context, delegate: RechercheEcoleSernie());
+              },
+              child: Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "  Ecole: ",
+                      style: TextStyle(fontSize: 12),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        alignment: Alignment.center,
+                        //width: Get.size.width,
+                        child: Obx(
+                          () => Text(
+                            "${ecole_sernie.value["denomination_ecole"] ?? ''} / ${ecole_sernie.value["code_ecole"] ?? ''}",
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              label: const Text("Code Ecole Sernie"),
-              //prefixText: "De: "
             ),
           ),
           ///////////
@@ -1351,12 +1389,13 @@ class _EnregistrementSernie extends State<EnregistrementSernie> {
                   "village": Village.text,
                   "nationalite": Nationalite.text,
                   "antenne": antenne['antenne'],
+                  "code_antenne": antenne['code'],
                   "provinceOrigine": listeProvince[p_o],
                   "lieuNaissance": lieu_de_naissance.text,
                   "dateNaissance": ddd,
-                  "ecole": acoleNom.text,
+                  "ecole": ecole_sernie.value["denomination_ecole"],
+                  "code_ecole": ecole_sernie.value["code_ecole"],
                   "adressePhysiqueEcole": adressePhysiqueEcole.text,
-                  "code_ecole": antenne['code'],
                   "reseaux": reseaux[rs],
                   "niveau": niveaux[nv],
                   "provinceEcole": listeProvince[p_e],
@@ -1420,7 +1459,7 @@ class _EnregistrementSernie extends State<EnregistrementSernie> {
             child: Container(
               alignment: Alignment.center,
               height: 40,
-              child: const Text("Envoyer"),
+              child: const Text("Enregistrer"),
             ),
           ),
           const SizedBox(

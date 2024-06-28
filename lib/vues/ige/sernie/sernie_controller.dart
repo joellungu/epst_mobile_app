@@ -129,11 +129,11 @@ class SernieController extends GetxController {
     if (rep.statusCode == 200 || rep.statusCode == 201) {
       //getAllDemande(province, district);
       print(rep.statusCode);
-      print(rep.bodyString);
+      print(rep.body);
       return true;
     } else {
       print(rep.statusCode);
-      print(rep.bodyString);
+      print(rep.body);
       return false;
       //getAllDemande(province, district);
     }

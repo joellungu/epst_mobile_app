@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'identification_controller.dart';
 
 class Verification extends StatefulWidget {
@@ -217,14 +217,46 @@ class _Verification extends State<Verification> {
               ElevatedButton(
                 onPressed: () async {
                   //
+                  Get.dialog(
+                    Material(
+                      color: Colors.transparent,
+                      child: Center(
+                        child: SizedBox(
+                          height: 40,
+                          width: 40,
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
+                    ),
+                  );
+                  //
                   String mat = matricule.text;
                   String mdp = mot_de_passe.text;
+                  //
 
-                  matricule.clear();
-                  mot_de_passe.clear();
-                  IdentificationController identificationController =
-                      Get.find();
-                  identificationController.login(mat, mdp);
+                  final connectivityResult =
+                      await (Connectivity().checkConnectivity());
+                  if (connectivityResult == ConnectivityResult.mobile ||
+                      connectivityResult == ConnectivityResult.wifi ||
+                      connectivityResult == ConnectivityResult.ethernet ||
+                      connectivityResult == ConnectivityResult.bluetooth) {
+                    //
+                    matricule.clear();
+                    mot_de_passe.clear();
+                    IdentificationController identificationController =
+                        Get.find();
+                    identificationController.login(mat, mdp);
+                    //
+                  } else if (connectivityResult == ConnectivityResult.none) {
+                    //
+                    print("pas connecté");
+                    //
+                    matricule.clear();
+                    mot_de_passe.clear();
+                    IdentificationController identificationController =
+                        Get.find();
+                    identificationController.loginSernie(mat, mdp);
+                  }
                 },
                 child: Container(
                   alignment: Alignment.center,

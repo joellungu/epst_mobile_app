@@ -117,21 +117,6 @@ class IdentificationSernie extends GetView<IdentificationController> {
           List ls = box.read("historique_demande_sernie") ?? [];
           if (ls.isNotEmpty) {
             //
-            Get.dialog(
-              Center(
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: const CircularProgressIndicator(
-                    strokeWidth: 7,
-                  ),
-                ),
-              ),
-            );
 
             // ls.forEach((ses) {
             //   //
@@ -142,7 +127,6 @@ class IdentificationSernie extends GetView<IdentificationController> {
             //   ses["ext"] = eue['ext'];
             // });
             //
-            Get.back();
             //
             Get.dialog(
               Material(

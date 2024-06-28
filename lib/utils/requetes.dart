@@ -5,7 +5,7 @@ import 'connexion.dart';
 
 class Requete extends GetConnect {
   Future<Response> getE(String path) async {
-    print(path);
+    print("${Connexion.lien}$path");
     return get("${Connexion.lien}$path");
   }
 

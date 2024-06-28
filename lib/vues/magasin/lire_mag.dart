@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:open_file/open_file.dart';
+import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'magasin_controller.dart';
 
@@ -90,7 +90,7 @@ class _LireMag extends State<LireMag> {
                   //  .writeAsBytes(box.read("${liste[index]["id"]}"));
                   //print(box.read("${liste[index]["id"]}"));
 
-                  OpenResult or = await OpenFile.open(
+                  final or = await OpenFilex.open(
                       "${directory.path}/${widget.mag["id"]}.${widget.mag["extention"]}");
                   print(or.message);
                   print(or.type);

@@ -1,5 +1,7 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:epst_app/utils/requetes.dart';
 import 'package:epst_app/vues/ige/sernie/sernie.dart';
+import 'package:epst_app/vues/ministre/ministre.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
@@ -59,6 +61,8 @@ class IdentificationController extends GetxController with StateMixin<List> {
     Response response = await requete.getE("agent/login/$matricule/$mdp");
     if (response.isOk) {
       //
+      Get.back();
+      //
       Map e = await response.body;
       print(e);
       if (e["role"] == 7 ||
@@ -76,13 +80,69 @@ class IdentificationController extends GetxController with StateMixin<List> {
       } else if (e["role"] == 12) {
         //Les enregistreurs
         Get.to(Sernie(titre: "SERNIE"));
+      } else if (e["role"] == 15 || e["role"] == 16 || e["role"] == 17) {
+        //Les enregistreurs
+        Get.to(Ministre());
       } else {
         Get.snackbar("Erreur", "Vous n'etes pas autorisé à y acceder");
       }
     } else {
       //
+      Get.back();
       Get.snackbar(
           "Erreur", "Un problème est survenu lors de l'authentification");
+    }
+  }
+
+  //
+  loginSernie(String matricule, String mdp) async {
+    //
+    List agents = box.read("agents") ?? [];
+    //
+    bool pass = false;
+    //
+    for (var e in agents) {
+      //
+      if (e["matricule"] == matricule && e["mdp"] == mdp) {
+        //
+        Get.back();
+        //
+        print(e);
+        if (e["role"] == 7 ||
+            e["role"] == 8 ||
+            e["role"] == 9 ||
+            e["role"] == 10 ||
+            e["role"] == 13 ||
+            e["role"] == 14) {
+          pass = true;
+          Get.to(Identification(e));
+          break;
+          //
+          //"Agent sernie id",
+        } else if (e["role"] == 11) {
+          //Les validateur
+          pass = true;
+          Get.to(IdentificationSernie(e));
+          break;
+        } else if (e["role"] == 12) {
+          //Les enregistreurs
+          pass = true;
+          Get.to(Sernie(titre: "SERNIE"));
+          break;
+        } else {
+          pass = false;
+          Get.snackbar("Erreur", "Vous n'etes pas autorisé à y acceder");
+          break;
+        }
+      }
+    }
+
+    if (!pass) {
+      //
+      Get.back();
+      Get.snackbar(
+          "Erreur", "Un problème est survenu lors de l'authentification");
+      //
     }
   }
 
@@ -121,44 +181,72 @@ class IdentificationController extends GetxController with StateMixin<List> {
   getListeSernie(String province, String distric, String antenne) async {
     //print("province: $province => distric: $distric");
     //identification/all/demande?province=$province&district=$distric&valider=0
-    //print("sernie/getallby/Kinshasa/KINSHASA-FUNA");
-    Response response =
-        await requete.getE("sernie/getallby/$province/$distric/$antenne");
     //
-    List la = box.read("historique_demande_sernie") ?? [];
+    final connectivityResult = await (Connectivity().checkConnectivity());
     //
-    if (response.isOk) {
+    change([], status: RxStatus.loading());
+    //
+    if (connectivityResult == ConnectivityResult.none) {
       //
-      List l = await response.body;
+      List la = box.read("historique_demande_sernie") ?? [];
+      print("la reponse: $la");
 
-      l.forEach((element) {
-        bool add = true;
-        la.forEach((element2) {
-          if (element2['code'] == element['code']) {
-            add = false;
-          }
-        });
-        //
-        if (add) {
-          la.add(element);
-        }
-
-        //
-      });
-      //map['photo'] = "";
-      //l.add(formulaireD);
-      box.write("historique_demande_sernie", la);
-      //print("la reponse: $la");
-      //
       change(la, status: RxStatus.success());
-      //
     } else {
-      print("------------------------");
-      print("erreur: ${response.statusCode}");
-      print("erreur: ${response.body}");
       //
-      change(la, status: RxStatus.empty());
+
+      //print("sernie/getallby/Kinshasa/KINSHASA-FUNA");
+      Response response =
+          await requete.getE("sernie/getallby/$province/$distric/$antenne");
       //
+      List la = box.read("historique_demande_sernie") ?? [];
+      //
+      if (response.isOk) {
+        //
+        List l = await response.body;
+        print("l1: ${l.length}");
+        print("l2: ${la.length}");
+
+        l.forEach((element) {
+          //Map c1 = element;
+          //c1['photo'] = "";
+          //print("c1: ${c1.toString()}");
+          bool add = true;
+          la.forEach((element2) {
+            //Map c2 = element2;
+            //c2['photo'] = "";
+            //
+            print(
+                "test: ${element2['id'] == element['id']} ::: -1: ${element['id']} :: -2: ${element2['id']} ");
+            //
+            if (element2['id'] == element['id']) {
+              //
+              add = false;
+              print("Ajouter 2: $add");
+            }
+          });
+          //
+          if (add) {
+            la.add(element);
+          }
+
+          //
+        });
+        //map['photo'] = "";
+        //l.add(formulaireD);
+        box.write("historique_demande_sernie", la);
+        //print("la reponse: $la");
+        //
+        change(la, status: RxStatus.success());
+        //
+      } else {
+        print("------------------------");
+        print("erreur: ${response.statusCode}");
+        print("erreur: ${response.body}");
+        //
+        change(la, status: RxStatus.empty());
+        //
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:epst_app/utils/requetes.dart';
 import 'package:http/http.dart' as http;
 import 'package:epst_app/utils/connexion.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,10 @@ class SgController extends GetxController with StateMixin<List> {
   List<Map<String, dynamic>> liste6 = [];
   List<Map<String, dynamic>> liste7 = [];
   List<Map<String, dynamic>> liste11 = [];
+  //
+  Requete requete = Requete();
+  //
+  var box = GetStorage();
   //
 
   getListeMag(int type) async {
@@ -96,6 +101,42 @@ class SgController extends GetxController with StateMixin<List> {
     } catch (e) {
       print(e);
       return 0;
+    }
+  }
+
+  //
+  Future<void> getAllSecretarial() async {
+    change([], status: RxStatus.loading());
+    Response response = await requete.getE("secretariat/all");
+    if (response.isOk) {
+      print("isOK");
+      print(response.statusCode);
+      print(response.body);
+      box.write("sg", response.body);
+      change(response.body, status: RxStatus.success());
+    } else {
+      List l = box.read("sg") ?? [];
+      print("isNotOK $l");
+      print(response.statusCode);
+      print(response.body);
+      change(l, status: RxStatus.success());
+    }
+  }
+
+  //
+  Future<Map> getSecretarial(String id) async {
+    //change([], status: RxStatus.loading());
+    Response response = await requete.getE("secretariat/$id");
+    if (response.isOk) {
+      print(response.statusCode);
+      print(response.body);
+      box.write(id, response.body);
+      return response.body;
+    } else {
+      print(response.statusCode);
+      print(response.body);
+      Map s = box.read(id) ?? {};
+      return s;
     }
   }
 

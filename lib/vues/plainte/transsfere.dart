@@ -81,7 +81,8 @@ class _Transfere1 extends State<Transfere1> {
 class Transfere2 extends StatefulWidget {
   String piecejointeId;
   List<Map<String, dynamic>> listeFichier = [];
-  Transfere2(this.piecejointeId, this.listeFichier, {Key? key}) : super(key: key);
+  Transfere2(this.piecejointeId, this.listeFichier, {Key? key})
+      : super(key: key);
   //
   @override
   State<StatefulWidget> createState() {
@@ -229,7 +230,8 @@ class _Transfere2 extends State<Transfere2> {
 class ProgressionIndication extends StatefulWidget {
   Map? e;
   String piecejointeId;
-  ProgressionIndication(this.e, this.piecejointeId, {Key? key}) : super(key: key);
+  ProgressionIndication(this.e, this.piecejointeId, {Key? key})
+      : super(key: key);
   @override
   State<StatefulWidget> createState() {
     //

@@ -8,7 +8,7 @@ import 'details_sg.dart';
 class SecretariaGeneral extends GetView<SgController> {
   //
   SecretariaGeneral({Key? key, this.titre}) : super(key: key) {
-    //controller.getListeMag(7);
+    controller.getAllSecretarial();
   }
   //
   String? titre;
@@ -35,40 +35,75 @@ class SecretariaGeneral extends GetView<SgController> {
           )*/
         ],
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(10),
-        children: [
-          ListTile(
-            onTap: () {
-              //
-              Get.to(DetailsSG(const {}));
-              //
-            },
-            leading: Container(
-              height: 50,
-              width: 50,
-              alignment: Alignment.center,
-              child: const Text(
-                "D.I.G.E",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(25),
-              ),
+      body: controller.obx(
+        (state) {
+          List l = state!;
+          return ListView(
+            padding: const EdgeInsets.all(10),
+            children: List.generate(
+              l.length,
+              (index) {
+                Map s = l[index];
+                return ListTile(
+                  onTap: () async {
+                    //
+                    Get.dialog(
+                      Center(
+                        child: Container(
+                          alignment: Alignment.center,
+                          color: Colors.white,
+                          height: 100,
+                          width: 100,
+                          child: const SizedBox(
+                            height: 35,
+                            width: 35,
+                            child: CircularProgressIndicator(),
+                          ),
+                        ),
+                      ),
+                    );
+                    //
+                    Map e = await controller.getSecretarial("${s['id']}");
+                    //
+                    Get.back();
+                    //
+                    Get.to(DetailsSG(e));
+                  },
+                  leading: Container(
+                    height: 50,
+                    width: 50,
+                    alignment: Alignment.center,
+                    child: Text(
+                      "${s['sigle']}",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                  ),
+                  title: Text("${s['denomition']}"),
+                  //subtitle: const Text(
+                  //  "Direction de l'information pour la gestion de l'éducation"),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                );
+              },
             ),
-            title: const Text(
-                "Direction de l'information pour la gestion de l'éducation"),
-            //subtitle: const Text(
-            //  "Direction de l'information pour la gestion de l'éducation"),
-            trailing: const Icon(Icons.arrow_forward_ios),
+          );
+        },
+        onEmpty: Container(),
+        onLoading: const Center(
+          child: SizedBox(
+            height: 40,
+            width: 40,
+            child: CircularProgressIndicator(),
           ),
-        ],
+        ),
       ),
       // body: controller.obx(
       //   (List<dynamic>? stat) {

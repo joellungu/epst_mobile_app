@@ -3,7 +3,9 @@ import 'package:epst_app/vues/formation/foad.dart';
 import 'package:flutter/material.dart';
 
 import 'ma_classe.dart';
+import 'schollap.dart';
 
+// ignore: must_be_immutable
 class Formation extends StatefulWidget {
   String? titre;
   Formation({Key? key, this.titre}) : super(key: key);
@@ -232,6 +234,82 @@ class _Formation extends State<Formation> {
                         textAlign: TextAlign.center,
                         text: TextSpan(
                           text: "MA CLASSE",
+                          children: const [
+                            TextSpan(
+                              text: "",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: st,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const Schollap();
+                  },
+                ),
+              );
+            },
+            style: const ButtonStyle(
+                /*
+              backgroundColor: MaterialStateProperty.all(
+                Colors.blue.shade400,
+              ),
+              */
+                ),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(pd),
+                      child: Image.asset(
+                        "assets/schoolap.jpeg",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
+                      ), //
+                      decoration: const BoxDecoration(
+                          //color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      )),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      padding: const EdgeInsets.only(bottom: 15),
+                      alignment: Alignment.center,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "SCHOOLAP",
                           children: const [
                             TextSpan(
                               text: "",

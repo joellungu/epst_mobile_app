@@ -36,7 +36,7 @@ class _HistoriqueSernie extends State<HistoriqueSernie> {
     //
     l.value = box.read("historique_sernie") ?? [];
     l.value = l.value.reversed.toList();
-    //print(box.read("historique_sernie"));
+    print(box.read("historique_sernie"));
     //
   }
 
@@ -136,7 +136,7 @@ class _HistoriqueSernie extends State<HistoriqueSernie> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           //
           List ls = box.read("historique_sernie") ?? [];
@@ -165,6 +165,7 @@ class _HistoriqueSernie extends State<HistoriqueSernie> {
               //
               ses["photo"] = eue['photo'];
               ses["ext"] = eue['ext'];
+              //print("ext: ${ses["ext"]}");
             });
             //
             Get.back();
@@ -186,7 +187,8 @@ class _HistoriqueSernie extends State<HistoriqueSernie> {
             Get.snackbar("Vide", "La liste est vide");
           }
         },
-        child: const Icon(Icons.sync),
+        icon: const Icon(Icons.sync),
+        label: const Text("Synchroniser"),
       ),
     );
   }
