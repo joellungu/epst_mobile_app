@@ -1,7 +1,9 @@
-import 'package:epst_app/vues/formation/enseignement_eleve_enligne.dart';
+import 'package:epst_app/vues/formation/formation_eleves/enseignement_eleve_enligne.dart';
 import 'package:epst_app/vues/formation/foad.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
+import 'formation_enseignants/enseignement_enseignant_enligne.dart';
 import 'ma_classe.dart';
 import 'schollap.dart';
 
@@ -34,84 +36,171 @@ class _Formation extends State<Formation> {
         centerTitle: true,
         title: Text(widget.titre!),
       ),
-      body: GridView.count(
+      body: ListView(
         padding: const EdgeInsets.all(10),
-        crossAxisCount: 2,
-        mainAxisSpacing: 5,
-        crossAxisSpacing: 5,
-        childAspectRatio: 1,
+        // crossAxisCount: 2,
+        // mainAxisSpacing: 5,
+        // crossAxisSpacing: 5,
+        // childAspectRatio: 1,
         children: [
-          ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const FOAD();
-                    },
-                  ),
-                );
-              },
-              style: const ButtonStyle(),
-              child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Expanded(
-                      flex: 5,
-                      child: Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.all(pd),
-                        child: Image.asset(
-                          "assets/LOGO-MINEPST-BON.png",
-                          color: Colors.blue,
-                          colorBlendMode: BlendMode.color,
-                        ), //
-                        decoration: const BoxDecoration(
-                            //color: Colors.blue,
-                            borderRadius: BorderRadius.only(
+          InkWell(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const FOAD();
+                  },
+                ),
+              );
+            },
+            child: Container(
+              height: 200,
+              margin: const EdgeInsets.only(top: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: Colors.blue,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    flex: 9,
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(pd),
+                      child:
+                          Lottie.asset('assets/Animation - 1719829962343.json'),
+                      // child: Image.asset(
+                      //   "assets/LOGO-MINEPST-BON.png",
+                      //   color: Colors.blue,
+                      //   colorBlendMode: BlendMode.color,
+                      // ), //
+                      decoration: const BoxDecoration(
+                        //color: Colors.blue,
+                        borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(10),
-                        )),
+                        ),
                       ),
                     ),
-                    Expanded(
-                      flex: 5,
-                      child: Container(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        alignment: Alignment.center,
-                        child: RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(
-                            text: "",
-                            children: const [
-                              TextSpan(
-                                text: "FOAD",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              )
-                            ],
-                            style: TextStyle(
-                              fontSize: st,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      padding: const EdgeInsets.only(bottom: 15),
+                      alignment: Alignment.center,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "",
+                          children: const [
+                            TextSpan(
+                              text: "FOAD MOBILE",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: st,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
                           ),
                         ),
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
-                        )),
                       ),
-                    )
-                  ],
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const EnseignementEnseignantEnligne();
+                  },
                 ),
-              )),
-          ElevatedButton(
-            onPressed: () {
+              );
+            },
+            child: Container(
+              height: 200,
+              margin: EdgeInsets.only(top: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: Colors.blue,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    flex: 9,
+                    child: Container(
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.all(pd),
+                      child:
+                          Lottie.asset('assets/Animation - 1719829657336.json'),
+                      // child: Image.asset(
+                      //   "assets/LOGO-MINEPST-BON.png",
+                      //   color: Colors.blue,
+                      //   colorBlendMode: BlendMode.color,
+                      // ), //
+                      decoration: const BoxDecoration(
+                        //color: Colors.blue,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      padding: const EdgeInsets.only(bottom: 15),
+                      alignment: Alignment.center,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "",
+                          children: const [
+                            TextSpan(
+                              text: "FOAD EN LIGNE",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: st,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
@@ -120,196 +209,41 @@ class _Formation extends State<Formation> {
                 ),
               );
             },
-            style: const ButtonStyle(
-                /*
-              backgroundColor: MaterialStateProperty.all(
-                Colors.blue.shade400,
-              ),
-              */
-                ),
             child: Container(
+              height: 200,
+              margin: EdgeInsets.only(top: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: Colors.blue,
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Expanded(
-                    flex: 5,
+                    flex: 9,
                     child: Container(
                       alignment: Alignment.center,
                       padding: EdgeInsets.all(pd),
-                      child: Image.asset(
-                        "assets/LOGO E-CLASSE.02e1cc99.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
+                      child: Lottie.asset(
+                          'assets/Animation - 1719829768791.json'), //
                       decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      )),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: Container(
-                      padding: const EdgeInsets.only(bottom: 15),
-                      alignment: Alignment.center,
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          text: "E-Classe",
-                          children: const [
-                            TextSpan(
-                              text: "",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                          style: TextStyle(
-                            fontSize: st,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+                        //color: Colors.blue,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const MaClasse();
-                  },
-                ),
-              );
-            },
-            style: const ButtonStyle(
-                /*
-              backgroundColor: MaterialStateProperty.all(
-                Colors.blue.shade400,
-              ),
-              */
-                ),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(pd),
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
-                      decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      )),
                     ),
                   ),
                   Expanded(
-                    flex: 5,
+                    flex: 3,
                     child: Container(
                       padding: const EdgeInsets.only(bottom: 15),
                       alignment: Alignment.center,
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
-                          text: "MA CLASSE",
-                          children: const [
-                            TextSpan(
-                              text: "",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                          style: TextStyle(
-                            fontSize: st,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const Schollap();
-                  },
-                ),
-              );
-            },
-            style: const ButtonStyle(
-                /*
-              backgroundColor: MaterialStateProperty.all(
-                Colors.blue.shade400,
-              ),
-              */
-                ),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(pd),
-                      child: Image.asset(
-                        "assets/schoolap.jpeg",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
-                      decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      )),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: Container(
-                      padding: const EdgeInsets.only(bottom: 15),
-                      alignment: Alignment.center,
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          text: "SCHOOLAP",
+                          text: "AUTRE FORMATION",
                           children: const [
                             TextSpan(
                               text: "",

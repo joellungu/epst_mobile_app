@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+//import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
@@ -170,59 +170,59 @@ class _DirectEductivi extends State<DirectEductivi> {
         title: const Text("Direct"),
       ),
       backgroundColor: Colors.black,
-      body: HtmlWidget(
-        // the first parameter (`html`) is required
-        '''<video width="${Get.size.width}" height="${Get.size.height}" controls autoplay>
-            <source src="http://eu.oraostream.com:8081/eductv-orao/playlist.m3u8" type="video/mp4"></video>''',
+      // body: HtmlWidget(
+      //   // the first parameter (`html`) is required
+      //   '''<video width="${Get.size.width}" height="${Get.size.height}" controls autoplay>
+      //       <source src="http://eu.oraostream.com:8081/eductv-orao/playlist.m3u8" type="video/mp4"></video>''',
 
-        // all other parameters are optional, a few notable params:
+      //   // all other parameters are optional, a few notable params:
 
-        // specify custom styling for an element
-        // see supported inline styling below
-        customStylesBuilder: (element) {
-          if (element.classes.contains('foo')) {
-            return {'color': 'red'};
-          }
+      //   // specify custom styling for an element
+      //   // see supported inline styling below
+      //   customStylesBuilder: (element) {
+      //     if (element.classes.contains('foo')) {
+      //       return {'color': 'red'};
+      //     }
 
-          return null;
-        },
+      //     return null;
+      //   },
 
-        // render a custom widget
-        customWidgetBuilder: (element) {
-          if (element.attributes['foo'] == 'bar') {
-            //return FooBarWidget();
-          }
+      //   // render a custom widget
+      //   customWidgetBuilder: (element) {
+      //     if (element.attributes['foo'] == 'bar') {
+      //       //return FooBarWidget();
+      //     }
 
-          return null;
-        },
+      //     return null;
+      //   },
 
-        // turn on selectable if required (it's disabled by default)
-        //isSelectable: true,
+      //   // turn on selectable if required (it's disabled by default)
+      //   //isSelectable: true,
 
-        // these callbacks are called when a complicated element is loading
-        // or failed to render allowing the app to render progress indicator
-        // and fallback widget
-        onErrorBuilder: (context, element, error) =>
-            Text('$element error: $error'),
-        onLoadingBuilder: (context, element, loadingProgress) => const Center(
-          child: SizedBox(
-            height: 50,
-            width: 50,
-            child: CircularProgressIndicator(),
-          ),
-        ),
+      //   // these callbacks are called when a complicated element is loading
+      //   // or failed to render allowing the app to render progress indicator
+      //   // and fallback widget
+      //   onErrorBuilder: (context, element, error) =>
+      //       Text('$element error: $error'),
+      //   onLoadingBuilder: (context, element, loadingProgress) => const Center(
+      //     child: SizedBox(
+      //       height: 50,
+      //       width: 50,
+      //       child: CircularProgressIndicator(),
+      //     ),
+      //   ),
 
-        // this callback will be triggered when user taps a link
-        //onTapUrl: (url) => print('tapped $url'),
-        // select the render mode for HTML body
-        // by default, a simple `Column` is rendered
-        // consider using `ListView` or `SliverList` for better performance
-        renderMode: RenderMode.column,
-        // set the default styling for text
-        textStyle: const TextStyle(fontSize: 14),
-        // turn on `webView` if you need IFRAME support (it's disabled by default)
-        //webView: true,
-      ),
+      //   // this callback will be triggered when user taps a link
+      //   //onTapUrl: (url) => print('tapped $url'),
+      //   // select the render mode for HTML body
+      //   // by default, a simple `Column` is rendered
+      //   // consider using `ListView` or `SliverList` for better performance
+      //   renderMode: RenderMode.column,
+      //   // set the default styling for text
+      //   textStyle: const TextStyle(fontSize: 14),
+      //   // turn on `webView` if you need IFRAME support (it's disabled by default)
+      //   //webView: true,
+      // ),
     );
   }
 }

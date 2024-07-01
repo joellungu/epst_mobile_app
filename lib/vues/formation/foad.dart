@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 // Import for Android features.
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 // Import for iOS features.
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
+
+import 'formation_enseignants/formation_enseignant_mobile.dart';
 // #enddocregion platform_imports
 
 class FOAD extends StatefulWidget {
@@ -16,115 +19,265 @@ class FOAD extends StatefulWidget {
 }
 
 class _FOAD extends State<FOAD> {
-  WebViewController? controlleur;
-  late final WebViewController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-
-    // #docregion platform_features
-    late final PlatformWebViewControllerCreationParams params;
-    if (WebViewPlatform.instance is WebKitWebViewPlatform) {
-      params = WebKitWebViewControllerCreationParams(
-        allowsInlineMediaPlayback: true,
-        mediaTypesRequiringUserAction: const <PlaybackMediaTypes>{},
-      );
-    } else {
-      params = const PlatformWebViewControllerCreationParams();
-    }
-
-    final WebViewController controller =
-        WebViewController.fromPlatformCreationParams(params);
-    // #enddocregion platform_features
-
-    controller
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0x00000000))
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onProgress: (int progress) {
-            debugPrint('WebView is loading (progress : $progress%)');
-          },
-          onPageStarted: (String url) {
-            debugPrint('Page started loading: $url');
-          },
-          onPageFinished: (String url) {
-            debugPrint('Page finished loading: $url');
-          },
-          onWebResourceError: (WebResourceError error) {
-            debugPrint('''
-Page resource error:
-  code: ${error.errorCode}
-  description: ${error.description}
-  errorType: ${error.errorType}
-  isForMainFrame: ${error.isForMainFrame}
-          ''');
-          },
-          onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('https://www.youtube.com/')) {
-              debugPrint('blocking navigation to ${request.url}');
-              return NavigationDecision.prevent;
-            }
-            debugPrint('allowing navigation to ${request.url}');
-            return NavigationDecision.navigate;
-          },
-          onUrlChange: (UrlChange change) {
-            debugPrint('url change to ${change.url}');
-          },
-        ),
-      )
-      ..addJavaScriptChannel(
-        'Toaster',
-        onMessageReceived: (JavaScriptMessage message) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(message.message)),
-          );
-        },
-      )
-      ..loadRequest(Uri.parse('https://www.eductv.cd/all_actualite.php'));
-
-    // #docregion platform_features
-    if (controller.platform is AndroidWebViewController) {
-      AndroidWebViewController.enableDebugging(true);
-      (controller.platform as AndroidWebViewController)
-          .setMediaPlaybackRequiresUserGesture(false);
-    }
-    // #enddocregion platform_features
-
-    _controller = controller;
-  }
+  //
+  double st = 15;
+  double taille = 10;
+  double pd = 15;
+  //
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("FOAD"),
+        title: const Text("FOAD MOBILE"),
       ),
-      body: WebViewWidget(
-        // javascriptMode: JavascriptMode.unrestricted,
-        // onWebViewCreated: (WebViewController w) {
-        //   controlleur = w;
-        // },
-        // initialUrl: "https://www.eduquepsp.education",
-        controller: _controller,
-        //https://www.youtube.com
-        //"https://www.efoad.minepst.gouv.cd",
-      ),
-      // body: WebView(
-      //   javascriptMode: JavascriptMode.unrestricted,
-      //   onWebViewCreated: (WebViewController w) {
-      //     controlleur = w;
-      //   },
-      //   initialUrl:
-      //       //"https://www.eductv.cd/all_actualite.php", //https://www.youtube.com
-      //       "https://www.efoad.minepst.gouv.cd",
-      // ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controlleur!.reload();
-        },
-        child: const Icon(Icons.sync),
+      body: Container(
+        padding: const EdgeInsets.all(0),
+        child: Column(
+          // crossAxisCount: 2,
+          // mainAxisSpacing: 5,
+          // crossAxisSpacing: 5,
+          // childAspectRatio: 1,
+          children: [
+            InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return FormationEnseignantMobile();
+                    },
+                  ),
+                );
+              },
+              child: Container(
+                height: 220,
+                margin: EdgeInsets.only(top: 0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  //color: Colors.blue,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      flex: 9,
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(pd),
+                        child: Lottie.asset(
+                            'assets/Animation - 1719837917526.json'),
+                        // child: Image.asset(
+                        //   "assets/LOGO-MINEPST-BON.png",
+                        //   color: Colors.blue,
+                        //   colorBlendMode: BlendMode.color,
+                        // ), //
+                        decoration: const BoxDecoration(
+                          //color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        alignment: Alignment.center,
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: "",
+                            children: const [
+                              TextSpan(
+                                text: "COMMENCER\nFORMATION PROFESSEURS",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              )
+                            ],
+                            style: TextStyle(
+                              fontSize: st,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                // Navigator.of(context).push(
+                //   MaterialPageRoute(
+                //     builder: (context) {
+                //       return const EnseignementEnseignantEnligne();
+                //     },
+                //   ),
+                // );
+              },
+              child: Container(
+                height: 220,
+                margin: EdgeInsets.only(top: 0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  //color: Colors.blue,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      flex: 9,
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(pd),
+                        child: Lottie.asset(
+                            'assets/Animation - 1719838060757.json'),
+                        // child: Image.asset(
+                        //   "assets/LOGO-MINEPST-BON.png",
+                        //   color: Colors.blue,
+                        //   colorBlendMode: BlendMode.color,
+                        // ), //
+                        decoration: const BoxDecoration(
+                          //color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        alignment: Alignment.center,
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: "",
+                            children: const [
+                              TextSpan(
+                                text: "COMMENCER\nFORMATION ELEVES",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              )
+                            ],
+                            style: TextStyle(
+                              fontSize: st,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                // Navigator.of(context).push(
+                //   MaterialPageRoute(
+                //     builder: (context) {
+                //       return const EnseignementEnseignantEnligne();
+                //     },
+                //   ),
+                // );
+              },
+              child: Container(
+                height: 220,
+                margin: EdgeInsets.only(top: 0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  //color: Colors.blue,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      flex: 9,
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(pd),
+                        child: Lottie.asset(
+                            'assets/Animation - 1719837910139.json'),
+                        // child: Image.asset(
+                        //   "assets/LOGO-MINEPST-BON.png",
+                        //   color: Colors.blue,
+                        //   colorBlendMode: BlendMode.color,
+                        // ), //
+                        decoration: const BoxDecoration(
+                          //color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        alignment: Alignment.center,
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: "",
+                            children: const [
+                              TextSpan(
+                                text: "COMMENCER\nLA CERTIFICATION",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              )
+                            ],
+                            style: TextStyle(
+                              fontSize: st,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

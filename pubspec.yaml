@@ -62,9 +62,10 @@ dependencies:
   isolated_worker:
   video_player:
   chewie: 
-  stomp_dart_client:
+  #stomp_dart_client:
   socket_io_client: 
   flutter_widget_from_html: 
+  #flutter_inappwebview: ^6.0.0
   youtube_player_flutter: 
   youtube_player_iframe:
   flutter_launcher_icons: 
@@ -73,10 +74,11 @@ dependencies:
   upgrader:
   #open_filex:
   mime: ^1.0.4
-  record: ^4.4.4
+  record: ^5.1.2
   permission_handler:
   syncfusion_flutter_charts: ^23.1.38
   file_picker: ^6.1.1
+  lottie: ^3.1.2
 
 flutter_icons:
   android: "launcher_icon"

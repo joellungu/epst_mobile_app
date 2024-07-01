@@ -5,7 +5,7 @@ import 'package:epst_app/utils/connexion.dart';
 import 'package:epst_app/utils/requetes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+//import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 
 class DetailsSG extends StatelessWidget {
@@ -211,7 +211,7 @@ class DetailsSG extends StatelessWidget {
                               const SizedBox(
                                 height: 5,
                               ),
-                              HtmlWidget("""${e['attributionMission']}""")
+                              //HtmlWidget("""${e['attributionMission']}""")
                             ],
                           )
                         : ie.value == 4
@@ -254,7 +254,7 @@ class DetailsSG extends StatelessWidget {
                                   const SizedBox(
                                     height: 5,
                                   ),
-                                  HtmlWidget("""${e['historique']}"""),
+                                  //HtmlWidget("""${e['historique']}"""),
                                 ],
                               ),
       ),

@@ -203,8 +203,8 @@ class _Accueil extends State<Accueil> {
         crossAxisSpacing: 7,
         childAspectRatio: 0.7,
         children: List.generate(liste.length, (index) {
-          return ElevatedButton(
-            onPressed: () {
+          return InkWell(
+            onTap: () {
               if (index == 1) {
                 showDialog(
                     context: context,
@@ -311,71 +311,71 @@ class _Accueil extends State<Accueil> {
             },
             //elevation: 1,
             //color: Colors.white,
-            style: const ButtonStyle(
-                /*
-              backgroundColor: MaterialStateProperty.all(
-                Colors.blue.shade400,
+
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: Colors.blue,
               ),
-              */
-                ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Expanded(
-                  flex: 7,
-                  child: Container(
-                    padding: const EdgeInsets.all(5),
-                    alignment: Alignment.center,
-                    child: listeIcons[index],
-                    decoration: const BoxDecoration(
-                      //color: Colors.blue,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 5,
-                  child: Container(
-                    alignment: Alignment.center,
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        text: index == 1 ? "MGP\n" : "",
-                        children: [
-                          TextSpan(
-                            text: liste[index],
-                            style: TextStyle(
-                              fontSize: index == 6
-                                  ? 12
-                                  : index == 8
-                                      ? 13
-                                      : index == 1
-                                          ? 10
-                                          : 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          )
-                        ],
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    flex: 7,
+                    child: Container(
+                      padding: const EdgeInsets.all(5),
+                      alignment: Alignment.center,
+                      child: listeIcons[index],
+                      decoration: const BoxDecoration(
+                        //color: Colors.blue,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
                         ),
                       ),
                     ),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: index == 1 ? "MGP\n" : "",
+                          children: [
+                            TextSpan(
+                              text: liste[index],
+                              style: TextStyle(
+                                fontSize: index == 6
+                                    ? 12
+                                    : index == 8
+                                        ? 13
+                                        : index == 1
+                                            ? 10
+                                            : 15,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
                       ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           );
         }),
