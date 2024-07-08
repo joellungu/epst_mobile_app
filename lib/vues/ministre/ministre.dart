@@ -34,6 +34,8 @@ class Ministre extends GetView<MinistreController> {
     //{"titre": "Statistique "},
     //{"titre": ""},
   ];
+
+  Ministre({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     //
@@ -128,7 +130,7 @@ class Ministre extends GetView<MinistreController> {
                               child: ElevatedButton(
                                 onPressed: () {
                                   //
-                                  Get.to(NombreEleve());
+                                  Get.to(const NombreEleve());
                                   //
                                 },
                                 child: Text("${x['nom']}"),

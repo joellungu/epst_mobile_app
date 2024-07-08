@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import 'detail.dart';
 import 'details_sync_type_2.dart';
 import 'identification_controller.dart';
 

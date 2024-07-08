@@ -56,7 +56,7 @@ class DetailsSyncType2 extends StatelessWidget {
   }
 
   //
-  DetailsSyncType2(this.liste, this.inspecteur) {
+  DetailsSyncType2(this.liste, this.inspecteur, {Key? key}) : super(key: key) {
     //var i = 0;
     load2();
     //
@@ -102,7 +102,7 @@ class DetailsSyncType2 extends StatelessWidget {
               percent: pr / 100,
               center: Text(
                 "$pr %",
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),

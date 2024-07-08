@@ -7,7 +7,7 @@
 -keep class io.flutter.plugins.**  { *; }
 -dontwarn android.window.BackEvent
 -keep class android.window.BackEvent
-#-keep classmembernames class android.window.BackEvent
+-keep classmembernames class android.window.BackEvent
 
 -dontwarn okhttp3.internal.platform.** -dontwarn org.conscrypt.** -dontwarn org.bouncycastle.** -dontwarn org.openjsse.**
 
@@ -25,12 +25,3 @@
  -keep class com.google.firebase.** { *; }
  -dontwarn io.flutter.embedding.**
  -ignorewarnings
-
- #
- -dontwarn java.nio.file.Files
- -dontwarn java.nio.file.Path
- -dontwarn java.nio.file.OpenOption
- -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
-
- #
- -keepclassmembers class io.flutter.embedding.android.FlutterActivity.** { *; }

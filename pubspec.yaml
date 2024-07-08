@@ -36,7 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   #file_picker: ^5.0.2
   #easy_permissions_handler: ^1.0.0
-  shimmer: ^2.0.0
+  shimmer: ^3.0.0
   #easy_popup: ^1.0.0
   dio: ^5.2.1+1
   #syncfusion_flutter_pdfviewer: ^19.4.55-beta
@@ -44,7 +44,7 @@ dependencies:
   #pdfx:
   #flutter_mailer:
   uuid:
-  webview_flutter: ^4.2.3
+  #webview_flutter: ^4.8.0
   #flutter_plugin_record: ^1.0.1
   percent_indicator: ^4.2.3
   image_picker:
@@ -53,7 +53,7 @@ dependencies:
   flutter_chat_bubble:
   sqflite:
   path_provider:
-  connectivity_plus: ^4.0.2
+  connectivity_plus: ^6.0.3
   web_socket_channel:
   open_filex: ^4.4.0
   get:
@@ -76,17 +76,21 @@ dependencies:
   mime: ^1.0.4
   record: ^5.1.2
   permission_handler:
-  syncfusion_flutter_charts: ^23.1.38
-  file_picker: ^6.1.1
+  syncfusion_flutter_charts: ^26.1.40
+  file_picker:
   lottie: ^3.1.2
 
+  path: any
+  #webview_flutter_android: any
+  #webview_flutter_wkwebview: any
+  flutter_chat_types: any
 flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/ICONE EPST APP 30 SUR 30 CM.png"
   min_sdk_android: 21
   
-dependency_overrides:
+#dependency_overrides:
   #package_info_plus:
 
 dev_dependencies:
@@ -98,7 +102,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^1.0.0
+  flutter_lints: ^4.0.0
   package_info_plus: any
   #wakelock_windows: any
   win32: any

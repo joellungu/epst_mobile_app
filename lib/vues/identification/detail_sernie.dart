@@ -1,4 +1,3 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:epst_app/utils/connexion.dart';
 import 'package:epst_app/vues/identification/identification_controller.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +66,7 @@ class _Details extends State<DetailSernie> {
           ),
           Column(
             children: [
-              Align(
+              const Align(
                 alignment: Alignment.centerLeft,
                 // child: Text(
                 //   "code: ${e['id']}",
@@ -106,9 +105,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "Postnom",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.grey,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -133,9 +132,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "Prenom",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -160,9 +159,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "sexe",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -177,9 +176,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "Lieu Naissance",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -231,9 +230,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "telephone",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -258,9 +257,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "Nom pere",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -286,9 +285,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "Nom mere",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -313,9 +312,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "adresse",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.bold),
@@ -340,9 +339,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "provinceOrigine",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -367,9 +366,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "ecole",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -394,9 +393,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "province Ecole",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -421,9 +420,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "provinceEducationnel",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -449,9 +448,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "option",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.grey,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -476,9 +475,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "classe",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -503,9 +502,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "annee",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -542,9 +541,9 @@ class _Details extends State<DetailSernie> {
                     */
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "Territoire",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -569,9 +568,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "Secteur",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -596,9 +595,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "Groupement",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -623,9 +622,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "Village",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -650,9 +649,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "Nationalite",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -677,9 +676,9 @@ class _Details extends State<DetailSernie> {
               ),
               ListTile(
                 //alignment: Alignment.centerLeft,
-                title: Text(
+                title: const Text(
                   "Antenne",
-                  style: const TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 17,
                       fontWeight: FontWeight.normal),
@@ -756,9 +755,9 @@ class _Details extends State<DetailSernie> {
                               e['antenne']);
                         },
                         style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.green),
-                        ),
+                            // backgroundColor:
+                            //     WidgetStateProperty.all(Colors.green),
+                            ),
                         child: const Text("Valider"),
                       ),
                     ),
@@ -852,22 +851,22 @@ class _Details extends State<DetailSernie> {
                                             }
                                           },
                                           style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty.all(
-                                                    Colors.green),
-                                          ),
-                                          child: Text("Confirmer"),
+                                              //backgroundColor:
+                                              // WidgetStateProperty.all(
+                                              //     Colors.green),
+                                              ),
+                                          child: const Text("Confirmer"),
                                         ),
                                         ElevatedButton(
                                           onPressed: () {
                                             Get.back();
                                           },
                                           style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty.all(
-                                                    Colors.red),
-                                          ),
-                                          child: Text("Annuler"),
+                                              //backgroundColor:
+                                              // WidgetStateProperty.all(
+                                              //     Colors.red),
+                                              ),
+                                          child: const Text("Annuler"),
                                         ),
                                       ],
                                     )
@@ -878,9 +877,9 @@ class _Details extends State<DetailSernie> {
                           ));
                         },
                         style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.red),
-                        ),
+                            //backgroundColor:
+                            //  WidgetStateProperty.all(Colors.red),
+                            ),
                         child: const Text("Invalider"),
                       ),
                     ),
@@ -1131,7 +1130,7 @@ class _Details extends State<DetailSernie> {
         return AlertDialog(
           title: Text("${nom.capitalize}"),
           contentPadding: const EdgeInsets.all(5),
-          content: Container(
+          content: SizedBox(
             height: 200,
             width: 250,
             child: Form(

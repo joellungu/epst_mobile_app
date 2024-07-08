@@ -2,25 +2,18 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:epst_app/main.dart';
-import 'package:epst_app/models/historiquedb.dart';
-import 'package:epst_app/utils/depotcontroler.dart';
 import 'package:epst_app/vues/ige/recherche_annee.dart';
-import 'package:epst_app/vues/ige/recherche_ecole.dart';
 import 'package:epst_app/vues/ige/recherche_antenne.dart';
 import 'package:epst_app/vues/ige/recherche_ecole_sernie.dart';
 import 'package:epst_app/vues/ige/sernie/sernie_controller.dart';
 //import 'package:epst_app/vues/transsfere.dart';
-import 'package:epst_app/widgets/paiement.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 //import 'mutuelle_controller.dart';
 import 'package:get/get.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
 
 class EnregistrementSernie extends StatefulWidget {
@@ -1447,7 +1440,7 @@ class _EnregistrementSernie extends State<EnregistrementSernie> {
 
                 /*
                   */
-                print("Le type vaut: ${formulaireD}");
+                print("Le type vaut: $formulaireD");
 
                 print("Pas payant");
                 Get.snackbar("Succès", "Enregistrement éffectué");

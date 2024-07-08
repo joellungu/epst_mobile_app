@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:epst_app/vues/epst_kelasi/epst_kelasi.dart';
 import 'package:epst_app/vues/formation/formation.dart';
 import 'package:epst_app/vues/ige/ige.dart';
-import 'package:epst_app/vues/ige/sernie/sernie.dart';
 import 'package:epst_app/vues/plainte/depotplainte.dart';
 import 'package:epst_app/vues/listing.dart';
 import 'package:epst_app/vues/actualite/live.dart';

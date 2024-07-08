@@ -19,6 +19,8 @@ class MenuPrimaireClasseCours extends StatelessWidget {
     "TRADITION AFRICAINE",
     "CULTURE GENERALE"
   ];
+
+  MenuPrimaireClasseCours({Key? key}) : super(key: key);
   //
 
   @override
@@ -28,7 +30,7 @@ class MenuPrimaireClasseCours extends StatelessWidget {
       length: 8,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("FORMATION FORMATEUR EDUCATION DE BASE"),
+          title: const Text("FORMATION FORMATEUR EDUCATION DE BASE"),
           centerTitle: true,
           bottom: TabBar(
             isScrollable: true,
@@ -58,7 +60,7 @@ class MenuPrimaireClasseCours extends StatelessWidget {
                   },
                   child: Container(
                     height: 230,
-                    margin: EdgeInsets.only(top: 10),
+                    margin: const EdgeInsets.only(top: 10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(5),
                       //color: Colors.blue,
@@ -99,7 +101,7 @@ class MenuPrimaireClasseCours extends StatelessWidget {
                                 children: [
                                   TextSpan(
                                     text: "${lecons[e]}",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black,

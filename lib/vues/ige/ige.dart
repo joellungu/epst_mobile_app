@@ -28,9 +28,9 @@ class _Ige extends State<Ige> {
   @override
   void initState() {}
   //
-  double st = 13;
-  double taille = 10;
-  double pd = 15;
+  double st = 12;
+  double taille = 8;
+  double pd = 13;
   //
   @override
   Widget build(BuildContext context) {
@@ -57,64 +57,64 @@ class _Ige extends State<Ige> {
               ),
               */
                 ),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(pd),
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
-                      decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  flex: 7,
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.all(0),
+                    margin: const EdgeInsets.all(0), //
+                    decoration: const BoxDecoration(
+                      //color: Colors.yellow,
+                      borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
-                      )),
+                      ),
+                    ),
+                    child: Image.asset(
+                      "assets/LOGO-MINEPST-BON.png",
+                      color: Colors.blue,
+                      colorBlendMode: BlendMode.color,
                     ),
                   ),
-                  Expanded(
-                    flex: 5,
-                    child: Container(
-                      padding: const EdgeInsets.only(bottom: 15),
-                      alignment: Alignment.center,
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          text: "Consultation résultats d'examen d'etat",
-                          children: [
-                            TextSpan(
-                              text: "",
-                              style: TextStyle(
-                                fontSize: taille,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                          style: TextStyle(
-                            fontSize: st,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: Container(
+                    padding: const EdgeInsets.only(bottom: 15),
+                    alignment: Alignment.center,
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        text: "Consultation résultats d'examen d'etat",
+                        children: [
+                          TextSpan(
+                            text: "",
+                            style: TextStyle(
+                              fontSize: taille,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          )
+                        ],
+                        style: TextStyle(
+                          fontSize: st,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
                         ),
                       ),
                     ),
-                  )
-                ],
-              ),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
 
@@ -165,7 +165,7 @@ class _Ige extends State<Ige> {
           //                 style: TextStyle(
           //                   fontSize: st,
           //                   fontWeight: FontWeight.bold,
-          //                   color: Colors.white,
+          //                   color: Colors.black,
           //                 ),
           //               ),
           //             ),
@@ -192,62 +192,60 @@ class _Ige extends State<Ige> {
               ),
               */
                 ),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(0),
-                      margin: EdgeInsets.all(0),
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
-                      decoration: const BoxDecoration(
-                        //color: Colors.yellow,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(bottom: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  flex: 7,
+                  child: Container(
                     alignment: Alignment.center,
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: const TextSpan(
-                        text: "Documents certificatifs ",
-                        children: [
-                          TextSpan(
-                            text: "(Attestations, diplome, NAD ...)",
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          )
-                        ],
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                    padding: const EdgeInsets.all(0),
+                    margin: const EdgeInsets.all(0), //
+                    decoration: const BoxDecoration(
+                      //color: Colors.yellow,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
                       ),
                     ),
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
-                    )),
+                    child: Image.asset(
+                      "assets/LOGO-MINEPST-BON.png",
+                      color: Colors.blue,
+                      colorBlendMode: BlendMode.color,
+                    ),
                   ),
-                ],
-              ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  alignment: Alignment.center,
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: const TextSpan(
+                      text: "Documents certificatifs ",
+                      children: [
+                        TextSpan(
+                          text: "(Attestations, diplome, NAD ...)",
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        )
+                      ],
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(10),
+                  )),
+                ),
+              ],
             ),
           ),
           ElevatedButton(
@@ -270,13 +268,8 @@ class _Ige extends State<Ige> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      padding: EdgeInsets.all(0),
-                      margin: EdgeInsets.all(0),
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
+                      padding: const EdgeInsets.all(0),
+                      margin: const EdgeInsets.all(0), //
                       decoration: const BoxDecoration(
                         //color: Colors.yellow,
                         borderRadius: BorderRadius.only(
@@ -284,36 +277,44 @@ class _Ige extends State<Ige> {
                           topRight: Radius.circular(10),
                         ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    alignment: Alignment.center,
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        text: "Palmarès exetat",
-                        children: const [
-                          TextSpan(
-                            text: "",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          )
-                        ],
-                        style: TextStyle(
-                          fontSize: st,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
                       ),
                     ),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "Palmarès exetat",
+                          children: const [
+                            TextSpan(
+                              text: "",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: st,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -344,8 +345,8 @@ class _Ige extends State<Ige> {
                     flex: 7,
                     child: Container(
                       alignment: Alignment.center,
-                      padding: EdgeInsets.all(0),
-                      margin: EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(0),
+                      margin: const EdgeInsets.all(0),
                       child: Image.asset(
                         "assets/LOGO-MINEPST-BON.png",
                         color: Colors.blue,
@@ -360,24 +361,27 @@ class _Ige extends State<Ige> {
                       ),
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    alignment: Alignment.center,
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        text: "Identification epreuves certificative",
-                        style: TextStyle(
-                          fontSize: st,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
                         ),
                       ),
-                    ),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "Identification epreuves certificative",
+                          style: TextStyle(
+                            fontSize: st,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -397,31 +401,38 @@ class _Ige extends State<Ige> {
               ),
               */
                 ),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
-                      decoration: const BoxDecoration(
-                        //color: Colors.blue,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  flex: 7,
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Image.asset(
+                      "assets/LOGO-MINEPST-BON.png",
+                      color: Colors.blue,
+                      colorBlendMode: BlendMode.color,
+                    ), //
+                    decoration: const BoxDecoration(
+                      //color: Colors.blue,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
                       ),
                     ),
                   ),
-                  Container(
+                ),
+                Expanded(
+                  flex: 7,
+                  child: Container(
                     padding: const EdgeInsets.only(bottom: 10),
                     alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                    ),
                     child: RichText(
                       textAlign: TextAlign.center,
                       text: const TextSpan(
@@ -432,26 +443,20 @@ class _Ige extends State<Ige> {
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           )
                         ],
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       ),
                     ),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      ),
-                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           ElevatedButton(
@@ -490,35 +495,38 @@ class _Ige extends State<Ige> {
                       ),
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    alignment: Alignment.center,
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        text: "Transfère élève",
-                        children: [
-                          TextSpan(
-                            text: "",
-                            style: TextStyle(
-                              fontSize: taille,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          )
-                        ],
-                        style: TextStyle(
-                          fontSize: st,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "Transfère élève",
+                          children: [
+                            TextSpan(
+                              text: "",
+                              style: TextStyle(
+                                fontSize: taille,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: st,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
                     ),
-                    decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10),
-                      bottomRight: Radius.circular(10),
-                    )),
                   ),
                 ],
               ),
@@ -544,12 +552,7 @@ class _Ige extends State<Ige> {
                   Expanded(
                     flex: 7,
                     child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
+                      alignment: Alignment.center, //
                       decoration: const BoxDecoration(
                         //color: Colors.blue,
                         borderRadius: BorderRadius.only(
@@ -557,36 +560,44 @@ class _Ige extends State<Ige> {
                           topRight: Radius.circular(10),
                         ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    alignment: Alignment.center,
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        text: "Fiche de paie",
-                        children: [
-                          TextSpan(
-                            text: "",
-                            style: TextStyle(
-                              fontSize: taille,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          )
-                        ],
-                        style: TextStyle(
-                          fontSize: st,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
                       ),
                     ),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "Fiche de paie",
+                          children: [
+                            TextSpan(
+                              text: "",
+                              style: TextStyle(
+                                fontSize: taille,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: st,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -595,281 +606,282 @@ class _Ige extends State<Ige> {
             ),
           ),
           //
-          ElevatedButton(
-            onPressed: () {
-              //
-              Get.to(ArretesMinisteriel(titre: "Arrêtés ministériels"));
-            },
-            style: const ButtonStyle(
-                /*
-              backgroundColor: MaterialStateProperty.all(
-                Colors.blue.shade400,
-              ),
-              */
-                ),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
-                      decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      )),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    alignment: Alignment.center,
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: const TextSpan(
-                        text: "Arrêtés ministériels",
-                        children: [
-                          TextSpan(
-                            text: "",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          )
-                        ],
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              //
-              Get.to(NotificationsArretes(titre: "Notifications arretés"));
-            },
-            style: const ButtonStyle(
-                /*
-              backgroundColor: MaterialStateProperty.all(
-                Colors.blue.shade400,
-              ),
-              */
-                ),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
-                      decoration: const BoxDecoration(
-                        //color: Colors.blue,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    alignment: Alignment.center,
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: const TextSpan(
-                        text: "Notifications arretés",
-                        children: [
-                          TextSpan(
-                            text: "",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          )
-                        ],
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              //
-              Get.to(NotesCirculaire(titre: "Notes circulaires"));
-            },
-            style: const ButtonStyle(
-                /*
-              backgroundColor: MaterialStateProperty.all(
-                Colors.blue.shade400,
-              ),
-              */
-                ),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
-                      decoration: const BoxDecoration(
-                        //color: Colors.blue,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    alignment: Alignment.center,
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: const TextSpan(
-                        text: "Notes circulaires",
-                        children: [
-                          TextSpan(
-                            text: "",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          )
-                        ],
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              //
-              Get.to(MessagePhonique(titre: "Message phonique"));
-            },
-            style: const ButtonStyle(
-                /*
-              backgroundColor: MaterialStateProperty.all(
-                Colors.blue.shade400,
-              ),
-              */
-                ),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
-                      decoration: const BoxDecoration(
-                        //color: Colors.blue,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    alignment: Alignment.center,
-                    child: RichText(
-                      textAlign: TextAlign.center,
-                      text: const TextSpan(
-                        text: "Message phonique",
-                        children: [
-                          TextSpan(
-                            text: "",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          )
-                        ],
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     //
+          //     Get.to(ArretesMinisteriel(titre: "Arrêtés ministériels"));
+          //   },
+          //   style: const ButtonStyle(
+          //       /*
+          //     backgroundColor: MaterialStateProperty.all(
+          //       Colors.blue.shade400,
+          //     ),
+          //     */
+          //       ),
+          //   child: Container(
+          //     child: Column(
+          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //       children: [
+          //         Expanded(
+          //           flex: 7,
+          //           child: Container(
+          //             alignment: Alignment.center,
+          //             child: Image.asset(
+          //               "assets/LOGO-MINEPST-BON.png",
+          //               color: Colors.blue,
+          //               colorBlendMode: BlendMode.color,
+          //             ), //
+          //             decoration: const BoxDecoration(
+          //                 //color: Colors.blue,
+          //                 borderRadius: BorderRadius.only(
+          //               topLeft: Radius.circular(10),
+          //               topRight: Radius.circular(10),
+          //             )),
+          //           ),
+          //         ),
+          //         Container(
+          //           padding: const EdgeInsets.only(bottom: 10),
+          //           alignment: Alignment.center,
+          //           child: RichText(
+          //             textAlign: TextAlign.center,
+          //             text: const TextSpan(
+          //               text: "Arrêtés ministériels",
+          //               children: [
+          //                 TextSpan(
+          //                   text: "",
+          //                   style: TextStyle(
+          //                     fontSize: 20,
+          //                     fontWeight: FontWeight.bold,
+          //                     color: Colors.black,
+          //                   ),
+          //                 )
+          //               ],
+          //               style: TextStyle(
+          //                 fontSize: 13,
+          //                 fontWeight: FontWeight.bold,
+          //                 color: Colors.black,
+          //               ),
+          //             ),
+          //           ),
+          //           decoration: const BoxDecoration(
+          //             borderRadius: BorderRadius.only(
+          //               bottomLeft: Radius.circular(10),
+          //               bottomRight: Radius.circular(10),
+          //             ),
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     //
+          //     Get.to(NotificationsArretes(titre: "Notifications arretés"));
+          //   },
+          //   style: const ButtonStyle(
+          //       /*
+          //     backgroundColor: MaterialStateProperty.all(
+          //       Colors.blue.shade400,
+          //     ),
+          //     */
+          //       ),
+          //   child: Container(
+          //     child: Column(
+          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //       children: [
+          //         Expanded(
+          //           flex: 7,
+          //           child: Container(
+          //             alignment: Alignment.center,
+          //             child: Image.asset(
+          //               "assets/LOGO-MINEPST-BON.png",
+          //               color: Colors.blue,
+          //               colorBlendMode: BlendMode.color,
+          //             ), //
+          //             decoration: const BoxDecoration(
+          //               //color: Colors.blue,
+          //               borderRadius: BorderRadius.only(
+          //                 topLeft: Radius.circular(10),
+          //                 topRight: Radius.circular(10),
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          //         Container(
+          //           padding: const EdgeInsets.only(bottom: 10),
+          //           alignment: Alignment.center,
+          //           child: RichText(
+          //             textAlign: TextAlign.center,
+          //             text: const TextSpan(
+          //               text: "Notifications arretés",
+          //               children: [
+          //                 TextSpan(
+          //                   text: "",
+          //                   style: TextStyle(
+          //                     fontSize: 20,
+          //                     fontWeight: FontWeight.bold,
+          //                     color: Colors.black,
+          //                   ),
+          //                 )
+          //               ],
+          //               style: TextStyle(
+          //                 fontSize: 13,
+          //                 fontWeight: FontWeight.bold,
+          //                 color: Colors.black,
+          //               ),
+          //             ),
+          //           ),
+          //           decoration: const BoxDecoration(
+          //             borderRadius: BorderRadius.only(
+          //               bottomLeft: Radius.circular(10),
+          //               bottomRight: Radius.circular(10),
+          //             ),
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     //
+          //     Get.to(NotesCirculaire(titre: "Notes circulaires"));
+          //   },
+          //   style: const ButtonStyle(
+          //       /*
+          //     backgroundColor: MaterialStateProperty.all(
+          //       Colors.blue.shade400,
+          //     ),
+          //     */
+          //       ),
+          //   child: Container(
+          //     child: Column(
+          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //       children: [
+          //         Expanded(
+          //           flex: 7,
+          //           child: Container(
+          //             alignment: Alignment.center,
+          //             child: Image.asset(
+          //               "assets/LOGO-MINEPST-BON.png",
+          //               color: Colors.blue,
+          //               colorBlendMode: BlendMode.color,
+          //             ), //
+          //             decoration: const BoxDecoration(
+          //               //color: Colors.blue,
+          //               borderRadius: BorderRadius.only(
+          //                 topLeft: Radius.circular(10),
+          //                 topRight: Radius.circular(10),
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          //         Container(
+          //           padding: const EdgeInsets.only(bottom: 10),
+          //           alignment: Alignment.center,
+          //           child: RichText(
+          //             textAlign: TextAlign.center,
+          //             text: const TextSpan(
+          //               text: "Notes circulaires",
+          //               children: [
+          //                 TextSpan(
+          //                   text: "",
+          //                   style: TextStyle(
+          //                     fontSize: 20,
+          //                     fontWeight: FontWeight.bold,
+          //                     color: Colors.black,
+          //                   ),
+          //                 )
+          //               ],
+          //               style: TextStyle(
+          //                 fontSize: 13,
+          //                 fontWeight: FontWeight.bold,
+          //                 color: Colors.black,
+          //               ),
+          //             ),
+          //           ),
+          //           decoration: const BoxDecoration(
+          //             borderRadius: BorderRadius.only(
+          //               bottomLeft: Radius.circular(10),
+          //               bottomRight: Radius.circular(10),
+          //             ),
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     //
+          //     Get.to(MessagePhonique(titre: "Message phonique"));
+          //   },
+          //   style: const ButtonStyle(
+          //       /*
+          //     backgroundColor: MaterialStateProperty.all(
+          //       Colors.blue.shade400,
+          //     ),
+          //     */
+          //       ),
+          //   child: Container(
+          //     child: Column(
+          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //       children: [
+          //         Expanded(
+          //           flex: 7,
+          //           child: Container(
+          //             alignment: Alignment.center,
+          //             child: Image.asset(
+          //               "assets/LOGO-MINEPST-BON.png",
+          //               color: Colors.blue,
+          //               colorBlendMode: BlendMode.color,
+          //             ), //
+          //             decoration: const BoxDecoration(
+          //               //color: Colors.blue,
+          //               borderRadius: BorderRadius.only(
+          //                 topLeft: Radius.circular(10),
+          //                 topRight: Radius.circular(10),
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          //         Container(
+          //           padding: const EdgeInsets.only(bottom: 10),
+          //           alignment: Alignment.center,
+          //           child: RichText(
+          //             textAlign: TextAlign.center,
+          //             text: const TextSpan(
+          //               text: "Message phonique",
+          //               children: [
+          //                 TextSpan(
+          //                   text: "",
+          //                   style: TextStyle(
+          //                     fontSize: 20,
+          //                     fontWeight: FontWeight.bold,
+          //                     color: Colors.black,
+          //                   ),
+          //                 )
+          //               ],
+          //               style: TextStyle(
+          //                 fontSize: 13,
+          //                 fontWeight: FontWeight.bold,
+          //                 color: Colors.black,
+          //               ),
+          //             ),
+          //           ),
+          //           decoration: const BoxDecoration(
+          //             borderRadius: BorderRadius.only(
+          //               bottomLeft: Radius.circular(10),
+          //               bottomRight: Radius.circular(10),
+          //             ),
+          //           ),
+          //         ),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+
           //
         ], //
       ),

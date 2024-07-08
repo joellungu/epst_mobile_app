@@ -14,6 +14,8 @@ class FormationEnseignantMobile extends StatelessWidget {
     "FORMATION POUR LES ENSEIGNANTS DE L'EDUCATION DE BASE,Animation - 1719837919056.json",
     "FORMATION POUR LES ENSEIGNANTS DU SECONDAIRE,Animation - 1719837965657.json"
   ];
+
+  FormationEnseignantMobile({Key? key}) : super(key: key);
   //
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class FormationEnseignantMobile extends StatelessWidget {
             },
             child: Container(
               height: 230,
-              margin: EdgeInsets.only(top: 10),
+              margin: const EdgeInsets.only(top: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 //color: Colors.blue,
@@ -83,7 +85,7 @@ class FormationEnseignantMobile extends StatelessWidget {
                           children: [
                             TextSpan(
                               text: "${formations[e].split(',')[0]}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,

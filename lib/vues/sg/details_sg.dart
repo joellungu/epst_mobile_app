@@ -1,10 +1,6 @@
-import 'dart:convert';
-import 'dart:io';
 
 import 'package:epst_app/utils/connexion.dart';
-import 'package:epst_app/utils/requetes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 //import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
 
@@ -54,18 +50,18 @@ class DetailsSG extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ListTile(
-                            leading: Icon(Icons.person),
-                            title: Text("NOM DU RESPONSABLE"),
+                            leading: const Icon(Icons.person),
+                            title: const Text("NOM DU RESPONSABLE"),
                             subtitle: Text("${e['responsable']}"),
                           ),
                           ListTile(
-                            leading: Icon(Icons.phone_android),
-                            title: Text("TELEPHONE"),
+                            leading: const Icon(Icons.phone_android),
+                            title: const Text("TELEPHONE"),
                             subtitle: Text("${e['telephone']}"),
                           ),
                           ListTile(
-                            leading: Icon(Icons.email),
-                            title: Text("EMAIL"),
+                            leading: const Icon(Icons.email),
+                            title: const Text("EMAIL"),
                             subtitle: Text("${e['email']}"),
                           ),
                         ],
@@ -195,11 +191,11 @@ class DetailsSG extends StatelessWidget {
                     : ie.value == 3
                         ? ListView(
                             padding: const EdgeInsets.all(10),
-                            children: [
-                              const Padding(
+                            children: const [
+                              Padding(
                                 padding: EdgeInsets.only(top: 10),
                               ),
-                              const Align(
+                              Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   "ATTRIBUT. & MISSION",
@@ -208,7 +204,7 @@ class DetailsSG extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              const SizedBox(
+                              SizedBox(
                                 height: 5,
                               ),
                               //HtmlWidget("""${e['attributionMission']}""")
@@ -238,11 +234,11 @@ class DetailsSG extends StatelessWidget {
                               )
                             : ListView(
                                 padding: const EdgeInsets.all(10),
-                                children: [
-                                  const Padding(
+                                children: const [
+                                  Padding(
                                     padding: EdgeInsets.only(top: 10),
                                   ),
-                                  const Align(
+                                  Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
                                       "HISTORIQUES",
@@ -251,7 +247,7 @@ class DetailsSG extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(
+                                  SizedBox(
                                     height: 5,
                                   ),
                                   //HtmlWidget("""${e['historique']}"""),

@@ -16,12 +16,12 @@ class Connexion {
 
   //static var lien = 'https://epstserveur.herokuapp.com/';
   //static var ws = 'epstserveur.herokuapp.com';
-
-  //static var lien = 'http://192.168.1.73:8080/';
-  //static var ws = '192.168.1.76:8080/';
   //
-  static var lien = 'http://10.0.2.2:8080/';
-  static var ws = '10.0.2.2:8080';
+  static var lien = 'http://192.168.1.65:8080/';
+  static var ws = '192.168.1.65:8080/';
+  //
+  //static var lien = 'http://10.0.2.2:8080/';
+  //static var ws = '10.0.2.2:8080';
 
   static Future<String> enregistrement(Map<String, dynamic> utilisateur) async {
     //

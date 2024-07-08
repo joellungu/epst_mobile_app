@@ -8,10 +8,13 @@ import 'package:epst_app/vues/plainte/transsfere.dart';
 import 'package:get/get.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
+
+import 'plainte_historique.dart';
 
 class DepotPlainte extends StatefulWidget {
   String? titre;
@@ -66,6 +69,8 @@ class _DepotPlainte extends State<DepotPlainte> {
   //
   int ti = 0;
   //
+  List listeFichierSave = [];
+  //
   List listeTiquet = [
     "Gratuité de l'enseignement",
     "Violences basées sur le genre",
@@ -88,30 +93,29 @@ class _DepotPlainte extends State<DepotPlainte> {
         centerTitle: true,
         title: Text(widget.titre!),
         actions: [
-          DropdownButton<int>(
-              //value: 1,
-              icon: const Icon(
-                Icons.more_vert,
-                color: Colors.white,
-              ),
-              items: const [
-                DropdownMenuItem<int>(
-                  child: Text("Historique"),
+          PopupMenuButton(
+            icon: Icon(Icons.menu),
+            onSelected: (e) {
+              //
+              if (e == 1) {
+                Get.to(const PlainteHis());
+              } else {
+                Get.to(const References());
+              }
+            },
+            itemBuilder: (context) {
+              return [
+                const PopupMenuItem(
                   value: 1,
+                  child: Text("Historique"),
                 ),
-                DropdownMenuItem<int>(
-                  child: Text("Reference"),
+                const PopupMenuItem(
                   value: 2,
-                )
-              ],
-              onChanged: (e) {
-                //
-                if (e == 1) {
-                  Get.to(const PlainteHis());
-                } else {
-                  Get.to(const References());
-                }
-              }),
+                  child: Text("Reference"),
+                ),
+              ];
+            },
+          ),
           const Padding(padding: EdgeInsets.only(right: 10))
         ],
       ),
@@ -375,6 +379,9 @@ class _DepotPlainte extends State<DepotPlainte> {
                                         String name = extT.first;
                                         Uint8List l =
                                             await element.readAsBytes();
+                                        //
+                                        listeFichierSave.add(element.path);
+                                        //
                                         depotController.listeFichier.value.add(
                                           {
                                             "length": l.length,
@@ -432,8 +439,8 @@ class _DepotPlainte extends State<DepotPlainte> {
               Obx(
                 () => Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: List.generate(
-                      depotController.listeFichier.value.length, (x) {
+                  children:
+                      List.generate(depotController.listeFichier.length, (x) {
                     return ListTile(
                       leading: const Icon(Icons.file_present),
                       title: Text("Piece n° $x"),
@@ -441,7 +448,8 @@ class _DepotPlainte extends State<DepotPlainte> {
                         onPressed: () {
                           //
                           setState(() {
-                            depotController.listeFichier.value.removeAt(x);
+                            listeFichierSave.removeAt(x);
+                            depotController.listeFichier.removeAt(x);
                           });
                           //
                         },
@@ -471,8 +479,9 @@ class _DepotPlainte extends State<DepotPlainte> {
                     var connectivityResult =
                         await (Connectivity().checkConnectivity());
                     //
-                    if (connectivityResult == ConnectivityResult.mobile ||
-                        connectivityResult == ConnectivityResult.wifi) {
+                    if (connectivityResult
+                            .contains(ConnectivityResult.mobile) ||
+                        connectivityResult.contains(ConnectivityResult.wifi)) {
                       // I am connected to a mobile network. I am connected to a wifi network.
                       //
                       Map<String, dynamic> utilisateur = {
@@ -500,7 +509,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                       print("_____________________: $utilisateur");
                       List<Map<String, dynamic>> l = [];
                       //____________________________________________________________
-                      for (var element in depotController.listeFichier.value) {
+                      for (var element in depotController.listeFichier) {
                         Map<String, dynamic> e = element;
                         l.add(e);
                       }
@@ -512,11 +521,14 @@ class _DepotPlainte extends State<DepotPlainte> {
                           },
                         ),
                       );
-                      depotController.listeFichier.value.clear();
+                      depotController.listeFichier.clear();
                     } else {
+                      //
+                      var box = GetStorage();
+                      //
                       List<Map<String, dynamic>> l = [];
                       //____________________________________________________________
-                      for (var element in depotController.listeFichier.value) {
+                      for (var element in depotController.listeFichier) {
                         Map<String, dynamic> e = element;
                         l.add(e);
                       }
@@ -553,17 +565,20 @@ class _DepotPlainte extends State<DepotPlainte> {
                       Database db = await historique.openDB();
                       db.insert("historique", utilisateur);
                       //[utilisateur]
-                      _createFolderAndSave(ref, l);
-                      depotController.listeFichier.value.clear();
+                      //Très important pour envoyer les fichiers plus tard je n'enregistre que les paths de ces fichiers !
+                      box.write(ref, listeFichierSave);
+                      //
+                      //listeFichierSave.addAll(l);
+                      depotController.listeFichier.clear();
                       l.clear();
                       //
                       showDialog(
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: const Text("Problème de connexion"),
+                            title: const Text("Plainte enregitré"),
                             content: const Text(
-                                "Plainte enregitrée et sera envoyée plus tard."),
+                                "Cliquez dans historique en haut à droit pour l'envoyer."),
                             actions: [
                               IconButton(
                                 onPressed: () {
@@ -585,10 +600,7 @@ class _DepotPlainte extends State<DepotPlainte> {
                 ),
               ),
               const SizedBox(
-                height: 20,
-              ),
-              const SizedBox(
-                height: 20,
+                height: 30,
               ),
             ],
           ),
@@ -713,372 +725,4 @@ SizedBox(height: 20,),
               ),
  */
 
-class PlainteHis extends StatefulWidget {
-  const PlainteHis({Key? key}) : super(key: key);
 
-  @override
-  State<StatefulWidget> createState() {
-    return _PlainteHis();
-  }
-}
-
-class _PlainteHis extends State<PlainteHis> {
-  Future<Widget> getPlaite() async {
-    Historique historique = Historique();
-    Database? db = await historique.openDB();
-    //
-    List<Map<String, dynamic>> listPlainte =
-        await db.rawQuery('SELECT * FROM historique');
-
-    return ListView(
-      padding: const EdgeInsets.all(10),
-      children: List.generate(listPlainte.length, (index) {
-        print(listPlainte[index]["envoyer"]);
-        return ListTile(
-          leading: const Icon(Icons.menu),
-          title: Text(listPlainte[index]["envoyeur"]),
-          subtitle: Text(listPlainte[index]["date"]),
-          trailing: IconButton(
-            onPressed: () {
-              //
-              if (listPlainte[index]["envoyer"] == "non") {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return HistoriqueSend(listPlainte[index]);
-                    },
-                  ),
-                );
-              }
-            },
-            icon: listPlainte[index]["envoyer"] == "non"
-                ? const Icon(Icons.sync)
-                : const Icon(
-                    Icons.check_circle_outline,
-                    color: Colors.green,
-                  ),
-          ),
-        );
-      }),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Historique"),
-      ),
-      body: FutureBuilder(
-        future: getPlaite(),
-        builder: (context, b) {
-          if (b.hasData) {
-            return b.data as Widget;
-          } else if (b.hasError) {
-            return Center(
-              child: Text("Erreur lors du chargement: ${b.error}"),
-            );
-          }
-          return Center(
-            child: Container(
-              height: 40,
-              width: 40,
-              alignment: Alignment.center,
-              child: const CircularProgressIndicator(),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class HistoriqueSend extends StatefulWidget {
-  Map<String, dynamic> pl = {};
-
-  HistoriqueSend(this.pl, {Key? key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() {
-    return _HistoriqueSend();
-  }
-}
-
-class _HistoriqueSend extends State<HistoriqueSend> {
-  //
-  DepotController depotController = Get.find();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.delete),
-          ),
-        ],
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(5),
-        children: [
-          Text.rich(
-            TextSpan(
-              text: "De: ",
-              style: st,
-              children: [
-                TextSpan(
-                  text: "${widget.pl['envoyeur']}",
-                  style: st2,
-                ),
-              ],
-            ),
-          ),
-          Text.rich(
-            TextSpan(
-              text: "Téléphone: ",
-              style: st,
-              children: [
-                TextSpan(
-                  text: "${widget.pl['telephone']}",
-                  style: st2,
-                ),
-              ],
-            ),
-          ),
-          Text.rich(
-            TextSpan(
-              text: "Email: ",
-              style: st,
-              children: [
-                TextSpan(
-                  text: "${widget.pl['email']}",
-                  style: st2,
-                ),
-              ],
-            ),
-          ),
-          Text.rich(
-            TextSpan(
-              text: "À: ",
-              style: st,
-              children: [
-                TextSpan(
-                  text: "${widget.pl['destinateur']}",
-                  style: st2,
-                ),
-              ],
-            ),
-          ),
-          Text.rich(
-            TextSpan(
-              text: "Message: \n",
-              style: st,
-              children: [
-                TextSpan(
-                  text: "${widget.pl['message']}^n\n",
-                  style: st2,
-                ),
-              ],
-            ),
-          ),
-          Container(
-            height: 50,
-            padding: const EdgeInsets.only(right: 10),
-            alignment: Alignment.centerRight,
-            decoration: const BoxDecoration(
-              //color: Colors.yellow,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Expanded(
-                  flex: 7,
-                  child: Container(
-                    alignment: Alignment.centerLeft,
-                    //child: Text(Fichier),
-                  ),
-                ),
-                PopupMenuButton(
-                  onSelected: (e) {
-                    //getFile();
-                  },
-                  icon: const Icon(
-                    Icons.attach_file,
-                  ),
-                  itemBuilder: (context) => [
-                    PopupMenuItem(
-                      onTap: () {
-                        getFile();
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 40,
-                            width: 40,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: Colors.blue.shade200,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: const Icon(Icons.file_copy_outlined),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Piece jointe",
-                            style: TextStyle(
-                              color: Colors.grey.shade700,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17,
-                            ),
-                          )
-                        ],
-                      ),
-                      value: 4,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Obx(
-            () => Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children:
-                  List.generate(depotController.listeFichier.value.length, (x) {
-                return ListTile(
-                  leading: const Icon(Icons.file_present),
-                  title: Text("Piece n° $x"),
-                  trailing: IconButton(
-                    onPressed: () {
-                      //
-                      setState(() {
-                        depotController.listeFichier.value.removeAt(x);
-                      });
-                      //
-                    },
-                    icon: const Icon(Icons.close),
-                  ),
-                );
-              }),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              //
-              var connectivityResult =
-                  await (Connectivity().checkConnectivity());
-              //
-              if (connectivityResult == ConnectivityResult.mobile ||
-                  connectivityResult == ConnectivityResult.wifi) {
-                // I am connected to a mobile network. I am connected to a wifi network.
-                //
-                //widget.pl["envoyer"] = "oui";
-                Map<String, dynamic> utilisateur = widget.pl;
-                utilisateur["envoyer"] = "oui";
-                // deC.clear();
-                // telephoneC.clear();
-                // emailC.clear();
-                // aC.clear();
-                // messageC.clear();
-                // a = 0;
-                // p = 0;
-                print("_____________________: $utilisateur");
-                List<Map<String, dynamic>> l = [];
-                /*
-                      //____________________________________________________________
-                      depotController.listeFichier.value.forEach((element) {
-                        Map<String, dynamic> e = element;
-                        l.add(e);
-                      });
-                      */
-                //____________________________________________________________
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Transfere1(utilisateur, l);
-                    },
-                  ),
-                );
-              } else {
-                //GetSnackBar(title: titre, message: message);
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: const Text("Problème de connexion"),
-                      content: const Text(
-                        "Vous n'etes pas connecté à internet, veuillez vous reconnecter puis reessayer",
-                        textAlign: TextAlign.center,
-                      ),
-                      actions: [
-                        IconButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          icon: const Icon(
-                            Icons.close,
-                          ),
-                        )
-                      ],
-                    );
-                  },
-                );
-              }
-            },
-            child: const Text("Reenvoyer"),
-          ),
-        ],
-      ),
-    );
-  }
-
-  var st = const TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 13,
-    color: Colors.black,
-  );
-
-  var st2 = const TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 13,
-    color: Colors.green,
-  );
-
-  getFile() async {
-    FilePickerResult? result =
-        await FilePicker.platform.pickFiles(allowMultiple: false);
-    if (result != null) {
-      List<File> files = result.paths.map((path) => File(path!)).toList();
-      files.forEach((element) async {
-        //
-        List<String> extT = element.path.split(".");
-        String ext = extT.last;
-        Uint8List l = await element.readAsBytes();
-        depotController.listeFichier.value.add(
-          {
-            "length": l.length,
-            "data": l,
-            "type": ext,
-          },
-        );
-      });
-      setState(() {});
-    } else {
-      // User canceled the picker
-    }
-  }
-}

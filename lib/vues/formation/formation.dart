@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import 'formation_enseignants/enseignement_enseignant_enligne.dart';
-import 'ma_classe.dart';
-import 'schollap.dart';
 
 // ignore: must_be_immutable
 class Formation extends StatefulWidget {
@@ -133,7 +131,7 @@ class _Formation extends State<Formation> {
             },
             child: Container(
               height: 200,
-              margin: EdgeInsets.only(top: 10),
+              margin: const EdgeInsets.only(top: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 color: Colors.blue,
@@ -211,7 +209,7 @@ class _Formation extends State<Formation> {
             },
             child: Container(
               height: 200,
-              margin: EdgeInsets.only(top: 10),
+              margin: const EdgeInsets.only(top: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 color: Colors.blue,

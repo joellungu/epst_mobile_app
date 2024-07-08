@@ -73,18 +73,18 @@ class SecretariaGeneral extends GetView<SgController> {
                     height: 50,
                     width: 50,
                     alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(25),
+                    ),
                     child: Text(
                       "${s['sigle']}",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(25),
                     ),
                   ),
                   title: Text("${s['denomition']}"),

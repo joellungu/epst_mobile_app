@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 // Import for Android features.
-import 'package:webview_flutter_android/webview_flutter_android.dart';
 // Import for iOS features.
-import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
 import 'formation_enseignants/formation_enseignant_mobile.dart';
 // #enddocregion platform_imports
@@ -51,7 +48,7 @@ class _FOAD extends State<FOAD> {
               },
               child: Container(
                 height: 220,
-                margin: EdgeInsets.only(top: 0),
+                margin: const EdgeInsets.only(top: 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   //color: Colors.blue,
@@ -130,7 +127,7 @@ class _FOAD extends State<FOAD> {
               },
               child: Container(
                 height: 220,
-                margin: EdgeInsets.only(top: 0),
+                margin: const EdgeInsets.only(top: 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   //color: Colors.blue,
@@ -209,7 +206,7 @@ class _FOAD extends State<FOAD> {
               },
               child: Container(
                 height: 220,
-                margin: EdgeInsets.only(top: 0),
+                margin: const EdgeInsets.only(top: 0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   //color: Colors.blue,

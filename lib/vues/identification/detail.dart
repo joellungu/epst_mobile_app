@@ -633,7 +633,7 @@ class _Details extends State<Details> {
               flex: 4,
               child: ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.red),
+                  //backgroundColor: WidgetStateProperty.all(Colors.red),
                 ),
                 onPressed: () async {
                   IdentificationController identificationController =
@@ -689,8 +689,8 @@ class _Details extends State<Details> {
                                   ElevatedButton(
                                     child: const Text("Enregistrer"),
                                     style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(Colors.red),
+                                      //backgroundColor:
+                                        //  WidgetStateProperty.all(Colors.red),
                                     ),
                                     onPressed: () async {
                                       //

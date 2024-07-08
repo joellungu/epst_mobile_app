@@ -207,12 +207,12 @@ class IdentificationController extends GetxController with StateMixin<List> {
         print("l1: ${l.length}");
         print("l2: ${la.length}");
 
-        l.forEach((element) {
+        for (var element in l) {
           //Map c1 = element;
           //c1['photo'] = "";
           //print("c1: ${c1.toString()}");
           bool add = true;
-          la.forEach((element2) {
+          for (var element2 in la) {
             //Map c2 = element2;
             //c2['photo'] = "";
             //
@@ -224,14 +224,14 @@ class IdentificationController extends GetxController with StateMixin<List> {
               add = false;
               print("Ajouter 2: $add");
             }
-          });
+          }
           //
           if (add) {
             la.add(element);
           }
 
           //
-        });
+        }
         //map['photo'] = "";
         //l.add(formulaireD);
         box.write("historique_demande_sernie", la);

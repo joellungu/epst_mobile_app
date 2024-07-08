@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +6,7 @@ import 'package:lottie/lottie.dart';
 
 class Lecon extends StatelessWidget {
   String lecon;
-  Lecon(this.lecon);
+  Lecon(this.lecon, {Key? key}) : super(key: key);
   //
   Rx<Widget> vue = Rx<Widget>(
     Container(
@@ -37,7 +36,7 @@ class Lecon extends StatelessWidget {
               //Animation - 1719838060757.json
               child: Container(
                 alignment: Alignment.center,
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Lottie.asset('assets/Animation - 1719838060757.json'),
                 // child: Image.asset(
                 //   "assets/LOGO-MINEPST-BON.png",
@@ -57,7 +56,7 @@ class Lecon extends StatelessWidget {
               flex: 3,
               child: Container(
                 alignment: Alignment.center,
-                child: Text(
+                child: const Text(
                   "Remplacer les pointiels par le mot correspondant",
                   style: TextStyle(
                     fontSize: 15,
@@ -74,7 +73,7 @@ class Lecon extends StatelessWidget {
                 child: RichText(
                   text: TextSpan(
                     text: "Maman et Papa ",
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.grey,
                     ),
                     children: [
@@ -89,7 +88,7 @@ class Lecon extends StatelessWidget {
                             print("Arrivé: ${reponse.data}");
                             if (reponse.data == "sont") {
                               Timer(
-                                const Duration(seconds: 1),
+                                const Duration(microseconds: 500),
                                 () {
                                   Get.dialog(
                                     Center(
@@ -98,6 +97,53 @@ class Lecon extends StatelessWidget {
                                         width: 200,
                                         child: Lottie.asset(
                                             'assets/Animation - 1719838039108.json'),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            } else {
+                              Timer(
+                                const Duration(microseconds: 500),
+                                () {
+                                  Get.dialog(
+                                    Center(
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        child: SizedBox(
+                                          height: 200,
+                                          child: Column(
+                                            children: [
+                                              Expanded(
+                                                flex: 9,
+                                                child: SizedBox(
+                                                  height: 200,
+                                                  width: 200,
+                                                  child: Lottie.asset(
+                                                      'assets/Animation - 1720104239176.json'),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              const Align(
+                                                alignment: Alignment.center,
+                                                child: Card(
+                                                  color: Colors.transparent,
+                                                  child: Text(
+                                                    "Erreur mauvaise reponse",
+                                                    style: TextStyle(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.red,
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
                                       ),
                                     ),
                                   );

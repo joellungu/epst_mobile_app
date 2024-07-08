@@ -57,7 +57,7 @@ class DetailsSyncType1 extends StatelessWidget {
   }
 
   //
-  DetailsSyncType1(this.liste, this.state) {
+  DetailsSyncType1(this.liste, this.state, {Key? key}) : super(key: key) {
     //List rls = [];
     //var i = 0;
     load2();
@@ -82,7 +82,7 @@ class DetailsSyncType1 extends StatelessWidget {
               percent: pr / 100,
               center: Text(
                 "$pr %",
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),

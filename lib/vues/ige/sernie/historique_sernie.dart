@@ -1,4 +1,3 @@
-import 'package:accordion/accordion.dart';
 import 'package:epst_app/vues/identification/identification_controller.dart';
 import 'package:epst_app/vues/mutuelle/mutuelle_controller.dart';
 import 'package:flutter/material.dart';
@@ -158,7 +157,7 @@ class _HistoriqueSernie extends State<HistoriqueSernie> {
               ),
             );
 
-            ls.forEach((ses) {
+            for (var ses in ls) {
               //
               var s = ses['code'];
               Map eue = box.read(s) ?? {};
@@ -166,7 +165,7 @@ class _HistoriqueSernie extends State<HistoriqueSernie> {
               ses["photo"] = eue['photo'];
               ses["ext"] = eue['ext'];
               //print("ext: ${ses["ext"]}");
-            });
+            }
             //
             Get.back();
             //

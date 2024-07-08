@@ -112,7 +112,13 @@ class _Chat extends State<Chat> {
               alignment: Alignment.center,
               child: const LinearProgressIndicator(),
             ),
-            const Text("Etablissement de la communication avec un agent de la DGC")
+            const Align(
+              alignment: Alignment.center,
+              child: Text(
+                "Etablissement de la communication avec un agent de la DGC",
+                textAlign: TextAlign.center,
+              ),
+            )
           ],
         ),
       ),
@@ -230,7 +236,8 @@ class ChattConv extends StatefulWidget {
 
   ChattConv(this.idSessionHote, this.listeConv, this.hostId, this.clientId,
       this.from, this.matricule,
-      {Key? key, this.user}) : super(key: key);
+      {Key? key, this.user})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {

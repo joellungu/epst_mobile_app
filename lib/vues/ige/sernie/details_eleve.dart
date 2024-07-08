@@ -8,7 +8,7 @@ class DetailEleve extends StatefulWidget {
   //
   int index;
   //
-  DetailEleve(this.e, this.index);
+  DetailEleve(this.e, this.index, {Key? key}) : super(key: key);
   //
 
   @override
@@ -47,7 +47,7 @@ class _DetailEleve extends State<DetailEleve> {
       ),
       body: ListView(
         children: [
-          Align(
+          const Align(
             alignment: Alignment.centerLeft,
             // child: Text(
             //   "code: ${e['id']}",
@@ -86,9 +86,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "Postnom",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.grey,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -113,9 +113,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "Prenom",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -140,9 +140,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "sexe",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -157,9 +157,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "Lieu Naissance",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -211,9 +211,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "telephone",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -238,9 +238,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "Nom pere",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -266,9 +266,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "Nom mere",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -293,9 +293,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "adresse",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.bold),
@@ -320,9 +320,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "provinceOrigine",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -347,9 +347,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "ecole",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -374,9 +374,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "province Ecole",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -401,9 +401,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "provinceEducationnel",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -428,9 +428,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "option",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.grey,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -455,9 +455,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "classe",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -482,9 +482,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "annee",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -521,9 +521,9 @@ class _DetailEleve extends State<DetailEleve> {
                     */
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "Territoire",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -548,9 +548,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "Secteur",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -575,9 +575,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "Groupement",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -602,9 +602,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "Village",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -629,9 +629,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "Nationalite",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -656,9 +656,9 @@ class _DetailEleve extends State<DetailEleve> {
           ),
           ListTile(
             //alignment: Alignment.centerLeft,
-            title: Text(
+            title: const Text(
               "Antenne",
-              style: const TextStyle(
+              style: TextStyle(
                   color: Colors.black,
                   fontSize: 17,
                   fontWeight: FontWeight.normal),
@@ -701,7 +701,7 @@ class _DetailEleve extends State<DetailEleve> {
           return AlertDialog(
             title: Text("${nom.capitalize}"),
             contentPadding: const EdgeInsets.all(5),
-            content: Container(
+            content: SizedBox(
               height: 200,
               width: 250,
               child: Form(

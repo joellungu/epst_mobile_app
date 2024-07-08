@@ -218,7 +218,7 @@ class _Verification extends State<Verification> {
                 onPressed: () async {
                   //
                   Get.dialog(
-                    Material(
+                    const Material(
                       color: Colors.transparent,
                       child: Center(
                         child: SizedBox(

@@ -3,7 +3,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 class NombreEleve extends StatefulWidget {
   //
-  NombreEleve({Key? key}) : super(key: key);
+  const NombreEleve({Key? key}) : super(key: key);
 
   @override
   _NombreEleve createState() => _NombreEleve();

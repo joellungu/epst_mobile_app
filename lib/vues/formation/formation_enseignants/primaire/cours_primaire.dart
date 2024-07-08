@@ -1,3 +1,4 @@
+import 'package:epst_app/vues/formation/formation_enseignants/primaire/type_cours.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -7,7 +8,7 @@ class CoursPrimaire extends StatelessWidget {
   //
   String cours;
   //
-  CoursPrimaire(this.cours);
+  CoursPrimaire(this.cours, {Key? key}) : super(key: key);
   //
   List lecons = [
     "CONJUGAISON",
@@ -39,14 +40,14 @@ class CoursPrimaire extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return Lecon("${lecons[e]}");
+                    return TypeCours("${lecons[e]}");
                   },
                 ),
               );
             },
             child: Container(
               height: 230,
-              margin: EdgeInsets.only(top: 10),
+              margin: const EdgeInsets.only(top: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 //color: Colors.blue,
@@ -87,7 +88,7 @@ class CoursPrimaire extends StatelessWidget {
                           children: [
                             TextSpan(
                               text: "${lecons[e]}",
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,

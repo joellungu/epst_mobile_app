@@ -934,14 +934,12 @@ class _PlainteHis extends State<PlainteHis> {
 
     return ListView(
       padding: const EdgeInsets.all(10),
-      children: List.generate(listPlainte.length, (index) {
-        print(listPlainte[index]["envoyer"]);
-        return ListTile(
-          leading: const Icon(Icons.menu),
-          title: Text(listPlainte[index]["envoyeur"]),
-          subtitle: Text(listPlainte[index]["date"]),
-          trailing: IconButton(
-            onPressed: () {
+      children: List.generate(
+        listPlainte.length,
+        (index) {
+          print(listPlainte[index]["envoyer"]);
+          return ListTile(
+            onTap: () {
               //
               if (listPlainte[index]["envoyer"] == "non") {
                 Navigator.of(context).push(
@@ -953,15 +951,18 @@ class _PlainteHis extends State<PlainteHis> {
                 );
               }
             },
-            icon: listPlainte[index]["envoyer"] == "non"
+            leading: const Icon(Icons.menu),
+            title: Text(listPlainte[index]["envoyeur"]),
+            subtitle: Text(listPlainte[index]["date"]),
+            trailing: listPlainte[index]["envoyer"] == "non"
                 ? const Icon(Icons.sync)
                 : const Icon(
                     Icons.check_circle_outline,
                     color: Colors.green,
                   ),
-          ),
-        );
-      }),
+          );
+        },
+      ),
     );
   }
 
