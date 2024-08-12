@@ -34,7 +34,7 @@ class TypeCours extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return Lecon("${types[e]}");
+                          return LeconMat("${types[e]}");
                         },
                       ),
                     );

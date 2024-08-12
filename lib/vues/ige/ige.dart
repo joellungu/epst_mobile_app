@@ -3,6 +3,7 @@ import 'package:epst_app/vues/documents_officiels/message_phonique.dart';
 import 'package:epst_app/vues/documents_officiels/notes_circulaire.dart';
 import 'package:epst_app/vues/documents_officiels/notifications_arretes.dart';
 import 'package:epst_app/vues/ige/palmares/demande_palmares.dart';
+import 'package:epst_app/vues/mutuelle/mutuelle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -85,6 +86,12 @@ class _Ige extends State<Ige> {
                   child: Container(
                     padding: const EdgeInsets.only(bottom: 15),
                     alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                    ),
                     child: RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
@@ -104,12 +111,6 @@ class _Ige extends State<Ige> {
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
-                      ),
-                    ),
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
                       ),
                     ),
                   ),
@@ -215,35 +216,39 @@ class _Ige extends State<Ige> {
                     ),
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.only(bottom: 10),
-                  alignment: Alignment.center,
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: const TextSpan(
-                      text: "Documents certificatifs ",
-                      children: [
-                        TextSpan(
-                          text: "(Attestations, diplome, NAD ...)",
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        )
-                      ],
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                Expanded(
+                  flex: 5,
+                  child: Container(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                    ),
+                    child: RichText(
+                      textAlign: TextAlign.center,
+                      text: const TextSpan(
+                        text: "Documents certificatifs ",
+                        children: [
+                          // TextSpan(
+                          //   text: "(Attestations, diplome, NAD ...)",
+                          //   style: TextStyle(
+                          //     fontSize: 10,
+                          //     fontWeight: FontWeight.bold,
+                          //     color: Colors.black,
+                          //   ),
+                          // )
+                        ],
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ),
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10),
-                  )),
                 ),
               ],
             ),
@@ -606,74 +611,78 @@ class _Ige extends State<Ige> {
             ),
           ),
           //
-          // ElevatedButton(
-          //   onPressed: () {
-          //     //
-          //     Get.to(ArretesMinisteriel(titre: "Arrêtés ministériels"));
-          //   },
-          //   style: const ButtonStyle(
-          //       /*
-          //     backgroundColor: MaterialStateProperty.all(
-          //       Colors.blue.shade400,
-          //     ),
-          //     */
-          //       ),
-          //   child: Container(
-          //     child: Column(
-          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //       children: [
-          //         Expanded(
-          //           flex: 7,
-          //           child: Container(
-          //             alignment: Alignment.center,
-          //             child: Image.asset(
-          //               "assets/LOGO-MINEPST-BON.png",
-          //               color: Colors.blue,
-          //               colorBlendMode: BlendMode.color,
-          //             ), //
-          //             decoration: const BoxDecoration(
-          //                 //color: Colors.blue,
-          //                 borderRadius: BorderRadius.only(
-          //               topLeft: Radius.circular(10),
-          //               topRight: Radius.circular(10),
-          //             )),
-          //           ),
-          //         ),
-          //         Container(
-          //           padding: const EdgeInsets.only(bottom: 10),
-          //           alignment: Alignment.center,
-          //           child: RichText(
-          //             textAlign: TextAlign.center,
-          //             text: const TextSpan(
-          //               text: "Arrêtés ministériels",
-          //               children: [
-          //                 TextSpan(
-          //                   text: "",
-          //                   style: TextStyle(
-          //                     fontSize: 20,
-          //                     fontWeight: FontWeight.bold,
-          //                     color: Colors.black,
-          //                   ),
-          //                 )
-          //               ],
-          //               style: TextStyle(
-          //                 fontSize: 13,
-          //                 fontWeight: FontWeight.bold,
-          //                 color: Colors.black,
-          //               ),
-          //             ),
-          //           ),
-          //           decoration: const BoxDecoration(
-          //             borderRadius: BorderRadius.only(
-          //               bottomLeft: Radius.circular(10),
-          //               bottomRight: Radius.circular(10),
-          //             ),
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
+          ElevatedButton(
+            onPressed: () {
+              //
+              Get.to(Mutuelle(titre: "Mutuelle"));
+            },
+            style: const ButtonStyle(
+                /*
+              backgroundColor: MaterialStateProperty.all(
+                Colors.blue.shade400,
+              ),
+              */
+                ),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    flex: 7,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
+                      ), //
+                      decoration: const BoxDecoration(
+                          //color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      )),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: Container(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      alignment: Alignment.center,
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: const TextSpan(
+                          text: "M.E.S.P",
+                          children: [
+                            TextSpan(
+                              text: "",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
           // ElevatedButton(
           //   onPressed: () {
           //     //

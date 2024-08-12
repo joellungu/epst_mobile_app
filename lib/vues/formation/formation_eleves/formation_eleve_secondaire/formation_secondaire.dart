@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import 'cours_primaire.dart';
+import 'cours_secondaire.dart';
 
-class MenuPrimaireClasseCours extends StatelessWidget {
+class FormationSecondaire extends StatelessWidget {
   //
   double st = 15;
   double taille = 10;
@@ -20,22 +20,22 @@ class MenuPrimaireClasseCours extends StatelessWidget {
     "CULTURE GENERALE"
   ];
 
-  MenuPrimaireClasseCours({Key? key}) : super(key: key);
+  FormationSecondaire({Key? key}) : super(key: key);
   //
 
   @override
   Widget build(BuildContext context) {
     //
     return DefaultTabController(
-      length: 8,
+      length: 4,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("FORMATION ENSEIGNANTS DE L'EDUCATION DE BASE"),
+          title: const Text("FORMATION SECONDAIRE"),
           centerTitle: true,
           bottom: TabBar(
             isScrollable: true,
             tabAlignment: TabAlignment.center,
-            tabs: List.generate(8, (e) {
+            tabs: List.generate(4, (e) {
               return Tab(
                 text: "CLASSE ${e + 1}${e == 0 ? 'er' : 'em'}",
               );
@@ -43,7 +43,7 @@ class MenuPrimaireClasseCours extends StatelessWidget {
           ),
         ),
         body: TabBarView(
-          children: List.generate(8, (e) {
+          children: List.generate(4, (e) {
             return GridView.count(
               crossAxisCount: 2,
               mainAxisSpacing: 5,
@@ -56,7 +56,7 @@ class MenuPrimaireClasseCours extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return CoursPrimaire("${lecons[e]}");
+                          return CoursSecondaire("${lecons[e]}");
                         },
                       ),
                     );

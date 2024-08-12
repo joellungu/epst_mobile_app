@@ -1,41 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import 'cours_primaire.dart';
+import 'cours_maternelle.dart';
 
-class MenuPrimaireClasseCours extends StatelessWidget {
+class MenuMaternelleClasseCours extends StatelessWidget {
   //
   double st = 15;
   double taille = 10;
   double pd = 15;
   //
   List lecons = [
-    "FRANCAIS",
-    "MATH-ARITMETIQUE",
-    "HISTOIRE",
-    "HYGIENE",
-    "RELIGION",
-    "VOCABULAIRE",
-    "TRADITION AFRICAINE",
-    "CULTURE GENERALE"
+    "DESSIN",
+    "RECITATION",
+    "COLORIAGE",
   ];
 
-  MenuPrimaireClasseCours({Key? key}) : super(key: key);
+  MenuMaternelleClasseCours({Key? key}) : super(key: key);
   //
 
   @override
   Widget build(BuildContext context) {
     //
     return DefaultTabController(
-      length: 8,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("FORMATION ENSEIGNANTS DE L'EDUCATION DE BASE"),
+          title: const Text("FORMATION ENCADREURE DE LA MATERNELLE"),
           centerTitle: true,
           bottom: TabBar(
             isScrollable: true,
             tabAlignment: TabAlignment.center,
-            tabs: List.generate(8, (e) {
+            tabs: List.generate(3, (e) {
               return Tab(
                 text: "CLASSE ${e + 1}${e == 0 ? 'er' : 'em'}",
               );
@@ -43,7 +38,7 @@ class MenuPrimaireClasseCours extends StatelessWidget {
           ),
         ),
         body: TabBarView(
-          children: List.generate(8, (e) {
+          children: List.generate(3, (e) {
             return GridView.count(
               crossAxisCount: 2,
               mainAxisSpacing: 5,
@@ -56,7 +51,7 @@ class MenuPrimaireClasseCours extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return CoursPrimaire("${lecons[e]}");
+                          return CoursMaternelle("${lecons[e]}");
                         },
                       ),
                     );

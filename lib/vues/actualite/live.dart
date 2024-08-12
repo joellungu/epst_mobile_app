@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../formation/formation.dart';
 import 'clin_oeil.dart';
 import 'direct_eductivi.dart';
 
@@ -19,6 +20,11 @@ class LiveStream extends StatefulWidget {
 
 class _LiveStream extends State<LiveStream> {
   WebViewController? controlleur;
+  //
+  double st = 12;
+  double taille = 8;
+  double pd = 13;
+  //
   /*
   YoutubePlayerController _controller = YoutubePlayerController(
     initialVideoId: 'jVYG_eH5UMU',
@@ -70,49 +76,52 @@ class _LiveStream extends State<LiveStream> {
                   Expanded(
                     flex: 7,
                     child: Container(
-                      alignment: Alignment.center,
+                      alignment: Alignment.center, //
+                      decoration: const BoxDecoration(
+                        //color: Colors.blue,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                        ),
+                      ),
                       child: const Icon(
                         Icons.live_tv,
                         size: 100,
-                      ), //
-                      decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      )),
+                        color: Colors.blue,
+                      ),
                     ),
                   ),
                   Expanded(
                     flex: 3,
                     child: Container(
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
                       child: RichText(
                         textAlign: TextAlign.center,
-                        text: const TextSpan(
+                        text: TextSpan(
                           text: "Direct",
                           children: [
                             TextSpan(
                               text: "",
                               style: TextStyle(
-                                fontSize: 20,
+                                fontSize: taille,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: Colors.black,
                               ),
                             )
                           ],
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: st,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
                     ),
                   )
                 ],
@@ -137,49 +146,52 @@ class _LiveStream extends State<LiveStream> {
                   Expanded(
                     flex: 7,
                     child: Container(
-                      alignment: Alignment.center,
+                      alignment: Alignment.center, //
+                      decoration: const BoxDecoration(
+                        //color: Colors.blue,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                        ),
+                      ),
                       child: const Icon(
                         Icons.remove_red_eye,
                         size: 100,
-                      ), //
-                      decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      )),
+                        color: Colors.blue,
+                      ),
                     ),
                   ),
                   Expanded(
                     flex: 3,
                     child: Container(
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
                       child: RichText(
                         textAlign: TextAlign.center,
-                        text: const TextSpan(
+                        text: TextSpan(
                           text: "Clin d’œil ",
                           children: [
                             TextSpan(
                               text: "",
                               style: TextStyle(
-                                fontSize: 20,
+                                fontSize: taille,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: Colors.black,
                               ),
                             )
                           ],
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: st,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
                     ),
                   )
                 ],
@@ -214,55 +226,145 @@ class _LiveStream extends State<LiveStream> {
                   Expanded(
                     flex: 7,
                     child: Container(
-                      alignment: Alignment.center,
+                      alignment: Alignment.center, //
+                      decoration: const BoxDecoration(
+                        //color: Colors.blue,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                        ),
+                      ),
                       child: const Icon(
                         Icons.language,
                         size: 100,
-                      ), //
-                      decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      )),
+                        color: Colors.blue,
+                      ),
                     ),
                   ),
                   Expanded(
                     flex: 3,
                     child: Container(
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
                       child: RichText(
                         textAlign: TextAlign.center,
-                        text: const TextSpan(
+                        text: TextSpan(
                           text: "EPST sur le net",
                           children: [
                             TextSpan(
                               text: "",
                               style: TextStyle(
-                                fontSize: 20,
+                                fontSize: taille,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                color: Colors.black,
                               ),
                             )
                           ],
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: st,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Colors.black,
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
                     ),
                   )
                 ],
               ),
             ),
           ),
+          ElevatedButton(
+            onPressed: () {
+              //
+              Get.to(
+                Formation(
+                  titre: "DINACOPE",
+                ),
+              );
+              /*
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return Actualites();
+                  },
+                ),
+              );
+              */
+            },
+            style: const ButtonStyle(
+                /*
+              backgroundColor: MaterialStateProperty.all(
+                Colors.blue.shade400,
+              ),
+              */
+                ),
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Expanded(
+                    flex: 7,
+                    child: Container(
+                      alignment: Alignment.center, //
+                      decoration: const BoxDecoration(
+                        //color: Colors.blue,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10),
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.language,
+                        size: 100,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
+                      child: RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                          text: "DINACOPE",
+                          children: [
+                            TextSpan(
+                              text: "",
+                              style: TextStyle(
+                                fontSize: taille,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            )
+                          ],
+                          style: TextStyle(
+                            fontSize: st,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          /*
+          
+          */
         ],
       ),
     );

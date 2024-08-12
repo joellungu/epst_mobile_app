@@ -202,7 +202,7 @@ class _Formation extends State<Formation> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return const EnseignementEleve();
+                    return FormationEleveMobile();
                   },
                 ),
               );

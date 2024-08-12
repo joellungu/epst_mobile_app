@@ -10,7 +10,9 @@ import 'package:epst_app/vues/sg/sg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'e_sige/e_sige.dart';
+import 'formation/foad.dart';
 import 'identification/verification.dart';
 import 'mutuelle/mutuelle.dart';
 import 'reforme/reforme.dart';
@@ -28,18 +30,18 @@ class _Accueil extends State<Accueil> {
   List listeIcons = [];
 
   List liste = [
-    "EPST actualités",
+    "Formation à distance",
     "Chat avec agent EPST",
-    "Magazine de l’EPST",
+    "Magazine de l'EPST",
     "Dépôt plainte",
     "Réformes EPST",
-    "DINACOPE Listing",
-    "Sécretariat général & Directions centrales",
-    "DIGE\nE-SIGE EPST",
-    "Demande Exetat, documents EPST",
-    "Formation à distance",
-    "Mutuelle de santé",
-    "EPST Kelasi",
+    //"DINACOPE Listing",
+    "Sécretariat général", //& Directions centrales
+    "Statistique\nde EPST",
+    "Demande documents EPST (Exetat ...)",
+    "Actualilé",
+    //"Mutuelle de santé",
+    //"EPST Kelasi",
   ];
 
   TextEditingController textEditingController = TextEditingController();
@@ -47,21 +49,32 @@ class _Accueil extends State<Accueil> {
   @override
   void initState() {
     listeIcons = [
-      const Icon(
-        Icons.language,
-        size: 70,
-      ), //
+      Image.asset(
+        "assets/FOAD.jpg",
+        color: Colors.blue,
+        colorBlendMode: BlendMode.color,
+      ),
       Image.asset(
         "assets/images-n.png",
         color: Colors.blue,
         colorBlendMode: BlendMode.colorDodge,
       ),
+      // Image.asset(
+      //   "assets/LOGO-MINEPST-BON.png",
+      //   // color: Colors.blue,
+      //   // colorBlendMode: BlendMode.color,
+      // ), //
       Image.asset(
         "assets/logo-mag.png",
         color: Colors.blue,
         colorBlendMode: BlendMode.color,
       ),
 
+      Image.asset(
+        "assets/LOGO-MINEPST-BON.png",
+        // color: Colors.blue,
+        // colorBlendMode: BlendMode.color,
+      ),
       Image.asset(
         "assets/LOGO-MINEPST-BON.png",
         // color: Colors.blue,
@@ -83,7 +96,6 @@ class _Accueil extends State<Accueil> {
         // color: Colors.blue,
         // colorBlendMode: BlendMode.color,
       ),
-
       Image.asset(
         "assets/LOGO-MINEPST-BON.png",
         color: Colors.white,
@@ -97,11 +109,6 @@ class _Accueil extends State<Accueil> {
         // color: Colors.blue,
         // colorBlendMode: BlendMode.color,
       ),
-      Image.asset(
-        "assets/FOAD.jpg",
-        color: Colors.blue,
-        colorBlendMode: BlendMode.color,
-      ),
       //
       Image.asset(
         "assets/Logo_MESP_ok.png",
@@ -111,20 +118,20 @@ class _Accueil extends State<Accueil> {
         color: Colors.blue,
         colorBlendMode: BlendMode.color,
       ),
-      Image.asset(
-        "assets/epst_kelasi.png",
-        fit: BoxFit.fill,
-        height: 100,
-        width: 100,
-        // color: Colors.blue,
-        // colorBlendMode: BlendMode.color,
-      ),
+      // Image.asset(
+      //   "assets/epst_kelasi.png",
+      //   fit: BoxFit.fill,
+      //   height: 100,
+      //   width: 100,
+      //   // color: Colors.blue,
+      //   // colorBlendMode: BlendMode.color,
+      // ),
     ];
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitUp]);
 
-    Source:
-    https: //prograide.com/pregunta/68443/flutter--comment-definir-et-verrouiller-lorientation-de-lecran--la-demande
+    //Source:
+    //https: //prograide.com/pregunta/68443/flutter--comment-definir-et-verrouiller-lorientation-de-lecran--la-demande
     //
     super.initState();
   }
@@ -133,7 +140,13 @@ class _Accueil extends State<Accueil> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("EPST APP"),
+        title: const Text(
+          "EPST APP",
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.black,
+          ),
+        ),
         centerTitle: true,
         elevation: 1,
         actions: [
@@ -195,189 +208,193 @@ class _Accueil extends State<Accueil> {
           // )
         ],
       ),
-      body: GridView.count(
-        padding: const EdgeInsets.all(10),
-        crossAxisCount: 3,
-        mainAxisSpacing: 7,
-        crossAxisSpacing: 7,
-        childAspectRatio: 0.7,
-        children: List.generate(liste.length, (index) {
-          return InkWell(
-            onTap: () {
-              if (index == 1) {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: const Text("Votre nom"),
-                        content: SizedBox(
-                          height: 150,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              TextField(
-                                controller: textEditingController,
-                                decoration: const InputDecoration(
-                                  hintText: "Votre nom SVP!",
+      body: Center(
+        child: GridView.count(
+          shrinkWrap: true,
+          padding: const EdgeInsets.all(10),
+          crossAxisCount: 3,
+          mainAxisSpacing: 20,
+          crossAxisSpacing: 7,
+          childAspectRatio: 0.7,
+          children: List.generate(liste.length, (index) {
+            return InkWell(
+              onTap: () {
+                if (index == 1) {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text("Votre nom"),
+                          content: SizedBox(
+                            height: 150,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                TextField(
+                                  controller: textEditingController,
+                                  decoration: const InputDecoration(
+                                    hintText: "Votre nom SVP!",
+                                  ),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    if (textEditingController.text.isNotEmpty) {
+                                      var encoded = utf8
+                                          .encode(textEditingController.text);
+                                      var decoded = utf8.decode(encoded);
+                                      print(decoded);
+
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) {
+                                            return Chat(
+                                              titre: liste[index],
+                                              nom: decoded,
+                                            );
+                                          },
+                                        ),
+                                      );
+                                    }
+                                  },
+                                  child: const Text("Commencer"),
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+                } else {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) {
+                      if (index == 0) {
+                        return const FOAD();
+                      } else if (index == 2) {
+                        return Magasine(
+                          titre: liste[index],
+                        );
+                      } else if (index == 3) {
+                        //
+                        return DepotPlainte(
+                          titre: liste[index],
+                        );
+                      }
+                      // else if (index == 5) {
+                      //   return Listing(
+                      //     titre: liste[index],
+                      //   );
+                      // }
+                      else if (index == 4) {
+                        return Reforme(
+                          titre: liste[index],
+                        );
+                      }
+                      // else if (index == 9) {
+                      //   //print("Je suis le cours...");Ige,Ige
+                      //   return Formation(
+                      //     titre: liste[index],
+                      //   );
+                      // }
+                      else if (index == 5) {
+                        //print("Je suis le cours...");Ige,Ige
+                        return SecretariaGeneral(
+                          titre: liste[index],
+                        );
+                      } else if (index == 6) {
+                        //print("Je suis le cours...");Ige,Ige
+                        return Esige(
+                          titre: liste[index],
+                        );
+                      } else if (index == 7) {
+                        //print("Je suis le cours...");Ige,Ige
+                        return Ige(
+                          titre: liste[index],
+                        );
+                      } else if (index == 8) {
+                        //print("Je suis le cours...");Ige,Ige
+                        //Mutuelle
+                        return LiveStream();
+                      } else {
+                        //
+                        //return Container();
+                        return LiveStream();
+                      }
+                    }),
+                  );
+                }
+              },
+              //elevation: 1,
+              //color: Colors.white,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.blue,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      flex: 7,
+                      child: index != 0
+                          ? Container(
+                              padding: const EdgeInsets.all(5),
+                              alignment: Alignment.center,
+                              child: listeIcons[index],
+                              decoration: const BoxDecoration(
+                                //color: Colors.blue,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(10),
+                                  topRight: Radius.circular(10),
                                 ),
                               ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  if (textEditingController.text.isNotEmpty) {
-                                    var encoded =
-                                        utf8.encode(textEditingController.text);
-                                    var decoded = utf8.decode(encoded);
-                                    print(decoded);
-
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) {
-                                          return Chat(
-                                            titre: liste[index],
-                                            nom: decoded,
-                                          );
-                                        },
-                                      ),
-                                    );
-                                  }
-                                },
-                                child: const Text("Commencer"),
-                              )
-                            ],
-                          ),
-                        ),
-                      );
-                    });
-              } else {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) {
-                    if (index == 0) {
-                      return LiveStream(
-                        titre: liste[index],
-                      );
-                    } else if (index == 3) {
-                      //
-                      return DepotPlainte(
-                        titre: liste[index],
-                      );
-                    } else if (index == 2) {
-                      return Magasine(
-                        titre: liste[index],
-                      );
-                    } else if (index == 5) {
-                      return Listing(
-                        titre: liste[index],
-                      );
-                    } else if (index == 4) {
-                      return Reforme(
-                        titre: liste[index],
-                      );
-                    } else if (index == 9) {
-                      //print("Je suis le cours...");Ige,Ige
-                      return Formation(
-                        titre: liste[index],
-                      );
-                    } else if (index == 7) {
-                      //print("Je suis le cours...");Ige,Ige
-                      return Esige(
-                        titre: liste[index],
-                      );
-                    } else if (index == 8) {
-                      //print("Je suis le cours...");Ige,Ige
-                      return Ige(
-                        titre: liste[index],
-                      );
-                    } else if (index == 6) {
-                      //print("Je suis le cours...");Ige,Ige
-                      return SecretariaGeneral(
-                        titre: liste[index],
-                      );
-                    } else if (index == 10) {
-                      //print("Je suis le cours...");Ige,Ige
-
-                      return Mutuelle(
-                        titre: liste[index],
-                      );
-                    } else {
-                      //
-                      return EpstKelasi(
-                        liste[index],
-                      );
-                    }
-                  }),
-                );
-              }
-            },
-            //elevation: 1,
-            //color: Colors.white,
-
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Colors.blue,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      padding: const EdgeInsets.all(5),
-                      alignment: Alignment.center,
-                      child: listeIcons[index],
-                      decoration: const BoxDecoration(
-                        //color: Colors.blue,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          text: index == 1 ? "MGP\n" : "",
-                          children: [
-                            TextSpan(
-                              text: liste[index],
-                              style: TextStyle(
-                                fontSize: index == 6
-                                    ? 12
-                                    : index == 8
-                                        ? 13
-                                        : index == 1
-                                            ? 10
-                                            : 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
                             )
-                          ],
-                          style: const TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                          : Lottie.asset(
+                              'assets/Animation - 1719837917526.json'),
+                    ),
+                    Expanded(
+                      flex: 5,
+                      child: Container(
+                        alignment: Alignment.center,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: index == 1 ? "MGP\n" : "",
+                            children: [
+                              TextSpan(
+                                text: liste[index],
+                                style: TextStyle(
+                                  fontSize: index == 6
+                                      ? 12
+                                      : index == 7
+                                          ? 12
+                                          : index == 1
+                                              ? 12
+                                              : 15,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
-            ),
-          );
-        }),
+            );
+          }),
+        ),
       ),
       /*
       floatingActionButton: FloatingActionButton(

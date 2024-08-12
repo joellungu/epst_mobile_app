@@ -3,7 +3,7 @@ import 'package:lottie/lottie.dart';
 
 import 'lecon.dart';
 
-class TypeCours extends StatelessWidget {
+class TypeCoursS extends StatelessWidget {
   //
   String type;
   //
@@ -13,7 +13,7 @@ class TypeCours extends StatelessWidget {
     "VIDEO",
   ];
   //
-  TypeCours(this.type);
+  TypeCoursS(this.type);
   //
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class TypeCours extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) {
-                          return Lecon("${types[e]}");
+                          return LeconSecondaire("${types[e]}");
                         },
                       ),
                     );

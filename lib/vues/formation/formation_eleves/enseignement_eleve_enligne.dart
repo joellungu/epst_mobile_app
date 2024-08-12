@@ -1,130 +1,152 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-// Import for Android features.
-import 'package:webview_flutter_android/webview_flutter_android.dart';
-// Import for iOS features.
-import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
-// #enddocregion platform_imports
+import 'package:lottie/lottie.dart';
 
-class EnseignementEleve extends StatefulWidget {
-  const EnseignementEleve({Key? key}) : super(key: key);
+import 'formation_education_de_base/formation_education_base.dart';
+import 'formation_eleve_maternelle/formation_classe_maternelle.dart';
+import 'formation_eleve_secondaire/formation_secondaire.dart';
 
-  @override
-  State<StatefulWidget> createState() {
-    return _EnseignementEleve();
-  }
-}
+class FormationEleveMobile extends StatelessWidget {
+  //
+  double st = 15;
+  double taille = 10;
+  double pd = 15;
+  //
+  List formations = [
+    "FORMATION POUR LES ELEVES DE LA MATERNELLE,Animation - 1719837919056.json",
+    "FORMATION POUR LES ELEVES DE L'EDUCATION DE BASE,Animation - 1719829657336.json",
+    //"FORMATION POUR LES ENCADREURS DE LA MATERNELLE,Animation - 1719829657336.json",
+    "FORMATION POUR LES ELEVES DU SECONDAIRE,Animation - 1719837965657.json",
+    "BIBLIOTHEQUE NUMERIQUE,Animation - 1719829962343.json"
+  ];
 
-class _EnseignementEleve extends State<EnseignementEleve> {
-  WebViewController? controlleur;
-  late final WebViewController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-
-    // #docregion platform_features
-    late final PlatformWebViewControllerCreationParams params;
-    if (WebViewPlatform.instance is WebKitWebViewPlatform) {
-      params = WebKitWebViewControllerCreationParams(
-        allowsInlineMediaPlayback: true,
-        mediaTypesRequiringUserAction: const <PlaybackMediaTypes>{},
-      );
-    } else {
-      params = const PlatformWebViewControllerCreationParams();
-    }
-
-    final WebViewController controller =
-        WebViewController.fromPlatformCreationParams(params);
-    // #enddocregion platform_features
-
-    controller
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0x00000000))
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onProgress: (int progress) {
-            debugPrint('WebView is loading (progress : $progress%)');
-          },
-          onPageStarted: (String url) {
-            debugPrint('Page started loading: $url');
-          },
-          onPageFinished: (String url) {
-            debugPrint('Page finished loading: $url');
-          },
-          onWebResourceError: (WebResourceError error) {
-            debugPrint('''
-Page resource error:
-  code: ${error.errorCode}
-  description: ${error.description}
-  errorType: ${error.errorType}
-  isForMainFrame: ${error.isForMainFrame}
-          ''');
-          },
-          onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('https://www.youtube.com/')) {
-              debugPrint('blocking navigation to ${request.url}');
-              return NavigationDecision.prevent;
-            }
-            debugPrint('allowing navigation to ${request.url}');
-            return NavigationDecision.navigate;
-          },
-          onUrlChange: (UrlChange change) {
-            debugPrint('url change to ${change.url}');
-          },
-        ),
-      )
-      ..addJavaScriptChannel(
-        'Toaster',
-        onMessageReceived: (JavaScriptMessage message) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(message.message)),
-          );
-        },
-      )
-      ..loadRequest(Uri.parse('https://www.eductv.cd/all_actualite.php'));
-
-    // #docregion platform_features
-    if (controller.platform is AndroidWebViewController) {
-      AndroidWebViewController.enableDebugging(true);
-      (controller.platform as AndroidWebViewController)
-          .setMediaPlaybackRequiresUserGesture(false);
-    }
-    // #enddocregion platform_features
-
-    _controller = controller;
-  }
-
+  FormationEleveMobile({Key? key}) : super(key: key);
+  //
   @override
   Widget build(BuildContext context) {
+    //
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Enseignement à distance"),
+        title: const Text("FORMATION ELEVES"),
+        centerTitle: true,
       ),
-      body: WebViewWidget(
-        // javascriptMode: JavascriptMode.unrestricted,
-        // onWebViewCreated: (WebViewController w) {
-        //   controlleur = w;
-        // },
-        // initialUrl: "https://www.eduquepsp.education",
-        controller: _controller,
-        //https://www.youtube.com
-        //"https://www.efoad.minepst.gouv.cd",
-      ),
-      // body: WebView(
-      //   javascriptMode: JavascriptMode.unrestricted,
-      //   onWebViewCreated: (WebViewController w) {
-      //     controlleur = w;
-      //   },
-      //   initialUrl:
-      //   //"https://www.eductv.cd/all_actualite.php", //https://www.youtube.com
-      //   "https://app.e-classerdc.com/login",
-      // ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controlleur!.reload();
-        },
-        child: const Icon(Icons.sync),
+      body: Center(
+        child: GridView.count(
+          crossAxisCount: 2,
+          mainAxisSpacing: 5,
+          crossAxisSpacing: 5,
+          childAspectRatio: 0.6,
+          shrinkWrap: true,
+          padding: const EdgeInsets.all(5),
+          //crossAxisCount: 2,
+          children: List.generate(formations.length, (e) {
+            print("assets: ${formations[e].split(',')[1]}");
+            return InkWell(
+              onTap: () {
+                if (e == 0) {
+                  //MenuSecondaireClasseCours
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return FormationClasseMaternelle();
+                      },
+                    ),
+                  );
+                }
+                if (e == 1) {
+                  //
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return FormationEducationBase();
+                      },
+                    ),
+                  );
+                }
+                if (e == 2) {
+                  //
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return FormationSecondaire();
+                      },
+                    ),
+                  );
+                }
+              },
+              child: Card(
+                color: Colors.blue.shade100.withOpacity(0.3),
+                child: Container(
+                  height: 230,
+                  margin: const EdgeInsets.only(top: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    //color: Colors.blue,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Expanded(
+                        flex: 9,
+                        child: Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.all(pd),
+                          child: Lottie.asset(
+                              'assets/${formations[e].split(',')[1]}'),
+                          // child: Image.asset(
+                          //   "assets/LOGO-MINEPST-BON.png",
+                          //   color: Colors.blue,
+                          //   colorBlendMode: BlendMode.color,
+                          // ), //
+                          decoration: const BoxDecoration(
+                            //color: Colors.blue,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Container(
+                          padding: const EdgeInsets.only(bottom: 15),
+                          alignment: Alignment.center,
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              text: "",
+                              children: [
+                                TextSpan(
+                                  text: "${formations[e].split(',')[0]}",
+                                  style: TextStyle(
+                                    fontSize: taille,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black,
+                                  ),
+                                )
+                              ],
+                              style: TextStyle(
+                                fontSize: st,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }),
+        ),
       ),
     );
   }

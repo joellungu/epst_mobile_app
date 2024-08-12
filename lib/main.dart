@@ -10,6 +10,7 @@ import 'package:epst_app/vues/sg/sg_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'vues/formation/cursus/login/login_enseignant/login_controller.dart';
 import 'vues/identification/identification_controller.dart';
 import 'vues/ige/demande_identification/demande_identification_controller.dart';
 import 'vues/ige/demande_transfere/transfere_controller.dart';
@@ -84,6 +85,9 @@ void main() async {
   SernieController sernieController = Get.put(SernieController());
   MinistreController ministreController = Get.put(MinistreController());
   //
+  LoginEnseignantController loginEnseignantController =
+      Get.put(LoginEnseignantController());
+  //
   runApp(
     Epst(
       vue: Splash(),
@@ -125,6 +129,13 @@ class Epst extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+            fontSize: 12,
+            color: Colors.black,
+          ),
+        ),
       ),
       home: vue,
       /*

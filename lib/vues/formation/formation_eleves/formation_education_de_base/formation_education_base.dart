@@ -3,7 +3,7 @@ import 'package:lottie/lottie.dart';
 
 import 'cours_primaire.dart';
 
-class MenuPrimaireClasseCours extends StatelessWidget {
+class FormationEducationBase extends StatelessWidget {
   //
   double st = 15;
   double taille = 10;
@@ -20,7 +20,7 @@ class MenuPrimaireClasseCours extends StatelessWidget {
     "CULTURE GENERALE"
   ];
 
-  MenuPrimaireClasseCours({Key? key}) : super(key: key);
+  FormationEducationBase({Key? key}) : super(key: key);
   //
 
   @override
@@ -30,7 +30,7 @@ class MenuPrimaireClasseCours extends StatelessWidget {
       length: 8,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("FORMATION ENSEIGNANTS DE L'EDUCATION DE BASE"),
+          title: const Text("FORMATION EDUCATION DE BASE"),
           centerTitle: true,
           bottom: TabBar(
             isScrollable: true,
