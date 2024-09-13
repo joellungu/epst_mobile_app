@@ -5,7 +5,6 @@ import 'package:epst_app/vues/documents_officiels/notifications_arretes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class documents_officiels extends StatefulWidget {
   String? titre;
   //
@@ -54,24 +53,29 @@ class _Coure extends State<documents_officiels> {
                   Expanded(
                     flex: 7,
                     child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
+                      alignment: Alignment.center, //
                       decoration: const BoxDecoration(
                           //color: Colors.blue,
                           borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                       )),
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
+                      ),
                     ),
                   ),
                   Expanded(
                     flex: 3,
                     child: Container(
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
@@ -93,11 +97,6 @@ class _Coure extends State<documents_officiels> {
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
                     ),
                   )
                 ],
@@ -123,24 +122,29 @@ class _Coure extends State<documents_officiels> {
                   Expanded(
                     flex: 7,
                     child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
+                      alignment: Alignment.center, //
                       decoration: const BoxDecoration(
                           //color: Colors.blue,
                           borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                       )),
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
+                      ),
                     ),
                   ),
                   Expanded(
                     flex: 3,
                     child: Container(
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
@@ -162,11 +166,6 @@ class _Coure extends State<documents_officiels> {
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
                     ),
                   )
                 ],
@@ -192,24 +191,29 @@ class _Coure extends State<documents_officiels> {
                   Expanded(
                     flex: 7,
                     child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
+                      alignment: Alignment.center, //
                       decoration: const BoxDecoration(
                           //color: Colors.blue,
                           borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                       )),
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
+                      ),
                     ),
                   ),
                   Expanded(
                     flex: 3,
                     child: Container(
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
@@ -231,11 +235,6 @@ class _Coure extends State<documents_officiels> {
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
                     ),
                   )
                 ],
@@ -261,24 +260,29 @@ class _Coure extends State<documents_officiels> {
                   Expanded(
                     flex: 7,
                     child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
+                      alignment: Alignment.center, //
                       decoration: const BoxDecoration(
                           //color: Colors.blue,
                           borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                       )),
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
+                      ),
                     ),
                   ),
                   Expanded(
                     flex: 3,
                     child: Container(
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
@@ -300,11 +304,6 @@ class _Coure extends State<documents_officiels> {
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
                     ),
                   )
                 ],

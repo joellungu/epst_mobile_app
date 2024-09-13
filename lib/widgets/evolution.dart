@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
 
 class Evolution extends CustomPainter {
-  double  y1 = 0, y2 = 0;
+  double y1 = 0, y2 = 0;
   //
   Evolution(this.y1, this.y2);
   //
@@ -11,8 +10,8 @@ class Evolution extends CustomPainter {
     // TODO: implement paint
     double dashWidth = 9, dashSpace = 5, startX = 0;
     final paint = Paint()
-    ..color = Colors.grey
-    ..strokeWidth = 5;
+      ..color = Colors.grey
+      ..strokeWidth = 5;
     //
 
     //
@@ -27,5 +26,4 @@ class Evolution extends CustomPainter {
     // TODO: implement shouldRepaint
     return false;
   }
-
 }

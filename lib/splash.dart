@@ -60,12 +60,12 @@ class Splash extends StatelessWidget {
       children: [
         Container(
           padding: const EdgeInsets.only(top: 20, bottom: 5),
+          height: Get.size.height / 2,
+          width: Get.size.width,
           child: Image.asset(
             "assets/Logo EPST-APP FINAL 2.png",
             fit: BoxFit.contain,
           ),
-          height: Get.size.height / 2,
-          width: Get.size.width,
         ),
         const SizedBox(
           height: 40,
@@ -94,12 +94,12 @@ class Splash extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.only(top: 20, bottom: 5),
+                height: Get.size.height / 2,
+                width: Get.size.width,
                 child: Image.asset(
                   "assets/Logo EPST-APP FINAL 2.png",
                   fit: BoxFit.contain,
                 ),
-                height: Get.size.height / 2,
-                width: Get.size.width,
               ),
             ],
           );

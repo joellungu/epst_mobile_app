@@ -88,8 +88,6 @@ class FormationEnseignantMobile extends StatelessWidget {
                         child: Container(
                           alignment: Alignment.center,
                           padding: EdgeInsets.all(pd),
-                          child: Lottie.asset(
-                              'assets/${formations[e].split(',')[1]}'),
                           // child: Image.asset(
                           //   "assets/LOGO-MINEPST-BON.png",
                           //   color: Colors.blue,
@@ -102,6 +100,8 @@ class FormationEnseignantMobile extends StatelessWidget {
                               topRight: Radius.circular(10),
                             ),
                           ),
+                          child: Lottie.asset(
+                              'assets/${formations[e].split(',')[1]}'),
                         ),
                       ),
                       Expanded(
@@ -109,6 +109,12 @@ class FormationEnseignantMobile extends StatelessWidget {
                         child: Container(
                           padding: const EdgeInsets.only(bottom: 15),
                           alignment: Alignment.center,
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10),
+                              bottomRight: Radius.circular(10),
+                            ),
+                          ),
                           child: RichText(
                             textAlign: TextAlign.center,
                             text: TextSpan(
@@ -128,12 +134,6 @@ class FormationEnseignantMobile extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
-                            ),
-                          ),
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(10),
-                              bottomRight: Radius.circular(10),
                             ),
                           ),
                         ),

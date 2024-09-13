@@ -632,9 +632,9 @@ class _Details extends State<Details> {
             Expanded(
               flex: 4,
               child: ElevatedButton(
-                style: ButtonStyle(
-                  //backgroundColor: WidgetStateProperty.all(Colors.red),
-                ),
+                style: const ButtonStyle(
+                    //backgroundColor: WidgetStateProperty.all(Colors.red),
+                    ),
                 onPressed: () async {
                   IdentificationController identificationController =
                       Get.find();
@@ -651,6 +651,9 @@ class _Details extends State<Details> {
                               padding: const EdgeInsets.all(20),
                               height: 300,
                               width: Get.size.width / 1.2,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10)),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
@@ -689,9 +692,9 @@ class _Details extends State<Details> {
                                   ElevatedButton(
                                     child: const Text("Enregistrer"),
                                     style: ButtonStyle(
-                                      //backgroundColor:
+                                        //backgroundColor:
                                         //  WidgetStateProperty.all(Colors.red),
-                                    ),
+                                        ),
                                     onPressed: () async {
                                       //
                                       Get.back();
@@ -747,9 +750,6 @@ class _Details extends State<Details> {
                                   )
                                 ],
                               ),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10)),
                             ),
                           ),
                         );

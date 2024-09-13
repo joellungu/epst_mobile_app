@@ -1,11 +1,8 @@
 import 'package:epst_app/vues/formation/cursus/login/login_enseignant/login_controller.dart';
-import 'package:epst_app/vues/formation/cursus/login/login_enseignant/login_controller.dart';
 import 'package:epst_app/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
-import 'login_controller.dart';
 
 class InfosPersonnel extends StatelessWidget {
   //
@@ -39,7 +36,7 @@ class InfosPersonnel extends StatelessWidget {
   RxBool masquer = true.obs;
 
   //
-  InfosPersonnel(this.infos) {
+  InfosPersonnel(this.infos, {Key? key}) : super(key: key) {
     telephone.text = infos['telephone'] ?? "";
     nom.text = infos['nom'] ?? "";
     postnom.text = infos['postnom'] ?? "";
@@ -86,7 +83,7 @@ class InfosPersonnel extends StatelessWidget {
                     textCapitalization: TextCapitalization.words,
                     //textAlign: TextAlign.center,
                     //keyboardType: TextInputType.number,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                     ),
                     //autofocus: true,
@@ -101,9 +98,10 @@ class InfosPersonnel extends StatelessWidget {
                       contentPadding: const EdgeInsets.symmetric(vertical: 5),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.black, width: 2),
+                        borderSide:
+                            const BorderSide(color: Colors.black, width: 2),
                       ),
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.person,
                         color: Colors.blue,
                       ),
@@ -126,7 +124,7 @@ class InfosPersonnel extends StatelessWidget {
                     textCapitalization: TextCapitalization.words,
                     //textAlign: TextAlign.center,
                     //keyboardType: TextInputType.number,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                     ),
                     //autofocus: true,
@@ -141,9 +139,10 @@ class InfosPersonnel extends StatelessWidget {
                       contentPadding: const EdgeInsets.symmetric(vertical: 5),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.black, width: 2),
+                        borderSide:
+                            const BorderSide(color: Colors.black, width: 2),
                       ),
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.person,
                         color: Colors.blue,
                       ),
@@ -166,7 +165,7 @@ class InfosPersonnel extends StatelessWidget {
                     textCapitalization: TextCapitalization.words,
                     //textAlign: TextAlign.center,
                     //keyboardType: TextInputType.number,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                     ),
                     //autofocus: true,
@@ -181,9 +180,10 @@ class InfosPersonnel extends StatelessWidget {
                       contentPadding: const EdgeInsets.symmetric(vertical: 5),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.black, width: 2),
+                        borderSide:
+                            const BorderSide(color: Colors.black, width: 2),
                       ),
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.person,
                         color: Colors.blue,
                       ),
@@ -210,7 +210,7 @@ class InfosPersonnel extends StatelessWidget {
                           enabled: false,
                           //textAlign: TextAlign.center,
                           //keyboardType: TextInputType.number,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20,
                           ),
                           //autofocus: true,
@@ -218,7 +218,7 @@ class InfosPersonnel extends StatelessWidget {
                           validator: (e) {
                             if (e!.isEmpty) {
                               return "Veuilliez inserer votre numéro de téléphone";
-                            } else if (e!.length >= 10) {
+                            } else if (e.length >= 10) {
                               return "Le numéro n'est pas correct !";
                             }
                             return null;
@@ -228,10 +228,10 @@ class InfosPersonnel extends StatelessWidget {
                                 const EdgeInsets.symmetric(vertical: 5),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
-                              borderSide:
-                                  BorderSide(color: Colors.black, width: 2),
+                              borderSide: const BorderSide(
+                                  color: Colors.black, width: 2),
                             ),
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.person,
                               color: Colors.blue,
                             ),
@@ -287,7 +287,7 @@ class InfosPersonnel extends StatelessWidget {
                           enabled: false,
                           //textAlign: TextAlign.center,
                           //keyboardType: TextInputType.number,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20,
                           ),
                           //autofocus: true,
@@ -295,7 +295,7 @@ class InfosPersonnel extends StatelessWidget {
                           validator: (e) {
                             if (e!.isEmpty) {
                               return "Veuilliez indiquer le type";
-                            } else if (e!.length >= 10) {
+                            } else if (e.length >= 10) {
                               return "Le numéro n'est pas correct !";
                             }
                             return null;
@@ -305,10 +305,10 @@ class InfosPersonnel extends StatelessWidget {
                                 const EdgeInsets.symmetric(vertical: 5),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
-                              borderSide:
-                                  BorderSide(color: Colors.black, width: 2),
+                              borderSide: const BorderSide(
+                                  color: Colors.black, width: 2),
                             ),
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.person,
                               color: Colors.blue,
                             ),
@@ -360,7 +360,7 @@ class InfosPersonnel extends StatelessWidget {
                     textCapitalization: TextCapitalization.words,
                     //textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                     ),
                     //autofocus: true,
@@ -368,13 +368,13 @@ class InfosPersonnel extends StatelessWidget {
                     validator: (e) {
                       if (e!.isEmpty) {
                         return "Veuilliez inserer votre numéro de téléphone";
-                      } else if (e!.length >= 10) {
+                      } else if (e.length >= 10) {
                         return "Le numéro n'est pas correct !";
                       }
                       return null;
                     },
                     decoration: InputDecoration(
-                      prefix: Text(
+                      prefix: const Text(
                         "+ ",
                         style: TextStyle(
                           //color: Colors.white,
@@ -385,9 +385,10 @@ class InfosPersonnel extends StatelessWidget {
                       contentPadding: const EdgeInsets.symmetric(vertical: 5),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.black, width: 2),
+                        borderSide:
+                            const BorderSide(color: Colors.black, width: 2),
                       ),
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.phone_android,
                         color: Colors.blue,
                       ),
@@ -408,7 +409,7 @@ class InfosPersonnel extends StatelessWidget {
                     controller: adresse,
                     //textAlign: TextAlign.center,
                     //keyboardType: TextInputType.number,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20,
                     ),
                     //autofocus: true,
@@ -423,7 +424,8 @@ class InfosPersonnel extends StatelessWidget {
                       contentPadding: const EdgeInsets.symmetric(vertical: 5),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(color: Colors.black, width: 2),
+                        borderSide:
+                            const BorderSide(color: Colors.black, width: 2),
                       ),
                       prefixIcon: const Icon(
                         Icons.location_on,
@@ -452,7 +454,7 @@ class InfosPersonnel extends StatelessWidget {
                           enabled: false,
                           //textAlign: TextAlign.center,
                           //keyboardType: TextInputType.number,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 20,
                           ),
                           //autofocus: true,
@@ -460,7 +462,7 @@ class InfosPersonnel extends StatelessWidget {
                           validator: (e) {
                             if (e!.isEmpty) {
                               return "Veuilliez inserer votre numéro de téléphone";
-                            } else if (e!.length >= 10) {
+                            } else if (e.length >= 10) {
                               return "Le numéro n'est pas correct !";
                             }
                             return null;
@@ -662,18 +664,18 @@ class InfosPersonnel extends StatelessWidget {
                       //loginController.enregitrementFinal(u);
                     },
                     style: ButtonStyle(
-                      fixedSize: MaterialStateProperty.all(
+                      fixedSize: WidgetStateProperty.all(
                         const Size(
                           double.maxFinite,
                           45,
                         ),
                       ),
-                      shape: MaterialStateProperty.all(
+                      shape: WidgetStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      backgroundColor: MaterialStateProperty.all(Colors.blue),
+                      backgroundColor: WidgetStateProperty.all(Colors.blue),
                     ),
                     child: Container(
                       alignment: Alignment.center,
@@ -691,7 +693,7 @@ class InfosPersonnel extends StatelessWidget {
                     height: 20,
                   ),
                   Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     child: Align(
                       alignment: Alignment.center,
                       child: TextButton(
@@ -722,7 +724,7 @@ class InfosPersonnel extends StatelessWidget {
   }
   //
 
-  TextStyle textStyle = TextStyle(
+  TextStyle textStyle = const TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,
   );

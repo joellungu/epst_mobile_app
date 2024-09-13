@@ -94,7 +94,7 @@ class _DepotPlainte extends State<DepotPlainte> {
         title: Text(widget.titre!),
         actions: [
           PopupMenuButton(
-            icon: Icon(Icons.menu),
+            icon: const Icon(Icons.menu),
             onSelected: (e) {
               //
               if (e == 1) {

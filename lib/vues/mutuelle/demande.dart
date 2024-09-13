@@ -630,9 +630,9 @@ class _Demande extends State<Demande> {
               ),
               ElevatedButton.icon(
                 onPressed: () async {
-                  final ImagePicker _picker = ImagePicker();
+                  final ImagePicker picker = ImagePicker();
                   // Pick an image
-                  img1 = await _picker.pickImage(source: ImageSource.gallery);
+                  img1 = await picker.pickImage(source: ImageSource.gallery);
                   ext1 = img1!.name.split(".").last;
                   i = 1.obs;
                   print("ext ${img1!.name}".split(".").last);
@@ -663,9 +663,9 @@ class _Demande extends State<Demande> {
                 () => piecejointe.value
                     ? ElevatedButton.icon(
                         onPressed: () async {
-                          final ImagePicker _picker = ImagePicker();
+                          final ImagePicker picker = ImagePicker();
                           // Pick an image
-                          img2 = await _picker.pickImage(
+                          img2 = await picker.pickImage(
                               source: ImageSource.gallery);
                           ext2 = img2!.name.split(".").last;
                           i2 = 1.obs;
@@ -1118,6 +1118,7 @@ class _HistoriqueSend extends State<HistoriqueSend> {
                       onTap: () {
                         getFile();
                       },
+                      value: 4,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -1144,7 +1145,6 @@ class _HistoriqueSend extends State<HistoriqueSend> {
                           )
                         ],
                       ),
-                      value: 4,
                     ),
                   ],
                 ),

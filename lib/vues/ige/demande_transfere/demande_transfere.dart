@@ -977,9 +977,9 @@ class _DemandeTransfere extends State<DemandeTransfere> {
             ),
             ElevatedButton.icon(
               onPressed: () async {
-                final ImagePicker _picker = ImagePicker();
+                final ImagePicker picker = ImagePicker();
                 // Pick an image
-                img1 = await _picker.pickImage(source: ImageSource.gallery);
+                img1 = await picker.pickImage(source: ImageSource.gallery);
                 ext1 = img1!.name.split(".").last;
                 i = 1.obs;
                 print("ext ${img1!.name}".split(".").last);

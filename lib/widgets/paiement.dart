@@ -12,7 +12,9 @@ class PayementMethode extends StatefulWidget {
   String? type;
   String? demande;
   //
-  PayementMethode(this.requette, this.prix, this.f, this.demande, this.type, {Key? key}) : super(key: key);
+  PayementMethode(this.requette, this.prix, this.f, this.demande, this.type,
+      {Key? key})
+      : super(key: key);
   //
   @override
   State<StatefulWidget> createState() {
@@ -118,7 +120,7 @@ class _PayementMethode extends State<PayementMethode> {
             onPressed: () async {
               //
               if (numero.text.length == 9) {
-                print("le numéro:" "243" + numero.text);
+                print("le numéro:243${numero.text}");
                 //
                 PaiementController paiementController = Get.find();
                 //
@@ -143,7 +145,7 @@ class _PayementMethode extends State<PayementMethode> {
                   "date": "${d.day}/${d.month}/${d.year}",
                   "type": widget.type,
                   "demande": widget.demande,
-                  "phone": "243" + numero.text,
+                  "phone": "243${numero.text}",
                   "reference": ref,
                   "amount": widget.prix,
                   "currency": gender,
@@ -291,7 +293,6 @@ class _PayementMethode extends State<PayementMethode> {
                     );
                   
                     */
-
               } else {
                 Get.snackbar("Erreur", "Le numéro est incorrecte");
               }

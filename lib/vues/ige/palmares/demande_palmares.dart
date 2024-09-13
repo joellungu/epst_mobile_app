@@ -412,7 +412,7 @@ class _DemandePalmares extends State<DemandePalmares> {
                         child: PayementMethode({
                           "nomecole": n,
                           "option":
-                              "${listeOptions[option]}".split(",")[0] + ".0",
+                              "${"${listeOptions[option]}".split(",")[0]}.0",
                           "nomprovince": p,
                           "codeecole": v,
                           "codeoption": "${listeOptions[option]}".split(",")[1],

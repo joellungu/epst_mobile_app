@@ -3,6 +3,7 @@ import 'package:epst_app/vues/formation/foad.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+import 'eod/eod.dart';
 import 'formation_enseignants/enseignement_enseignant_enligne.dart';
 
 // ignore: must_be_immutable
@@ -66,8 +67,6 @@ class _Formation extends State<Formation> {
                     child: Container(
                       alignment: Alignment.center,
                       padding: EdgeInsets.all(pd),
-                      child:
-                          Lottie.asset('assets/Animation - 1719829962343.json'),
                       // child: Image.asset(
                       //   "assets/LOGO-MINEPST-BON.png",
                       //   color: Colors.blue,
@@ -80,6 +79,8 @@ class _Formation extends State<Formation> {
                           topRight: Radius.circular(10),
                         ),
                       ),
+                      child:
+                          Lottie.asset('assets/Animation - 1719829962343.json'),
                     ),
                   ),
                   Expanded(
@@ -87,6 +88,11 @@ class _Formation extends State<Formation> {
                     child: Container(
                       padding: const EdgeInsets.only(bottom: 15),
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
@@ -108,11 +114,6 @@ class _Formation extends State<Formation> {
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
                     ),
                   )
                 ],
@@ -144,8 +145,6 @@ class _Formation extends State<Formation> {
                     child: Container(
                       alignment: Alignment.center,
                       padding: EdgeInsets.all(pd),
-                      child:
-                          Lottie.asset('assets/Animation - 1719829657336.json'),
                       // child: Image.asset(
                       //   "assets/LOGO-MINEPST-BON.png",
                       //   color: Colors.blue,
@@ -158,6 +157,8 @@ class _Formation extends State<Formation> {
                           topRight: Radius.circular(10),
                         ),
                       ),
+                      child:
+                          Lottie.asset('assets/Animation - 1719829657336.json'),
                     ),
                   ),
                   Expanded(
@@ -165,6 +166,11 @@ class _Formation extends State<Formation> {
                     child: Container(
                       padding: const EdgeInsets.only(bottom: 15),
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
@@ -186,11 +192,6 @@ class _Formation extends State<Formation> {
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
                     ),
                   )
                 ],
@@ -202,7 +203,7 @@ class _Formation extends State<Formation> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return FormationEleveMobile();
+                    return Eod();
                   },
                 ),
               );
@@ -221,9 +222,7 @@ class _Formation extends State<Formation> {
                     flex: 9,
                     child: Container(
                       alignment: Alignment.center,
-                      padding: EdgeInsets.all(pd),
-                      child: Lottie.asset(
-                          'assets/Animation - 1719829768791.json'), //
+                      padding: EdgeInsets.all(pd), //
                       decoration: const BoxDecoration(
                         //color: Colors.blue,
                         borderRadius: BorderRadius.only(
@@ -231,6 +230,8 @@ class _Formation extends State<Formation> {
                           topRight: Radius.circular(10),
                         ),
                       ),
+                      child:
+                          Lottie.asset('assets/Animation - 1719829768791.json'),
                     ),
                   ),
                   Expanded(
@@ -238,15 +239,20 @@ class _Formation extends State<Formation> {
                     child: Container(
                       padding: const EdgeInsets.only(bottom: 15),
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
-                          text: "AUTRE FORMATION",
+                          text: "EOD\n",
                           children: const [
                             TextSpan(
-                              text: "",
+                              text: "Enseignement ouverte à distance",
                               style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 13,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
                               ),
@@ -259,11 +265,6 @@ class _Formation extends State<Formation> {
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
                     ),
                   )
                 ],

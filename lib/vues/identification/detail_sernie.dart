@@ -754,7 +754,7 @@ class _Details extends State<DetailSernie> {
                               e['provinceEducationnel'],
                               e['antenne']);
                         },
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                             // backgroundColor:
                             //     WidgetStateProperty.all(Colors.green),
                             ),
@@ -850,7 +850,7 @@ class _Details extends State<DetailSernie> {
                                               );
                                             }
                                           },
-                                          style: ButtonStyle(
+                                          style: const ButtonStyle(
                                               //backgroundColor:
                                               // WidgetStateProperty.all(
                                               //     Colors.green),
@@ -861,7 +861,7 @@ class _Details extends State<DetailSernie> {
                                           onPressed: () {
                                             Get.back();
                                           },
-                                          style: ButtonStyle(
+                                          style: const ButtonStyle(
                                               //backgroundColor:
                                               // WidgetStateProperty.all(
                                               //     Colors.red),
@@ -876,7 +876,7 @@ class _Details extends State<DetailSernie> {
                             ),
                           ));
                         },
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                             //backgroundColor:
                             //  WidgetStateProperty.all(Colors.red),
                             ),
@@ -1209,14 +1209,6 @@ class _Details extends State<DetailSernie> {
                             right: 20,
                             bottom: 2,
                           ),
-                          child: Text(
-                            "Modifier".tr,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.normal,
-                              fontSize: 15,
-                            ),
-                          ),
                           decoration: BoxDecoration(
                             color: Colors.indigo.shade900,
                             borderRadius: BorderRadius.circular(10),
@@ -1225,6 +1217,14 @@ class _Details extends State<DetailSernie> {
                             //   end: Alignment.centerRight,
                             //   colors: <Color>[Colors.yellow.shade700, Colors.black],
                             // ),
+                          ),
+                          child: Text(
+                            "Modifier".tr,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.normal,
+                              fontSize: 15,
+                            ),
                           ),
                         ),
                       ),

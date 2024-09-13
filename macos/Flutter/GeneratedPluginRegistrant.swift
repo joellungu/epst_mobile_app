@@ -17,9 +17,11 @@ import pdfx
 import record_darwin
 import shared_preferences_foundation
 import sqflite
+import syncfusion_pdfviewer_macos
 import url_launcher_macos
 import video_player_avfoundation
 import wakelock_plus
+import webview_flutter_wkwebview
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   AudioSessionPlugin.register(with: registry.registrar(forPlugin: "AudioSessionPlugin"))
@@ -34,7 +36,9 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   RecordPlugin.register(with: registry.registrar(forPlugin: "RecordPlugin"))
   SharedPreferencesPlugin.register(with: registry.registrar(forPlugin: "SharedPreferencesPlugin"))
   SqflitePlugin.register(with: registry.registrar(forPlugin: "SqflitePlugin"))
+  SyncfusionFlutterPdfViewerPlugin.register(with: registry.registrar(forPlugin: "SyncfusionFlutterPdfViewerPlugin"))
   UrlLauncherPlugin.register(with: registry.registrar(forPlugin: "UrlLauncherPlugin"))
   FVPVideoPlayerPlugin.register(with: registry.registrar(forPlugin: "FVPVideoPlayerPlugin"))
   WakelockPlusMacosPlugin.register(with: registry.registrar(forPlugin: "WakelockPlusMacosPlugin"))
+  FLTWebViewFlutterPlugin.register(with: registry.registrar(forPlugin: "FLTWebViewFlutterPlugin"))
 }

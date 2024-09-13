@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
+import 'lecon_pdf.dart';
+import 'package:get/get.dart';
 import 'lecon.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class TypeCours extends StatelessWidget {
   //
-  String type;
+  String cours;
+  //
+  String categorie;
+  //
+  String banche;
+  //
+  String notion;
+  //
+  //String chapitre;
+  //
+  int classe;
+  //
+
   //
   List types = [
     "INTERACTIF",
@@ -13,14 +27,16 @@ class TypeCours extends StatelessWidget {
     "VIDEO",
   ];
   //
-  TypeCours(this.type);
+  TypeCours(this.cours, this.categorie, this.banche, this.notion, this.classe,
+      {Key? key})
+      : super(key: key);
   //
   @override
   Widget build(BuildContext context) {
     //
     return Scaffold(
       appBar: AppBar(
-        title: Text(type),
+        title: Text(banche),
         centerTitle: true,
       ),
       body: Padding(
@@ -30,14 +46,58 @@ class TypeCours extends StatelessWidget {
             Column(
               children: List.generate(types.length, (e) {
                 return InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return LeconMat("${types[e]}");
-                        },
-                      ),
-                    );
+                  onTap: () async {
+                    //
+                    bool connec = false;
+                    //
+                    final List<ConnectivityResult> connectivityResult =
+                        await (Connectivity().checkConnectivity());
+
+                    if (connectivityResult
+                            .contains(ConnectivityResult.mobile) ||
+                        connectivityResult.contains(ConnectivityResult.wifi) ||
+                        connectivityResult
+                            .contains(ConnectivityResult.ethernet) ||
+                        connectivityResult
+                            .contains(ConnectivityResult.bluetooth)) {
+                      connec = true;
+                    } else {
+                      connec = false;
+                    }
+                    if (e == 0) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return LeconMat("${types[e]}");
+                          },
+                        ),
+                      );
+                    }
+                    //
+                    if (e == 1) {
+                      Get.to(
+                        LeconPdf(
+                          cours,
+                          "Maternelle",
+                          banche,
+                          "pdf",
+                          notion,
+                          classe,
+                          connec,
+                        ),
+                      );
+                    }
+                    //
+                    if (e == 2) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return LeconMat("${types[e]}");
+                          },
+                        ),
+                      );
+                    }
+                    //
                   },
                   child: Container(
                     height: 220,
@@ -75,6 +135,12 @@ class TypeCours extends StatelessWidget {
                           child: Container(
                             padding: const EdgeInsets.only(bottom: 15),
                             alignment: Alignment.center,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
+                            ),
                             child: RichText(
                               textAlign: TextAlign.center,
                               text: TextSpan(
@@ -94,12 +160,6 @@ class TypeCours extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
-                              ),
-                            ),
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(10),
-                                bottomRight: Radius.circular(10),
                               ),
                             ),
                           ),

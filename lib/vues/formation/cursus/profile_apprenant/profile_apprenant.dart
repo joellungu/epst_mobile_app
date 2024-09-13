@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfileApprenant extends StatelessWidget {
+  const ProfileApprenant({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     //
@@ -12,7 +14,7 @@ class ProfileApprenant extends StatelessWidget {
             onTap: () {
               //
             },
-            leading: Container(
+            leading: SizedBox(
               height: 40,
               width: 40,
               child: SvgPicture.asset(
@@ -21,13 +23,13 @@ class ProfileApprenant extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            title: Text(
+            title: const Text(
               "Pierre Lungu",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),
-            subtitle: Text(
+            subtitle: const Text(
               "Enseignant",
               style: TextStyle(color: Colors.blue),
             ),
@@ -36,7 +38,7 @@ class ProfileApprenant extends StatelessWidget {
             onTap: () {
               //
             },
-            leading: Container(
+            leading: SizedBox(
               height: 40,
               width: 40,
               child: SvgPicture.asset(
@@ -45,13 +47,13 @@ class ProfileApprenant extends StatelessWidget {
                 color: Colors.black,
               ),
             ),
-            title: Text(
+            title: const Text(
               "Joel Lungu",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),
             ),
-            subtitle: Text(
+            subtitle: const Text(
               "Elève",
               style: TextStyle(color: Colors.blue),
             ),
@@ -62,7 +64,7 @@ class ProfileApprenant extends StatelessWidget {
         onPressed: () {
           //
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

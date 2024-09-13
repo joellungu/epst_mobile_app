@@ -1,11 +1,7 @@
-import 'dart:convert';
-import 'dart:math' as math;
-import 'dart:typed_data';
 import 'package:epst_app/utils/requetes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
 
 import 'infos_personnel.dart';
 
@@ -108,7 +104,7 @@ class LoginEnseignantController extends GetxController {
           child: Card(
             elevation: 1,
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               height: 200,
               width: 200,
               child: Column(
@@ -119,7 +115,7 @@ class LoginEnseignantController extends GetxController {
                     child: Text(
                       rep.body,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                       ),
                     ),
@@ -131,33 +127,33 @@ class LoginEnseignantController extends GetxController {
                       //
                     },
                     style: ButtonStyle(
-                      fixedSize: MaterialStateProperty.all(
+                      fixedSize: WidgetStateProperty.all(
                         const Size(
                           double.maxFinite,
                           45,
                         ),
                       ),
-                      shape: MaterialStateProperty.all(
+                      shape: WidgetStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      backgroundColor: MaterialStateProperty.all(Colors.black),
+                      backgroundColor: WidgetStateProperty.all(Colors.black),
                     ),
                     child: Container(
                       alignment: Alignment.center,
                       width: double.maxFinite,
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
+                          Text(
                             "Ok",
                             style: TextStyle(
                               fontSize: 15,
                               color: Colors.white,
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             width: 5,
                           ),
                           Icon(Icons.qr_code)
@@ -187,7 +183,7 @@ class LoginEnseignantController extends GetxController {
           child: Card(
             elevation: 1,
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               height: 200,
               width: 200,
               child: Column(
@@ -198,7 +194,7 @@ class LoginEnseignantController extends GetxController {
                     child: Text(
                       "${rep.body}",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                       ),
                     ),
@@ -210,33 +206,33 @@ class LoginEnseignantController extends GetxController {
                       //
                     },
                     style: ButtonStyle(
-                      fixedSize: MaterialStateProperty.all(
+                      fixedSize: WidgetStateProperty.all(
                         const Size(
                           double.maxFinite,
                           45,
                         ),
                       ),
-                      shape: MaterialStateProperty.all(
+                      shape: WidgetStateProperty.all(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      backgroundColor: MaterialStateProperty.all(Colors.black),
+                      backgroundColor: WidgetStateProperty.all(Colors.black),
                     ),
                     child: Container(
                       alignment: Alignment.center,
                       width: double.maxFinite,
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
+                          Text(
                             "Ok",
                             style: TextStyle(
                               fontSize: 15,
                               color: Colors.white,
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             width: 5,
                           ),
                           Icon(Icons.qr_code)

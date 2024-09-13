@@ -1,32 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import 'formation_education_de_base/formation_education_base.dart';
-import 'formation_eleve_maternelle/formation_classe_maternelle.dart';
-import 'formation_eleve_secondaire/formation_secondaire.dart';
-
-class FormationEleveMobile extends StatelessWidget {
+class Eod extends StatelessWidget {
   //
   double st = 15;
   double taille = 10;
   double pd = 15;
   //
   List formations = [
-    "FORMATION POUR LES ELEVES DE LA MATERNELLE,Animation - 1719837919056.json",
-    "FORMATION POUR LES ELEVES DE L'EDUCATION DE BASE,Animation - 1719829657336.json",
+    "FORMATION POUR LES ETUDIANTS EN LICENCE,Animation - 1719837919056.json",
+    "FORMATION POUR LES ETUDIANTS EN MASTER,Animation - 1719829657336.json",
     //"FORMATION POUR LES ENCADREURS DE LA MATERNELLE,Animation - 1719829657336.json",
-    "FORMATION POUR LES ELEVES DU SECONDAIRE,Animation - 1719837965657.json",
-    "BIBLIOTHEQUE NUMERIQUE,Animation - 1719829962343.json"
+    "FORMATION POUR LES ETUDIANTS EN ECOLE DOCTORALE,Animation - 1719837965657.json",
+    "UNIVERSITE EN LIGNE,Animation - 1719829962343.json"
   ];
 
-  FormationEleveMobile({Key? key}) : super(key: key);
+  Eod({Key? key}) : super(key: key);
   //
   @override
   Widget build(BuildContext context) {
     //
     return Scaffold(
       appBar: AppBar(
-        title: const Text("FORMATION ELEVES"),
+        title: const Text("ENSEIGNEMENT OUVERTE A DISTANCE"),
         centerTitle: true,
       ),
       body: Center(
@@ -43,34 +39,34 @@ class FormationEleveMobile extends StatelessWidget {
             return InkWell(
               onTap: () {
                 if (e == 0) {
-                  //MenuSecondaireClasseCours
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return FormationClasseMaternelle();
-                      },
-                    ),
-                  );
+                  // MenuSecondaireClasseCours
+                  // Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (context) {
+                  //       return FormationClasseMaternelle();
+                  //     },
+                  //   ),
+                  // );
                 }
                 if (e == 1) {
                   //
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return FormationEducationBase();
-                      },
-                    ),
-                  );
+                  // Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (context) {
+                  //       return FormationEducationBase();
+                  //     },
+                  //   ),
+                  // );
                 }
                 if (e == 2) {
                   //
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return FormationSecondaire();
-                      },
-                    ),
-                  );
+                  // Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (context) {
+                  //       return FormationSecondaire();
+                  //     },
+                  //   ),
+                  // );
                 }
               },
               child: Card(

@@ -1,14 +1,23 @@
-import 'package:epst_app/vues/formation/formation_enseignants/primaire/type_cours.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
+import 'type_cours.dart';
+import 'package:get/get.dart';
 import 'lecon.dart';
+import 'package:epst_app/utils/requetes.dart';
 
 class CoursMaternelle extends StatelessWidget {
   //
+  Requete requete = Requete();
+  //
   String cours;
   //
-  CoursMaternelle(this.cours, {Key? key}) : super(key: key);
+  int classe;
+  //
+  CoursMaternelle(this.cours, this.classe, {Key? key}) : super(key: key) {
+    //
+    print("Classe: $classe");
+    //
+  }
   //
   List lecons = [
     "CONJUGAISON",
@@ -16,6 +25,7 @@ class CoursMaternelle extends StatelessWidget {
     "ORTHOGRAPHE",
     "GRAMMAIRE",
     "LECTURE",
+    "Painture",
   ];
   //
   double st = 15;
@@ -31,19 +41,75 @@ class CoursMaternelle extends StatelessWidget {
         centerTitle: true,
       ),
       body: GridView.count(
+        //Maternelle
+        //Primaire
+        //Education de base
+        //Secondaire
         //
         padding: const EdgeInsets.all(10),
         crossAxisCount: 2,
         children: List.generate(lecons.length, (e) {
           return InkWell(
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
+              //
+              showModalBottomSheet(
+                  context: context,
                   builder: (context) {
-                    return TypeCours("${lecons[e]}");
-                  },
-                ),
-              );
+                    //
+                    return Container(
+                      child: FutureBuilder(
+                        future:
+                            getNotion(cours, "Maternelle", lecons[e], classe),
+                        builder: (c, t) {
+                          //
+                          if (t.hasData) {
+                            //
+                            List cs = t.data as List;
+                            //
+                            return ListView(
+                              padding: const EdgeInsets.all(10),
+                              children: List.generate(cs.length, (c) {
+                                return ListTile(
+                                  onTap: () {
+                                    //
+                                    Get.to(
+                                      TypeCours(
+                                        cours,
+                                        "Maternelle".toLowerCase(),
+                                        lecons[e],
+                                        "${cs[c]['notion']}",
+                                        classe,
+                                      ),
+                                    );
+                                    //
+                                  },
+                                  leading: Container(
+                                    height: 40,
+                                    width: 40,
+                                    alignment: Alignment.center,
+                                    child: const Icon(Icons.book),
+                                  ),
+                                  title: Text("${cs[c]['notion']}"),
+                                );
+                              }),
+                            );
+                            //
+                          } else if (t.hasError) {
+                            return Container();
+                          }
+
+                          return Center(
+                            child: SizedBox(
+                              height: 40,
+                              width: 40,
+                              child: const CircularProgressIndicator(),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  });
+              //
             },
             child: Container(
               height: 230,
@@ -60,8 +126,6 @@ class CoursMaternelle extends StatelessWidget {
                     child: Container(
                       alignment: Alignment.center,
                       padding: EdgeInsets.all(pd),
-                      child:
-                          Lottie.asset('assets/Animation - 1719837965657.json'),
                       // child: Image.asset(
                       //   "assets/LOGO-MINEPST-BON.png",
                       //   color: Colors.blue,
@@ -74,6 +138,8 @@ class CoursMaternelle extends StatelessWidget {
                           topRight: Radius.circular(10),
                         ),
                       ),
+                      child:
+                          Lottie.asset('assets/Animation - 1719837965657.json'),
                     ),
                   ),
                   Expanded(
@@ -81,6 +147,12 @@ class CoursMaternelle extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.only(bottom: 15),
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
@@ -102,12 +174,6 @@ class CoursMaternelle extends StatelessWidget {
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
-                        ),
-                      ),
                     ),
                   )
                 ],
@@ -117,5 +183,25 @@ class CoursMaternelle extends StatelessWidget {
         }),
       ),
     );
+  }
+
+  //
+  Future<List> getNotion(
+      String cours, String categorie, String banche, int classe) async {
+    //
+    categorie = categorie.toLowerCase();
+    //
+    cours = cours.toLowerCase();
+    //
+    Response response = await requete.getE(
+        "cours/notion?cours=$cours&categorie=$categorie&banche=$banche&classe=$classe");
+    //
+    if (response.isOk) {
+      //
+      return response.body;
+    } else {
+      //
+      return [];
+    }
   }
 }

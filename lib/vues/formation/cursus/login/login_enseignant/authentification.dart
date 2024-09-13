@@ -77,7 +77,7 @@ class Authentification extends StatelessWidget {
                         textCapitalization: TextCapitalization.words,
                         //textAlign: TextAlign.center,
                         keyboardType: TextInputType.number,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 20,
                         ),
                         //autofocus: true,
@@ -85,13 +85,13 @@ class Authentification extends StatelessWidget {
                         validator: (e) {
                           if (e!.isEmpty) {
                             return "Veuilliez inserer votre numéro de téléphone";
-                          } else if (e!.length >= 10) {
+                          } else if (e.length >= 10) {
                             return "Le numéro n'est pas correct !";
                           }
                           return null;
                         },
                         decoration: InputDecoration(
-                          prefix: Text(
+                          prefix: const Text(
                             "00243 ",
                             style: TextStyle(
                               //color: Colors.white,
@@ -104,9 +104,9 @@ class Authentification extends StatelessWidget {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                             borderSide:
-                                BorderSide(color: Colors.black, width: 2),
+                                const BorderSide(color: Colors.black, width: 2),
                           ),
-                          prefixIcon: Icon(
+                          prefixIcon: const Icon(
                             Icons.phone_android,
                             color: Colors.blue,
                           ),
@@ -127,7 +127,7 @@ class Authentification extends StatelessWidget {
                         controller: password,
                         //textAlign: TextAlign.center,
                         //keyboardType: TextInputType.number,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 20,
                         ),
                         //autofocus: true,
@@ -144,7 +144,7 @@ class Authentification extends StatelessWidget {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                             borderSide:
-                                BorderSide(color: Colors.black, width: 2),
+                                const BorderSide(color: Colors.black, width: 2),
                           ),
                           prefixIcon: const Icon(
                             Icons.password,
@@ -185,19 +185,18 @@ class Authentification extends StatelessWidget {
                           loginEnseignantController.enregitrementFinal(u);
                         },
                         style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all(
+                          fixedSize: WidgetStateProperty.all(
                             const Size(
                               double.maxFinite,
                               45,
                             ),
                           ),
-                          shape: MaterialStateProperty.all(
+                          shape: WidgetStateProperty.all(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
                           ),
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.blue),
+                          backgroundColor: WidgetStateProperty.all(Colors.blue),
                         ),
                         child: Container(
                           alignment: Alignment.center,
@@ -220,19 +219,19 @@ class Authentification extends StatelessWidget {
                           Get.to(Authentification());
                         },
                         style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all(
+                          fixedSize: WidgetStateProperty.all(
                             const Size(
                               double.maxFinite,
                               45,
                             ),
                           ),
-                          shape: MaterialStateProperty.all(
+                          shape: WidgetStateProperty.all(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
                           ),
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.green),
+                              WidgetStateProperty.all(Colors.green),
                         ),
                         child: Container(
                           alignment: Alignment.center,
@@ -282,9 +281,11 @@ class Authentification extends StatelessWidget {
   }
 
   //
-  TextStyle textStyle = TextStyle(
+  TextStyle textStyle = const TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,
   );
+
+  Authentification({Key? key}) : super(key: key);
   //
 }

@@ -81,7 +81,7 @@ class _Chat extends State<Chat> {
           }
           chatt = Container();
         } else {
-          listeConSave.add(contenu + "\n");
+          listeConSave.add("$contenu\n");
           contenu != "" ? listeConv.add(smsMessage(false, contenu)) : print("");
           //listeConv.add(smsMessage(false, contenu));
           chatt = ChattConv(
@@ -157,13 +157,13 @@ class _Chat extends State<Chat> {
                 height: 40,
                 width: 40,
                 alignment: Alignment.center,
-                child: const Icon(
-                  CupertinoIcons.person,
-                  color: Colors.white,
-                ),
                 decoration: BoxDecoration(
                   color: Colors.white24,
                   borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Icon(
+                  CupertinoIcons.person,
+                  color: Colors.white,
                 ),
               ),
               const SizedBox(

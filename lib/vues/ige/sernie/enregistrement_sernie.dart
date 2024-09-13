@@ -682,9 +682,9 @@ class _EnregistrementSernie extends State<EnregistrementSernie> {
                 child: ElevatedButton.icon(
                   onPressed: () async {
                     //showDialog(context: context, builder: builder);
-                    final ImagePicker _picker = ImagePicker();
+                    final ImagePicker picker = ImagePicker();
                     // Pick an image
-                    img1 = await _picker.pickImage(
+                    img1 = await picker.pickImage(
                       source: ImageSource.gallery,
                       imageQuality: 75,
                       maxWidth: 500,
@@ -715,9 +715,9 @@ class _EnregistrementSernie extends State<EnregistrementSernie> {
                 child: ElevatedButton.icon(
                   onPressed: () async {
                     //showDialog(context: context, builder: builder);
-                    final ImagePicker _picker = ImagePicker();
+                    final ImagePicker picker = ImagePicker();
                     // Pick an image
-                    img1 = await _picker.pickImage(
+                    img1 = await picker.pickImage(
                       source: ImageSource.camera,
                       imageQuality: 75,
                       maxWidth: 500,

@@ -71,6 +71,7 @@ dependencies:
   flutter_launcher_icons: 
   flutter_isolate: 
   pdfx:
+  syncfusion_flutter_pdfviewer:
   upgrader:
   #open_filex:
   mime: ^1.0.4

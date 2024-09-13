@@ -13,7 +13,7 @@ class TypeCours extends StatelessWidget {
     "VIDEO",
   ];
   //
-  TypeCours(this.type);
+  TypeCours(this.type, {Key? key}) : super(key: key);
   //
   @override
   Widget build(BuildContext context) {
@@ -75,6 +75,12 @@ class TypeCours extends StatelessWidget {
                           child: Container(
                             padding: const EdgeInsets.only(bottom: 15),
                             alignment: Alignment.center,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10),
+                              ),
+                            ),
                             child: RichText(
                               textAlign: TextAlign.center,
                               text: TextSpan(
@@ -94,12 +100,6 @@ class TypeCours extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
-                              ),
-                            ),
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(10),
-                                bottomRight: Radius.circular(10),
                               ),
                             ),
                           ),

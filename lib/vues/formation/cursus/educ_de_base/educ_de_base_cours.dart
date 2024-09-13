@@ -57,8 +57,6 @@ class EducDeBaseCours extends StatelessWidget {
                     child: Container(
                       alignment: Alignment.center,
                       padding: EdgeInsets.all(pd),
-                      child:
-                          Lottie.asset('assets/Animation - 1719837965657.json'),
                       // child: Image.asset(
                       //   "assets/LOGO-MINEPST-BON.png",
                       //   color: Colors.blue,
@@ -71,6 +69,8 @@ class EducDeBaseCours extends StatelessWidget {
                           topRight: Radius.circular(10),
                         ),
                       ),
+                      child:
+                          Lottie.asset('assets/Animation - 1719837965657.json'),
                     ),
                   ),
                   Expanded(
@@ -78,6 +78,12 @@ class EducDeBaseCours extends StatelessWidget {
                     child: Container(
                       padding: const EdgeInsets.only(bottom: 15),
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
@@ -97,12 +103,6 @@ class EducDeBaseCours extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
-                        ),
-                      ),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
                         ),
                       ),
                     ),

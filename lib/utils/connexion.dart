@@ -14,11 +14,11 @@ class Connexion {
   //static var lien = 'http://localhost:8080/';
   //static var ws = 'localhost:8080';
   //
-  static var lien = 'https://epst-a4bc31000994.herokuapp.com/';
-  static var ws = 'epst-a4bc31000994.herokuapp.com';
+  //static var lien = 'https://epst-a4bc31000994.herokuapp.com/';
+  //static var ws = 'epst-a4bc31000994.herokuapp.com';
   //
-  //static var lien = 'http://192.168.1.65:8080/';
-  //static var ws = '192.168.1.65:8080/';
+  static var lien = 'http://192.168.1.76:8080/';
+  static var ws = '192.168.1.76:8080/';
   //
   //static var lien = 'http://10.0.2.2:8080/';
   //static var ws = '10.0.2.2:8080';
@@ -68,7 +68,7 @@ class Connexion {
     e.forEach(
       (element) async {
         ///$id/${element["type"]}
-        var url = Uri.parse(lien + "piecejointe");
+        var url = Uri.parse("${lien}piecejointe");
         //element ;
         //var stream = new http.ByteStream(DelegatingStream.typed(element["type"]));
         var length = await element["length"];
@@ -123,7 +123,7 @@ class Connexion {
     List<Map<String, dynamic>> liste2 = [];
     //List<Map<String, dynamic>>
     //
-    var url = Uri.parse(lien + "magasin/all/$type");
+    var url = Uri.parse("${lien}magasin/all/$type");
     var response = await http.get(url);
     //
     Magasin magasin = Magasin();
@@ -174,7 +174,7 @@ class Connexion {
       //
       //var url = Uri.parse(lien + "magasin/all/$type");
       //var response = await http.get(url);
-      var response = await dio.Dio().get(lien + "magasin/all/$type");
+      var response = await dio.Dio().get("${lien}magasin/all/$type");
       //
       Magasin magasin = Magasin();
       Reforme reforme = Reforme();
@@ -242,7 +242,7 @@ class Connexion {
   static Future<Map<String, dynamic>> getMagasin(String id) async {
     Map<String, dynamic> t = {};
     //
-    var url = Uri.parse(lien + "magasin/$id");
+    var url = Uri.parse("${lien}magasin/$id");
     var response = await http.get(url);
     t = jsonDecode(response.body);
     //

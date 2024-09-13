@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:get/get.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ClinOeil extends StatefulWidget {
   const ClinOeil({Key? key}) : super(key: key);
@@ -13,12 +14,18 @@ class ClinOeil extends StatefulWidget {
 
 class _ClinOeil extends State<ClinOeil> {
   //
-
+  final YoutubePlayerController _controller = YoutubePlayerController(
+    initialVideoId: 'iLnmTe5Q2Qw',
+    flags: const YoutubePlayerFlags(
+      autoPlay: true,
+      mute: true,
+    ),
+  );
   //
   @override
   void initState() {
     //
-
+    //_controller.
     //
     super.initState();
   }
@@ -30,32 +37,17 @@ class _ClinOeil extends State<ClinOeil> {
 
     return Scaffold(
       appBar: AppBar(),
-      // body: HtmlWidget(
-      //   '''
-      //     <iframe id="player" type="text/html" width="$w" height="$h"
-      //       src="https://www.youtube.com/channel/UCpAqEBwacNuVcIXSgG0qA6g"
-      //       frameborder="0">
-      //     </iframe>
-      //     ''',
-      //   customStylesBuilder: (element) {
-      //     if (element.classes.contains('foo')) {
-      //       return {'color': 'red'};
-      //     }
-
-      //     return null;
+      // body: YoutubePlayer(
+      //   controller: _controller,
+      //   showVideoProgressIndicator: true,
+      //   progressIndicatorColor: Colors.amber,
+      //   progressColors: const ProgressBarColors(
+      //     playedColor: Colors.amber,
+      //     handleColor: Colors.amberAccent,
+      //   ),
+      //   onReady: () {
+      //     // _controller.addListener(listener);
       //   },
-
-      //   // render a custom widget
-      //   customWidgetBuilder: (element) {
-      //     if (element.attributes['foo'] == 'bar') {
-      //       //return FooBarWidget();
-      //     }
-
-      //     return null;
-      //   },
-      //   //isSelectable: true,
-      //   //onTapUrl: (url) => print('tapped $url'),
-      //   //webView: true,
       // ),
     );
   }

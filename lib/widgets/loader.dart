@@ -9,7 +9,7 @@ class Loader {
           height: 40,
           width: 40,
           alignment: Alignment.center,
-          child: CircularProgressIndicator(),
+          child: const CircularProgressIndicator(),
         ),
       ),
     );
@@ -17,14 +17,13 @@ class Loader {
 
   //#DD0707
 
-
   static Widget loadingW() {
     return Center(
       child: Container(
         height: 40,
         width: 40,
         alignment: Alignment.center,
-        child: CircularProgressIndicator(),
+        child: const CircularProgressIndicator(),
       ),
     );
   }

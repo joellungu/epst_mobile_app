@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import 'cours_maternelle.dart';
@@ -45,16 +46,10 @@ class FormationClasseMaternelle extends StatelessWidget {
               crossAxisSpacing: 5,
               childAspectRatio: 0.8,
               //crossAxisCount: 2,
-              children: List.generate(lecons.length, (e) {
+              children: List.generate(lecons.length, (l) {
                 return InkWell(
                   onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return CoursMaternelle("${lecons[e]}");
-                        },
-                      ),
-                    );
+                    Get.to(CoursMaternelle("${lecons[l]}", e + 1));
                   },
                   child: Card(
                     child: Container(
@@ -72,8 +67,6 @@ class FormationClasseMaternelle extends StatelessWidget {
                             child: Container(
                               alignment: Alignment.center,
                               padding: EdgeInsets.all(pd),
-                              child: Lottie.asset(
-                                  'assets/Animation - 1719837965657.json'),
                               // child: Image.asset(
                               //   "assets/LOGO-MINEPST-BON.png",
                               //   color: Colors.blue,
@@ -86,6 +79,8 @@ class FormationClasseMaternelle extends StatelessWidget {
                                   topRight: Radius.circular(10),
                                 ),
                               ),
+                              child: Lottie.asset(
+                                  'assets/Animation - 1719837965657.json'),
                             ),
                           ),
                           Expanded(
@@ -93,13 +88,19 @@ class FormationClasseMaternelle extends StatelessWidget {
                             child: Container(
                               padding: const EdgeInsets.only(bottom: 15),
                               alignment: Alignment.center,
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(10),
+                                  bottomRight: Radius.circular(10),
+                                ),
+                              ),
                               child: RichText(
                                 textAlign: TextAlign.center,
                                 text: TextSpan(
                                   text: "",
                                   children: [
                                     TextSpan(
-                                      text: "${lecons[e]}",
+                                      text: "${lecons[l]}",
                                       style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
@@ -112,12 +113,6 @@ class FormationClasseMaternelle extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white,
                                   ),
-                                ),
-                              ),
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(10),
-                                  bottomRight: Radius.circular(10),
                                 ),
                               ),
                             ),

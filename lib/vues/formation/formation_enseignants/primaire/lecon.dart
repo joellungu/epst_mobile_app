@@ -13,9 +13,9 @@ class Lecon extends StatelessWidget {
       height: 40,
       width: 70,
       alignment: Alignment.center,
-      child: const Text("..."),
       decoration: BoxDecoration(
           color: Colors.grey.shade200, borderRadius: BorderRadius.circular(10)),
+      child: const Text("..."),
     ),
   );
   //
@@ -37,7 +37,6 @@ class Lecon extends StatelessWidget {
               child: Container(
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
-                child: Lottie.asset('assets/Animation - 1719838060757.json'),
                 // child: Image.asset(
                 //   "assets/LOGO-MINEPST-BON.png",
                 //   color: Colors.blue,
@@ -50,6 +49,7 @@ class Lecon extends StatelessWidget {
                     topRight: Radius.circular(10),
                   ),
                 ),
+                child: Lottie.asset('assets/Animation - 1719838060757.json'),
               ),
             ),
             Expanded(
@@ -154,10 +154,10 @@ class Lecon extends StatelessWidget {
                               height: 40,
                               width: 70,
                               alignment: Alignment.center,
-                              child: Text(reponse.data),
                               decoration: BoxDecoration(
                                   color: Colors.grey.shade200,
                                   borderRadius: BorderRadius.circular(10)),
+                              child: Text(reponse.data),
                             );
                           },
                         ),
@@ -185,20 +185,6 @@ class Lecon extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Draggable(
                         data: "sans",
-                        child: Container(
-                          width: 70,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: Colors.blue,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: const Center(
-                            child: Text(
-                              'sans',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ),
                         feedback: Container(
                           width: 100,
                           height: 50,
@@ -237,12 +223,6 @@ class Lecon extends StatelessWidget {
                         onDraggableCanceled: (_, __) {
                           print('Glissement annulé');
                         },
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      child: Draggable(
-                        data: "son",
                         child: Container(
                           width: 70,
                           height: 40,
@@ -252,11 +232,17 @@ class Lecon extends StatelessWidget {
                           ),
                           child: const Center(
                             child: Text(
-                              'son',
+                              'sans',
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
                         ),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      child: Draggable(
+                        data: "son",
                         feedback: Container(
                           width: 100,
                           height: 50,
@@ -295,12 +281,6 @@ class Lecon extends StatelessWidget {
                         onDraggableCanceled: (_, __) {
                           print('Glissement annulé');
                         },
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      child: Draggable(
-                        data: "sont",
                         child: Container(
                           width: 70,
                           height: 40,
@@ -310,11 +290,17 @@ class Lecon extends StatelessWidget {
                           ),
                           child: const Center(
                             child: Text(
-                              'sont',
+                              'son',
                               style: TextStyle(color: Colors.white),
                             ),
                           ),
                         ),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      child: Draggable(
+                        data: "sont",
                         feedback: Container(
                           width: 100,
                           height: 50,
@@ -353,6 +339,20 @@ class Lecon extends StatelessWidget {
                         onDraggableCanceled: (_, __) {
                           print('Glissement annulé');
                         },
+                        child: Container(
+                          width: 70,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: const Center(
+                            child: Text(
+                              'sont',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
                       ),
                     )
                   ],

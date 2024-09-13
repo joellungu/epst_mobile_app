@@ -4,8 +4,6 @@ import 'package:epst_app/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'authentification.dart';
-import 'login_controller.dart';
 
 class LoginEnseignant extends StatelessWidget {
   //
@@ -92,7 +90,7 @@ class LoginEnseignant extends StatelessWidget {
                         textCapitalization: TextCapitalization.words,
                         //textAlign: TextAlign.center,
                         keyboardType: TextInputType.number,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 20,
                         ),
                         //autofocus: true,
@@ -100,13 +98,13 @@ class LoginEnseignant extends StatelessWidget {
                         validator: (e) {
                           if (e!.isEmpty) {
                             return "Veuilliez inserer votre numéro de téléphone";
-                          } else if (e!.length >= 10) {
+                          } else if (e.length >= 10) {
                             return "Le numéro n'est pas correct !";
                           }
                           return null;
                         },
                         decoration: InputDecoration(
-                          prefix: Text(
+                          prefix: const Text(
                             "00243 ",
                             style: TextStyle(
                               //color: Colors.white,
@@ -119,9 +117,9 @@ class LoginEnseignant extends StatelessWidget {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                             borderSide:
-                                BorderSide(color: Colors.black, width: 2),
+                                const BorderSide(color: Colors.black, width: 2),
                           ),
-                          prefixIcon: Icon(
+                          prefixIcon: const Icon(
                             Icons.phone_android,
                             color: Colors.blue,
                           ),
@@ -245,15 +243,14 @@ class LoginEnseignant extends StatelessWidget {
                                                   },
                                                   style: ButtonStyle(
                                                     fixedSize:
-                                                        MaterialStateProperty
-                                                            .all(
+                                                        WidgetStateProperty.all(
                                                       const Size(
                                                         double.maxFinite,
                                                         45,
                                                       ),
                                                     ),
-                                                    shape: MaterialStateProperty
-                                                        .all(
+                                                    shape:
+                                                        WidgetStateProperty.all(
                                                       RoundedRectangleBorder(
                                                         borderRadius:
                                                             BorderRadius
@@ -261,9 +258,8 @@ class LoginEnseignant extends StatelessWidget {
                                                       ),
                                                     ),
                                                     backgroundColor:
-                                                        MaterialStateProperty
-                                                            .all(Colors
-                                                                .deepOrange),
+                                                        WidgetStateProperty.all(
+                                                            Colors.deepOrange),
                                                   ),
                                                   child: Container(
                                                     alignment: Alignment.center,
@@ -305,15 +301,14 @@ class LoginEnseignant extends StatelessWidget {
                                                   },
                                                   style: ButtonStyle(
                                                     fixedSize:
-                                                        MaterialStateProperty
-                                                            .all(
+                                                        WidgetStateProperty.all(
                                                       const Size(
                                                         double.maxFinite,
                                                         45,
                                                       ),
                                                     ),
-                                                    shape: MaterialStateProperty
-                                                        .all(
+                                                    shape:
+                                                        WidgetStateProperty.all(
                                                       RoundedRectangleBorder(
                                                         borderRadius:
                                                             BorderRadius
@@ -321,9 +316,8 @@ class LoginEnseignant extends StatelessWidget {
                                                       ),
                                                     ),
                                                     backgroundColor:
-                                                        MaterialStateProperty
-                                                            .all(
-                                                      Color.fromARGB(
+                                                        WidgetStateProperty.all(
+                                                      const Color.fromARGB(
                                                           255, 0, 90, 23),
                                                     ),
                                                   ),
@@ -355,19 +349,18 @@ class LoginEnseignant extends StatelessWidget {
                           //loginController.enregitrementFinal(u);
                         },
                         style: ButtonStyle(
-                          fixedSize: MaterialStateProperty.all(
+                          fixedSize: WidgetStateProperty.all(
                             const Size(
                               double.maxFinite,
                               45,
                             ),
                           ),
-                          shape: MaterialStateProperty.all(
+                          shape: WidgetStateProperty.all(
                             RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
                           ),
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.blue),
+                          backgroundColor: WidgetStateProperty.all(Colors.blue),
                         ),
                         child: Container(
                           alignment: Alignment.center,
@@ -385,7 +378,7 @@ class LoginEnseignant extends StatelessWidget {
                         height: 20,
                       ),
                       Padding(
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         child: Align(
                           alignment: Alignment.center,
                           child: TextButton(
@@ -437,10 +430,12 @@ class LoginEnseignant extends StatelessWidget {
   }
 
   //
-  TextStyle textStyle = TextStyle(
+  TextStyle textStyle = const TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.bold,
   );
+
+  LoginEnseignant({Key? key}) : super(key: key);
   //
   String mdpGenerer() {
     //

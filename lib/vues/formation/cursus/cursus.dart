@@ -9,6 +9,8 @@ import 'secondaire/secondaire.dart';
 
 class Cursus extends StatelessWidget {
   RxString titre = "".obs;
+
+  Cursus({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     //
@@ -17,7 +19,7 @@ class Cursus extends StatelessWidget {
       body: ListView(
         reverse: true,
         children: [
-          EducDeBase(),
+          const EducDeBase(),
           Container(
             height: 30,
             width: Get.size.width,
@@ -30,7 +32,7 @@ class Cursus extends StatelessWidget {
               ),
             ),
           ),
-          Secondaire(),
+          const Secondaire(),
           Container(
             height: 30,
             width: Get.size.width,
@@ -111,7 +113,7 @@ class Cursus extends StatelessWidget {
                           //
                           Get.back();
                           //
-                          Get.to(InfosPersonnel({}));
+                          Get.to(InfosPersonnel(const {}));
                           // Get.dialog(
                           //   Center(
                           //     child: Card(
@@ -194,13 +196,13 @@ class Cursus extends StatelessWidget {
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all(Colors.blue),
                           textStyle: WidgetStateProperty.all(
-                            TextStyle(
+                            const TextStyle(
                               color: Colors.white,
                               fontSize: 13,
                             ),
                           ),
                         ),
-                        child: Text(
+                        child: const Text(
                           "Ajouter",
                           style: TextStyle(
                             color: Colors.white,

@@ -260,9 +260,8 @@ class _ProgressionIndication extends State<ProgressionIndication> {
                   percentage +
                   " % uploaded";
                   */
-          print("::::::::: $sent" " Bytes of " "$total Bytes - " +
-              percentage +
-              " % uploaded");
+          print(
+              "::::::::: $sent Bytes of $total Bytes - $percentage % uploaded");
           //update the progress
         });
       },

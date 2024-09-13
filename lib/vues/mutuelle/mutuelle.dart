@@ -3,7 +3,6 @@ import 'package:epst_app/vues/mutuelle/historique_demande.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class Mutuelle extends StatefulWidget {
   String? titre;
   //
@@ -49,24 +48,29 @@ class _Mutuelle extends State<Mutuelle> {
                   Expanded(
                     flex: 7,
                     child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/Logo_MESP_ok.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
+                      alignment: Alignment.center, //
                       decoration: const BoxDecoration(
                           //color: Colors.blue,
                           borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                       )),
+                      child: Image.asset(
+                        "assets/Logo_MESP_ok.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
+                      ),
                     ),
                   ),
                   Expanded(
                     flex: 3,
                     child: Container(
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
@@ -88,11 +92,6 @@ class _Mutuelle extends State<Mutuelle> {
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
                     ),
                   )
                 ],
@@ -119,24 +118,29 @@ class _Mutuelle extends State<Mutuelle> {
                   Expanded(
                     flex: 7,
                     child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/Logo_MESP_ok.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
+                      alignment: Alignment.center, //
                       decoration: const BoxDecoration(
                           //color: Colors.blue,
                           borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                       )),
+                      child: Image.asset(
+                        "assets/Logo_MESP_ok.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
+                      ),
                     ),
                   ),
                   Expanded(
                     flex: 3,
                     child: Container(
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
@@ -158,11 +162,6 @@ class _Mutuelle extends State<Mutuelle> {
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
                     ),
                   )
                 ],

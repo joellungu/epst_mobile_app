@@ -56,12 +56,12 @@ class Parcour extends StatelessWidget {
             child: Stack(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(0),
+                  padding: const EdgeInsets.all(0),
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
                       classe!,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 30,
                         fontWeight: FontWeight.w900,
@@ -70,7 +70,7 @@ class Parcour extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(0),
+                  padding: const EdgeInsets.all(0),
                   child: pourcentage != 0
                       ? Align(
                           alignment: Alignment.bottomLeft,

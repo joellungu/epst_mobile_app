@@ -329,7 +329,7 @@ class _FOAD extends State<FOAD> {
                                     children: [
                                       TextSpan(
                                         text:
-                                            "PROFESSEUR EN LIGNE\n(ECOLE / UNIVERSITE EN LIGNE)",
+                                            "PROFESSEUR EN LIGNE\n(ECOLE EN LIGNE)",
                                         style: TextStyle(
                                           fontSize: taille,
                                           fontWeight: FontWeight.normal,
@@ -360,7 +360,7 @@ class _FOAD extends State<FOAD> {
           currentIndex: current_index.value,
           selectedItemColor: Colors.blue,
           unselectedItemColor: Colors.grey.shade400,
-          selectedLabelStyle: TextStyle(
+          selectedLabelStyle: const TextStyle(
             fontWeight: FontWeight.w900,
           ),
           onTap: (e) {

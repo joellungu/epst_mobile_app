@@ -54,24 +54,29 @@ class _Sernie extends State<Sernie> {
                   Expanded(
                     flex: 7,
                     child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
+                      alignment: Alignment.center, //
                       decoration: const BoxDecoration(
                           //color: Colors.blue,
                           borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                       )),
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
+                      ),
                     ),
                   ),
                   Expanded(
                     flex: 3,
                     child: Container(
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
@@ -81,23 +86,18 @@ class _Sernie extends State<Sernie> {
                               text: "",
                               style: TextStyle(
                                 fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black,
                               ),
                             )
                           ],
                           style: TextStyle(
                             fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.black,
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
                     ),
                   )
                 ],
@@ -124,24 +124,29 @@ class _Sernie extends State<Sernie> {
                   Expanded(
                     flex: 7,
                     child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
+                      alignment: Alignment.center, //
                       decoration: const BoxDecoration(
                           //color: Colors.blue,
                           borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                       )),
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
+                      ),
                     ),
                   ),
                   Expanded(
                     flex: 3,
                     child: Container(
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      )),
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
@@ -151,23 +156,18 @@ class _Sernie extends State<Sernie> {
                               text: "",
                               style: TextStyle(
                                 fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black,
                               ),
                             )
                           ],
                           style: TextStyle(
                             fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            fontWeight: FontWeight.normal,
+                            color: Colors.black,
                           ),
                         ),
                       ),
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
                     ),
                   )
                 ],

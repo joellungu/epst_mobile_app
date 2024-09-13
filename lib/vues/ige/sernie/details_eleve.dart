@@ -772,14 +772,6 @@ class _DetailEleve extends State<DetailEleve> {
                               right: 20,
                               bottom: 2,
                             ),
-                            child: Text(
-                              "Modifier".tr,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.normal,
-                                fontSize: 15,
-                              ),
-                            ),
                             decoration: BoxDecoration(
                               color: Colors.indigo.shade900,
                               borderRadius: BorderRadius.circular(10),
@@ -788,6 +780,14 @@ class _DetailEleve extends State<DetailEleve> {
                               //   end: Alignment.centerRight,
                               //   colors: <Color>[Colors.yellow.shade700, Colors.black],
                               // ),
+                            ),
+                            child: Text(
+                              "Modifier".tr,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 15,
+                              ),
                             ),
                           ),
                         ),

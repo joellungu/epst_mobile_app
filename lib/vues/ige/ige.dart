@@ -351,18 +351,18 @@ class _Ige extends State<Ige> {
                     child: Container(
                       alignment: Alignment.center,
                       padding: const EdgeInsets.all(0),
-                      margin: const EdgeInsets.all(0),
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
+                      margin: const EdgeInsets.all(0), //
                       decoration: const BoxDecoration(
                         //color: Colors.yellow,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(10),
                         ),
+                      ),
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
                       ),
                     ),
                   ),
@@ -412,18 +412,18 @@ class _Ige extends State<Ige> {
                 Expanded(
                   flex: 7,
                   child: Container(
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      "assets/LOGO-MINEPST-BON.png",
-                      color: Colors.blue,
-                      colorBlendMode: BlendMode.color,
-                    ), //
+                    alignment: Alignment.center, //
                     decoration: const BoxDecoration(
                       //color: Colors.blue,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                       ),
+                    ),
+                    child: Image.asset(
+                      "assets/LOGO-MINEPST-BON.png",
+                      color: Colors.blue,
+                      colorBlendMode: BlendMode.color,
                     ),
                   ),
                 ),
@@ -485,18 +485,18 @@ class _Ige extends State<Ige> {
                   Expanded(
                     flex: 7,
                     child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
+                      alignment: Alignment.center, //
                       decoration: const BoxDecoration(
                         //color: Colors.blue,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(10),
                         ),
+                      ),
+                      child: Image.asset(
+                        "assets/LOGO-MINEPST-BON.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
                       ),
                     ),
                   ),
@@ -630,18 +630,18 @@ class _Ige extends State<Ige> {
                   Expanded(
                     flex: 7,
                     child: Container(
-                      alignment: Alignment.center,
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
-                      ), //
+                      alignment: Alignment.center, //
                       decoration: const BoxDecoration(
                           //color: Colors.blue,
                           borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                       )),
+                      child: Image.asset(
+                        "assets/Logo_MESP_ok.png",
+                        color: Colors.blue,
+                        colorBlendMode: BlendMode.color,
+                      ),
                     ),
                   ),
                   Expanded(
@@ -649,6 +649,12 @@ class _Ige extends State<Ige> {
                     child: Container(
                       padding: const EdgeInsets.only(bottom: 10),
                       alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        ),
+                      ),
                       child: RichText(
                         textAlign: TextAlign.center,
                         text: const TextSpan(
@@ -668,12 +674,6 @@ class _Ige extends State<Ige> {
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                           ),
-                        ),
-                      ),
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
                         ),
                       ),
                     ),

@@ -6,16 +6,16 @@ import 'package:webview_flutter_android/webview_flutter_android.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 // #enddocregion platform_imports
 
-class Actualites extends StatefulWidget {
-  const Actualites({Key? key}) : super(key: key);
+class Dinacope extends StatefulWidget {
+  const Dinacope({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _Actualites();
+    return _Dinacope();
   }
 }
 
-class _Actualites extends State<Actualites> {
+class _Dinacope extends State<Dinacope> {
   WebViewController? controlleur;
   late final WebViewController _controller;
 
@@ -82,7 +82,7 @@ Page resource error:
           );
         },
       )
-      ..loadRequest(Uri.parse('https://minepst.gouv.cd/infos-et-blogs'));
+      ..loadRequest(Uri.parse('https://secoperdc.com'));
 
     // #docregion platform_features
     if (controller.platform is AndroidWebViewController) {
@@ -99,7 +99,7 @@ Page resource error:
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Educ-NC sur le net"),
+        title: const Text("DINACOPE"),
       ),
       body: WebViewWidget(
         // javascriptMode: JavascriptMode.unrestricted,
