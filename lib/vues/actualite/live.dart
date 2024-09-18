@@ -176,7 +176,7 @@ class _LiveStream extends State<LiveStream> {
                         child: RichText(
                           textAlign: TextAlign.center,
                           text: TextSpan(
-                            text: "Clin d'œil ",
+                            text: "Clin d'œil",
                             children: [
                               TextSpan(
                                 text: "",

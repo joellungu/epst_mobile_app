@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
+import 'package:get_storage/get_storage.dart';
 import 'cours_primaire.dart';
+import 'package:get/get.dart';
 
 class FormationEducationBase extends StatelessWidget {
   //
@@ -9,18 +10,22 @@ class FormationEducationBase extends StatelessWidget {
   double taille = 10;
   double pd = 15;
   //
-  List lecons = [
-    "FRANCAIS",
-    "MATH-ARITMETIQUE",
-    "HISTOIRE",
-    "HYGIENE",
-    "RELIGION",
-    "VOCABULAIRE",
-    "TRADITION AFRICAINE",
-    "CULTURE GENERALE"
-  ];
+  // List lecons = [
+  //   "FRANCAIS",
+  //   "MATH-ARITMETIQUE",
+  //   "HISTOIRE",
+  //   "HYGIENE",
+  //   "RELIGION",
+  //   "VOCABULAIRE",
+  //   "TRADITION AFRICAINE",
+  //   "CULTURE GENERALE"
+  // ];
+  //
+  var box = GetStorage();
+  //
+  String typeFormation;
 
-  FormationEducationBase({Key? key}) : super(key: key);
+  FormationEducationBase(this.typeFormation, {Key? key}) : super(key: key);
   //
 
   @override
@@ -44,22 +49,67 @@ class FormationEducationBase extends StatelessWidget {
         ),
         body: TabBarView(
           children: List.generate(8, (e) {
+            //
+            List listDeCours = [];
+            //
+            List courss = box.read("classe_cours") ?? [];
+            //
+            for (List cs in courss) {
+              for (Map ee in cs) {
+                int cls = e + 1;
+                if (ee['categorie'] == "Education de base".toLowerCase() &&
+                    ee['propriete'].toLowerCase() ==
+                        typeFormation.toLowerCase() &&
+                    ee['classe'] == cls) {
+                  listDeCours.add(ee['cours']);
+                }
+              }
+            }
+            //
             return GridView.count(
               crossAxisCount: 2,
               mainAxisSpacing: 5,
               crossAxisSpacing: 5,
               childAspectRatio: 0.8,
               //crossAxisCount: 2,
-              children: List.generate(lecons.length, (e) {
+              children: List.generate(listDeCours.length, (l) {
+                //
                 return InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return CoursPrimaire("${lecons[e]}");
-                        },
+                  onTap: () async {
+                    //
+                    Get.dialog(
+                      Center(
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          child: const CircularProgressIndicator(),
+                        ),
                       ),
                     );
+                    //
+                    List classe_cours = box.read("classe_cours") ?? [];
+                    //
+                    List branches = [];
+                    //
+                    Set types = {};
+                    //
+                    for (List ll in classe_cours) {
+                      for (Map ee in ll) {
+                        int cls = e + 1;
+                        if (ee['cours'] == listDeCours[l].toLowerCase() &&
+                            ee['categorie'] ==
+                                "Education de base".toLowerCase() &&
+                            ee['classe'] == cls) {
+                          branches.add(ee['banche']);
+                          types.add(ee['type']);
+                        }
+                      }
+                    }
+                    //
+                    Get.back();
+                    //
+                    Get.to(CoursPrimaire(
+                        "${listDeCours[l]}", e + 1, branches, types));
                   },
                   child: Card(
                     child: Container(
@@ -110,7 +160,7 @@ class FormationEducationBase extends StatelessWidget {
                                   text: "",
                                   children: [
                                     TextSpan(
-                                      text: "${lecons[e]}",
+                                      text: "${listDeCours[l]}".toUpperCase(),
                                       style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,

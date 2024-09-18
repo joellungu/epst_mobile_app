@@ -1,10 +1,8 @@
-import 'package:epst_app/vues/formation/formation_eleves/enseignement_eleve_enligne.dart';
+import 'package:epst_app/vues/formation/formation_eleves/enseignement_mobile_enligne.dart';
 import 'package:epst_app/vues/formation/foad.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
 import 'eod/eod.dart';
-import 'formation_enseignants/enseignement_enseignant_enligne.dart';
 
 // ignore: must_be_immutable
 class Formation extends StatefulWidget {
@@ -122,13 +120,13 @@ class _Formation extends State<Formation> {
           ),
           InkWell(
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const EnseignementEnseignantEnligne();
-                  },
-                ),
-              );
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (context) {
+              //       return const EnseignementEnseignantEnligne();
+              //     },
+              //   ),
+              // );
             },
             child: Container(
               height: 200,

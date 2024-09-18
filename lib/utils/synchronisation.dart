@@ -23,6 +23,22 @@ class Synchronisation {
   }
 
   //
+  static synchroClasseCours() async {
+    //
+    Requete requete = Requete();
+    //
+    var box = GetStorage();
+    //
+    Response response = await requete.getE("classe/structure");
+    if (response.isOk) {
+      //
+      print("classe_cours: ${response.body}");
+      box.write("classe_cours", response.body);
+      //
+    }
+  }
+
+  //
   static synchroAgens() async {
     //
     Requete requete = Requete();

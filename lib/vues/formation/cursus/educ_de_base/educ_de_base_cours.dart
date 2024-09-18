@@ -1,4 +1,3 @@
-import 'package:epst_app/vues/formation/formation_enseignants/primaire/cours_primaire.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -40,7 +39,7 @@ class EducDeBaseCours extends StatelessWidget {
         children: List.generate(lecons.length, (e) {
           return InkWell(
             onTap: () {
-              Get.to(CoursPrimaire("${lecons[e]}"));
+              //Get.to(CoursPrimaire("${lecons[e]}"));
             },
             child: Container(
               height: 230,

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-class LeconMat extends StatelessWidget {
+class Lecon extends StatelessWidget {
   String lecon;
-  LeconMat(this.lecon, {Key? key}) : super(key: key);
+  Lecon(this.lecon, {Key? key}) : super(key: key);
   //
   Rx<Widget> vue = Rx<Widget>(
     Container(

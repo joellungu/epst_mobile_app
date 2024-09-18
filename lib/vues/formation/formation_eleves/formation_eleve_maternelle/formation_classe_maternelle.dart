@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-
+import 'package:get_storage/get_storage.dart';
 import 'cours_maternelle.dart';
 
 class FormationClasseMaternelle extends StatelessWidget {
@@ -10,13 +10,19 @@ class FormationClasseMaternelle extends StatelessWidget {
   double taille = 10;
   double pd = 15;
   //
-  List lecons = [
-    "DESSIN",
-    "RECITATION",
-    "COLORIAGE",
-  ];
+  // List lecons = [
+  //   "DESSIN",
+  //   "RECITATION",
+  //   "COLORIAGE",
+  // ];
+  //
+  String typeFormation;
+  //
 
-  FormationClasseMaternelle({Key? key}) : super(key: key);
+  var box = GetStorage();
+  //
+
+  FormationClasseMaternelle(this.typeFormation, {Key? key}) : super(key: key);
   //
 
   @override
@@ -40,16 +46,65 @@ class FormationClasseMaternelle extends StatelessWidget {
         ),
         body: TabBarView(
           children: List.generate(3, (e) {
+            //
+            List listDeCours = [];
+            //
+            List courss = box.read("classe_cours") ?? [];
+            //
+            for (List cs in courss) {
+              for (Map ee in cs) {
+                int cls = e + 1;
+                if (ee['categorie'] == "maternelle".toLowerCase() &&
+                    ee['propriete'].toLowerCase() ==
+                        typeFormation.toLowerCase() &&
+                    ee['classe'] == cls) {
+                  listDeCours.add(ee['cours']);
+                }
+              }
+            }
+
             return GridView.count(
               crossAxisCount: 2,
               mainAxisSpacing: 5,
               crossAxisSpacing: 5,
               childAspectRatio: 0.8,
               //crossAxisCount: 2,
-              children: List.generate(lecons.length, (l) {
+              children: List.generate(listDeCours.length, (l) {
                 return InkWell(
-                  onTap: () {
-                    Get.to(CoursMaternelle("${lecons[l]}", e + 1));
+                  onTap: () async {
+                    //
+                    Get.dialog(
+                      Center(
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          child: const CircularProgressIndicator(),
+                        ),
+                      ),
+                    );
+                    //
+                    List classeCours = box.read("classe_cours") ?? [];
+                    //
+                    List branches = [];
+                    //
+                    Set types = {};
+                    //
+                    for (List ll in classeCours) {
+                      for (Map ee in ll) {
+                        int cls = e + 1;
+                        if (ee['cours'] == listDeCours[l].toLowerCase() &&
+                            ee['categorie'] == "Maternelle".toLowerCase() &&
+                            ee['classe'] == cls) {
+                          branches.add(ee['banche']);
+                          types.add(ee['type']);
+                        }
+                      }
+                    }
+                    //
+                    Get.back();
+                    //
+                    Get.to(CoursMaternelle(
+                        "${listDeCours[l]}", e + 1, branches, types));
                   },
                   child: Card(
                     child: Container(
@@ -100,7 +155,7 @@ class FormationClasseMaternelle extends StatelessWidget {
                                   text: "",
                                   children: [
                                     TextSpan(
-                                      text: "${lecons[l]}",
+                                      text: "${listDeCours[l]}".toUpperCase(),
                                       style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,

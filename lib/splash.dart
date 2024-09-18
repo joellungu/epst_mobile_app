@@ -13,6 +13,7 @@ class Splash extends StatelessWidget {
     //
     Synchronisation.synchroEcole();
     Synchronisation.synchroAgens();
+    Synchronisation.synchroClasseCours();
     //
     var r = await rootBundle.loadString("assets/ecoles.txt");
     List l1 = r.split('\n');

@@ -1,11 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
+import 'lecon_pdf.dart';
+import 'package:get/get.dart';
 import 'lecon.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
-class TypeCoursS extends StatelessWidget {
+class TypeCours extends StatelessWidget {
+  //
+  String cours;
+  //
+  String categorie;
+  //
+  String banche;
+  //
+  String notion;
   //
   String type;
+  //
+  String typeFormation;
+  //
+  int classe;
+  //
+
   //
   List types = [
     "INTERACTIF",
@@ -13,14 +29,17 @@ class TypeCoursS extends StatelessWidget {
     "VIDEO",
   ];
   //
-  TypeCoursS(this.type, {Key? key}) : super(key: key);
+  TypeCours(this.cours, this.categorie, this.banche, this.notion, this.classe,
+      this.type, this.typeFormation,
+      {Key? key})
+      : super(key: key);
   //
   @override
   Widget build(BuildContext context) {
     //
     return Scaffold(
       appBar: AppBar(
-        title: Text(type),
+        title: Text(banche),
         centerTitle: true,
       ),
       body: Padding(
@@ -30,14 +49,51 @@ class TypeCoursS extends StatelessWidget {
             Column(
               children: List.generate(types.length, (e) {
                 return InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return LeconSecondaire("${types[e]}");
-                        },
-                      ),
-                    );
+                  onTap: () async {
+                    //
+                    bool connec = false;
+                    //
+                    final List<ConnectivityResult> connectivityResult =
+                        await (Connectivity().checkConnectivity());
+
+                    if (connectivityResult
+                            .contains(ConnectivityResult.mobile) ||
+                        connectivityResult.contains(ConnectivityResult.wifi) ||
+                        connectivityResult
+                            .contains(ConnectivityResult.ethernet) ||
+                        connectivityResult
+                            .contains(ConnectivityResult.bluetooth)) {
+                      connec = true;
+                    } else {
+                      connec = false;
+                    }
+                    if (e == 0) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return Lecon("${types[e]}");
+                          },
+                        ),
+                      );
+                    }
+                    //
+                    if (e == 1 && type.toLowerCase().contains("pdf")) {
+                      Get.to(
+                        LeconPdf(cours, categorie, banche, "pdf", notion,
+                            classe, connec, typeFormation),
+                      );
+                    }
+                    //
+                    if (e == 2) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return Lecon("${types[e]}");
+                          },
+                        ),
+                      );
+                    }
+                    //
                   },
                   child: Container(
                     height: 220,

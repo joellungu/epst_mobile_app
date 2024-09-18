@@ -7,8 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 // Import for iOS features.
 
 import 'cursus/cursus.dart';
-import 'formation_eleves/enseignement_eleve_enligne.dart';
-import 'formation_enseignants/formation_enseignant_mobile.dart';
+import 'formation_eleves/enseignement_mobile_enligne.dart';
 // #enddocregion platform_imports
 
 class FOAD extends StatefulWidget {
@@ -50,7 +49,7 @@ class _FOAD extends State<FOAD> {
                 children: [
                   InkWell(
                     onTap: () {
-                      Get.to(FormationEnseignantMobile());
+                      Get.to(FormationMobileEnligne("Professeur"));
                     },
                     child: Card(
                       child: Container(
@@ -126,7 +125,7 @@ class _FOAD extends State<FOAD> {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.to(FormationEleveMobile());
+                      Get.to(FormationMobileEnligne("Eleve"));
                     },
                     child: Card(
                       child: Container(

@@ -24,12 +24,14 @@ class LeconPdf extends StatelessWidget {
   //
   int classe;
   //
+  String typeFormation;
+  //
   var box = GetStorage();
   //
   bool connec;
   //
   LeconPdf(this.cours, this.categorie, this.banche, this.type, this.notion,
-      this.classe, this.connec,
+      this.classe, this.connec, this.typeFormation,
       {Key? key})
       : super(key: key);
   //
@@ -40,8 +42,8 @@ class LeconPdf extends StatelessWidget {
       //cours/checkcours
       body: connec
           ? FutureBuilder(
-              future:
-                  checkCours(cours, categorie, banche, type, notion, classe),
+              future: checkCours(cours, categorie, banche, type, notion, classe,
+                  typeFormation),
               builder: (c, t) {
                 if (t.hasData) {
                   //
@@ -76,7 +78,7 @@ class LeconPdf extends StatelessWidget {
                                 );
                                 //
                                 String nomFichier =
-                                    "$cours-$categorie-$banche-$type-$notion-$classe";
+                                    "$cours-$categorie-$banche-$type-$notion-$classe-$typeFormation";
                                 //
                                 Uint8List fichier = await getData(id);
                                 box.write(nomFichier, fichier);
@@ -174,13 +176,13 @@ class LeconPdf extends StatelessWidget {
 //package:get/get_connect/http/src/response/response.dart
   //
   Future<String> checkCours(String cours, String categorie, String banche,
-      String type, String notion, int classe) async {
+      String type, String notion, int classe, String propriete) async {
     //
     categorie = categorie.toLowerCase();
     cours = cours.toLowerCase();
     //
     Response response = await requete.getE(
-        "cours/checkcours?cours=$cours&categorie=$categorie&banche=$banche&type=$type&notion=$notion&classe=$classe");
+        "cours/checkcours?cours=$cours&categorie=$categorie&banche=$banche&type=$type&notion=$notion&classe=$classe&propriete=$propriete");
     //
     if (response.isOk) {
       //

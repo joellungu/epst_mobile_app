@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:lottie/lottie.dart';
-import 'type_cours.dart';
+import '../type_cours.dart';
 import 'package:get/get.dart';
-import 'lecon.dart';
 import 'package:epst_app/utils/requetes.dart';
+import 'package:epst_app/utils/utils.dart';
 
 class CoursMaternelle extends StatelessWidget {
   //
@@ -13,20 +14,25 @@ class CoursMaternelle extends StatelessWidget {
   //
   int classe;
   //
-  CoursMaternelle(this.cours, this.classe, {Key? key}) : super(key: key) {
+  var box = GetStorage();
+  //
+  CoursMaternelle(this.cours, this.classe, this.lecons, this.types, {Key? key})
+      : super(key: key) {
     //
     print("Classe: $classe");
     //
   }
   //
-  List lecons = [
-    "CONJUGAISON",
-    "VOCABULAIRE",
-    "ORTHOGRAPHE",
-    "GRAMMAIRE",
-    "LECTURE",
-    "Painture",
-  ];
+  List lecons = [];
+  Set types = {};
+  // [
+  //   "CONJUGAISON",
+  //   "VOCABULAIRE",
+  //   "ORTHOGRAPHE",
+  //   "GRAMMAIRE",
+  //   "LECTURE",
+  //   "Painture",
+  // ];
   //
   double st = 15;
   double taille = 10;
@@ -58,8 +64,8 @@ class CoursMaternelle extends StatelessWidget {
                     //
                     return Container(
                       child: FutureBuilder(
-                        future:
-                            getNotion(cours, "Maternelle", lecons[e], classe),
+                        future: Utils.getNotion(cours.toLowerCase(),
+                            "Maternelle".toLowerCase(), lecons[e], classe),
                         builder: (c, t) {
                           //
                           if (t.hasData) {
@@ -74,12 +80,13 @@ class CoursMaternelle extends StatelessWidget {
                                     //
                                     Get.to(
                                       TypeCours(
-                                        cours,
-                                        "Maternelle".toLowerCase(),
-                                        lecons[e],
-                                        "${cs[c]['notion']}",
-                                        classe,
-                                      ),
+                                          cours,
+                                          "Maternelle".toLowerCase(),
+                                          lecons[e],
+                                          "${cs[c]['notion']}",
+                                          classe,
+                                          "${cs[c]['type']}",
+                                          "maternelle"),
                                     );
                                     //
                                   },
@@ -186,22 +193,4 @@ class CoursMaternelle extends StatelessWidget {
   }
 
   //
-  Future<List> getNotion(
-      String cours, String categorie, String banche, int classe) async {
-    //
-    categorie = categorie.toLowerCase();
-    //
-    cours = cours.toLowerCase();
-    //
-    Response response = await requete.getE(
-        "cours/notion?cours=$cours&categorie=$categorie&banche=$banche&classe=$classe");
-    //
-    if (response.isOk) {
-      //
-      return response.body;
-    } else {
-      //
-      return [];
-    }
-  }
 }

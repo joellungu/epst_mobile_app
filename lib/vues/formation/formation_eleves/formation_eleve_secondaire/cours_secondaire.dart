@@ -1,22 +1,31 @@
-import 'package:epst_app/vues/formation/formation_enseignants/primaire/type_cours.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
-import 'lecon.dart';
+import 'package:get/get.dart';
+import '../type_cours.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:epst_app/utils/utils.dart';
 
 class CoursSecondaire extends StatelessWidget {
   //
   String cours;
   //
-  CoursSecondaire(this.cours, {Key? key}) : super(key: key);
+  int classe;
   //
-  List lecons = [
-    "CONJUGAISON",
-    "VOCABULAIRE",
-    "ORTHOGRAPHE",
-    "GRAMMAIRE",
-    "LECTURE",
-  ];
+  var box = GetStorage();
+  //
+  CoursSecondaire(this.cours, this.classe, this.lecons, this.types, {Key? key})
+      : super(key: key);
+  //
+  // List lecons = [
+  //   "CONJUGAISON",
+  //   "VOCABULAIRE",
+  //   "ORTHOGRAPHE",
+  //   "GRAMMAIRE",
+  //   "LECTURE",
+  // ];
+  //
+  List lecons = [];
+  Set types = {};
   //
   double st = 15;
   double taille = 10;
@@ -37,13 +46,84 @@ class CoursSecondaire extends StatelessWidget {
         children: List.generate(lecons.length, (e) {
           return InkWell(
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
+              //
+              showModalBottomSheet(
+                  context: context,
                   builder: (context) {
-                    return TypeCours("${lecons[e]}");
-                  },
-                ),
-              );
+                    //
+                    return Container(
+                      child: FutureBuilder(
+                        future: Utils.getNotion(
+                            cours.toLowerCase(),
+                            "Education de base".toLowerCase(),
+                            lecons[e],
+                            classe),
+                        builder: (c, t) {
+                          //
+                          if (t.hasData) {
+                            //
+                            List cs = t.data as List;
+                            //
+                            return ListView(
+                              padding: const EdgeInsets.all(10),
+                              children: List.generate(cs.length, (c) {
+                                return ListTile(
+                                  onTap: () {
+                                    //
+                                    Get.to(
+                                      TypeCours(
+                                          cours,
+                                          "secondaire".toLowerCase(),
+                                          lecons[e],
+                                          "${cs[c]['notion']}",
+                                          classe,
+                                          "${cs[c]['type']}",
+                                          "secondaire"),
+                                    );
+                                    //
+                                  },
+                                  leading: Container(
+                                    height: 40,
+                                    width: 40,
+                                    alignment: Alignment.center,
+                                    child: const Icon(Icons.book),
+                                  ),
+                                  title: Text("${cs[c]['notion']}"),
+                                );
+                              }),
+                            );
+                            //
+                          } else if (t.hasError) {
+                            return Container();
+                          }
+
+                          return Center(
+                            child: SizedBox(
+                              height: 40,
+                              width: 40,
+                              child: const CircularProgressIndicator(),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  });
+              //
+
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (context) {
+              //       return TypeCours("${lecons[e]}");
+              //     },
+              //   ),
+              // );
+              // Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (context) {
+              //       return TypeCours("${lecons[e]}");
+              //     },
+              //   ),
+              // );
             },
             child: Container(
               height: 230,

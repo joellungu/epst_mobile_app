@@ -34,7 +34,7 @@ class _Accueil extends State<Accueil> {
   int currentIndex = 2;
 
   List liste = [
-    "Formation à distance",
+    //"Formation à distance",
     "Chat avec agent EPST",
     "Magazine de l'EPST",
     "Dépôt plainte",
@@ -42,8 +42,8 @@ class _Accueil extends State<Accueil> {
     //"DINACOPE Listing",
     "Sécretariat général", //& Directions centrales
     "Statistique\nde EPST",
-    "Demande docs et services d'EDUCATION",
-    "Actualilé",
+    //"Demande docs et services d'EDUCATION",
+    //"Actualilé",
     //"Mutuelle de santé",
     //"EPST Kelasi",
   ];
@@ -53,11 +53,12 @@ class _Accueil extends State<Accueil> {
   @override
   void initState() {
     listeIcons = [
-      Image.asset(
-        "assets/FOAD.jpg",
-        color: Colors.blue,
-        colorBlendMode: BlendMode.color,
-      ),
+      // Image.asset(
+      //   "assets/FOAD.jpg",
+      //   color: Colors.blue,
+      //   colorBlendMode: BlendMode.color,
+      // ),
+
       Image.asset(
         "assets/images-n.png",
         color: Colors.blue,
@@ -73,7 +74,7 @@ class _Accueil extends State<Accueil> {
         color: Colors.blue,
         colorBlendMode: BlendMode.color,
       ),
-
+      //
       Image.asset(
         "assets/LOGO-MINEPST-BON.png",
         // color: Colors.blue,
@@ -100,20 +101,20 @@ class _Accueil extends State<Accueil> {
         // color: Colors.blue,
         // colorBlendMode: BlendMode.color,
       ),
-      Image.asset(
-        "assets/LOGO-MINEPST-BON.png",
-        color: Colors.white,
-        colorBlendMode: BlendMode.dst,
-        height: 100,
-        width: 100,
-      ),
-      //
-      Image.asset(
-        "assets/LOGO-MINEPST-BON.png",
-        // color: Colors.blue,
-        // colorBlendMode: BlendMode.color,
-      ),
-      //
+      // Image.asset(
+      //   "assets/LOGO-MINEPST-BON.png",
+      //   color: Colors.white,
+      //   colorBlendMode: BlendMode.dst,
+      //   height: 100,
+      //   width: 100,
+      // ),
+      // //
+      // Image.asset(
+      //   "assets/LOGO-MINEPST-BON.png",
+      //   // color: Colors.blue,
+      //   // colorBlendMode: BlendMode.color,
+      // ),
+
       Image.asset(
         "assets/Logo_MESP_ok.png",
         fit: BoxFit.fill,
@@ -216,15 +217,15 @@ class _Accueil extends State<Accueil> {
           ? Center(
               child: GridView.count(
                 shrinkWrap: true,
-                padding: const EdgeInsets.all(10),
-                crossAxisCount: 3,
+                padding: const EdgeInsets.all(20),
+                crossAxisCount: 2,
                 mainAxisSpacing: 20,
-                crossAxisSpacing: 7,
-                childAspectRatio: 0.7,
+                crossAxisSpacing: 20,
+                childAspectRatio: 0.8,
                 children: List.generate(liste.length, (index) {
                   return InkWell(
                     onTap: () {
-                      if (index == 1) {
+                      if (index == 0) {
                         showDialog(
                             context: context,
                             builder: (context) {
@@ -270,65 +271,76 @@ class _Accueil extends State<Accueil> {
                                 ),
                               );
                             });
-                      } else {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) {
-                            if (index == 0) {
-                              return Formation(titre: "Formation à distance");
-                              //const FOAD();
-                            } else if (index == 2) {
-                              return Magasine(
-                                titre: liste[index],
-                              );
-                            } else if (index == 3) {
-                              //
-                              return DepotPlainte(
-                                titre: liste[index],
-                              );
-                            }
-                            // else if (index == 5) {
-                            //   return Listing(
-                            //     titre: liste[index],
-                            //   );
-                            // }
-                            else if (index == 4) {
-                              return Reforme(
-                                titre: liste[index],
-                              );
-                            }
-                            // else if (index == 9) {
-                            //   //print("Je suis le cours...");Ige,Ige
-                            //   return Formation(
-                            //     titre: liste[index],
-                            //   );
-                            // }
-                            else if (index == 5) {
-                              //print("Je suis le cours...");Ige,Ige
-                              return SecretariaGeneral(
-                                titre: liste[index],
-                              );
-                            } else if (index == 6) {
-                              //print("Je suis le cours...");Ige,Ige
-                              return Esige(
-                                titre: liste[index],
-                              );
-                            } else if (index == 7) {
-                              //print("Je suis le cours...");Ige,Ige
-                              return Ige(
-                                titre: liste[index],
-                              );
-                            } else if (index == 8) {
-                              //print("Je suis le cours...");Ige,Ige
-                              //Mutuelle
-                              return LiveStream(titre: "Actualités");
-                            } else {
-                              //
-                              //return Container();
-                              return LiveStream(titre: "Actualité");
-                            }
-                          }),
+                      }
+                      if (index == 1) {
+                        Get.to(
+                          Magasine(
+                            titre: liste[index],
+                          ),
                         );
                       }
+                      if (index == 2) {
+                        //
+                        Get.to(
+                          DepotPlainte(
+                            titre: liste[index],
+                          ),
+                        );
+                      }
+                      // else if (index == 5) {
+                      //   return Listing(
+                      //     titre: liste[index],
+                      //   );
+                      // }
+                      if (index == 3) {
+                        Get.to(
+                          Reforme(
+                            titre: liste[index],
+                          ),
+                        );
+                      }
+                      // else if (index == 9) {
+                      //   //print("Je suis le cours...");Ige,Ige
+                      //   return Formation(
+                      //     titre: liste[index],
+                      //   );
+                      // }
+                      if (index == 4) {
+                        //print("Je suis le cours...");Ige,Ige
+                        Get.to(
+                          SecretariaGeneral(
+                            titre: liste[index],
+                          ),
+                        );
+                      }
+                      if (index == 5) {
+                        //print("Je suis le cours...");Ige,Ige
+                        Get.to(
+                          Esige(
+                            titre: liste[index],
+                          ),
+                        );
+                      }
+                      if (index == 6) {
+                        //print("Je suis le cours...");Ige,Ige
+                        Get.to(
+                          LiveStream(
+                            titre: liste[index],
+                          ),
+                        );
+                      }
+                      // if (index == 7) {
+                      //   //print("Je suis le cours...");Ige,Ige
+                      //   //Mutuelle
+                      //   Get.to(
+                      //     LiveStream(titre: "Actualités"),
+                      //   );
+                      // }
+                      // else {
+                      //   //
+                      //   //return Container();
+                      //   return LiveStream(titre: "Actualité");
+                      // }
                     },
                     //elevation: 1,
                     //color: Colors.white,
@@ -341,23 +353,25 @@ class _Accueil extends State<Accueil> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Expanded(
-                            flex: 7,
-                            child: index != 0
-                                ? Container(
-                                    padding: const EdgeInsets.all(5),
-                                    alignment: Alignment.center,
-                                    child: listeIcons[index],
-                                    decoration: const BoxDecoration(
-                                      //color: Colors.blue,
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(10),
-                                        topRight: Radius.circular(10),
-                                      ),
-                                    ),
-                                  )
-                                : Lottie.asset(
-                                    'assets/Animation - 1719837917526.json'),
-                          ),
+                              flex: 7,
+                              child:
+                                  //index != 1
+                                  //?
+                                  Container(
+                                padding: const EdgeInsets.all(5),
+                                alignment: Alignment.center,
+                                child: listeIcons[index],
+                                decoration: const BoxDecoration(
+                                  //color: Colors.blue,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    topRight: Radius.circular(10),
+                                  ),
+                                ),
+                              )
+                              //: Lottie.asset(
+                              //  'assets/Animation - 1719837917526.json'),
+                              ),
                           Expanded(
                             flex: 5,
                             child: Container(
@@ -405,7 +419,7 @@ class _Accueil extends State<Accueil> {
               ),
             )
           : currentIndex == 0
-              ? const NotificationsScolaires()
+              ? NotificationsScolaires()
               : currentIndex == 1
                   ? Formation(titre: "Formation à distance")
                   : currentIndex == 3

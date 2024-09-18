@@ -5,21 +5,31 @@ import 'formation_education_de_base/formation_education_base.dart';
 import 'formation_eleve_maternelle/formation_classe_maternelle.dart';
 import 'formation_eleve_secondaire/formation_secondaire.dart';
 
-class FormationEleveMobile extends StatelessWidget {
+class FormationMobileEnligne extends StatelessWidget {
   //
   double st = 15;
   double taille = 10;
   double pd = 15;
   //
-  List formations = [
+  List formationsEls = [
     "FORMATION POUR LES ELEVES DE LA MATERNELLE,Animation - 1719837919056.json",
     "FORMATION POUR LES ELEVES DE L'EDUCATION DE BASE,Animation - 1719829657336.json",
     //"FORMATION POUR LES ENCADREURS DE LA MATERNELLE,Animation - 1719829657336.json",
     "FORMATION POUR LES ELEVES DU SECONDAIRE,Animation - 1719837965657.json",
     "BIBLIOTHEQUE NUMERIQUE,Animation - 1719829962343.json"
   ];
+  //
+  List formationsPros = [
+    "FORMATION POUR LES ENCADREURES DE LA MATERNELLE,Animation - 1719837919056.json",
+    "FORMATION POUR LES ENSEIGNANTS DE L'EDUCATION DE BASE,Animation - 1719829657336.json",
+    //"FORMATION POUR LES ENCADREURS DE LA MATERNELLE,Animation - 1719829657336.json",
+    "FORMATION POUR LES ENSEIGNANTS DU SECONDAIRE,Animation - 1719837965657.json",
+    "BIBLIOTHEQUE NUMERIQUE,Animation - 1719829962343.json"
+  ];
+  //
+  String typeFormation;
 
-  FormationEleveMobile({Key? key}) : super(key: key);
+  FormationMobileEnligne(this.typeFormation, {Key? key}) : super(key: key);
   //
   @override
   Widget build(BuildContext context) {
@@ -38,8 +48,9 @@ class FormationEleveMobile extends StatelessWidget {
           shrinkWrap: true,
           padding: const EdgeInsets.all(5),
           //crossAxisCount: 2,
-          children: List.generate(formations.length, (e) {
-            print("assets: ${formations[e].split(',')[1]}");
+          children: List.generate(formationsEls.length, (e) {
+            print("assets: ${formationsEls[e].split(',')[1]}");
+            print("assets: ${formationsPros[e].split(',')[1]}");
             return InkWell(
               onTap: () {
                 if (e == 0) {
@@ -47,7 +58,7 @@ class FormationEleveMobile extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
-                        return FormationClasseMaternelle();
+                        return FormationClasseMaternelle(typeFormation);
                       },
                     ),
                   );
@@ -57,7 +68,7 @@ class FormationEleveMobile extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
-                        return FormationEducationBase();
+                        return FormationEducationBase(typeFormation);
                       },
                     ),
                   );
@@ -67,7 +78,7 @@ class FormationEleveMobile extends StatelessWidget {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) {
-                        return FormationSecondaire();
+                        return FormationSecondaire(typeFormation);
                       },
                     ),
                   );
@@ -103,7 +114,7 @@ class FormationEleveMobile extends StatelessWidget {
                             ),
                           ),
                           child: Lottie.asset(
-                              'assets/${formations[e].split(',')[1]}'),
+                              "assets/${typeFormation == 'Eleve' ? formationsEls[e].split(',')[1] : formationsPros[e].split(',')[1]}"),
                         ),
                       ),
                       Expanded(
@@ -123,7 +134,8 @@ class FormationEleveMobile extends StatelessWidget {
                               text: "",
                               children: [
                                 TextSpan(
-                                  text: "${formations[e].split(',')[0]}",
+                                  text:
+                                      "${typeFormation == 'Eleve' ? formationsEls[e].split(',')[0] : formationsPros[e].split(',')[0]}",
                                   style: TextStyle(
                                     fontSize: taille,
                                     fontWeight: FontWeight.normal,
