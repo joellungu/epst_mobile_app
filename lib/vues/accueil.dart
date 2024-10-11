@@ -10,6 +10,7 @@ import 'package:epst_app/vues/sg/sg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:path/path.dart';
 import 'e_sige/e_sige.dart';
@@ -31,17 +32,18 @@ class _Accueil extends State<Accueil> {
   double si = 60;
   List listeIcons = [];
   //
-  int currentIndex = 2;
+  int currentIndex = 0;
 
   List liste = [
     //"Formation à distance",
-    "Chat avec agent EPST",
-    "Magazine de l'EPST",
+    "Chat avec agent EDU-NC",
+    //"",
+    "Magazine EDU-NC",
     "Dépôt plainte",
-    "Réformes EPST",
+    "Réformes EDU-NC",
     //"DINACOPE Listing",
     "Sécretariat général", //& Directions centrales
-    "Statistique\nde EPST",
+    "Statistique\nde EDU-NC",
     //"Demande docs et services d'EDUCATION",
     //"Actualilé",
     //"Mutuelle de santé",
@@ -385,7 +387,7 @@ class _Accueil extends State<Accueil> {
                               child: RichText(
                                 textAlign: TextAlign.center,
                                 text: TextSpan(
-                                  text: index == 1 ? "MGP\n" : "",
+                                  text: "", // index == 1 ? "MGP\n" :
                                   children: [
                                     TextSpan(
                                       text: liste[index],
@@ -395,8 +397,8 @@ class _Accueil extends State<Accueil> {
                                             : index == 7
                                                 ? 12
                                                 : index == 1
-                                                    ? 12
-                                                    : 15,
+                                                    ? 13
+                                                    : 13,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                       ),
@@ -444,36 +446,31 @@ class _Accueil extends State<Accueil> {
         selectedLabelStyle: const TextStyle(
           fontSize: 10,
         ),
-        items: const [
+        items: [
           BottomNavigationBarItem(
             label: "Annonces",
-            icon: Icon(
-              Icons.notifications,
-            ),
+            icon: SvgPicture.asset("assets/svg/SolarChatUnreadOutline.svg",
+                semanticsLabel: 'Acme Logo'),
           ),
           BottomNavigationBarItem(
             label: "Ma classe",
-            icon: Icon(
-              Icons.book,
-            ),
+            icon: SvgPicture.asset("assets/svg/SolarBook2Outline.svg",
+                semanticsLabel: 'Acme Logo'),
           ),
           BottomNavigationBarItem(
-            label: "Accueil",
-            icon: Icon(
-              Icons.home_filled,
-            ),
+            label: "EDU & Moi",
+            icon: SvgPicture.asset("assets/svg/SolarHomeAngleOutline.svg",
+                semanticsLabel: 'Acme Logo'),
           ),
           BottomNavigationBarItem(
             label: "Services",
-            icon: Icon(
-              Icons.file_download,
-            ),
+            icon: SvgPicture.asset("assets/svg/SolarClipboardTextLinear.svg",
+                semanticsLabel: 'Acme Logo'),
           ),
           BottomNavigationBarItem(
             label: "Paramettre",
-            icon: Icon(
-              Icons.settings,
-            ),
+            icon: SvgPicture.asset("assets/svg/SolarSettingsOutline.svg",
+                semanticsLabel: 'Acme Logo'),
           ),
         ],
       ),

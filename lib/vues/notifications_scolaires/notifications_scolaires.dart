@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:epst_app/vues/actualite/site.dart';
 import 'package:get/get.dart';
@@ -20,11 +20,12 @@ class NotificationsScolaires extends StatefulWidget {
 class _NotificationsScolaires extends State<NotificationsScolaires> {
   Timer? timer;
   init() {
-    // timer = Timer.periodic(const Duration(seconds: 4), (c) {
-    //   print("temps: ${c.tick}");
-    //   //pageController.nextPage(
-    //     //  duration: const Duration(seconds: 1), curve: Curves.linear);
-    // });
+    timer = Timer.periodic(const Duration(seconds: 10), (c) {
+      print("temps: ${c.tick}");
+      controller.next();
+      //pageController.nextPage(
+      //  duration: const Duration(seconds: 1), curve: Curves.linear);
+    });
   }
 
   //
@@ -37,10 +38,18 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
   List cats = [
     {"nom": "Direct", "icon": Icons.live_tv},
     {"nom": "Clin d'œil", "icon": Icons.remove_red_eye},
-    {"nom": "Educ-NC sur le net", "icon": Icons.language},
+    {"nom": "Site officiel", "icon": Icons.language},
     {"nom": "DINACOPE", "icon": Icons.live_tv}
   ];
   //
+  List listAccueil = [
+    {"nom": "IMG-20240829-WA0198.jpg"},
+    {"nom": "IMG-20240803-WA0025.jpg"},
+    {"nom": "ROLL UP_Plan de travail.jpg"},
+    {"nom": "ROLL UP_Plan de travail 1 copie.jpg"},
+  ];
+  //
+  SwiperController controller = SwiperController();
 
   @override
   void initState() {
@@ -55,7 +64,7 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
     //
     pageController.dispose();
     //
-    //timer!.cancel();
+    timer!.cancel();
     //
     super.dispose();
     //
@@ -66,137 +75,208 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
     //
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(top: 30, left: 20, right: 20, bottom: 5),
+        padding: EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 5),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              flex: 9,
-              child: PageView(
-                reverse: false,
-                padEnds: false,
-                controller: pageController,
-                children: List.generate(cats.length, (x) {
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              //scrollDirection: Axis.horizontal,
+              children: List.generate(
+                cats.length,
+                (e) {
                   //
-                  return Container(
-                    margin: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: x % 2 == 0 ? Colors.yellow : Colors.blue,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  );
-                }),
-              ),
-            ),
-            Expanded(
-              flex: 3,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                //scrollDirection: Axis.horizontal,
-                children: List.generate(
-                  cats.length,
-                  (e) {
-                    //
-                    return Expanded(
-                      flex: 3,
-                      child: InkWell(
-                        onTap: () {
-                          if (e == 0) {
-                            Get.to(DirectEductivi());
-                          }
-                          //
-                          if (e == 1) {
-                            Get.to(ClinOeil());
-                          }
-                          //
-                          if (e == 2) {
-                            Get.to(Actualites());
-                          }
-                          //
-                          if (e == 3) {
-                            Get.to(Dinacope());
-                          }
-                          //
+                  return Expanded(
+                    flex: 3,
+                    child: InkWell(
+                      onTap: () {
+                        if (e == 0) {
+                          Get.to(DirectEductivi());
+                        }
+                        //
+                        if (e == 1) {
+                          Get.to(ClinOeil());
+                        }
+                        //
+                        if (e == 2) {
+                          Get.to(Actualites());
+                        }
+                        //
+                        if (e == 3) {
+                          Get.to(Dinacope());
+                        }
+                        //
 
-                          // Navigator.of(context).push(
-                          //   MaterialPageRoute(
-                          //     builder: (context) {
-                          //       return const DirectEductivi();
-                          //     },
-                          //   ),
-                          // );
-                        },
-                        //style: ElevatedButton.styleFrom(),
-                        child: Container(
-                          width: Get.size.width / 4.2,
-                          margin: const EdgeInsets.all(5),
-                          height: 100,
-                          decoration: BoxDecoration(
-                              color: Colors.grey.shade300,
-                              borderRadius: BorderRadius.circular(5)),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Expanded(
-                                flex: 7,
-                                child: Container(
-                                  alignment: Alignment.center, //
-                                  decoration: const BoxDecoration(
-                                    //color: Colors.blue,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      topRight: Radius.circular(10),
-                                    ),
-                                  ),
-                                  child: Icon(
-                                    cats[e]['icon'],
-                                    size: 70,
-                                    color: Colors.blue,
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 3,
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(10),
-                                      bottomRight: Radius.circular(10),
-                                    ),
-                                  ),
-                                  child: RichText(
-                                    textAlign: TextAlign.center,
-                                    text: TextSpan(
-                                      text: cats[e]['nom'],
-                                      children: [
-                                        TextSpan(
-                                          text: "",
-                                          style: TextStyle(
-                                            fontSize: taille,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.black,
-                                          ),
-                                        )
-                                      ],
-                                      style: TextStyle(
-                                        fontSize: st,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(
+                        //     builder: (context) {
+                        //       return const DirectEductivi();
+                        //     },
+                        //   ),
+                        // );
+                      },
+                      //style: ElevatedButton.styleFrom(),
+                      child: Container(
+                        width: Get.size.width / 4.2,
+                        alignment: Alignment.center,
+                        margin: const EdgeInsets.all(5),
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: e == 0
+                              ? Colors.black
+                              : e == 1
+                                  ? Colors.red.shade700
+                                  : e == 2
+                                      ? Colors.teal
+                                      : Colors.pink,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: Text(
+                          cats[e]['nom'],
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: st,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white, //e == 0 ? : Colors.black,
                           ),
                         ),
                       ),
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            Expanded(
+              flex: 9,
+              child: Container(
+                child: Swiper(
+                  itemBuilder: (BuildContext context, int index) {
+                    return Image.asset(
+                      "assets/${listAccueil[index]['nom']}",
+                      fit: BoxFit.fill,
                     );
                   },
+                  //autoplay: true,
+                  duration: 2000,
+                  controller: controller,
+                  itemCount: listAccueil.length,
+                  pagination: const SwiperPagination(),
+                  control: const SwiperControl(),
                 ),
               ),
-            )
+            ),
+            // Expanded(
+            //   flex: 3,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.center,
+            //     crossAxisAlignment: CrossAxisAlignment.center,
+            //     //scrollDirection: Axis.horizontal,
+            //     children: List.generate(
+            //       cats.length,
+            //       (e) {
+            //         //
+            //         return Expanded(
+            //           flex: 3,
+            //           child: InkWell(
+            //             onTap: () {
+            //               if (e == 0) {
+            //                 Get.to(DirectEductivi());
+            //               }
+            //               //
+            //               if (e == 1) {
+            //                 Get.to(ClinOeil());
+            //               }
+            //               //
+            //               if (e == 2) {
+            //                 Get.to(Actualites());
+            //               }
+            //               //
+            //               if (e == 3) {
+            //                 Get.to(Dinacope());
+            //               }
+            //               //
+
+            //               // Navigator.of(context).push(
+            //               //   MaterialPageRoute(
+            //               //     builder: (context) {
+            //               //       return const DirectEductivi();
+            //               //     },
+            //               //   ),
+            //               // );
+            //             },
+            //             //style: ElevatedButton.styleFrom(),
+            //             child: Container(
+            //               width: Get.size.width / 4.2,
+            //               margin: const EdgeInsets.all(5),
+            //               height: 100,
+            //               decoration: BoxDecoration(
+            //                   color: Colors.grey.shade300,
+            //                   borderRadius: BorderRadius.circular(5)),
+            //               child: Column(
+            //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //                 children: [
+            //                   Expanded(
+            //                     flex: 7,
+            //                     child: Container(
+            //                       alignment: Alignment.center, //
+            //                       decoration: const BoxDecoration(
+            //                         //color: Colors.blue,
+            //                         borderRadius: BorderRadius.only(
+            //                           topLeft: Radius.circular(10),
+            //                           topRight: Radius.circular(10),
+            //                         ),
+            //                       ),
+            //                       child: Icon(
+            //                         cats[e]['icon'],
+            //                         size: 70,
+            //                         color: Colors.blue,
+            //                       ),
+            //                     ),
+            //                   ),
+            //                   Expanded(
+            //                     flex: 3,
+            //                     child: Container(
+            //                       alignment: Alignment.center,
+            //                       decoration: const BoxDecoration(
+            //                         borderRadius: BorderRadius.only(
+            //                           bottomLeft: Radius.circular(10),
+            //                           bottomRight: Radius.circular(10),
+            //                         ),
+            //                       ),
+            //                       child: RichText(
+            //                         textAlign: TextAlign.center,
+            //                         text: TextSpan(
+            //                           text: cats[e]['nom'],
+            //                           children: [
+            //                             TextSpan(
+            //                               text: "",
+            //                               style: TextStyle(
+            //                                 fontSize: taille,
+            //                                 fontWeight: FontWeight.bold,
+            //                                 color: Colors.black,
+            //                               ),
+            //                             )
+            //                           ],
+            //                           style: TextStyle(
+            //                             fontSize: st,
+            //                             fontWeight: FontWeight.bold,
+            //                             color: Colors.black,
+            //                           ),
+            //                         ),
+            //                       ),
+            //                     ),
+            //                   )
+            //                 ],
+            //               ),
+            //             ),
+            //           ),
+            //         );
+            //       },
+            //     ),
+            //   ),
+            // )
           ],
         ),
       ),
