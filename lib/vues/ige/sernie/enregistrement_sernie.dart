@@ -57,10 +57,10 @@ class _EnregistrementSernie extends State<EnregistrementSernie> {
     "ECOLES CONVENTIONNEES PROTESTANTE",
     "ECOLES PRIEES AGREEES",
     "ECOLES CONVENTIONNEES SALUTISTE",
-    "ECOLES CONVENTIONNEES DE L’EGLISE DU REVEIL AU CONGO",
+    "ECOLES CONVENTIONNEES DE L'EGLISE DU REVEIL AU CONGO",
     "ECOLES CONVENTIONNEES ADVENTISTE",
-    "ECOLES CONVENTIONNEES DE L’EGLISE DU BON NOUVEAU MESSAGER",
-    "ECOLES CONVENTIONNEES DE L’EGLISE LIBRE DU CONGO",
+    "ECOLES CONVENTIONNEES DE L'EGLISE DU BON NOUVEAU MESSAGER",
+    "ECOLES CONVENTIONNEES DE L'EGLISE LIBRE DU CONGO",
   ];
   int rs = 0;
   //
@@ -253,7 +253,7 @@ class _EnregistrementSernie extends State<EnregistrementSernie> {
   //
   @override
   void initState() {
-    // TODO: implement initState
+    //
     super.initState();
     //
 
@@ -579,7 +579,7 @@ class _EnregistrementSernie extends State<EnregistrementSernie> {
                   color: Colors.blue,
                 ),
               ),
-              label: const Text("Villeage"),
+              label: const Text("Village"),
               //prefixText: "De: "
             ),
           ),
@@ -743,16 +743,22 @@ class _EnregistrementSernie extends State<EnregistrementSernie> {
               ),
             ],
           ),
-          Obx(() => i.value != 0
-              ? Container(
-                  height: Get.size.height / 4,
-                  width: Get.size.width / 1.1,
-                  decoration: BoxDecoration(
-                      image:
-                          DecorationImage(image: FileImage(File(img1!.path)))),
-                  //child: Image.file(File(img!.path)),
-                )
-              : Container()),
+          Obx(
+            () => i.value != 0
+                ? Container(
+                    height: Get.size.height / 4,
+                    width: Get.size.width / 1.1,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: FileImage(
+                          File(img1!.path),
+                        ),
+                      ),
+                    ),
+                    //child: Image.file(File(img!.path)),
+                  )
+                : Container(),
+          ),
           const SizedBox(
             height: 15,
           ),
@@ -1597,4 +1603,3 @@ SizedBox(height: 20,),
               ),
               ),
  */
-

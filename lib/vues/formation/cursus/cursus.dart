@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 
 import 'educ_de_base/educ_de_base.dart';
 import 'login/login_enseignant/infos_personnel.dart';
-import 'login/login_enseignant/login_enseignant.dart';
 import 'secondaire/secondaire.dart';
 
 class Cursus extends StatelessWidget {

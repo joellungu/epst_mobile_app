@@ -77,7 +77,7 @@ class FormationSecondaire extends StatelessWidget {
                     //
                     Get.dialog(
                       Center(
-                        child: Container(
+                        child: SizedBox(
                           height: 40,
                           width: 40,
                           child: const CircularProgressIndicator(),
@@ -85,13 +85,13 @@ class FormationSecondaire extends StatelessWidget {
                       ),
                     );
                     //
-                    List classe_cours = box.read("classe_cours") ?? [];
+                    List classeCours = box.read("classe_cours") ?? [];
                     //
                     List branches = [];
                     //
                     Set types = {};
                     //
-                    for (List ll in classe_cours) {
+                    for (List ll in classeCours) {
                       for (Map ee in ll) {
                         int cls = e + 1;
                         if (ee['cours'] == listDeCours[l].toLowerCase() &&

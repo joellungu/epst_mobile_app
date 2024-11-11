@@ -68,7 +68,8 @@ dependencies:
   #flutter_inappwebview: ^6.0.0
   youtube_player_flutter: 
   youtube_player_iframe:
-  flutter_launcher_icons: 
+  flutter_launcher_icons:
+  url_launcher: ^6.3.1
   flutter_isolate: 
   pdfx:
   syncfusion_flutter_pdfviewer:
@@ -83,6 +84,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   card_swiper: ^3.0.1
   path: any
+  link_text: ^0.2.1
   #webview_flutter_android: any
   #webview_flutter_wkwebview: any
   flutter_chat_types: any

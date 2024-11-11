@@ -690,8 +690,7 @@ class _Details extends State<Details> {
                                     ),
                                   ),
                                   ElevatedButton(
-                                    child: const Text("Enregistrer"),
-                                    style: ButtonStyle(
+                                    style: const ButtonStyle(
                                         //backgroundColor:
                                         //  WidgetStateProperty.all(Colors.red),
                                         ),
@@ -747,6 +746,7 @@ class _Details extends State<Details> {
                                           widget.province,
                                           widget.district);
                                     },
+                                    child: const Text("Enregistrer"),
                                   )
                                 ],
                               ),

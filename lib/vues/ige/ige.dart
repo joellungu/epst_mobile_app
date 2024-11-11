@@ -59,16 +59,13 @@ class _Ige extends State<Ige> {
   //
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("${widget.titre}"),
-      // ),
-      body: GridView.count(
+    return Center(
+      child: GridView.count(
         padding: const EdgeInsets.all(20),
         crossAxisCount: 2,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
-        childAspectRatio: 0.9,
+        childAspectRatio: 1.1,
         children: List.generate(
           services.length,
           (s) {
@@ -105,13 +102,18 @@ class _Ige extends State<Ige> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.all(5),
+                padding: const EdgeInsets.all(5),
                 backgroundColor: generateRandomColor(),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
               child: Container(
+                height: double.maxFinite,
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -122,7 +124,7 @@ class _Ige extends State<Ige> {
                           height: 50,
                           width: 50,
                           decoration: BoxDecoration(
-                            image: DecorationImage(
+                            image: const DecorationImage(
                               image: ExactAssetImage(
                                 "assets/LOGO-MINEPST-BON.png",
                               ),
@@ -138,7 +140,7 @@ class _Ige extends State<Ige> {
                       child: Center(
                         child: Text(
                           services[s],
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
                           ),
@@ -146,11 +148,6 @@ class _Ige extends State<Ige> {
                       ),
                     )
                   ],
-                ),
-                height: double.maxFinite,
-                width: double.maxFinite,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
                 ),
               ),
             );

@@ -75,7 +75,7 @@ class FormationClasseMaternelle extends StatelessWidget {
                     //
                     Get.dialog(
                       Center(
-                        child: Container(
+                        child: SizedBox(
                           height: 40,
                           width: 40,
                           child: const CircularProgressIndicator(),

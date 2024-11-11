@@ -1,3 +1,4 @@
+import 'package:epst_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'enregistrement_sernie.dart';
@@ -39,63 +40,112 @@ class _Sernie extends State<Sernie> {
                 titre: "Enregistrement",
               ));
             },
-            style: const ButtonStyle(
-                /*
-              backgroundColor: MaterialStateProperty.all(
-                Colors.blue.shade400,
+            // style: const ButtonStyle(
+            //     /*
+            //   backgroundColor: MaterialStateProperty.all(
+            //     Colors.blue.shade400,
+            //   ),
+            //   */
+            //     ),
+            // child: Container(
+            //   padding: const EdgeInsets.all(10),
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //     children: [
+            //       Expanded(
+            //         flex: 7,
+            //         child: Container(
+            //           alignment: Alignment.center, //
+            //           decoration: const BoxDecoration(
+            //               //color: Colors.blue,
+            //               borderRadius: BorderRadius.only(
+            //             topLeft: Radius.circular(10),
+            //             topRight: Radius.circular(10),
+            //           )),
+            //           child: Image.asset(
+            //             "assets/LOGO-MINEPST-BON.png",
+            //             color: Colors.blue,
+            //             colorBlendMode: BlendMode.color,
+            //           ),
+            //         ),
+            //       ),
+            //       Expanded(
+            //         flex: 3,
+            //         child: Container(
+            //           alignment: Alignment.center,
+            //           decoration: const BoxDecoration(
+            //               borderRadius: BorderRadius.only(
+            //             bottomLeft: Radius.circular(10),
+            //             bottomRight: Radius.circular(10),
+            //           )),
+            //           child: RichText(
+            //             textAlign: TextAlign.center,
+            //             text: const TextSpan(
+            //               text: "Enregistrement SERNIE",
+            //               children: [
+            //                 TextSpan(
+            //                   text: "",
+            //                   style: TextStyle(
+            //                     fontSize: 20,
+            //                     fontWeight: FontWeight.normal,
+            //                     color: Colors.black,
+            //                   ),
+            //                 )
+            //               ],
+            //               style: TextStyle(
+            //                 fontSize: 13,
+            //                 fontWeight: FontWeight.normal,
+            //                 color: Colors.black,
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       )
+            //     ],
+            //   ),
+            // ),
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.all(5),
+              backgroundColor: Utils.couleursCards(),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
-              */
-                ),
+            ),
             child: Container(
-              padding: const EdgeInsets.all(10),
+              height: double.maxFinite,
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      alignment: Alignment.center, //
-                      decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      )),
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          image: const DecorationImage(
+                            image: ExactAssetImage(
+                              "assets/LOGO-MINEPST-BON.png",
+                            ),
+                          ),
+                          borderRadius: BorderRadius.circular(25),
+                          //color: Colors.black,
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                   Expanded(
-                    flex: 3,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: const TextSpan(
-                          text: "Enregistrement SERNIE",
-                          children: [
-                            TextSpan(
-                              text: "",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.black,
-                              ),
-                            )
-                          ],
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black,
-                          ),
+                    flex: 7,
+                    child: Center(
+                      child: Text(
+                        "Enregistrement SERNIE",
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
@@ -109,63 +159,113 @@ class _Sernie extends State<Sernie> {
               //
               Get.to(const HistoriqueSernie());
             },
-            style: const ButtonStyle(
-                /*
-              backgroundColor: MaterialStateProperty.all(
-                Colors.blue.shade400,
+            // style: const ButtonStyle(
+            //     /*
+            //   backgroundColor: MaterialStateProperty.all(
+            //     Colors.blue.shade400,
+            //   ),
+            //   */
+            //     ),
+            // child: Container(
+            //   padding: const EdgeInsets.all(10),
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //     children: [
+            //       Expanded(
+            //         flex: 7,
+            //         child: Container(
+            //           alignment: Alignment.center, //
+            //           decoration: const BoxDecoration(
+            //               //color: Colors.blue,
+            //               borderRadius: BorderRadius.only(
+            //             topLeft: Radius.circular(10),
+            //             topRight: Radius.circular(10),
+            //           )),
+            //           child: Image.asset(
+            //             "assets/LOGO-MINEPST-BON.png",
+            //             color: Colors.blue,
+            //             colorBlendMode: BlendMode.color,
+            //           ),
+            //         ),
+            //       ),
+            //       Expanded(
+            //         flex: 3,
+            //         child: Container(
+            //           alignment: Alignment.center,
+            //           decoration: const BoxDecoration(
+            //               borderRadius: BorderRadius.only(
+            //             bottomLeft: Radius.circular(10),
+            //             bottomRight: Radius.circular(10),
+            //           )),
+            //           child: RichText(
+            //             textAlign: TextAlign.center,
+            //             text: const TextSpan(
+            //               text: "Historique",
+            //               children: [
+            //                 TextSpan(
+            //                   text: "",
+            //                   style: TextStyle(
+            //                     fontSize: 20,
+            //                     fontWeight: FontWeight.normal,
+            //                     color: Colors.black,
+            //                   ),
+            //                 )
+            //               ],
+            //               style: TextStyle(
+            //                 fontSize: 13,
+            //                 fontWeight: FontWeight.normal,
+            //                 color: Colors.black,
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       )
+            //     ],
+            //   ),
+            // ),
+
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.all(5),
+              backgroundColor: Utils.couleursCards(),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
-              */
-                ),
+            ),
             child: Container(
-              padding: const EdgeInsets.all(10),
+              height: double.maxFinite,
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Expanded(
-                    flex: 7,
-                    child: Container(
-                      alignment: Alignment.center, //
-                      decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10),
-                      )),
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
-                        color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          image: const DecorationImage(
+                            image: ExactAssetImage(
+                              "assets/LOGO-MINEPST-BON.png",
+                            ),
+                          ),
+                          borderRadius: BorderRadius.circular(25),
+                          //color: Colors.black,
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                   Expanded(
-                    flex: 3,
-                    child: Container(
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: const TextSpan(
-                          text: "Historique",
-                          children: [
-                            TextSpan(
-                              text: "",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.black,
-                              ),
-                            )
-                          ],
-                          style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.black,
-                          ),
+                    flex: 7,
+                    child: Center(
+                      child: Text(
+                        "Historique",
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),

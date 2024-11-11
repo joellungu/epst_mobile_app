@@ -132,7 +132,7 @@ class Epst extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           centerTitle: true,
           titleTextStyle: TextStyle(
-            fontSize: 12,
+            fontSize: 20,
             color: Colors.black,
           ),
         ),

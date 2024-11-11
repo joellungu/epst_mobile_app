@@ -8,7 +8,7 @@ import 'package:epst_app/vues/actualite/dinacope.dart';
 import 'package:epst_app/vues/actualite/direct_eductivi.dart';
 
 class NotificationsScolaires extends StatefulWidget {
-  NotificationsScolaires({Key? key}) : super(key: key);
+  const NotificationsScolaires({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -75,7 +75,7 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
     //
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 5),
+        padding: const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 5),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -92,19 +92,19 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
                     child: InkWell(
                       onTap: () {
                         if (e == 0) {
-                          Get.to(DirectEductivi());
+                          Get.to(const DirectEductivi());
                         }
                         //
                         if (e == 1) {
-                          Get.to(ClinOeil());
+                          Get.to(const ClinOeil());
                         }
                         //
                         if (e == 2) {
-                          Get.to(Actualites());
+                          Get.to(const Actualites());
                         }
                         //
                         if (e == 3) {
-                          Get.to(Dinacope());
+                          Get.to(const Dinacope());
                         }
                         //
 

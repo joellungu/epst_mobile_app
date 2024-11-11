@@ -82,7 +82,7 @@ Page resource error:
           );
         },
       )
-      ..loadRequest(Uri.parse('https://minepst.gouv.cd/infos-et-blogs'));
+      ..loadRequest(Uri.parse('https://edu-nc.gouv.cd/infos-et-blogs'));
 
     // #docregion platform_features
     if (controller.platform is AndroidWebViewController) {

@@ -69,7 +69,7 @@ class LeconPdf extends StatelessWidget {
                                 //
                                 Get.dialog(
                                   Center(
-                                    child: Container(
+                                    child: SizedBox(
                                       height: 40,
                                       width: 40,
                                       child: const CircularProgressIndicator(),
@@ -95,7 +95,7 @@ class LeconPdf extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Icon(Icons.file_download_done),
-                                      const SizedBox(
+                                      SizedBox(
                                         width: 10,
                                       ),
                                       Text("Télécharger le cours")
@@ -108,7 +108,7 @@ class LeconPdf extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       Icon(Icons.question_mark),
-                                      const SizedBox(
+                                      SizedBox(
                                         width: 10,
                                       ),
                                       Text("A propos"),

@@ -352,7 +352,7 @@ class _FOAD extends State<FOAD> {
                   ),
                 ],
               )
-            : ProfileApprenant(),
+            : const ProfileApprenant(),
       ),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(

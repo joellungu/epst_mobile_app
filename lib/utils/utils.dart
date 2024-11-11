@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
 class Utils {
@@ -22,9 +25,9 @@ class Utils {
     //cours, "Maternelle", lecons[e], classe
     List notions = [];
     //
-    List classe_cours = box.read("classe_cours") ?? [];
+    List classeCours = box.read("classe_cours") ?? [];
     //
-    for (List l in classe_cours) {
+    for (List l in classeCours) {
       for (Map e in l) {
         if (e['cours'] == cours &&
             e['categorie'] == categorie &&
@@ -37,5 +40,18 @@ class Utils {
     }
     //
     return notions;
+  }
+
+  static Color couleursCards() {
+    //
+    final Random _random = Random();
+    //
+    // Génère une couleur claire
+    return Color.fromRGBO(
+      _random.nextInt(128) + 127, // Valeur rouge entre 127 et 255
+      _random.nextInt(128) + 127, // Valeur verte entre 127 et 255
+      _random.nextInt(128) + 127, // Valeur bleue entre 127 et 255
+      1,
+    );
   }
 }

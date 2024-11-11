@@ -1,9 +1,7 @@
 import 'dart:convert';
-import 'package:epst_app/vues/epst_kelasi/epst_kelasi.dart';
 import 'package:epst_app/vues/formation/formation.dart';
 import 'package:epst_app/vues/ige/ige.dart';
 import 'package:epst_app/vues/plainte/depotplainte.dart';
-import 'package:epst_app/vues/listing.dart';
 import 'package:epst_app/vues/actualite/live.dart';
 import 'package:epst_app/vues/magasin/magasine.dart';
 import 'package:epst_app/vues/sg/sg.dart';
@@ -11,12 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lottie/lottie.dart';
-import 'package:path/path.dart';
 import 'e_sige/e_sige.dart';
-import 'formation/foad.dart';
 import 'identification/verification.dart';
-import 'mutuelle/mutuelle.dart';
 import 'notifications_scolaires/notifications_scolaires.dart';
 import 'reforme/reforme.dart';
 import 'chat.dart';
@@ -445,33 +439,79 @@ class _Accueil extends State<Accueil> {
         ),
         selectedLabelStyle: const TextStyle(
           fontSize: 10,
+          color: Colors.black,
         ),
         items: [
           BottomNavigationBarItem(
             label: "Annonces",
-            icon: SvgPicture.asset("assets/svg/SolarChatUnreadOutline.svg",
-                semanticsLabel: 'Acme Logo'),
+            icon: Container(
+              alignment: Alignment.center,
+              height: 30,
+              width: 40,
+              decoration: BoxDecoration(
+                color: currentIndex == 0 ? Colors.blue.shade100 : Colors.white,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: SvgPicture.asset("assets/svg/SolarChatUnreadOutline.svg",
+                  semanticsLabel: 'Acme Logo'),
+            ),
           ),
           BottomNavigationBarItem(
             label: "Ma classe",
-            icon: SvgPicture.asset("assets/svg/SolarBook2Outline.svg",
-                semanticsLabel: 'Acme Logo'),
+            icon: Container(
+              alignment: Alignment.center,
+              height: 30,
+              width: 40,
+              decoration: BoxDecoration(
+                color: currentIndex == 1 ? Colors.blue.shade100 : Colors.white,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: SvgPicture.asset("assets/svg/SolarBook2Outline.svg",
+                  semanticsLabel: 'Acme Logo'),
+            ),
           ),
           BottomNavigationBarItem(
             label: "EDU & Moi",
-            icon: SvgPicture.asset("assets/svg/SolarHomeAngleOutline.svg",
-                semanticsLabel: 'Acme Logo'),
+            icon: Container(
+              alignment: Alignment.center,
+              height: 30,
+              width: 40,
+              decoration: BoxDecoration(
+                color: currentIndex == 2 ? Colors.blue.shade100 : Colors.white,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: SvgPicture.asset("assets/svg/SolarHomeAngleOutline.svg",
+                  semanticsLabel: 'Acme Logo'),
+            ),
           ),
           BottomNavigationBarItem(
             label: "Services",
-            icon: SvgPicture.asset("assets/svg/SolarClipboardTextLinear.svg",
-                semanticsLabel: 'Acme Logo'),
+            icon: Container(
+              alignment: Alignment.center,
+              height: 30,
+              width: 40,
+              decoration: BoxDecoration(
+                color: currentIndex == 3 ? Colors.blue.shade100 : Colors.white,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: SvgPicture.asset("assets/svg/SolarClipboardTextLinear.svg",
+                  semanticsLabel: 'Acme Logo'),
+            ),
           ),
-          BottomNavigationBarItem(
-            label: "Paramettre",
-            icon: SvgPicture.asset("assets/svg/SolarSettingsOutline.svg",
-                semanticsLabel: 'Acme Logo'),
-          ),
+          // BottomNavigationBarItem(
+          //   label: "Paramettre",
+          //   icon: Container(
+          //     alignment: Alignment.center,
+          //     height: 30,
+          //     width: 40,
+          //     decoration: BoxDecoration(
+          //       color: currentIndex == 4 ? Colors.blue.shade100 : Colors.white,
+          //       borderRadius: BorderRadius.circular(15),
+          //     ),
+          //     child: SvgPicture.asset("assets/svg/SolarSettingsOutline.svg",
+          //         semanticsLabel: 'Acme Logo'),
+          //   ),
+          // ),
         ],
       ),
       /*

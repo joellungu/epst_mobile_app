@@ -151,7 +151,7 @@ class TypeCours extends StatelessWidget {
                                     ),
                                   )
                                 ],
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,

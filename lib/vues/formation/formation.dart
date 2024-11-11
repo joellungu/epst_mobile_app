@@ -1,7 +1,8 @@
-import 'package:epst_app/vues/formation/formation_eleves/enseignement_mobile_enligne.dart';
 import 'package:epst_app/vues/formation/foad.dart';
 import 'package:flutter/material.dart';
+import 'package:link_text/link_text.dart';
 import 'package:lottie/lottie.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'eod/eod.dart';
 
 // ignore: must_be_immutable
@@ -33,243 +34,264 @@ class _Formation extends State<Formation> {
         centerTitle: true,
         title: Text(widget.titre!),
       ),
-      body: ListView(
+      body: Padding(
         padding: const EdgeInsets.all(10),
-        // crossAxisCount: 2,
-        // mainAxisSpacing: 5,
-        // crossAxisSpacing: 5,
-        // childAspectRatio: 1,
-        children: [
-          InkWell(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const FOAD();
-                  },
+        child: Column(
+          // crossAxisCount: 2,
+          // mainAxisSpacing: 5,
+          // crossAxisSpacing: 5,
+          // childAspectRatio: 1,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const FOAD();
+                    },
+                  ),
+                );
+              },
+              child: Container(
+                height: 200,
+                margin: const EdgeInsets.only(top: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.blue,
                 ),
-              );
-            },
-            child: Container(
-              height: 200,
-              margin: const EdgeInsets.only(top: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Colors.blue,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    flex: 9,
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(pd),
-                      // child: Image.asset(
-                      //   "assets/LOGO-MINEPST-BON.png",
-                      //   color: Colors.blue,
-                      //   colorBlendMode: BlendMode.color,
-                      // ), //
-                      decoration: const BoxDecoration(
-                        //color: Colors.blue,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        ),
-                      ),
-                      child:
-                          Lottie.asset('assets/Animation - 1719829962343.json'),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      padding: const EdgeInsets.only(bottom: 15),
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      flex: 9,
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(pd),
+                        // child: Image.asset(
+                        //   "assets/LOGO-MINEPST-BON.png",
+                        //   color: Colors.blue,
+                        //   colorBlendMode: BlendMode.color,
+                        // ), //
+                        decoration: const BoxDecoration(
+                          //color: Colors.blue,
                           borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          text: "",
-                          children: const [
-                            TextSpan(
-                              text: "FOAD MOBILE",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                          style: TextStyle(
-                            fontSize: st,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                          ),
+                        ),
+                        child: Lottie.asset(
+                            'assets/Animation - 1719829962343.json'),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Container(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        alignment: Alignment.center,
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        )),
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: "",
+                            children: const [
+                              TextSpan(
+                                text: "FOAD MOBILE",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                            style: TextStyle(
+                              fontSize: st,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              // Navigator.of(context).push(
-              //   MaterialPageRoute(
-              //     builder: (context) {
-              //       return const EnseignementEnseignantEnligne();
-              //     },
-              //   ),
-              // );
-            },
-            child: Container(
-              height: 200,
-              margin: const EdgeInsets.only(top: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Colors.blue,
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    flex: 9,
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(pd),
-                      // child: Image.asset(
-                      //   "assets/LOGO-MINEPST-BON.png",
-                      //   color: Colors.blue,
-                      //   colorBlendMode: BlendMode.color,
-                      // ), //
-                      decoration: const BoxDecoration(
-                        //color: Colors.blue,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        ),
-                      ),
-                      child:
-                          Lottie.asset('assets/Animation - 1719829657336.json'),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      padding: const EdgeInsets.only(bottom: 15),
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          text: "",
-                          children: const [
-                            TextSpan(
-                              text: "FOAD EN LIGNE",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                          style: TextStyle(
-                            fontSize: st,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return Eod();
-                  },
+                    )
+                  ],
                 ),
-              );
-            },
-            child: Container(
-              height: 200,
-              margin: const EdgeInsets.only(top: 10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Colors.blue,
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Expanded(
-                    flex: 9,
-                    child: Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(pd), //
-                      decoration: const BoxDecoration(
-                        //color: Colors.blue,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        ),
-                      ),
-                      child:
-                          Lottie.asset('assets/Animation - 1719829768791.json'),
-                    ),
+            ),
+            // InkWell(
+            //   onTap: () {
+            //     // Navigator.of(context).push(
+            //     //   MaterialPageRoute(
+            //     //     builder: (context) {
+            //     //       return const EnseignementEnseignantEnligne();
+            //     //     },
+            //     //   ),
+            //     // );
+            //   },
+            //   child: Container(
+            //     height: 200,
+            //     margin: const EdgeInsets.only(top: 10),
+            //     decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(5),
+            //       color: Colors.blue,
+            //     ),
+            //     child: Column(
+            //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //       children: [
+            //         Expanded(
+            //           flex: 9,
+            //           child: Container(
+            //             alignment: Alignment.center,
+            //             padding: EdgeInsets.all(pd),
+            //             // child: Image.asset(
+            //             //   "assets/LOGO-MINEPST-BON.png",
+            //             //   color: Colors.blue,
+            //             //   colorBlendMode: BlendMode.color,
+            //             // ), //
+            //             decoration: const BoxDecoration(
+            //               //color: Colors.blue,
+            //               borderRadius: BorderRadius.only(
+            //                 topLeft: Radius.circular(10),
+            //                 topRight: Radius.circular(10),
+            //               ),
+            //             ),
+            //             child:
+            //                 Lottie.asset('assets/Animation - 1719829657336.json'),
+            //           ),
+            //         ),
+            //         Expanded(
+            //           flex: 2,
+            //           child: Container(
+            //             padding: const EdgeInsets.only(bottom: 15),
+            //             alignment: Alignment.center,
+            //             decoration: const BoxDecoration(
+            //                 borderRadius: BorderRadius.only(
+            //               bottomLeft: Radius.circular(10),
+            //               bottomRight: Radius.circular(10),
+            //             )),
+            //             child: RichText(
+            //               textAlign: TextAlign.center,
+            //               text: TextSpan(
+            //                 text: "",
+            //                 children: const [
+            //                   TextSpan(
+            //                     text: "FOAD EN LIGNE",
+            //                     style: TextStyle(
+            //                       fontSize: 20,
+            //                       fontWeight: FontWeight.bold,
+            //                       color: Colors.white,
+            //                     ),
+            //                   )
+            //                 ],
+            //                 style: TextStyle(
+            //                   fontSize: st,
+            //                   fontWeight: FontWeight.bold,
+            //                   color: Colors.white,
+            //                 ),
+            //               ),
+            //             ),
+            //           ),
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
+
+            InkWell(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Eod();
+                    },
                   ),
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      padding: const EdgeInsets.only(bottom: 15),
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
+                );
+              },
+              child: Container(
+                height: 200,
+                margin: const EdgeInsets.only(top: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.blue,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      flex: 9,
+                      child: Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(pd), //
+                        decoration: const BoxDecoration(
+                          //color: Colors.blue,
                           borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10),
-                      )),
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          text: "EOD\n",
-                          children: const [
-                            TextSpan(
-                              text: "Enseignement ouverte à distance",
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            )
-                          ],
-                          style: TextStyle(
-                            fontSize: st,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                          ),
+                        ),
+                        child: Lottie.asset(
+                            'assets/Animation - 1719829768791.json'),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Container(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        alignment: Alignment.center,
+                        decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                          bottomRight: Radius.circular(10),
+                        )),
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: "EOD\n",
+                            children: const [
+                              TextSpan(
+                                text: "Enseignement ouverte à distance",
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
+                            style: TextStyle(
+                              fontSize: st,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+            const SizedBox(
+              height: 40,
+            ),
+            LinkText("Cliquez sur ce lien pour la version en ligne",
+                textAlign: TextAlign.center,
+                textStyle: const TextStyle(
+                  fontSize: 10,
+                  color: Colors.blue,
+                ),
+                // You can optionally handle link tap event by yourself
+                onLinkTap: (url) async {
+              if (!await launchUrl(
+                Uri.https("https://efoad.minepst.gouv.cd"),
+              )) {
+                throw Exception('Could not launch $url');
+              }
+            }),
+          ],
+        ),
       ),
     );
   }

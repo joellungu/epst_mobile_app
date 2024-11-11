@@ -105,11 +105,11 @@ class CoursMaternelle extends StatelessWidget {
                             return Container();
                           }
 
-                          return Center(
+                          return const Center(
                             child: SizedBox(
                               height: 40,
                               width: 40,
-                              child: const CircularProgressIndicator(),
+                              child: CircularProgressIndicator(),
                             ),
                           );
                         },
