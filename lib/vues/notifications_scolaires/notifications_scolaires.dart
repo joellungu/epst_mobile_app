@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:epst_app/utils/connexion.dart';
+import 'package:epst_app/utils/requetes.dart';
 import 'package:flutter/material.dart';
 import 'package:epst_app/vues/actualite/site.dart';
 import 'package:get/get.dart';
@@ -20,7 +22,7 @@ class NotificationsScolaires extends StatefulWidget {
 class _NotificationsScolaires extends State<NotificationsScolaires> {
   Timer? timer;
   init() {
-    timer = Timer.periodic(const Duration(seconds: 10), (c) {
+    timer = Timer.periodic(const Duration(seconds: 5), (c) {
       print("temps: ${c.tick}");
       controller.next();
       //pageController.nextPage(
@@ -151,21 +153,41 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
             Expanded(
               flex: 9,
               child: Container(
-                child: Swiper(
-                  itemBuilder: (BuildContext context, int index) {
-                    return Image.asset(
-                      "assets/${listAccueil[index]['nom']}",
-                      fit: BoxFit.fill,
+                  child: FutureBuilder(
+                future: loadAnnonces(),
+                builder: (c, t) {
+                  if (t.hasData) {
+                    List list = t.data as List;
+                    return Swiper(
+                      itemBuilder: (BuildContext context, int index) {
+                        debugPrint(
+                            "${Connexion.lien}annonce/image?id=${list[index]}");
+                        return Image.network(
+                          "${Connexion.lien}annonce/image?id=${list[index]}",
+                          fit: BoxFit.fill,
+                        );
+                      },
+                      //autoplay: true,
+                      duration: 2000,
+                      controller: controller,
+                      itemCount: list.length,
+                      pagination: const SwiperPagination(),
+                      control: const SwiperControl(),
                     );
-                  },
-                  //autoplay: true,
-                  duration: 2000,
-                  controller: controller,
-                  itemCount: listAccueil.length,
-                  pagination: const SwiperPagination(),
-                  control: const SwiperControl(),
-                ),
-              ),
+                    //
+                  } else if (t.hasError) {
+                    return Container();
+                  }
+
+                  return Center(
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      child: CircularProgressIndicator(),
+                    ),
+                  );
+                },
+              )),
             ),
             // Expanded(
             //   flex: 3,
@@ -281,5 +303,19 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
         ),
       ),
     );
+  }
+
+  //
+  Future<List> loadAnnonces() async {
+    //
+    Requete requete = Requete();
+    //
+    Response response = await requete.getE("annonce/all");
+    //
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return response.body;
+    } else {
+      return [];
+    }
   }
 }

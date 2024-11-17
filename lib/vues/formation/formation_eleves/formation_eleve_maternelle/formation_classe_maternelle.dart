@@ -47,7 +47,7 @@ class FormationClasseMaternelle extends StatelessWidget {
         body: TabBarView(
           children: List.generate(3, (e) {
             //
-            List listDeCours = [];
+            Set listDeCours = {};
             //
             List courss = box.read("classe_cours") ?? [];
             //
@@ -92,7 +92,8 @@ class FormationClasseMaternelle extends StatelessWidget {
                     for (List ll in classeCours) {
                       for (Map ee in ll) {
                         int cls = e + 1;
-                        if (ee['cours'] == listDeCours[l].toLowerCase() &&
+                        if (ee['cours'] ==
+                                listDeCours.elementAt(l).toLowerCase() &&
                             ee['categorie'] == "Maternelle".toLowerCase() &&
                             ee['classe'] == cls) {
                           branches.add(ee['banche']);
@@ -103,8 +104,8 @@ class FormationClasseMaternelle extends StatelessWidget {
                     //
                     Get.back();
                     //
-                    Get.to(CoursMaternelle(
-                        "${listDeCours[l]}", e + 1, branches, types));
+                    Get.to(CoursMaternelle("${listDeCours.elementAt(l)}", e + 1,
+                        branches.toSet(), types));
                   },
                   child: Card(
                     child: Container(
@@ -155,7 +156,8 @@ class FormationClasseMaternelle extends StatelessWidget {
                                   text: "",
                                   children: [
                                     TextSpan(
-                                      text: "${listDeCours[l]}".toUpperCase(),
+                                      text: "${listDeCours.elementAt(l)}"
+                                          .toUpperCase(),
                                       style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,

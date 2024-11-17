@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 class PaiementController extends GetxController {
   Requete requete = Requete();
-  Future<Map> paiement(Map e) async {
+  Future<String> paiement(Map e) async {
     Response rep = await requete.postE("paiement/paie", e);
     print("la reponse du serveur: ${rep.statusCode}");
     print("la reponse du serveur: ${rep.body}");
@@ -13,18 +13,18 @@ class PaiementController extends GetxController {
     if (rep.isOk) {
       return rep.body;
     } else {
-      return {"erreur": rep.statusCode};
+      return "erreur ${rep.statusCode}";
     }
   }
 
   Future<Map> verification(String orderNumber) async {
     var rep = await http.get(
       Uri.parse(
-          "http://41.243.7.46:3006/flexpay/api/rest/v1/check/$orderNumber"),
+          "https://backend.flexpay.cd/api/rest/v1/check/orderNumer/$orderNumber"),
       headers: {
         "Content-Type": "application/json",
         "Authorization":
-            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcL2xvZ2luIiwicm9sZXMiOlsiTUVSQ0hBTlQiXSwiZXhwIjoxNzMzOTEwMTY5LCJzdWIiOiJlNjFiZTYyNTA2M2NlNGQzOTc3ZTY2ZTI1ODdiZjIwOSJ9.KXwGzLyTGJT4iLnA6rtqPKRLE195j5oFWLbmpOlh2uo",
+            "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJcL2xvZ2luIiwicm9sZXMiOlsiTUVSQ0hBTlQiXSwiZXhwIjoxNzk0NzYxNDYzLCJzdWIiOiJlZGZiYTY0ZTYxNjM1NWMzYjdjZDJjYzZiZTA5NzMzYiJ9.1gps60CJKzY1CP8XgAEvx8ArRAfqD9v5a9PeJr4qA6c",
       },
     );
     /**

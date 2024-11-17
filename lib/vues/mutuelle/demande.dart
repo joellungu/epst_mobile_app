@@ -717,8 +717,9 @@ class _Demande extends State<Demande> {
                     var connectivityResult =
                         await (Connectivity().checkConnectivity());
                     //
-                    if (connectivityResult == ConnectivityResult.mobile ||
-                        connectivityResult == ConnectivityResult.wifi) {
+                    if (connectivityResult
+                            .contains(ConnectivityResult.mobile) ||
+                        connectivityResult.contains(ConnectivityResult.wifi)) {
                       //
                       Get.dialog(Center(
                         child: Container(
@@ -1185,8 +1186,8 @@ class _HistoriqueSend extends State<HistoriqueSend> {
               var connectivityResult =
                   await (Connectivity().checkConnectivity());
               //
-              if (connectivityResult == ConnectivityResult.mobile ||
-                  connectivityResult == ConnectivityResult.wifi) {
+              if (connectivityResult.contains(ConnectivityResult.mobile) ||
+                  connectivityResult.contains(ConnectivityResult.wifi)) {
                 // I am connected to a mobile network. I am connected to a wifi network.
                 //
                 //widget.pl["envoyer"] = "oui";

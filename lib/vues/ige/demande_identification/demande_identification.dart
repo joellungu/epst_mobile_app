@@ -994,11 +994,11 @@ class _DemandeIdentification extends State<DemandeIdentification> {
                 //
                 messageErreur("Erreur", "Veuillez selectionner une photo");
               } else {
-                var connectivityResult =
+                List<ConnectivityResult> connectivityResult =
                     await (Connectivity().checkConnectivity());
                 //
-                if (connectivityResult == ConnectivityResult.mobile ||
-                    connectivityResult == ConnectivityResult.wifi) {
+                if (connectivityResult.contains(ConnectivityResult.mobile) ||
+                    connectivityResult.contains(ConnectivityResult.wifi)) {
                   //
                   //
                   DateTime d2 = DateTime.now();

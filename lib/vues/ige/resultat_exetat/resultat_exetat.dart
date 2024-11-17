@@ -5,7 +5,7 @@ import 'package:epst_app/vues/ige/resultat_exetat/resultat_controller.dart';
 import 'package:epst_app/widgets/paiement.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+//import 'package:webview_flutter/webview_flutter.dart';
 import '../recherche_annee.dart';
 import 'resultat_liste.dart';
 
@@ -115,7 +115,7 @@ class _ResultatExetat extends State<ResultatExetat> {
   //
   List liste_annee = [];
   //
-  WebViewController? controlleur;
+  //WebViewController? controlleur;
 
   @override
   void initState() {

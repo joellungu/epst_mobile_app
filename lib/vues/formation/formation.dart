@@ -30,10 +30,10 @@ class _Formation extends State<Formation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(widget.titre!),
-      ),
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   title: Text(widget.titre!),
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -43,6 +43,9 @@ class _Formation extends State<Formation> {
           // childAspectRatio: 1,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            const SizedBox(
+              height: 10,
+            ),
             InkWell(
               onTap: () {
                 Navigator.of(context).push(
@@ -54,7 +57,7 @@ class _Formation extends State<Formation> {
                 );
               },
               child: Container(
-                height: 200,
+                height: 220,
                 margin: const EdgeInsets.only(top: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
@@ -90,10 +93,11 @@ class _Formation extends State<Formation> {
                         padding: const EdgeInsets.only(bottom: 15),
                         alignment: Alignment.center,
                         decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
-                        )),
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                        ),
                         child: RichText(
                           textAlign: TextAlign.center,
                           text: TextSpan(
@@ -211,7 +215,7 @@ class _Formation extends State<Formation> {
                 );
               },
               child: Container(
-                height: 200,
+                height: 220,
                 margin: const EdgeInsets.only(top: 10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
@@ -261,7 +265,7 @@ class _Formation extends State<Formation> {
                               )
                             ],
                             style: TextStyle(
-                              fontSize: st,
+                              fontSize: 20, //st,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
@@ -276,20 +280,24 @@ class _Formation extends State<Formation> {
             const SizedBox(
               height: 40,
             ),
-            LinkText("Cliquez sur ce lien pour la version en ligne",
+            TextButton(
+              child: const Text(
+                "Cliquez sur ce lien pour la version en ligne",
                 textAlign: TextAlign.center,
-                textStyle: const TextStyle(
-                  fontSize: 10,
+                style: const TextStyle(
+                  fontSize: 13,
                   color: Colors.blue,
                 ),
                 // You can optionally handle link tap event by yourself
-                onLinkTap: (url) async {
-              if (!await launchUrl(
-                Uri.https("https://efoad.minepst.gouv.cd"),
-              )) {
-                throw Exception('Could not launch $url');
-              }
-            }),
+              ),
+              onPressed: () async {
+                if (!await launchUrl(
+                    Uri.parse("https://efoad.minepst.gouv.cd"))) {
+                  throw Exception(
+                      'Could not launch https://efoad.minepst.gouv.cd');
+                }
+              },
+            )
           ],
         ),
       ),

@@ -1000,8 +1000,8 @@ class _DemandeDocument extends State<DemandeDocument> {
                 var connectivityResult =
                     await (Connectivity().checkConnectivity());
                 //
-                if (connectivityResult == ConnectivityResult.mobile ||
-                    connectivityResult == ConnectivityResult.wifi) {
+                if (connectivityResult.contains(ConnectivityResult.mobile) ||
+                    connectivityResult.contains(ConnectivityResult.wifi)) {
                   //
                   Get.dialog(Center(
                     child: Container(
@@ -1054,43 +1054,40 @@ class _DemandeDocument extends State<DemandeDocument> {
                   //if (type.value == 0 || type.value == 4) {
                   //PayementMethode
 
-                  //send(formulaireD);
+                  Get.dialog(Center(
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      child: CircularProgressIndicator(),
+                    ),
+                  ));
 
-                  showDialog(
-                    context: context,
-                    builder: (c) {
-                      return Material(
-                        color: Colors.transparent,
-                        child: Center(
-                          child: Container(
-                            padding: const EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            height: 300,
-                            width: 270,
-                            child: PayementMethode(
-                                formulaireD, 7, send, "palmares", "palmares"),
-                          ),
-                        ),
-                      );
-                    },
-                  );
+                  send(formulaireD); //En attendant...
 
-                  //} else {
-                  //  send(formulaireD);
-                  //}
-                  // DemandeDocumentController demandeDocumentController =
-                  //     Get.find();
-                  // //ByteArrayInputStream//formulaireD
-                  // //
-                  // Timer(const Duration(seconds: 1), () {
-                  //   demandeDocumentController.faireUneInscription(formulaireD);
-                  // });
+                  // showDialog(
+                  //   context: context,
+                  //   builder: (c) {
+                  //     return Material(
+                  //       color: Colors.transparent,
+                  //       child: Center(
+                  //         child: Container(
+                  //           padding: const EdgeInsets.all(15),
+                  //           decoration: BoxDecoration(
+                  //             color: Colors.white,
+                  //             borderRadius: BorderRadius.circular(10),
+                  //           ),
+                  //           height: 300,
+                  //           width: 270,
+                  //           child: PayementMethode(
+                  //               formulaireD, 7, send, "palmares", "palmares"),
+                  //         ),
+                  //       ),
+                  //     );
+                  //   },
+                  // );
 
                   //____________________________________________________________
-                } else {}
+                }
               }
             },
             child: Container(
@@ -1109,6 +1106,7 @@ class _DemandeDocument extends State<DemandeDocument> {
 
   send(Map formulaireD) async {
     //Get.back();
+    print("J'envoi ici");
     DemandeDocumentController demandeDocumentController = Get.find();
     //ByteArrayInputStream//formulaireD
     //

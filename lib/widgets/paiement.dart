@@ -33,7 +33,7 @@ class _PayementMethode extends State<PayementMethode> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    t!.cancel();
+    //t!.cancel();
   }
 
   //
@@ -136,6 +136,7 @@ class _PayementMethode extends State<PayementMethode> {
                     ),
                   ),
                 );
+                //
                 var ref = getReference();
                 DateTime d = DateTime.now();
                 Map e = {
@@ -151,90 +152,90 @@ class _PayementMethode extends State<PayementMethode> {
                   "currency": gender,
                 };
                 print('element: $e');
-                Map m = await paiementController.paiement(e);
+                String m = await paiementController.paiement(e);
                 print("la reponse du serveur: $m");
-                if (m['code'] != null) {
+                if (m == 'Paiement éffectué') {
                   //La fonction bloucle...
                   //Get.back();
 
-                  //widget.f(widget.requette);
+                  widget.f(widget.requette);
 
-                  Timer(const Duration(seconds: 5), () async {
-                    //
-                    t = Timer.periodic(const Duration(seconds: 5),
-                        (timer) async {
-                      int w = 0;
-                      print("Je suis run cool $w");
-                      w++;
-                      var rep = await paiementController
-                          .verification(m['orderNumber']);
-                      print("La vérification: $rep");
-                      //
-                      if (rep['status'] == null || rep['status'] == null) {
-                        if (rep['code'] == 0 || rep['code'] == "0") {
-                          //USSD bien envoyé
-                          if (rep['transaction']['status'] == "1" ||
-                              rep['transaction']['status'] == 1) {
-                            //Paiement non éffectué
-                            //
-                            //widget.f(widget.requette);
-                            //
-                            print(widget.requette);
-                            t!.cancel();
-                            Get.back();
-                            Get.snackbar(
-                              "Notification",
-                              "Le paiement n'a pas reussi",
-                              backgroundColor: Colors.blue,
-                              colorText: Colors.white,
-                            );
-                          } else if (rep['transaction']['status'] == "2" ||
-                              rep['transaction']['status'] == 2) {
-                            print("Paiement en attente");
-                          } else if (rep['transaction']['status'] == "3" ||
-                              rep['transaction']['status'] == 3) {
-                            t!.cancel();
-                            Get.back();
-                            Get.snackbar(
-                              "Notification",
-                              "Pas de paiement effectué",
-                              backgroundColor: Colors.blue,
-                              colorText: Colors.white,
-                            );
-                          } else {
-                            t!.cancel();
-                            Get.back();
-                            //var r = widget.requette;
-                            //r["reference"] = rep['transaction']['reference'];
-                            print(
-                                "--------------------------------------------");
-                            print("$rep");
-                            widget.f(widget.requette);
-                          }
-                        } else {
-                          //USSD non envoyé
-                          t!.cancel();
-                          Get.back();
-                          Get.back();
-                          Get.snackbar(
-                            "Notification",
-                            rep['message'] ??
-                                "Erreur lors du paiement code d'erreur 1",
-                            backgroundColor: Colors.blue,
-                            colorText: Colors.white,
-                          );
-                        }
-                      } else {
-                        print("pass");
-                      }
-                    });
-                  });
+                  // Timer(const Duration(seconds: 5), () async {
+                  //   //
+                  //   t = Timer.periodic(const Duration(seconds: 5),
+                  //       (timer) async {
+                  //     int w = 0;
+                  //     print("Je suis run cool $w");
+                  //     w++;
+                  //     var rep = await paiementController
+                  //         .verification(m['orderNumber']);
+                  //     print("La vérification: $rep");
+                  //     //
+                  //     if (rep['status'] == null || rep['status'] == null) {
+                  //       if (rep['code'] == 0 || rep['code'] == "0") {
+                  //         //USSD bien envoyé
+                  //         if (rep['transaction']['status'] == "1" ||
+                  //             rep['transaction']['status'] == 1) {
+                  //           //Paiement non éffectué
+                  //           //
+                  //           //widget.f(widget.requette);
+                  //           //
+                  //           print(widget.requette);
+                  //           t!.cancel();
+                  //           Get.back();
+                  //           Get.snackbar(
+                  //             "Notification",
+                  //             "Le paiement n'a pas reussi",
+                  //             backgroundColor: Colors.blue,
+                  //             colorText: Colors.white,
+                  //           );
+                  //         } else if (rep['transaction']['status'] == "2" ||
+                  //             rep['transaction']['status'] == 2) {
+                  //           print("Paiement en attente");
+                  //         } else if (rep['transaction']['status'] == "3" ||
+                  //             rep['transaction']['status'] == 3) {
+                  //           t!.cancel();
+                  //           Get.back();
+                  //           Get.snackbar(
+                  //             "Notification",
+                  //             "Pas de paiement effectué",
+                  //             backgroundColor: Colors.blue,
+                  //             colorText: Colors.white,
+                  //           );
+                  //         } else {
+                  //           t!.cancel();
+                  //           Get.back();
+                  //           //var r = widget.requette;
+                  //           //r["reference"] = rep['transaction']['reference'];
+                  //           print(
+                  //               "--------------------------------------------");
+                  //           print("$rep");
+                  //           widget.f(widget.requette);
+                  //         }
+                  //       } else {
+                  //         //USSD non envoyé
+                  //         t!.cancel();
+                  //         Get.back();
+                  //         Get.back();
+                  //         Get.snackbar(
+                  //           "Notification",
+                  //           rep['message'] ??
+                  //               "Erreur lors du paiement code d'erreur 1",
+                  //           backgroundColor: Colors.blue,
+                  //           colorText: Colors.white,
+                  //         );
+                  //       }
+                  //     } else {
+                  //       print("pass");
+                  //     }
+                  //   });
+                  // });
                 } else {
                   //
                   Get.back();
                   Get.snackbar(
                     "Erreur",
-                    m['message'] ?? "Vide",
+                    m,
                     backgroundColor: Colors.blue,
                     colorText: Colors.white,
                   );

@@ -192,22 +192,23 @@ class _Verification extends State<Verification> {
                 controller: mot_de_passe,
                 obscureText: obscuretext,
                 decoration: InputDecoration(
-                    //prefixIcon: Text("De:"),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: const BorderSide(
-                        color: Colors.blue,
-                      ),
+                  //prefixIcon: Text("De:"),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      color: Colors.blue,
                     ),
-                    label: const Text("Mot de passe"),
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          obscuretext = obscuretext ? false : true;
-                        });
-                      },
-                      icon: const Icon(Icons.remove_red_eye),
-                    )),
+                  ),
+                  label: const Text("Mot de passe"),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        obscuretext = obscuretext ? false : true;
+                      });
+                    },
+                    icon: const Icon(Icons.remove_red_eye),
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 50,
@@ -236,10 +237,8 @@ class _Verification extends State<Verification> {
 
                   final connectivityResult =
                       await (Connectivity().checkConnectivity());
-                  if (connectivityResult == ConnectivityResult.mobile ||
-                      connectivityResult == ConnectivityResult.wifi ||
-                      connectivityResult == ConnectivityResult.ethernet ||
-                      connectivityResult == ConnectivityResult.bluetooth) {
+                  if (connectivityResult.contains(ConnectivityResult.mobile) ||
+                      connectivityResult.contains(ConnectivityResult.wifi)) {
                     //
                     matricule.clear();
                     mot_de_passe.clear();
@@ -247,7 +246,7 @@ class _Verification extends State<Verification> {
                         Get.find();
                     identificationController.login(mat, mdp);
                     //
-                  } else if (connectivityResult == ConnectivityResult.none) {
+                  } else {
                     //
                     print("pas connecté");
                     //

@@ -50,7 +50,7 @@ class FormationEducationBase extends StatelessWidget {
         body: TabBarView(
           children: List.generate(8, (e) {
             //
-            List listDeCours = [];
+            Set listDeCours = {};
             //
             List courss = box.read("classe_cours") ?? [];
             //
@@ -96,7 +96,8 @@ class FormationEducationBase extends StatelessWidget {
                     for (List ll in classeCours) {
                       for (Map ee in ll) {
                         int cls = e + 1;
-                        if (ee['cours'] == listDeCours[l].toLowerCase() &&
+                        if (ee['cours'] ==
+                                listDeCours.elementAt(l).toLowerCase() &&
                             ee['categorie'] ==
                                 "Education de base".toLowerCase() &&
                             ee['classe'] == cls) {
@@ -108,8 +109,8 @@ class FormationEducationBase extends StatelessWidget {
                     //
                     Get.back();
                     //
-                    Get.to(CoursPrimaire(
-                        "${listDeCours[l]}", e + 1, branches, types));
+                    Get.to(CoursPrimaire("${listDeCours.elementAt(l)}", e + 1,
+                        branches.toSet(), types));
                   },
                   child: Card(
                     child: Container(
@@ -160,7 +161,8 @@ class FormationEducationBase extends StatelessWidget {
                                   text: "",
                                   children: [
                                     TextSpan(
-                                      text: "${listDeCours[l]}".toUpperCase(),
+                                      text: "${listDeCours.elementAt(l)}"
+                                          .toUpperCase(),
                                       style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,

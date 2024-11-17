@@ -23,7 +23,7 @@ class CoursMaternelle extends StatelessWidget {
     //
   }
   //
-  List lecons = [];
+  Set lecons = {};
   Set types = {};
   // [
   //   "CONJUGAISON",
@@ -64,8 +64,11 @@ class CoursMaternelle extends StatelessWidget {
                     //
                     return Container(
                       child: FutureBuilder(
-                        future: Utils.getNotion(cours.toLowerCase(),
-                            "Maternelle".toLowerCase(), lecons[e], classe),
+                        future: Utils.getNotion(
+                            cours.toLowerCase(),
+                            "Maternelle".toLowerCase(),
+                            lecons.elementAt(e),
+                            classe),
                         builder: (c, t) {
                           //
                           if (t.hasData) {
@@ -82,7 +85,7 @@ class CoursMaternelle extends StatelessWidget {
                                       TypeCours(
                                           cours,
                                           "Maternelle".toLowerCase(),
-                                          lecons[e],
+                                          lecons.elementAt(e),
                                           "${cs[c]['notion']}",
                                           classe,
                                           "${cs[c]['type']}",
@@ -94,7 +97,7 @@ class CoursMaternelle extends StatelessWidget {
                                     height: 40,
                                     width: 40,
                                     alignment: Alignment.center,
-                                    child: const Icon(Icons.book),
+                                    child: const Icon(Icons.view_list),
                                   ),
                                   title: Text("${cs[c]['notion']}"),
                                 );
@@ -166,7 +169,7 @@ class CoursMaternelle extends StatelessWidget {
                           text: "",
                           children: [
                             TextSpan(
-                              text: "${lecons[e]}",
+                              text: "${lecons.elementAt(e)}",
                               style: const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,

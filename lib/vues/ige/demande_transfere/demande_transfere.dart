@@ -1037,8 +1037,8 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                   var connectivityResult =
                       await (Connectivity().checkConnectivity());
                   //
-                  if (connectivityResult == ConnectivityResult.mobile ||
-                      connectivityResult == ConnectivityResult.wifi) {
+                  if (connectivityResult.contains(ConnectivityResult.mobile) ||
+                      connectivityResult.contains(ConnectivityResult.wifi)) {
                     //
                     Get.dialog(Center(
                       child: Container(

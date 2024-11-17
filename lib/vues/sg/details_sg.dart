@@ -1,4 +1,3 @@
-
 import 'package:epst_app/utils/connexion.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
@@ -191,11 +190,11 @@ class DetailsSG extends StatelessWidget {
                     : ie.value == 3
                         ? ListView(
                             padding: const EdgeInsets.all(10),
-                            children: const [
-                              Padding(
+                            children: [
+                              const Padding(
                                 padding: EdgeInsets.only(top: 10),
                               ),
-                              Align(
+                              const Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   "ATTRIBUT. & MISSION",
@@ -204,10 +203,10 @@ class DetailsSG extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
-                              //HtmlWidget("""${e['attributionMission']}""")
+                              Text("""${e['attributionMission']}""")
                             ],
                           )
                         : ie.value == 4
@@ -234,11 +233,11 @@ class DetailsSG extends StatelessWidget {
                               )
                             : ListView(
                                 padding: const EdgeInsets.all(10),
-                                children: const [
-                                  Padding(
+                                children: [
+                                  const Padding(
                                     padding: EdgeInsets.only(top: 10),
                                   ),
-                                  Align(
+                                  const Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
                                       "HISTORIQUES",
@@ -247,9 +246,10 @@ class DetailsSG extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5,
                                   ),
+                                  Text("""${e['historique']}""")
                                   //HtmlWidget("""${e['historique']}"""),
                                 ],
                               ),

@@ -33,7 +33,7 @@ class _Accueil extends State<Accueil> {
     "Chat avec agent EDU-NC",
     //"",
     "Magazine EDU-NC",
-    "Dépôt plainte",
+    "MGP\ndépôt plainte",
     "Réformes EDU-NC",
     //"DINACOPE Listing",
     "Sécretariat général", //& Directions centrales

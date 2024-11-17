@@ -24,7 +24,7 @@ class CoursSecondaire extends StatelessWidget {
   //   "LECTURE",
   // ];
   //
-  List lecons = [];
+  Set lecons = {};
   Set types = {};
   //
   double st = 15;
@@ -56,7 +56,7 @@ class CoursSecondaire extends StatelessWidget {
                         future: Utils.getNotion(
                             cours.toLowerCase(),
                             "Education de base".toLowerCase(),
-                            lecons[e],
+                            lecons.elementAt(e),
                             classe),
                         builder: (c, t) {
                           //
@@ -74,7 +74,7 @@ class CoursSecondaire extends StatelessWidget {
                                       TypeCours(
                                           cours,
                                           "secondaire".toLowerCase(),
-                                          lecons[e],
+                                          lecons.elementAt(e),
                                           "${cs[c]['notion']}",
                                           classe,
                                           "${cs[c]['type']}",
@@ -86,7 +86,7 @@ class CoursSecondaire extends StatelessWidget {
                                     height: 40,
                                     width: 40,
                                     alignment: Alignment.center,
-                                    child: const Icon(Icons.book),
+                                    child: const Icon(Icons.view_list),
                                   ),
                                   title: Text("${cs[c]['notion']}"),
                                 );
@@ -173,7 +173,7 @@ class CoursSecondaire extends StatelessWidget {
                           text: "",
                           children: [
                             TextSpan(
-                              text: "${lecons[e]}",
+                              text: "${lecons.elementAt(e)}",
                               style: const TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
