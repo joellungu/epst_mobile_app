@@ -233,12 +233,36 @@ class _PayementMethode extends State<PayementMethode> {
                 } else {
                   //
                   Get.back();
-                  Get.snackbar(
-                    "Erreur",
-                    m,
-                    backgroundColor: Colors.blue,
-                    colorText: Colors.white,
-                  );
+                  Get.back();
+                  Get.dialog(Center(
+                    child: Card(
+                      child: Container(
+                        padding: const EdgeInsets.all(5),
+                        height: 130,
+                        width: 200,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              m,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              ),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                Get.back();
+                              },
+                              child: const Text("Compris"),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ));
                   //
                 }
 

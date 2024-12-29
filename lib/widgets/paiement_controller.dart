@@ -6,14 +6,14 @@ import 'package:get/get.dart';
 class PaiementController extends GetxController {
   Requete requete = Requete();
   Future<String> paiement(Map e) async {
-    Response rep = await requete.postE("paiement/paie", e);
+    http.Response rep = await requete.postETicket("paiement/paie", e);
     print("la reponse du serveur: ${rep.statusCode}");
     print("la reponse du serveur: ${rep.body}");
 
-    if (rep.isOk) {
+    if (rep.statusCode == 200 || rep.statusCode == 201) {
       return rep.body;
     } else {
-      return "erreur ${rep.statusCode}";
+      return "erreur ${rep.statusCode}, ${rep.body}";
     }
   }
 

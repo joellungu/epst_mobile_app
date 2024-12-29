@@ -4,6 +4,13 @@ import 'package:http/http.dart' as http;
 import 'connexion.dart';
 
 class Requete extends GetConnect {
+  Future<http.Response> postETicket(String path, Map e) async {
+    return http
+        .post(Uri.parse("${Connexion.lien}$path"),
+            headers: {"Content-Type": "application/json"}, body: jsonEncode(e))
+        .timeout(const Duration(minutes: 2));
+  }
+
   Future<Response> getE(String path) async {
     print("${Connexion.lien}$path");
     return get("${Connexion.lien}$path");

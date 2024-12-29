@@ -16,7 +16,7 @@ import path_provider_foundation
 import pdfx
 import record_darwin
 import shared_preferences_foundation
-import sqflite
+import sqflite_darwin
 import syncfusion_pdfviewer_macos
 import url_launcher_macos
 import video_player_avfoundation
