@@ -91,7 +91,7 @@ dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/ICONE EPST APP 30 SUR 30 CM.png"
+  image_path: "assets/Logo EDUC-APP-FINAL.png"
   min_sdk_android: 21
   
 #dependency_overrides:

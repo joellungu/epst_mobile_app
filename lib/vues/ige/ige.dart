@@ -35,7 +35,7 @@ class _Ige extends State<Ige> {
     //  titre: "Identification epreuves certificative"));
     "Identification SERNIE", //Get.to(Sernie(titre: "Identification SERNIE"));
     "Transfère élève", //Get.to(Transfere(titre: "Demande de transfère",));
-    "Fiche de paie", //Get.to(AttestationReussit(titre: "Attestation de réussite"));
+    "Identification école", //Get.to(AttestationReussit(titre: "Attestation de réussite"));
     "M.E.S.P", //Get.to(Mutuelle(titre: "Mutuelle"));
     //"",
   ];

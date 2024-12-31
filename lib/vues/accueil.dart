@@ -498,20 +498,21 @@ class _Accueil extends State<Accueil> {
                   semanticsLabel: 'Acme Logo'),
             ),
           ),
-          // BottomNavigationBarItem(
-          //   label: "Paramettre",
-          //   icon: Container(
-          //     alignment: Alignment.center,
-          //     height: 30,
-          //     width: 40,
-          //     decoration: BoxDecoration(
-          //       color: currentIndex == 4 ? Colors.blue.shade100 : Colors.white,
-          //       borderRadius: BorderRadius.circular(15),
-          //     ),
-          //     child: SvgPicture.asset("assets/svg/SolarSettingsOutline.svg",
-          //         semanticsLabel: 'Acme Logo'),
-          //   ),
-          // ),
+          BottomNavigationBarItem(
+            label: "Parcours scolaire",
+            icon: Container(
+              alignment: Alignment.center,
+              height: 30,
+              width: 40,
+              decoration: BoxDecoration(
+                color: currentIndex == 4 ? Colors.blue.shade100 : Colors.white,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: SvgPicture.asset(
+                  "assets/svg/SolarSquareAcademicCap2Linear.svg",
+                  semanticsLabel: 'Acme Logo'),
+            ),
+          ),
         ],
       ),
       /*

@@ -88,6 +88,7 @@ class IdentificationController extends GetxController with StateMixin<List> {
       }
     } else {
       //
+      print(response.body);
       Get.back();
       Get.snackbar(
           "Erreur", "Un problème est survenu lors de l'authentification");

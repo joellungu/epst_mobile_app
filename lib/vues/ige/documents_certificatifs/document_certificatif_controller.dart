@@ -51,7 +51,7 @@ class DemandeDocumentController extends GetxController {
     //
   }
 
-  faireUneInscription(Map map) async {
+  faireUneDemande(Map map) async {
     var box = GetStorage();
 
     print(map); //http.
