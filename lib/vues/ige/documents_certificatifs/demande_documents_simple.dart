@@ -284,64 +284,61 @@ class _DemandeDocument extends State<DemandeDocumentsSimple> {
           ),
           ElevatedButton(
             onPressed: () async {
-              if (img1 == null) {
+              var connectivityResult =
+                  await (Connectivity().checkConnectivity());
+              //
+              if (connectivityResult.contains(ConnectivityResult.mobile) ||
+                  connectivityResult.contains(ConnectivityResult.wifi)) {
                 //
-                messageErreur("Erreur", "Veuillez selectionner une photo");
-              } else {
-                var connectivityResult =
-                    await (Connectivity().checkConnectivity());
-                //
-                if (connectivityResult.contains(ConnectivityResult.mobile) ||
-                    connectivityResult.contains(ConnectivityResult.wifi)) {
-                  //
-                  Get.dialog(Center(
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const CircularProgressIndicator(
-                        strokeWidth: 7,
-                      ),
+                Get.dialog(Center(
+                  child: Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                  ));
-                  //
-                  DateTime d2 = DateTime.now();
-                  //
-                  Uint8List l1 = await img1!.readAsBytes();
-                  //
-                  String vd = d!.day < 9 ? "0${d!.day}" : "${d!.day}";
-                  String vm = d!.month < 9 ? "0${d!.month}" : "${d!.month}";
-                  String ddd = "${d!.year}-$vm-$vd";
-                  Map<String, dynamic> formulaireD = {
-                    //"id": getCode(),
-                    "annee": annee.value,
-                    "datedemande": "${d2.day}/${d2.month}/${d2.year}",
-                    "valider": 0,
-                    "documenrDemandecode": type.value,
-                    "documenrDemande": types[type.value],
-                    "type": 2,
-                    "matricule": code.text,
-                  };
-                  /*
+                    child: const CircularProgressIndicator(
+                      strokeWidth: 7,
+                    ),
+                  ),
+                ));
+                //
+                DateTime d2 = DateTime.now();
+                //
+                Uint8List l1 = await img1!.readAsBytes();
+                //
+                String vd = d!.day < 9 ? "0${d!.day}" : "${d!.day}";
+                String vm = d!.month < 9 ? "0${d!.month}" : "${d!.month}";
+                String ddd = "${d!.year}-$vm-$vd";
+                Map<String, dynamic> formulaireD = {
+                  //"id": getCode(),
+                  "annee": annee.value,
+                  "datedemande": "${d2.day}/${d2.month}/${d2.year}",
+                  "valider": 0,
+                  "documenrDemandecode": type.value,
+                  "documenrDemande": types[type.value],
+                  "type": 2,
+                  "matricule": code.text,
+                };
+                /*
                   */
-                  //if (type.value == 0 || type.value == 4) {
-                  //PayementMethode
+                //if (type.value == 0 || type.value == 4) {
+                //PayementMethode
 
-                  Get.dialog(Center(
+                Get.dialog(
+                  Center(
                     child: Container(
                       height: 40,
                       width: 40,
                       child: CircularProgressIndicator(),
                     ),
-                  ));
+                  ),
+                );
 
-                  send(formulaireD); //En attendant...
+                send(formulaireD); //En attendant...
 
-                  //____________________________________________________________
-                }
+                //____________________________________________________________
               }
             },
             child: Container(

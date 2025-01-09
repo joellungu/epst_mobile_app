@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import '../main.dart';
+import 'package:http/http.dart' as http;
 import 'paiement_controller.dart';
 
 class PayementMethode extends StatefulWidget {
@@ -152,9 +153,9 @@ class _PayementMethode extends State<PayementMethode> {
                   "currency": "CDF" // gender,
                 };
                 print('element: $e');
-                String m = await paiementController.paiement(e);
+                http.Response m = await paiementController.paiement(e);
                 print("la reponse du serveur: $m");
-                if (m == 'Paiement éffectué') {
+                if (m.statusCode == 200 || m.statusCode == 201) {
                   //La fonction bloucle...
                   //Get.back();
 
@@ -246,7 +247,7 @@ class _PayementMethode extends State<PayementMethode> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                m,
+                                m.body,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,

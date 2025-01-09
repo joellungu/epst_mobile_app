@@ -74,10 +74,12 @@ class _DepotPlainte extends State<DepotPlainte> {
   List listeTiquet = [
     "Gratuité de l'enseignement",
     "Violences basées sur le genre",
-    "Diplôme d’Etat ",
-    "ENAFEP",
-    "TENASOSP",
+    "Diplome d'état",
+    "Examen d'état",
+    "TENAFEP",
+    "TENASOP",
     "Mesure diciplinaire",
+    "Suspension",
     "Salaire ou prime",
     "Corruption",
     "Matricule",
@@ -724,5 +726,3 @@ SizedBox(height: 20,),
               ),
               ),
  */
-
-

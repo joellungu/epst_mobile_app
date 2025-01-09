@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.1+21
+version: 1.0.1+22
 
 environment:
   sdk: ">=2.16.0 <3.0.0"
@@ -88,11 +88,7 @@ dependencies:
   #webview_flutter_android: any
   #webview_flutter_wkwebview: any
   flutter_chat_types: any
-flutter_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/Logo EDUC-APP-FINAL.png"
-  min_sdk_android: 21
+
   
 #dependency_overrides:
   #package_info_plus:
@@ -108,8 +104,15 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
   package_info_plus: any
-  #wakelock_windows: any
+  flutter_launcher_icons: "^0.14.2"
   win32: any
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/Logo EDUC-APP-FINAL.png"
+  min_sdk_android: 21
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -8,7 +8,9 @@ class Requete extends GetConnect {
     return http
         .post(Uri.parse("${Connexion.lien}$path"),
             headers: {"Content-Type": "application/json"}, body: jsonEncode(e))
-        .timeout(const Duration(minutes: 2));
+        .timeout(
+          const Duration(minutes: 2),
+        );
   }
 
   Future<Response> getE(String path) async {

@@ -89,9 +89,7 @@ void main() async {
       Get.put(LoginEnseignantController());
   //
   runApp(
-    Epst(
-      vue: Splash(),
-    ),
+    Epst(),
   );
   //Timer(const Duration(seconds: 5), () {
   //load();
@@ -99,27 +97,12 @@ void main() async {
   //
 }
 
-load() async {
-  bool v = true;
-  if (v) {
-    runApp(
-      Epst(
-        vue: const Accueil(),
-      ),
-    );
-  } else {
-    runApp(
-      Epst(
-        vue: Splash(),
-      ),
-    );
-  }
-}
-
 class Epst extends StatelessWidget {
-  Epst({Key? key, required this.vue}) : super(key: key);
+  Epst({
+    Key? key,
+  }) : super(key: key);
 
-  late Widget vue;
+  //late Widget vue;
 
   // This widget is the root of your application.
   @override
@@ -137,7 +120,7 @@ class Epst extends StatelessWidget {
           ),
         ),
       ),
-      home: vue,
+      home: Splash(),
       /*
       home: UpgradeAlert(
         child: vue,
