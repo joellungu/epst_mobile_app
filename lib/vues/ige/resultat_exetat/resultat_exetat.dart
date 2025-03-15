@@ -23,89 +23,6 @@ class _ResultatExetat extends State<ResultatExetat> {
   int p = 0;
   int d = 0;
   //
-  List listeProvince = [
-    "Bas-Uele",
-    "Equateur",
-    "Haut-Katanga",
-    "Haut-Lomami",
-    "Haut-Uele",
-    "Ituri",
-    "Kasai",
-    "Kasai central",
-    "Kasai oriental",
-    "Kinshasa",
-    "Kongo Central",
-    "Kwango",
-    "Kwilu",
-    "Lomami",
-    "Lualaba",
-    "Mai-Ndombe",
-    "Maniema",
-    "Mongala",
-    "Nord-Kivu",
-    "Nord-Ubangi",
-    "Sankuru",
-    "Sud-Kivu",
-    "Sud-Ubangi",
-    "Tanganyika",
-    "Tshopo",
-    "Tshuapa",
-  ];
-  //
-  List listeOptions = [
-    "LATIN-PHILOSOPHIE,101",
-    "MATHEMATIQUE-PHYSIQUE,102",
-    "CHIMIE-BIOLOGIE,103",
-    "LATIN-GREC,104",
-    "LATIN-MATHEMATIQUE,105",
-    "SCIENCES,106",
-    "PEDAGOGIE GENERALE,201",
-    "EDUCATION PHYSIQUE,202",
-    "NORMALE,203",
-    "PEDAGOGIE MATERNELLE,204",
-    "COMMERCIALE ET GESTION,301",
-    "SECRETARIAT-ADMINISTRATION,302",
-    "SOCIALE,401",
-    "ARTS PLASTIQUES,501",
-    "ARTS DRAMATIQUES,502",
-    "MUSIQUE,503",
-    "ESTHETIQUE & COIFFURE,504",
-    "COIFFURE,505",
-    "COUPE-COUTURE,601",
-    "HOTESSE D'ACCUEIL,701",
-    "HOTELLERIE & RESTAURATION,702",
-    "TOURISME,704",
-    "AGRICULTURE GENERALE,801",
-    "PECHE ET NAVIGATION,802",
-    "VETERINAIRE,803",
-    "INDUSTRIES AGRICOLES,804",
-    "NUTRITION,805",
-    "FORESTERIE,806",
-    "MECANIQUE GENERALE,901",
-    "MECANIQUE MACHINES-OUTILS,902",
-    "ELECTRICITE,903",
-    "CONSTRUCTION,904",
-    "CHIMIE INDUSTRIELLE,905",
-    "ELECTRONIQUE,906",
-    "IMPRIMERIE,907",
-    "COMMUTATION,908",
-    "RADIO-TRANSMISSION,909",
-    "METEOROLOGIE,910",
-    "AVIATION CIVILE,911",
-    "PETRO-CHIMIE,914",
-    "MECANIQUE AUTOMOBILE,915",
-    "CONSTRUCTION METALLIQUE,916",
-    "MENUISERIE EBENISTERIE,917",
-    "MINE ET GEOLOGIE,918",
-    "METALLURGIE,919",
-    "DESSIN DE BATIMENT,920",
-    "INSTALLATION SANITAIRE,921",
-    "TOLERIE,922",
-    "AJUSTAGE ET SOUDURE,923",
-  ];
-  //
-  int option = 0;
-  //
   TextEditingController code = TextEditingController();
 
   int ti = 0;
@@ -161,6 +78,7 @@ class _ResultatExetat extends State<ResultatExetat> {
             ),
             child: TextField(
               controller: code,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 label: const Text("Code à 14 chiffre"),
                 border: OutlineInputBorder(
@@ -328,7 +246,7 @@ class _ResultatExetat extends State<ResultatExetat> {
                   },
                 );
               }
-              //*/
+              //
             },
             child: Container(
               alignment: Alignment.center,

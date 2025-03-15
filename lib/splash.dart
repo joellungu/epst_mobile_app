@@ -1,13 +1,17 @@
 import 'dart:async';
 
+import 'package:epst_app/politique.dart';
 import 'package:epst_app/vues/accueil.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
+import 'package:get_storage/get_storage.dart';
 import 'main.dart';
 import 'utils/synchronisation.dart';
 
 class Splash extends StatelessWidget {
+  //
+  var box = GetStorage();
   //
   Future<int> load() async {
     //
@@ -54,8 +58,14 @@ class Splash extends StatelessWidget {
   }
   Widget getView() {
     Timer(const Duration(seconds: 4), () {
-      Get.off(const Accueil());
+      bool lu = box.read("lu") ?? false;
+      if (lu) {
+        Get.offAll(const Accueil());
+      } else {
+        Get.offAll(PolitiqueConfidenciel(true));
+      }
     });
+    //
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

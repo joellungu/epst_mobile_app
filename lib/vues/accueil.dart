@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:epst_app/politique.dart';
 import 'package:epst_app/vues/formation/formation.dart';
 import 'package:epst_app/vues/ige/ige.dart';
 import 'package:epst_app/vues/plainte/depotplainte.dart';
@@ -247,17 +248,18 @@ class _Accueil extends State<Accueil> {
                                                 textEditingController.text);
                                             var decoded = utf8.decode(encoded);
                                             print(decoded);
+                                            //
 
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (context) {
-                                                  return Chat(
-                                                    titre: liste[index],
-                                                    nom: decoded,
-                                                  );
-                                                },
+                                            Get.back();
+
+                                            Get.to(
+                                              Chat(
+                                                titre: liste[index],
+                                                nom: decoded,
                                               ),
                                             );
+                                            //
+                                            textEditingController.clear();
                                           }
                                         },
                                         child: const Text("Commencer"),
@@ -422,23 +424,30 @@ class _Accueil extends State<Accueil> {
                       ? Ige(
                           titre: "Demande document service",
                         )
-                      : Container(),
+                      : currentIndex == 4
+                          ? Container()
+                          : PolitiqueConfidenciel(false),
       //
       bottomNavigationBar: BottomNavigationBar(
         onTap: (e) {
           //
+          print("e: $e");
           setState(() {
             currentIndex = e;
           });
         },
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
+        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.black,
+        //backgroundColor: Colors.white,
+        type: BottomNavigationBarType.shifting,
         currentIndex: currentIndex,
-        unselectedLabelStyle: const TextStyle(
+        unselectedLabelStyle: TextStyle(
           fontSize: 10,
+          color: Colors.grey.shade300,
         ),
         selectedLabelStyle: const TextStyle(
           fontSize: 10,
+          fontWeight: FontWeight.w900,
           color: Colors.black,
         ),
         items: [
@@ -449,7 +458,9 @@ class _Accueil extends State<Accueil> {
               height: 30,
               width: 40,
               decoration: BoxDecoration(
-                color: currentIndex == 0 ? Colors.blue.shade100 : Colors.white,
+                color: currentIndex == 0
+                    ? Colors.blue.shade100
+                    : Colors.transparent,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: SvgPicture.asset("assets/svg/SolarChatUnreadOutline.svg",
@@ -463,7 +474,9 @@ class _Accueil extends State<Accueil> {
               height: 30,
               width: 40,
               decoration: BoxDecoration(
-                color: currentIndex == 1 ? Colors.blue.shade100 : Colors.white,
+                color: currentIndex == 1
+                    ? Colors.blue.shade100
+                    : Colors.transparent,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: SvgPicture.asset("assets/svg/SolarBook2Outline.svg",
@@ -477,7 +490,9 @@ class _Accueil extends State<Accueil> {
               height: 30,
               width: 40,
               decoration: BoxDecoration(
-                color: currentIndex == 2 ? Colors.blue.shade100 : Colors.white,
+                color: currentIndex == 2
+                    ? Colors.blue.shade100
+                    : Colors.transparent,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: SvgPicture.asset("assets/svg/SolarHomeAngleOutline.svg",
@@ -491,7 +506,9 @@ class _Accueil extends State<Accueil> {
               height: 30,
               width: 40,
               decoration: BoxDecoration(
-                color: currentIndex == 3 ? Colors.blue.shade100 : Colors.white,
+                color: currentIndex == 3
+                    ? Colors.blue.shade100
+                    : Colors.transparent,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: SvgPicture.asset("assets/svg/SolarClipboardTextLinear.svg",
@@ -505,11 +522,29 @@ class _Accueil extends State<Accueil> {
               height: 30,
               width: 40,
               decoration: BoxDecoration(
-                color: currentIndex == 4 ? Colors.blue.shade100 : Colors.white,
+                color: currentIndex == 4
+                    ? Colors.blue.shade100
+                    : Colors.transparent,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: SvgPicture.asset(
                   "assets/svg/SolarSquareAcademicCap2Linear.svg",
+                  semanticsLabel: 'Acme Logo'),
+            ),
+          ),
+          BottomNavigationBarItem(
+            label: "Politique de confidentialité",
+            icon: Container(
+              alignment: Alignment.center,
+              height: 30,
+              width: 40,
+              decoration: BoxDecoration(
+                color: currentIndex == 5
+                    ? Colors.blue.shade100
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: SvgPicture.asset("assets/svg/SolarChecklistBold.svg",
                   semanticsLabel: 'Acme Logo'),
             ),
           ),

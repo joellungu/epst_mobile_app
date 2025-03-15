@@ -1040,19 +1040,21 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                   if (connectivityResult.contains(ConnectivityResult.mobile) ||
                       connectivityResult.contains(ConnectivityResult.wifi)) {
                     //
-                    Get.dialog(Center(
-                      child: Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: const CircularProgressIndicator(
-                          strokeWidth: 7,
+                    Get.dialog(
+                      Center(
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: const CircularProgressIndicator(
+                            strokeWidth: 7,
+                          ),
                         ),
                       ),
-                    ));
+                    );
                     //
                     //Future<Uint8List> i = img1!.readAsBytes();
                     //File file = File(img1!.path);
@@ -1091,28 +1093,31 @@ class _DemandeTransfere extends State<DemandeTransfere> {
                       "valider": 0,
                     };
                     //
-                    //send(formulaireD);
-                    showDialog(
-                      context: context,
-                      builder: (c) {
-                        return Material(
-                          color: Colors.transparent,
-                          child: Center(
-                            child: Container(
-                              padding: const EdgeInsets.all(15),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              height: 250,
-                              width: 270,
-                              child: PayementMethode(
-                                  formulaireD, 2, send, "palmares", "palmares"),
-                            ),
-                          ),
-                        );
-                      },
-                    );
+                    send(formulaireD);
+                    //Get.back();
+
+                    // showDialog(
+                    //   context: context,
+                    //   builder: (c) {
+                    //     return Material(
+                    //       color: Colors.transparent,
+                    //       child: Center(
+                    //         child: Container(
+                    //           padding: const EdgeInsets.all(15),
+                    //           decoration: BoxDecoration(
+                    //             color: Colors.white,
+                    //             borderRadius: BorderRadius.circular(10),
+                    //           ),
+                    //           height: 270,
+                    //           width: 280,
+                    //           child: PayementMethode(
+                    //               formulaireD, 2, send, "palmares", "palmares"),
+                    //         ),
+                    //       ),
+                    //     );
+                    //   },
+                    // );
+
                     //____________________________________________________________
                   } else {}
                 }

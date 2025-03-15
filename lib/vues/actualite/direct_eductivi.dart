@@ -111,15 +111,15 @@ class _DirectEductivi extends State<DirectEductivi> {
       progressIndicatorDelay:
           bufferDelay != null ? Duration(milliseconds: bufferDelay!) : null,
 
-      additionalOptions: (context) {
-        return <OptionItem>[
-          OptionItem(
-            onTap: toggleVideo,
-            iconData: Icons.live_tv_sharp,
-            title: 'Toggle Video Src',
-          ),
-        ];
-      },
+      // additionalOptions: (context) {
+      //   return <OptionItem>[
+      //     OptionItem(
+      //       //onTap: toggleVideo,
+      //       iconData: Icons.live_tv_sharp,
+      //       title: 'Toggle Video Src', onTap: () {},
+      //     ),
+      //   ];
+      // },
       subtitle: Subtitles(subtitles),
       subtitleBuilder: (context, dynamic subtitle) => Container(
         padding: const EdgeInsets.all(10.0),

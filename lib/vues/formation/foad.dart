@@ -8,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'cursus/cursus.dart';
 import 'formation_eleves/enseignement_mobile_enligne.dart';
+import 'formation_en_ligne/login.dart';
 // #enddocregion platform_imports
 
 class FOAD extends StatefulWidget {
@@ -276,7 +277,7 @@ class _FOAD extends State<FOAD> {
                   ),
                   InkWell(
                     onTap: () {
-                      //Get.to(Cursus());
+                      Get.to(Login());
                     },
                     child: Card(
                       child: Container(

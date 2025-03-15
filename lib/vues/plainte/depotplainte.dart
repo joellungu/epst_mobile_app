@@ -354,52 +354,75 @@ class _DepotPlainte extends State<DepotPlainte> {
                                   bool v2 = await Permission
                                       .manageExternalStorage.isGranted;
                                   //
-                                  Map<Permission, PermissionStatus> statuses =
-                                      await [
-                                    Permission.storage,
-                                    Permission.manageExternalStorage,
-                                  ].request();
-                                  //
-                                  var storage = statuses[Permission.storage];
-                                  var manageExternalStorage = statuses[
-                                      Permission.manageExternalStorage];
-                                  if (storage!.isGranted ||
-                                      manageExternalStorage!.isGranted) {
-                                    // do something
-                                    FilePickerResult? result = await FilePicker
-                                        .platform
-                                        .pickFiles(allowMultiple: false);
-                                    if (result != null) {
-                                      List<File> files = result.paths
-                                          .map((path) => File(path!))
-                                          .toList();
-                                      files.forEach((element) async {
-                                        //
-                                        List<String> extT =
-                                            element.path.split(".");
-                                        String ext = extT.last;
-                                        String name = extT.first;
-                                        Uint8List l =
-                                            await element.readAsBytes();
-                                        //
-                                        listeFichierSave.add(element.path);
-                                        //
-                                        depotController.listeFichier.value.add(
-                                          {
-                                            "length": l.length,
-                                            "data": l,
-                                            "type": ext,
-                                            "name": name,
-                                          },
-                                        );
-                                      });
-                                    }
-                                    setState(() {});
-                                  } else {
-                                    Get.snackbar("Permission", "Oups !");
-                                  }
-                                  //
 
+                                  //
+                                  var status =
+                                      await Permission.storage.request();
+
+/**
+ *                                    status.isDenied ||
+                                      status.isLimited ||
+                                      status.isRestricted
+ */
+                                  if (true) {
+                                    // Demander la permission
+
+                                    //
+                                    bool cc1 = await Permission.storage
+                                        .request()
+                                        .isGranted;
+                                    //
+                                    bool cc2 = true;
+                                    // await Permission.manageExternalStorage
+                                    //     .request()
+                                    //     .isGranted;
+                                    //
+                                    //cc1 || cc2
+                                    if (true) {
+                                      // do something
+                                      FilePickerResult? result =
+                                          await FilePicker.platform
+                                              .pickFiles(allowMultiple: false);
+                                      if (result != null) {
+                                        List<File> files = result.paths
+                                            .map((path) => File(path!))
+                                            .toList();
+                                        files.forEach((element) async {
+                                          //
+                                          List<String> extT =
+                                              element.path.split(".");
+                                          String ext = extT.last;
+                                          String name = extT.first;
+                                          Uint8List l =
+                                              await element.readAsBytes();
+                                          //
+                                          listeFichierSave.add(element.path);
+                                          //
+                                          depotController.listeFichier.add(
+                                            {
+                                              "length": l.length,
+                                              "data": l,
+                                              "type": ext,
+                                              "name": name,
+                                            },
+                                          );
+                                        });
+                                        setState(() {});
+                                      }
+                                    } else {
+                                      //await openAppSettings();
+                                      Get.snackbar("Oups",
+                                          "Nous ne pouvons lire vos fichiers.");
+                                      status =
+                                          await Permission.storage.request();
+                                    }
+                                    //
+                                  } else {
+                                    //await openAppSettings();
+                                    Get.snackbar("Oups",
+                                        "Permission de lire vos fichiers réffusé.!!!");
+                                    status = await Permission.storage.request();
+                                  }
                                   //
                                 },
                                 child: Container(

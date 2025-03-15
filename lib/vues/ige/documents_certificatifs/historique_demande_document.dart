@@ -3,6 +3,7 @@ import 'package:epst_app/vues/ige/documents_certificatifs/document_certificatif_
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'dart:convert' show utf8;
 
 class HistoriqueDemandeDocument extends StatefulWidget {
   const HistoriqueDemandeDocument({Key? key}) : super(key: key);
@@ -58,10 +59,14 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
           //
           RxInt show = 0.obs;
           //
+          var encoded = utf8
+              .encode("${e['documenrDemande']} du ${e['datedemande'] ?? ''}");
+          var decoded = utf8.decode(encoded);
+          //
           if (e['type'] == 2) {
             return AccordionSection(
               header: Text(
-                "${e['documenrDemande']} du ${e['datedemande'] ?? ''}",
+                decoded,
                 style: const TextStyle(
                     //datedemande
                     color: Colors.white,
@@ -94,7 +99,7 @@ class _HistoriqueDemandeDocument extends State<HistoriqueDemandeDocument> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      "document Demande: ${e['documenrDemande']}",
+                      "document Demande: $decoded",
                       style: const TextStyle(
                           color: Colors.black,
                           fontSize: 17,

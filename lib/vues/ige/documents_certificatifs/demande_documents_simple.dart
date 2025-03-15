@@ -133,8 +133,20 @@ class _DemandeDocument extends State<DemandeDocumentsSimple> {
     return Padding(
       padding: const EdgeInsets.all(15),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          const SizedBox(
+            height: 10,
+          ),
+          Container(
+            height: 200,
+            width: 200,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: ExactAssetImage("assets/LOGO-MINEPST-BON.png"),
+              ),
+            ),
+          ),
           const Align(
             alignment: Alignment.centerLeft,
             child: Text(
@@ -283,6 +295,9 @@ class _DemandeDocument extends State<DemandeDocumentsSimple> {
             height: 20,
           ),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue,
+            ),
             onPressed: () async {
               var connectivityResult =
                   await (Connectivity().checkConnectivity());
@@ -306,19 +321,27 @@ class _DemandeDocument extends State<DemandeDocumentsSimple> {
                 //
                 DateTime d2 = DateTime.now();
                 //
-                Uint8List l1 = await img1!.readAsBytes();
+                //Uint8List l1 = await img1!.readAsBytes();
                 //
-                String vd = d!.day < 9 ? "0${d!.day}" : "${d!.day}";
-                String vm = d!.month < 9 ? "0${d!.month}" : "${d!.month}";
-                String ddd = "${d!.year}-$vm-$vd";
+                // String vd = d!.day < 9 ? "0${d!.day}" : "${d!.day}";
+                // String vm = d!.month < 9 ? "0${d!.month}" : "${d!.month}";
+                // String ddd = "${d!.year}-$vm-$vd";
+                /**
+                 * public String matricule;
+    public String annee;
+    public String dateDemande;
+    public String typeDocument;
+    public String codePaiement;
+    public int status;
+                 */
                 Map<String, dynamic> formulaireD = {
                   //"id": getCode(),
                   "annee": annee.value,
-                  "datedemande": "${d2.day}/${d2.month}/${d2.year}",
-                  "valider": 0,
+                  "dateDemande": "${d2.day}/${d2.month}/${d2.year}",
+                  "status": 0,
                   "documenrDemandecode": type.value,
                   "documenrDemande": types[type.value],
-                  "type": 2,
+                  "codePaiement": "",
                   "matricule": code.text,
                 };
                 /*
@@ -326,15 +349,15 @@ class _DemandeDocument extends State<DemandeDocumentsSimple> {
                 //if (type.value == 0 || type.value == 4) {
                 //PayementMethode
 
-                Get.dialog(
-                  Center(
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      child: CircularProgressIndicator(),
-                    ),
-                  ),
-                );
+                // Get.dialog(
+                //   Center(
+                //     child: Container(
+                //       height: 40,
+                //       width: 40,
+                //       child: CircularProgressIndicator(),
+                //     ),
+                //   ),
+                // );
 
                 send(formulaireD); //En attendant...
 
@@ -344,7 +367,13 @@ class _DemandeDocument extends State<DemandeDocumentsSimple> {
             child: Container(
               alignment: Alignment.center,
               height: 40,
-              child: const Text("Envoyer"),
+              child: const Text(
+                "Envoyer",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
           const SizedBox(
@@ -362,7 +391,7 @@ class _DemandeDocument extends State<DemandeDocumentsSimple> {
     //ByteArrayInputStream//formulaireD
     //
     Timer(const Duration(seconds: 1), () {
-      demandeDocumentController.faireUneDemande(formulaireD);
+      demandeDocumentController.faireUneDemandeDiplome(formulaireD);
     });
   }
 

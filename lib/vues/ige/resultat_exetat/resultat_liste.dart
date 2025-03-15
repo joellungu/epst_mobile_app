@@ -34,6 +34,15 @@ class ListResultat extends StatelessWidget {
             Map e = l[index];
             print(e);
             return ListTile(
+              leading: Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: ExactAssetImage("assets/LOGO-MINEPST-BON.png"),
+                  ),
+                ),
+              ),
               onTap: () {
                 //
                 Map r = {
@@ -58,7 +67,7 @@ class ListResultat extends StatelessWidget {
               // ),
               title: Text("${e['codecandidat'] ?? '...'}".split(".")[0]),
               subtitle: Text("${e['anneescolaire']}"),
-              //trailing: Text("${e['anneescolaire']}"),
+              trailing: const Icon(Icons.arrow_forward_ios),
             );
           }),
         ),
@@ -80,7 +89,9 @@ class DetailsPalmares extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "${l!['nomecole']}\n${l!['option']}: ${e['anneescolaire']}",
+          l!.isEmpty
+              ? "Détails du resultat"
+              : "${l!['nomecole']}\n${l!['option']}: ${e['anneescolaire']}",
           textAlign: TextAlign.center,
           style: const TextStyle(fontSize: 13),
         ),
@@ -97,7 +108,7 @@ class DetailsPalmares extends StatelessWidget {
           height: 30,
         ),
         // ignore: unnecessary_null_comparison
-        l == null
+        l!.isEmpty
             ? Container(
                 padding: const EdgeInsets.only(top: 50),
                 alignment: Alignment.center,
@@ -136,7 +147,8 @@ class DetailsPalmares extends StatelessWidget {
                         fontSize: 30,
                       ),
                     ),
-                    const TextSpan(text: " Vous-avez réussi aux Examens d'Etat avec"),
+                    const TextSpan(
+                        text: " Vous-avez réussi aux Examens d'Etat avec"),
                     TextSpan(
                       text: " ${l!['note']} % \n\n",
                       style: const TextStyle(

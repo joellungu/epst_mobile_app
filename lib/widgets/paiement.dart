@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
@@ -55,6 +56,7 @@ class _PayementMethode extends State<PayementMethode> {
           ),
           TextField(
             controller: numero,
+            keyboardType: TextInputType.number,
             decoration: InputDecoration(
               prefix: const Text("+243"),
               border: OutlineInputBorder(
@@ -158,79 +160,46 @@ class _PayementMethode extends State<PayementMethode> {
                 if (m.statusCode == 200 || m.statusCode == 201) {
                   //La fonction bloucle...
                   //Get.back();
-
-                  widget.f(widget.requette);
-
-                  // Timer(const Duration(seconds: 5), () async {
-                  //   //
-                  //   t = Timer.periodic(const Duration(seconds: 5),
-                  //       (timer) async {
-                  //     int w = 0;
-                  //     print("Je suis run cool $w");
-                  //     w++;
-                  //     var rep = await paiementController
-                  //         .verification(m['orderNumber']);
-                  //     print("La vérification: $rep");
-                  //     //
-                  //     if (rep['status'] == null || rep['status'] == null) {
-                  //       if (rep['code'] == 0 || rep['code'] == "0") {
-                  //         //USSD bien envoyé
-                  //         if (rep['transaction']['status'] == "1" ||
-                  //             rep['transaction']['status'] == 1) {
-                  //           //Paiement non éffectué
-                  //           //
-                  //           //widget.f(widget.requette);
-                  //           //
-                  //           print(widget.requette);
-                  //           t!.cancel();
-                  //           Get.back();
-                  //           Get.snackbar(
-                  //             "Notification",
-                  //             "Le paiement n'a pas reussi",
-                  //             backgroundColor: Colors.blue,
-                  //             colorText: Colors.white,
-                  //           );
-                  //         } else if (rep['transaction']['status'] == "2" ||
-                  //             rep['transaction']['status'] == 2) {
-                  //           print("Paiement en attente");
-                  //         } else if (rep['transaction']['status'] == "3" ||
-                  //             rep['transaction']['status'] == 3) {
-                  //           t!.cancel();
-                  //           Get.back();
-                  //           Get.snackbar(
-                  //             "Notification",
-                  //             "Pas de paiement effectué",
-                  //             backgroundColor: Colors.blue,
-                  //             colorText: Colors.white,
-                  //           );
-                  //         } else {
-                  //           t!.cancel();
-                  //           Get.back();
-                  //           //var r = widget.requette;
-                  //           //r["reference"] = rep['transaction']['reference'];
-                  //           print(
-                  //               "--------------------------------------------");
-                  //           print("$rep");
-                  //           widget.f(widget.requette);
-                  //         }
-                  //       } else {
-                  //         //USSD non envoyé
-                  //         t!.cancel();
-                  //         Get.back();
-                  //         Get.back();
-                  //         Get.snackbar(
-                  //           "Notification",
-                  //           rep['message'] ??
-                  //               "Erreur lors du paiement code d'erreur 1",
-                  //           backgroundColor: Colors.blue,
-                  //           colorText: Colors.white,
-                  //         );
-                  //       }
-                  //     } else {
-                  //       print("pass");
-                  //     }
-                  //   });
-                  // });
+                  if (jsonDecode(m.body)['code'] == "0") {
+                    widget.f(widget.requette);
+                  } else {
+                    //
+                    //widget.f(widget.requette); // En attendant...
+                    //
+                    Get.back();
+                    Get.back();
+                    Get.dialog(
+                      Center(
+                        child: Card(
+                          child: Container(
+                            padding: const EdgeInsets.all(5),
+                            height: 130,
+                            width: 200,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Un problème est survenu lors du paiement le code d'erreur est: ${jsonDecode(m.body)['code']}",
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Get.back();
+                                  },
+                                  child: const Text("Compris"),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }
                 } else {
                   //
                   Get.back();
@@ -247,7 +216,7 @@ class _PayementMethode extends State<PayementMethode> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                m.body,
+                                "Un problème est survenu lors du paiement le code d'erreur est: ${m.statusCode}",
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -256,7 +225,6 @@ class _PayementMethode extends State<PayementMethode> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
-                                  Get.back();
                                   Get.back();
                                 },
                                 child: const Text("Compris"),

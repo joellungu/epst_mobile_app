@@ -17,8 +17,8 @@ class Connexion {
   static var lien = 'https://epst-serveur-a595d15d6608.herokuapp.com/';
   static var ws = 'epst-serveur-a595d15d6608.herokuapp.com';
   //
-  //static var lien = 'http://192.168.1.76:8080/';
-  //static var ws = '192.168.1.76:8080';
+  //static var lien = 'http://192.168.178.134:8080/';
+  //static var ws = '192.168.178.134:8080';
   //
   //static var lien = 'http://10.0.2.2:8080/';
   //static var ws = '10.0.2.2:8080';

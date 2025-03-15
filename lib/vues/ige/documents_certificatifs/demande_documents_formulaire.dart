@@ -1039,7 +1039,7 @@ class _DemandeDocument extends State<DemandeDocumentsFormulaire> {
                   "annee": annee.value,
                   "datedemande": "${d2.day}/${d2.month}/${d2.year}",
                   "documenrDemandecode": type.value,
-                  "documenrDemande": types[type.value],
+                  "documenrDemande": "${types[type.value]}",
                   "valider": 0,
                   "type": 1,
                   "matricule": ""
@@ -1085,10 +1085,19 @@ class _DemandeDocument extends State<DemandeDocumentsFormulaire> {
               }
             }
           },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blue,
+          ),
           child: Container(
             alignment: Alignment.center,
             height: 40,
-            child: const Text("Envoyer"),
+            child: const Text(
+              "Envoyer",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         ),
         const SizedBox(
