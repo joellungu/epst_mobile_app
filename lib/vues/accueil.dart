@@ -45,8 +45,6 @@ class _Accueil extends State<Accueil> {
     //"EPST Kelasi",
   ];
 
-  TextEditingController textEditingController = TextEditingController();
-
   @override
   void initState() {
     listeIcons = [
@@ -226,6 +224,10 @@ class _Accueil extends State<Accueil> {
                         showDialog(
                             context: context,
                             builder: (context) {
+                              //
+                              TextEditingController textEditingController =
+                                  TextEditingController();
+                              //
                               return AlertDialog(
                                 title: const Text("Votre nom"),
                                 content: SizedBox(
@@ -259,7 +261,7 @@ class _Accueil extends State<Accueil> {
                                               ),
                                             );
                                             //
-                                            textEditingController.clear();
+                                            //textEditingController.clear();
                                           }
                                         },
                                         child: const Text("Commencer"),

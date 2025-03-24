@@ -64,7 +64,7 @@ class PolitiqueConfidenciel extends StatelessWidget {
                       onPressed: () {
                         //
                         box.write("lu", true);
-                        Get.to(const Accueil());
+                        Get.offAll(const Accueil());
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue),

@@ -129,7 +129,9 @@ class _Chat extends State<Chat> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
+    return PopScope(
+      canPop: true, //When false, blocks the current route from being popped.
+
       child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
@@ -324,7 +326,7 @@ class _Chat extends State<Chat> {
               );
             }
           })),
-      onWillPop: () {
+      onPopInvokedWithResult: (c, t) {
         _channel!.sink.add(
             """{"from_":"","to_":"","content_":"","hostId_":"","clientId_":"","close_":true,"all_":false,"visible_":"non","conversation_": false,"matricule_":"","date_":"","heure_":""}""");
         //
@@ -333,8 +335,8 @@ class _Chat extends State<Chat> {
         listeConv.clear();
         Get.back();
         //
-        Navigator.of(context).pop();
-        return Future.value(true);
+        //Get.back();
+        //return Future.value(true);
       },
     );
   }
