@@ -292,9 +292,9 @@ class _Formation extends State<Formation> {
               ),
               onPressed: () async {
                 if (!await launchUrl(
-                    Uri.parse("https://efoad.minepst.gouv.cd"))) {
+                    Uri.parse("https://foade.minepst.gouv.cd"))) {
                   throw Exception(
-                      'Could not launch https://efoad.minepst.gouv.cd');
+                      'Could not launch https://foade.minepst.gouv.cd');
                 }
               },
             )

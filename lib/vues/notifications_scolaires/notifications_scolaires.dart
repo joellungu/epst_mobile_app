@@ -1,7 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:epst_app/utils/connexion.dart';
 import 'package:epst_app/utils/requetes.dart';
+import 'package:epst_app/vues/actualite/video_en_ligne.dart';
+import 'package:epst_app/vues/chat.dart';
+import 'package:epst_app/vues/ige/documents_certificatifs/documents.dart';
+import 'package:epst_app/vues/ige/resultat_exetat/resultat_exetat.dart';
+import 'package:epst_app/vues/plainte/depotplainte.dart';
 import 'package:flutter/material.dart';
 import 'package:epst_app/vues/actualite/site.dart';
 import 'package:get/get.dart';
@@ -39,17 +45,15 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
   //
   List cats = [
     {"nom": "Direct", "icon": Icons.live_tv},
-    {"nom": "Clin d'œil", "icon": Icons.remove_red_eye},
-    {"nom": "Site officiel", "icon": Icons.language},
-    {"nom": "DINACOPE", "icon": Icons.live_tv}
+    //{"nom": "Clin d'œil", "icon": Icons.remove_red_eye},
+    {"nom": "Site", "icon": Icons.language},
+    {"nom": "DINACOPE", "icon": Icons.people},
+    {"nom": "Documents", "icon": Icons.article},
+    {"nom": "Exetat", "icon": Icons.display_settings},
+    {"nom": "MGP", "icon": Icons.policy},
+    {"nom": "Vidéo", "icon": Icons.play_circle}
   ];
   //
-  List listAccueil = [
-    {"nom": "IMG-20240829-WA0198.jpg"},
-    {"nom": "IMG-20240803-WA0025.jpg"},
-    {"nom": "ROLL UP_Plan de travail.jpg"},
-    {"nom": "ROLL UP_Plan de travail 1 copie.jpg"},
-  ];
   //
   SwiperController controller = SwiperController();
 
@@ -81,77 +85,241 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              //scrollDirection: Axis.horizontal,
-              children: List.generate(
-                cats.length,
-                (e) {
-                  //
-                  return Expanded(
-                    flex: 3,
-                    child: InkWell(
-                      onTap: () {
-                        if (e == 0) {
-                          Get.to(const DirectEductivi());
-                        }
-                        //
-                        if (e == 1) {
-                          Get.to(const ClinOeil());
-                        }
-                        //
-                        if (e == 2) {
-                          Get.to(const Actualites());
-                        }
-                        //
-                        if (e == 3) {
-                          Get.to(const Dinacope());
-                        }
-                        //
+            // Expanded(
+            //   flex: 2,
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //     crossAxisAlignment: CrossAxisAlignment.center,
+            //     children: [
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         crossAxisAlignment: CrossAxisAlignment.center,
+            //         //scrollDirection: Axis.horizontal,
+            //         children: List.generate(
+            //           cats1.length,
+            //           (e) {
+            //             //
+            //             return Expanded(
+            //               flex: 3,
+            //               child: InkWell(
+            //                 onTap: () {
+            //                   if (e == 0) {
+            //                     Get.to(const DirectEductivi());
+            //                   }
+            //                   //
+            //                   if (e == 1) {
+            //                     Get.to(const ClinOeil());
+            //                   }
+            //                   //
+            //                   if (e == 2) {
+            //                     Get.to(const Actualites());
+            //                   }
+            //                   //
+            //                   if (e == 3) {
+            //                     Get.to(const Dinacope());
+            //                   }
+            //                   //
 
-                        // Navigator.of(context).push(
-                        //   MaterialPageRoute(
-                        //     builder: (context) {
-                        //       return const DirectEductivi();
-                        //     },
-                        //   ),
-                        // );
-                      },
-                      //style: ElevatedButton.styleFrom(),
-                      child: Container(
-                        width: Get.size.width / 4.2,
-                        alignment: Alignment.center,
-                        margin: const EdgeInsets.all(5),
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: e == 0
-                              ? Colors.black
-                              : e == 1
-                                  ? Colors.red.shade700
-                                  : e == 2
-                                      ? Colors.teal
-                                      : Colors.pink,
-                          borderRadius: BorderRadius.circular(15),
+            //                   // Navigator.of(context).push(
+            //                   //   MaterialPageRoute(
+            //                   //     builder: (context) {
+            //                   //       return const DirectEductivi();
+            //                   //     },
+            //                   //   ),
+            //                   // );
+            //                 },
+            //                 //style: ElevatedButton.styleFrom(),
+            //                 child: Container(
+            //                   width: Get.size.width / 4.2,
+            //                   alignment: Alignment.center,
+            //                   margin: const EdgeInsets.all(5),
+            //                   height: 40,
+            //                   decoration: BoxDecoration(
+            //                     color: e == 0
+            //                         ? Colors.black
+            //                         : e == 1
+            //                             ? Colors.red.shade700
+            //                             : e == 2
+            //                                 ? Colors.teal
+            //                                 : Colors.pink,
+            //                     borderRadius: BorderRadius.circular(15),
+            //                   ),
+            //                   child: Text(
+            //                     cats1[e]['nom'],
+            //                     textAlign: TextAlign.center,
+            //                     style: TextStyle(
+            //                       fontSize: st,
+            //                       fontWeight: FontWeight.bold,
+            //                       color:
+            //                           Colors.white, //e == 0 ? : Colors.black,
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ),
+            //             );
+            //           },
+            //         ),
+            //       ),
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         crossAxisAlignment: CrossAxisAlignment.center,
+            //         //scrollDirection: Axis.horizontal,
+            //         children: List.generate(
+            //           cats2.length,
+            //           (e) {
+            //             //
+            //             return Expanded(
+            //               flex: 3,
+            //               child: InkWell(
+            //                 onTap: () {
+            //                   if (e == 0) {
+            //                     Get.to(const DirectEductivi());
+            //                   }
+            //                   //
+            //                   if (e == 1) {
+            //                     Get.to(const ClinOeil());
+            //                   }
+            //                   //
+            //                   if (e == 2) {
+            //                     Get.to(const Actualites());
+            //                   }
+            //                   //
+            //                   if (e == 3) {
+            //                     Get.to(const Dinacope());
+            //                   }
+            //                   //
+
+            //                   // Navigator.of(context).push(
+            //                   //   MaterialPageRoute(
+            //                   //     builder: (context) {
+            //                   //       return const DirectEductivi();
+            //                   //     },
+            //                   //   ),
+            //                   // );
+            //                 },
+            //                 //style: ElevatedButton.styleFrom(),
+            //                 child: Container(
+            //                   width: Get.size.width / 4.2,
+            //                   alignment: Alignment.center,
+            //                   margin: const EdgeInsets.all(5),
+            //                   height: 40,
+            //                   decoration: BoxDecoration(
+            //                     color: e == 0
+            //                         ? Colors.black
+            //                         : e == 1
+            //                             ? Colors.red.shade700
+            //                             : e == 2
+            //                                 ? Colors.teal
+            //                                 : Colors.pink,
+            //                     borderRadius: BorderRadius.circular(15),
+            //                   ),
+            //                   child: Text(
+            //                     cats2[e]['nom'],
+            //                     textAlign: TextAlign.center,
+            //                     style: TextStyle(
+            //                       fontSize: st,
+            //                       fontWeight: FontWeight.bold,
+            //                       color:
+            //                           Colors.white, //e == 0 ? : Colors.black,
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ),
+            //             );
+            //           },
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+
+            Expanded(
+              flex: 4,
+              child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: GridView.count(
+                  padding: const EdgeInsets.all(20),
+                  crossAxisCount: 4,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 0.8,
+                  children: List.generate(
+                    cats.length,
+                    (s) {
+                      return InkWell(
+                        onTap: () {
+                          if (s == 0) {
+                            Get.to(const DirectEductivi());
+                          }
+                          //
+                          if (s == 1) {
+                            Get.to(const Actualites());
+                          }
+                          //
+                          if (s == 2) {
+                            Get.to(const Dinacope());
+                          }
+                          //
+                          if (s == 3) {
+                            Get.to(Documents(titre: "Documents"));
+                          }
+                          //
+                          if (s == 4) {
+                            Get.to(const ResultatExetat());
+                          }
+                          //
+                          if (s == 5) {
+                            //
+                            Get.to(DepotPlainte(
+                              titre: "MGP\ndépôt plainte",
+                            ));
+                          }
+                          //
+                          if (s == 6) {
+                            Get.to(const VideoEnLigne());
+                          }
+                        },
+                        child: Column(
+                          children: [
+                            Expanded(
+                              flex: 7,
+                              child: Container(
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: Colors.blue.shade100,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Icon(
+                                  cats[s]['icon'],
+                                  size: 35,
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                                flex: 2,
+                                child: Text(
+                                  "${cats[s]['nom']}".toUpperCase(),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )),
+                          ],
                         ),
-                        child: Text(
-                          cats[e]['nom'],
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: st,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white, //e == 0 ? : Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
+                      );
+                    },
+                  ),
+                ),
               ),
             ),
 
             Expanded(
-              flex: 9,
+              flex: 7,
               child: Container(
                   child: FutureBuilder(
                 future: loadAnnonces(),

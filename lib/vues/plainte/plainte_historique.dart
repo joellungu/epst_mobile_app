@@ -27,28 +27,52 @@ class _PlainteHis extends State<PlainteHis> {
         listPlainte.length,
         (index) {
           print(listPlainte[index]["envoyer"]);
-          return ListTile(
-            onTap: () {
-              //
-              if (listPlainte[index]["envoyer"] == "non") {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return HistoriqueSend(listPlainte[index]);
-                    },
+          return Card(
+            elevation: 1,
+            child: Container(
+              height: 120,
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: Text(
+                      "${listPlainte[index]["envoyer"]}, Votre plainte à été deposé avec succès, et sera traité dans le delais requis",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey.shade500,
+                      ),
+                    ),
                   ),
-                );
-              }
-            },
-            leading: const Icon(Icons.menu),
-            title: Text(listPlainte[index]["envoyeur"]),
-            subtitle: Text(listPlainte[index]["date"]),
-            trailing: listPlainte[index]["envoyer"] == "non"
-                ? const Icon(Icons.sync)
-                : const Icon(
-                    Icons.check_circle_outline,
-                    color: Colors.green,
-                  ),
+                  Expanded(
+                    flex: 5,
+                    child: ListTile(
+                      onTap: () {
+                        //
+                        if (listPlainte[index]["envoyer"] == "non") {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return HistoriqueSend(listPlainte[index]);
+                              },
+                            ),
+                          );
+                        }
+                      },
+                      leading: const Icon(Icons.menu),
+                      title: Text(listPlainte[index]["envoyeur"]),
+                      subtitle: Text(listPlainte[index]["date"]),
+                      trailing: listPlainte[index]["envoyer"] == "non"
+                          ? const Icon(Icons.sync)
+                          : const Icon(
+                              Icons.check_circle_outline,
+                              color: Colors.green,
+                            ),
+                    ),
+                  )
+                ],
+              ),
+            ),
           );
         },
       ),

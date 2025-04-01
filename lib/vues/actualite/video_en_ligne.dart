@@ -6,16 +6,16 @@ import 'package:webview_flutter_android/webview_flutter_android.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 // #enddocregion platform_imports
 
-class Dinacope extends StatefulWidget {
-  const Dinacope({Key? key}) : super(key: key);
+class VideoEnLigne extends StatefulWidget {
+  const VideoEnLigne({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _Dinacope();
+    return _VideoEnLigne();
   }
 }
 
-class _Dinacope extends State<Dinacope> {
+class _VideoEnLigne extends State<VideoEnLigne> {
   WebViewController? controlleur;
   late final WebViewController _controller;
 
@@ -82,7 +82,8 @@ Page resource error:
           );
         },
       )
-      ..loadRequest(Uri.parse('https://new.secoperdc.com'));
+      ..loadRequest(Uri.parse(
+          'https://www.youtube.com/playlist?list=PLG6Y1Tv0uHt9-ljcs0JyTe_w4gcLRz3Oz'));
 
     // #docregion platform_features
     if (controller.platform is AndroidWebViewController) {
@@ -91,6 +92,7 @@ Page resource error:
           .setMediaPlaybackRequiresUserGesture(false);
     }
     // #enddocregion platform_features
+    //
 
     _controller = controller;
   }
@@ -99,7 +101,7 @@ Page resource error:
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("DINACOPE"),
+        title: const Text("Courte vidéos"),
       ),
       body: WebViewWidget(
         // javascriptMode: JavascriptMode.unrestricted,
