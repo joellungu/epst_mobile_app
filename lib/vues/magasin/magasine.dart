@@ -40,18 +40,20 @@ class Magasine extends GetView<MagasinController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("$titre"),
-        actions: const [
-          /*IconButton(
+      appBar: titre != null
+          ? AppBar(
+              centerTitle: true,
+              title: Text("$titre"),
+              actions: const [
+                /*IconButton(
             onPressed: () {},
             icon: const Icon(
               Icons.search,
             ),
           )*/
-        ],
-      ),
+              ],
+            )
+          : null,
       body: controller.obx(
         (List<dynamic>? stat) {
           if (stat != null) {

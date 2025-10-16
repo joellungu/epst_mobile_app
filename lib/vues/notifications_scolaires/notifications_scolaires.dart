@@ -6,8 +6,11 @@ import 'package:epst_app/utils/requetes.dart';
 import 'package:epst_app/vues/actualite/video_en_ligne.dart';
 import 'package:epst_app/vues/chat.dart';
 import 'package:epst_app/vues/ige/documents_certificatifs/documents.dart';
+import 'package:epst_app/vues/ige/ige.dart';
 import 'package:epst_app/vues/ige/resultat_exetat/resultat_exetat.dart';
+import 'package:epst_app/vues/magasin/accueil_mag.dart';
 import 'package:epst_app/vues/plainte/depotplainte.dart';
+import 'package:epst_app/vues/sg/accueil_sg.dart';
 import 'package:flutter/material.dart';
 import 'package:epst_app/vues/actualite/site.dart';
 import 'package:get/get.dart';
@@ -44,14 +47,16 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
   double pd = 13;
   //
   List cats = [
-    {"nom": "Direct", "icon": Icons.live_tv},
+    {"nom": "Direct Educ tv", "icon": Icons.live_tv},
     //{"nom": "Clin d'œil", "icon": Icons.remove_red_eye},
-    {"nom": "Site", "icon": Icons.language},
-    {"nom": "DINACOPE", "icon": Icons.people},
-    {"nom": "Documents", "icon": Icons.article},
-    {"nom": "Exetat", "icon": Icons.display_settings},
-    {"nom": "MGP", "icon": Icons.policy},
-    {"nom": "Vidéo", "icon": Icons.play_circle}
+    //{"nom": "Site", "icon": Icons.language},
+    //{"nom": "DINACOPE", "icon": Icons.people},
+    {"nom": "Demande Docs Scolaires", "icon": Icons.article},
+    {"nom": "Resultat Examens d'Etat", "icon": Icons.display_settings},
+    {"nom": "Dépot plainte", "icon": Icons.policy},
+    {"nom": "Actu & Mag", "icon": Icons.newspaper_outlined},
+    {"nom": "Chat avec un agent", "icon": Icons.chat},
+    {"nom": "Demande service", "icon": Icons.seven_k_rounded},
   ];
   //
   //
@@ -256,37 +261,39 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
                             Get.to(const DirectEductivi());
                           }
                           //
+                          // if (s == 1) {
+                          //   Get.to(const Actualites());
+                          // }
+                          // //
+
+                          //
                           if (s == 1) {
-                            Get.to(const Actualites());
-                          }
-                          //
-                          if (s == 2) {
-                            Get.to(const Dinacope());
-                          }
-                          //
-                          if (s == 3) {
                             Get.to(Documents(titre: "Documents"));
                           }
                           //
-                          if (s == 4) {
+                          if (s == 2) {
                             Get.to(const ResultatExetat());
                           }
                           //
-                          if (s == 5) {
+                          if (s == 3) {
                             //
                             Get.to(DepotPlainte(
                               titre: "MGP\ndépôt plainte",
                             ));
                           }
                           //
+                          if (s == 4) {
+                            Get.to(AccueilMag());
+                          }
+                          //
                           if (s == 6) {
-                            Get.to(const VideoEnLigne());
+                            Get.to(Ige());
                           }
                         },
                         child: Column(
                           children: [
                             Expanded(
-                              flex: 7,
+                              flex: 5,
                               child: Container(
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
@@ -300,15 +307,16 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
                               ),
                             ),
                             Expanded(
-                                flex: 2,
-                                child: Text(
-                                  "${cats[s]['nom']}".toUpperCase(),
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )),
+                              flex: 4,
+                              child: Text(
+                                "${cats[s]['nom']}".toUpperCase(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       );

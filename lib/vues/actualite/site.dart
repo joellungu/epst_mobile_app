@@ -98,9 +98,9 @@ Page resource error:
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Educ-NC sur le net"),
-      ),
+      // appBar: AppBar(
+      //   title: const Text("Educ-NC sur le net"),
+      // ),
       body: WebViewWidget(
         // javascriptMode: JavascriptMode.unrestricted,
         // onWebViewCreated: (WebViewController w) {
@@ -121,12 +121,12 @@ Page resource error:
       //     //https://www.youtube.com
       //     //"https://www.efoad.minepst.gouv.cd",
       //     ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controlleur!.reload();
-        },
-        child: const Icon(Icons.sync),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     controlleur!.reload();
+      //   },
+      //   child: const Icon(Icons.sync),
+      // ),
     );
   }
 }

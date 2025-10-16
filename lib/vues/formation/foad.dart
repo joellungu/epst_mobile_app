@@ -329,7 +329,7 @@ class _FOAD extends State<FOAD> {
                                     children: [
                                       TextSpan(
                                         text:
-                                            "PROFESSEUR EN LIGNE\n(ECOLE EN LIGNE)",
+                                            "PROFESSEUR EN LIGNE\n(ENSEIGNEMENT A DISTANCE)",
                                         style: TextStyle(
                                           fontSize: taille,
                                           fontWeight: FontWeight.normal,

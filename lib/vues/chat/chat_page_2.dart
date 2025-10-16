@@ -27,11 +27,12 @@ class _ChatPage2 extends State<ChatPage2> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: Chat(
-          messages: _messages,
-          onSendPressed: _handleSendPressed,
-          user: _user,
-        ),
+        body: Container(),
+        // body: Chat(
+        //   messages: _messages,
+        //   onSendPressed: _handleSendPressed,
+        //   user: _user, currentUserId: '', resolveUser: (String id) {  }, chatController: null,
+        // ),
       );
 
   void _addMessage(types.Message message) {

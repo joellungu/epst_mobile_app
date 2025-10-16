@@ -36,19 +36,19 @@ class _ClinOeil extends State<ClinOeil> {
     var h = Get.size.height;
 
     return Scaffold(
-      appBar: AppBar(),
-      // body: YoutubePlayer(
-      //   controller: _controller,
-      //   showVideoProgressIndicator: true,
-      //   progressIndicatorColor: Colors.amber,
-      //   progressColors: const ProgressBarColors(
-      //     playedColor: Colors.amber,
-      //     handleColor: Colors.amberAccent,
-      //   ),
-      //   onReady: () {
-      //     // _controller.addListener(listener);
-      //   },
-      // ),
-    );
+        //appBar: AppBar(),
+        // body: YoutubePlayer(
+        //   controller: _controller,
+        //   showVideoProgressIndicator: true,
+        //   progressIndicatorColor: Colors.amber,
+        //   progressColors: const ProgressBarColors(
+        //     playedColor: Colors.amber,
+        //     handleColor: Colors.amberAccent,
+        //   ),
+        //   onReady: () {
+        //     // _controller.addListener(listener);
+        //   },
+        // ),
+        );
   }
 }

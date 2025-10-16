@@ -28,9 +28,9 @@ class Ige extends StatefulWidget {
 class _Ige extends State<Ige> {
   //
   List services = [
-    "Consultation résultats d'examen d'etat", //Get.to(const ResultatExetat());
-    "Documents certificatifs", //Get.to(Documents(titre: "Documents"));
-    "Palmarès exetat", //Get.to(const DemandePalmares());
+    // "Consultation résultats d'examen d'etat", //Get.to(const ResultatExetat());
+    // "Documents certificatifs", //Get.to(Documents(titre: "Documents"));
+    // "Palmarès exetat", //Get.to(const DemandePalmares());
     "Identification epreuves certificative", //Get.to(Identification(
     //  titre: "Identification epreuves certificative"));
     "Identification SERNIE", //Get.to(Sernie(titre: "Identification SERNIE"));
@@ -59,99 +59,106 @@ class _Ige extends State<Ige> {
   //
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: GridView.count(
-        padding: const EdgeInsets.all(20),
-        crossAxisCount: 2,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
-        childAspectRatio: 1.1,
-        children: List.generate(
-          services.length,
-          (s) {
-            //
-            return ElevatedButton(
-              onPressed: () {
-                //
-                if (s == 0) {
-                  Get.to(const ResultatExetat());
-                }
-                if (s == 1) {
-                  Get.to(Documents(titre: "Documents"));
-                }
-                if (s == 2) {
-                  Get.to(const DemandePalmares());
-                }
-                if (s == 3) {
-                  Get.to(Identification(
-                      titre: "Identification epreuves certificative"));
-                }
-                if (s == 4) {
-                  Get.to(Sernie(titre: "Identification SERNIE"));
-                }
-                if (s == 5) {
-                  Get.to(Transfere(
-                    titre: "Demande de transfère",
-                  ));
-                }
-                if (s == 6) {
-                  Get.to(AttestationReussit(titre: "Attestation de réussite"));
-                }
-                if (s == 7) {
-                  Get.to(Mutuelle(titre: "Mutuelle"));
-                }
-              },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(5),
-                backgroundColor: generateRandomColor(),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Services"),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: GridView.count(
+          padding: const EdgeInsets.all(20),
+          crossAxisCount: 2,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+          childAspectRatio: 0.9,
+          children: List.generate(
+            services.length,
+            (s) {
+              //
+              return ElevatedButton(
+                onPressed: () {
+                  //
+                  // if (s == 0) {
+                  //   Get.to(const ResultatExetat());
+                  // }
+                  // if (s == 1) {
+                  //   Get.to(Documents(titre: "Documents"));
+                  // }
+                  // if (s == 2) {
+                  //   Get.to(const DemandePalmares());
+                  // }
+                  if (s == 0) {
+                    Get.to(Identification(
+                        titre: "Identification epreuves certificative"));
+                  }
+                  if (s == 1) {
+                    Get.to(Sernie(titre: "Identification SERNIE"));
+                  }
+                  if (s == 2) {
+                    Get.to(Transfere(
+                      titre: "Demande de transfère",
+                    ));
+                  }
+                  if (s == 3) {
+                    Get.to(
+                        AttestationReussit(titre: "Attestation de réussite"));
+                  }
+                  if (s == 4) {
+                    Get.to(Mutuelle(titre: "Mutuelle"));
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.all(5),
+                  backgroundColor: generateRandomColor(),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
-              ),
-              child: Container(
-                height: double.maxFinite,
-                width: double.maxFinite,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                            image: const DecorationImage(
-                              image: ExactAssetImage(
-                                "assets/LOGO-MINEPST-BON.png",
+                child: Container(
+                  height: double.maxFinite,
+                  width: double.maxFinite,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 50,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              image: const DecorationImage(
+                                image: ExactAssetImage(
+                                  "assets/LOGO-MINEPST-BON.png",
+                                ),
                               ),
+                              borderRadius: BorderRadius.circular(25),
+                              //color: Colors.black,
                             ),
-                            borderRadius: BorderRadius.circular(25),
-                            //color: Colors.black,
                           ),
-                        ),
-                      ],
-                    ),
-                    Expanded(
-                      flex: 7,
-                      child: Center(
-                        child: Text(
-                          services[s],
-                          style: const TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        ],
                       ),
-                    )
-                  ],
+                      Expanded(
+                        flex: 7,
+                        child: Center(
+                          child: Text(
+                            services[s],
+                            style: const TextStyle(
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

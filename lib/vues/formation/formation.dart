@@ -4,6 +4,7 @@ import 'package:link_text/link_text.dart';
 import 'package:lottie/lottie.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'eod/eod.dart';
+import 'package:smart_keslassi_parent/pages/accueil.dart';
 
 // ignore: must_be_immutable
 class Formation extends StatefulWidget {
@@ -29,6 +30,42 @@ class _Formation extends State<Formation> {
 
   @override
   Widget build(BuildContext context) {
+    //
+    return DefaultTabController(
+      length: 3, // Nombre d'onglets pour chaque TabBar
+      child: Scaffold(
+        body: Column(
+          children: [
+            // TabBar 1
+            TabBar(
+              dividerColor: Colors.white,
+              indicatorColor: Colors.black,
+              labelStyle: TextStyle(color: Colors.black),
+              unselectedLabelColor: Colors.grey,
+              isScrollable: true,
+              tabAlignment: TabAlignment.center,
+              tabs: [
+                Tab(text: 'Parcours scolaire'),
+                Tab(text: 'Enseignement à distance'),
+                Tab(text: 'Bibliothèque scolaires'),
+              ],
+            ),
+            const SizedBox(height: 10),
+            // TabBarView pour le contenu
+            Expanded(
+              child: TabBarView(
+                children: [
+                  Accueil(),
+                  Center(child: Text('Contenu Tab 2')),
+                  Center(child: Text('Contenu Tab 3')),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    //
     return Scaffold(
       // appBar: AppBar(
       //   centerTitle: true,

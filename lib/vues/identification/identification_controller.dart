@@ -74,13 +74,16 @@ class IdentificationController extends GetxController with StateMixin<List> {
         Get.to(Identification(e));
         //
         //"Agent sernie id",
+      } else if (e["role"] == 15) {
+        //Les validateur
+        Get.to(IdentificationSernie(e));
       } else if (e["role"] == 11) {
         //Les validateur
         Get.to(IdentificationSernie(e));
       } else if (e["role"] == 12) {
         //Les enregistreurs
         Get.to(Sernie(titre: "SERNIE"));
-      } else if (e["role"] == 15 || e["role"] == 16 || e["role"] == 17) {
+      } else if (e["role"] == 16 || e["role"] == 17 || e["role"] == 18) {
         //Les enregistreurs
         Get.to(Ministre());
       } else {

@@ -2,9 +2,12 @@ import 'dart:convert';
 import 'package:epst_app/politique.dart';
 import 'package:epst_app/vues/formation/formation.dart';
 import 'package:epst_app/vues/ige/ige.dart';
+import 'package:epst_app/vues/parcours_scolaire/parcours_scolaire.dart';
 import 'package:epst_app/vues/plainte/depotplainte.dart';
 import 'package:epst_app/vues/actualite/live.dart';
 import 'package:epst_app/vues/magasin/magasine.dart';
+import 'package:epst_app/vues/recherche/recherche.dart';
+import 'package:epst_app/vues/sg/accueil_sg.dart';
 import 'package:epst_app/vues/sg/sg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -209,215 +212,216 @@ class _Accueil extends State<Accueil> {
         ],
       ),
       body: currentIndex == 2
-          ? Center(
-              child: GridView.count(
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(20),
-                crossAxisCount: 2,
-                mainAxisSpacing: 20,
-                crossAxisSpacing: 20,
-                childAspectRatio: 0.8,
-                children: List.generate(liste.length, (index) {
-                  return InkWell(
-                    onTap: () {
-                      if (index == 0) {
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              //
-                              TextEditingController textEditingController =
-                                  TextEditingController();
-                              //
-                              return AlertDialog(
-                                title: const Text("Votre nom"),
-                                content: SizedBox(
-                                  height: 150,
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      TextField(
-                                        controller: textEditingController,
-                                        decoration: const InputDecoration(
-                                          hintText: "Votre nom SVP!",
-                                        ),
-                                      ),
-                                      ElevatedButton(
-                                        onPressed: () {
-                                          if (textEditingController
-                                              .text.isNotEmpty) {
-                                            var encoded = utf8.encode(
-                                                textEditingController.text);
-                                            var decoded = utf8.decode(encoded);
-                                            print(decoded);
-                                            //
+          ? AccueilSg()
+          // Center(
+          //     child: GridView.count(
+          //       shrinkWrap: true,
+          //       padding: const EdgeInsets.all(20),
+          //       crossAxisCount: 2,
+          //       mainAxisSpacing: 20,
+          //       crossAxisSpacing: 20,
+          //       childAspectRatio: 0.8,
+          //       children: List.generate(liste.length, (index) {
+          //         return InkWell(
+          //           onTap: () {
+          //             if (index == 0) {
+          //               showDialog(
+          //                   context: context,
+          //                   builder: (context) {
+          //                     //
+          //                     TextEditingController textEditingController =
+          //                         TextEditingController();
+          //                     //
+          //                     return AlertDialog(
+          //                       title: const Text("Votre nom"),
+          //                       content: SizedBox(
+          //                         height: 150,
+          //                         child: Column(
+          //                           mainAxisAlignment:
+          //                               MainAxisAlignment.spaceAround,
+          //                           children: [
+          //                             TextField(
+          //                               controller: textEditingController,
+          //                               decoration: const InputDecoration(
+          //                                 hintText: "Votre nom SVP!",
+          //                               ),
+          //                             ),
+          //                             ElevatedButton(
+          //                               onPressed: () {
+          //                                 if (textEditingController
+          //                                     .text.isNotEmpty) {
+          //                                   var encoded = utf8.encode(
+          //                                       textEditingController.text);
+          //                                   var decoded = utf8.decode(encoded);
+          //                                   print(decoded);
+          //                                   //
 
-                                            Get.back();
+          //                                   Get.back();
 
-                                            Get.to(
-                                              Chat(
-                                                titre: liste[index],
-                                                nom: decoded,
-                                              ),
-                                            );
-                                            //
-                                            //textEditingController.clear();
-                                          }
-                                        },
-                                        child: const Text("Commencer"),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              );
-                            });
-                      }
-                      if (index == 1) {
-                        Get.to(
-                          Magasine(
-                            titre: liste[index],
-                          ),
-                        );
-                      }
-                      if (index == 2) {
-                        //
-                        Get.to(
-                          DepotPlainte(
-                            titre: liste[index],
-                          ),
-                        );
-                      }
-                      // else if (index == 5) {
-                      //   return Listing(
-                      //     titre: liste[index],
-                      //   );
-                      // }
-                      if (index == 3) {
-                        Get.to(
-                          Reforme(
-                            titre: liste[index],
-                          ),
-                        );
-                      }
-                      // else if (index == 9) {
-                      //   //print("Je suis le cours...");Ige,Ige
-                      //   return Formation(
-                      //     titre: liste[index],
-                      //   );
-                      // }
-                      if (index == 4) {
-                        //print("Je suis le cours...");Ige,Ige
-                        Get.to(
-                          SecretariaGeneral(
-                            titre: liste[index],
-                          ),
-                        );
-                      }
-                      if (index == 5) {
-                        //print("Je suis le cours...");Ige,Ige
-                        Get.to(
-                          Esige(
-                            titre: liste[index],
-                          ),
-                        );
-                      }
-                      if (index == 6) {
-                        //print("Je suis le cours...");Ige,Ige
-                        Get.to(
-                          LiveStream(
-                            titre: liste[index],
-                          ),
-                        );
-                      }
-                      // if (index == 7) {
-                      //   //print("Je suis le cours...");Ige,Ige
-                      //   //Mutuelle
-                      //   Get.to(
-                      //     LiveStream(titre: "Actualités"),
-                      //   );
-                      // }
-                      // else {
-                      //   //
-                      //   //return Container();
-                      //   return LiveStream(titre: "Actualité");
-                      // }
-                    },
-                    //elevation: 1,
-                    //color: Colors.white,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Colors.blue,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Expanded(
-                              flex: 7,
-                              child:
-                                  //index != 1
-                                  //?
-                                  Container(
-                                padding: const EdgeInsets.all(5),
-                                alignment: Alignment.center,
-                                child: listeIcons[index],
-                                decoration: const BoxDecoration(
-                                  //color: Colors.blue,
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(10),
-                                  ),
-                                ),
-                              )
-                              //: Lottie.asset(
-                              //  'assets/Animation - 1719837917526.json'),
-                              ),
-                          Expanded(
-                            flex: 5,
-                            child: Container(
-                              alignment: Alignment.center,
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(10),
-                                  bottomRight: Radius.circular(10),
-                                ),
-                              ),
-                              child: RichText(
-                                textAlign: TextAlign.center,
-                                text: TextSpan(
-                                  text: "", // index == 1 ? "MGP\n" :
-                                  children: [
-                                    TextSpan(
-                                      text: liste[index],
-                                      style: TextStyle(
-                                        fontSize: index == 6
-                                            ? 12
-                                            : index == 7
-                                                ? 12
-                                                : index == 1
-                                                    ? 13
-                                                    : 13,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ],
-                                  style: const TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-              ),
-            )
+          //                                   Get.to(
+          //                                     Chat(
+          //                                       titre: liste[index],
+          //                                       nom: decoded,
+          //                                     ),
+          //                                   );
+          //                                   //
+          //                                   //textEditingController.clear();
+          //                                 }
+          //                               },
+          //                               child: const Text("Commencer"),
+          //                             )
+          //                           ],
+          //                         ),
+          //                       ),
+          //                     );
+          //                   });
+          //             }
+          //             if (index == 1) {
+          //               Get.to(
+          //                 Magasine(
+          //                   titre: liste[index],
+          //                 ),
+          //               );
+          //             }
+          //             if (index == 2) {
+          //               //
+          //               Get.to(
+          //                 DepotPlainte(
+          //                   titre: liste[index],
+          //                 ),
+          //               );
+          //             }
+          //             // else if (index == 5) {
+          //             //   return Listing(
+          //             //     titre: liste[index],
+          //             //   );
+          //             // }
+          //             if (index == 3) {
+          //               Get.to(
+          //                 Reforme(
+          //                   titre: liste[index],
+          //                 ),
+          //               );
+          //             }
+          //             // else if (index == 9) {
+          //             //   //print("Je suis le cours...");Ige,Ige
+          //             //   return Formation(
+          //             //     titre: liste[index],
+          //             //   );
+          //             // }
+          //             if (index == 4) {
+          //               //print("Je suis le cours...");Ige,Ige
+          //               Get.to(
+          //                 SecretariaGeneral(
+          //                   titre: liste[index],
+          //                 ),
+          //               );
+          //             }
+          //             if (index == 5) {
+          //               //print("Je suis le cours...");Ige,Ige
+          //               Get.to(
+          //                 Esige(
+          //                   titre: liste[index],
+          //                 ),
+          //               );
+          //             }
+          //             if (index == 6) {
+          //               //print("Je suis le cours...");Ige,Ige
+          //               Get.to(
+          //                 LiveStream(
+          //                   titre: liste[index],
+          //                 ),
+          //               );
+          //             }
+          //             // if (index == 7) {
+          //             //   //print("Je suis le cours...");Ige,Ige
+          //             //   //Mutuelle
+          //             //   Get.to(
+          //             //     LiveStream(titre: "Actualités"),
+          //             //   );
+          //             // }
+          //             // else {
+          //             //   //
+          //             //   //return Container();
+          //             //   return LiveStream(titre: "Actualité");
+          //             // }
+          //           },
+          //           //elevation: 1,
+          //           //color: Colors.white,
+          //           child: Container(
+          //             decoration: BoxDecoration(
+          //               borderRadius: BorderRadius.circular(5),
+          //               color: Colors.blue,
+          //             ),
+          //             child: Column(
+          //               mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //               children: [
+          //                 Expanded(
+          //                     flex: 7,
+          //                     child:
+          //                         //index != 1
+          //                         //?
+          //                         Container(
+          //                       padding: const EdgeInsets.all(5),
+          //                       alignment: Alignment.center,
+          //                       child: listeIcons[index],
+          //                       decoration: const BoxDecoration(
+          //                         //color: Colors.blue,
+          //                         borderRadius: BorderRadius.only(
+          //                           topLeft: Radius.circular(10),
+          //                           topRight: Radius.circular(10),
+          //                         ),
+          //                       ),
+          //                     )
+          //                     //: Lottie.asset(
+          //                     //  'assets/Animation - 1719837917526.json'),
+          //                     ),
+          //                 Expanded(
+          //                   flex: 5,
+          //                   child: Container(
+          //                     alignment: Alignment.center,
+          //                     decoration: const BoxDecoration(
+          //                       borderRadius: BorderRadius.only(
+          //                         bottomLeft: Radius.circular(10),
+          //                         bottomRight: Radius.circular(10),
+          //                       ),
+          //                     ),
+          //                     child: RichText(
+          //                       textAlign: TextAlign.center,
+          //                       text: TextSpan(
+          //                         text: "", // index == 1 ? "MGP\n" :
+          //                         children: [
+          //                           TextSpan(
+          //                             text: liste[index],
+          //                             style: TextStyle(
+          //                               fontSize: index == 6
+          //                                   ? 12
+          //                                   : index == 7
+          //                                       ? 12
+          //                                       : index == 1
+          //                                           ? 13
+          //                                           : 13,
+          //                               fontWeight: FontWeight.bold,
+          //                               color: Colors.white,
+          //                             ),
+          //                           ),
+          //                         ],
+          //                         style: const TextStyle(
+          //                           fontSize: 15,
+          //                           fontWeight: FontWeight.bold,
+          //                           color: Colors.white,
+          //                         ),
+          //                       ),
+          //                     ),
+          //                   ),
+          //                 )
+          //               ],
+          //             ),
+          //           ),
+          //         );
+          //       }),
+          //     ),
+          //   )
           : currentIndex == 0
               ? NotificationsScolaires()
               : currentIndex == 1
@@ -426,9 +430,9 @@ class _Accueil extends State<Accueil> {
                       ? Ige(
                           titre: "Demande document service",
                         )
-                      : currentIndex == 4
-                          ? Container()
-                          : PolitiqueConfidenciel(false),
+                      // : currentIndex == 4
+                      //     ? LoginChoicePage()
+                      : SearchPage(),
       //
       bottomNavigationBar: BottomNavigationBar(
         onTap: (e) {
@@ -453,113 +457,31 @@ class _Accueil extends State<Accueil> {
           color: Colors.black,
         ),
         items: [
-          BottomNavigationBarItem(
-            label: "Annonces",
-            icon: Container(
-              alignment: Alignment.center,
-              height: 30,
-              width: 40,
-              decoration: BoxDecoration(
-                color: currentIndex == 0
-                    ? Colors.blue.shade100
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: SvgPicture.asset("assets/svg/SolarChatUnreadOutline.svg",
-                  semanticsLabel: 'Acme Logo'),
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "Ma classe",
-            icon: Container(
-              alignment: Alignment.center,
-              height: 30,
-              width: 40,
-              decoration: BoxDecoration(
-                color: currentIndex == 1
-                    ? Colors.blue.shade100
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: SvgPicture.asset("assets/svg/SolarBook2Outline.svg",
-                  semanticsLabel: 'Acme Logo'),
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "EDU & Moi",
-            icon: Container(
-              alignment: Alignment.center,
-              height: 30,
-              width: 40,
-              decoration: BoxDecoration(
-                color: currentIndex == 2
-                    ? Colors.blue.shade100
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: SvgPicture.asset("assets/svg/SolarHomeAngleOutline.svg",
-                  semanticsLabel: 'Acme Logo'),
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "Services",
-            icon: Container(
-              alignment: Alignment.center,
-              height: 30,
-              width: 40,
-              decoration: BoxDecoration(
-                color: currentIndex == 3
-                    ? Colors.blue.shade100
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: SvgPicture.asset("assets/svg/SolarClipboardTextLinear.svg",
-                  semanticsLabel: 'Acme Logo'),
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "Parcours scolaire",
-            icon: Container(
-              alignment: Alignment.center,
-              height: 30,
-              width: 40,
-              decoration: BoxDecoration(
-                color: currentIndex == 4
-                    ? Colors.blue.shade100
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: SvgPicture.asset(
-                  "assets/svg/SolarSquareAcademicCap2Linear.svg",
-                  semanticsLabel: 'Acme Logo'),
-            ),
-          ),
-          BottomNavigationBarItem(
-            label: "Politique de confidentialité",
-            icon: Container(
-              alignment: Alignment.center,
-              height: 30,
-              width: 40,
-              decoration: BoxDecoration(
-                color: currentIndex == 5
-                    ? Colors.blue.shade100
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: SvgPicture.asset("assets/svg/SolarChecklistBold.svg",
-                  semanticsLabel: 'Acme Logo'),
-            ),
-          ),
+          choix("Annonces", "svg/SolarChatUnreadOutline.svg", 0),
+          choix("Ma classe", "svg/SolarBook2Outline.svg", 1),
+          choix("S.G & S.C", "svg/SolarHomeAngleOutline.svg", 2),
+          choix("Services", "svg/SolarClipboardTextLinear.svg", 3),
+          // choix(
+          //     "Parcours scolaire", "svg/SolarSquareAcademicCap2Linear.svg", 4),
+          choix("Recherche", "HugeiconsSearch01.svg", 5),
         ],
       ),
-      /*
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Get.to(()=>ChatTest());
-        },
-        child: Icon(Icons.add),
+    );
+  }
+
+  BottomNavigationBarItem choix(String titre, String svg, int i) {
+    return BottomNavigationBarItem(
+      label: titre,
+      icon: Container(
+        alignment: Alignment.center,
+        height: 30,
+        width: 40,
+        decoration: BoxDecoration(
+          color: currentIndex == i ? Colors.blue.shade100 : Colors.transparent,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: SvgPicture.asset("assets/$svg", semanticsLabel: 'Acme Logo'),
       ),
-      */
     );
   }
 }
