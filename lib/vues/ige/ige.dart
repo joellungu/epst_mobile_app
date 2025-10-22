@@ -60,17 +60,17 @@ class _Ige extends State<Ige> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Services"),
-        centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   title: Text("Services"),
+      //   centerTitle: true,
+      // ),
       body: Center(
         child: GridView.count(
           padding: const EdgeInsets.all(20),
           crossAxisCount: 2,
           mainAxisSpacing: 10,
           crossAxisSpacing: 10,
-          childAspectRatio: 0.9,
+          childAspectRatio: 1,
           children: List.generate(
             services.length,
             (s) {
@@ -128,12 +128,13 @@ class _Ige extends State<Ige> {
                         children: [
                           Container(
                             height: 50,
-                            width: 50,
+                            width: 150,
                             decoration: BoxDecoration(
                               image: const DecorationImage(
-                                image: ExactAssetImage(
-                                  "assets/LOGO-MINEPST-BON.png",
-                                ),
+                                image:
+                                    ExactAssetImage("assets/logo_min_edu_nc.png"
+                                        //"assets/LOGO-MINEPST-BON.png",
+                                        ),
                               ),
                               borderRadius: BorderRadius.circular(25),
                               //color: Colors.black,

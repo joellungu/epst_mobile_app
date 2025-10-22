@@ -1,21 +1,23 @@
+import 'package:epst_app/vues/formation/foad.dart';
 import 'package:epst_app/vues/ige/ige.dart';
 import 'package:flutter/material.dart';
+import 'package:professeurs_app/pages/login/connexion.dart';
 
-class AccueilSg extends StatefulWidget {
+class AccueilEnseignant extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     //
-    return _AccueilSg();
+    return _AccueilEnseignant();
   }
 }
 
-class _AccueilSg extends State<AccueilSg> {
+class _AccueilEnseignant extends State<AccueilEnseignant> {
   //
   @override
   Widget build(BuildContext context) {
     //
     return DefaultTabController(
-      length: 3, // Nombre d'onglets pour chaque TabBar
+      length: 2, // Nombre d'onglets pour chaque TabBar
       child: Scaffold(
         body: Column(
           children: [
@@ -28,9 +30,8 @@ class _AccueilSg extends State<AccueilSg> {
               isScrollable: true,
               tabAlignment: TabAlignment.center,
               tabs: [
-                Tab(text: 'Secretariat général'),
-                Tab(text: 'Statistiques'),
-                Tab(text: 'Demande services'),
+                Tab(text: 'Gestion Classe'),
+                Tab(text: 'Formation continue enseignant'),
               ],
             ),
             const SizedBox(height: 10),
@@ -38,11 +39,8 @@ class _AccueilSg extends State<AccueilSg> {
             Expanded(
               child: TabBarView(
                 children: [
-                  Center(child: Text('Contenu Tab 1')),
-                  Center(child: Text('Contenu Tab 2')),
-                  Ige(
-                    titre: "Demande document service",
-                  ),
+                  LoginScreen(),
+                  FOAD(),
                 ],
               ),
             ),

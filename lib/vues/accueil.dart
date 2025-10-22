@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:epst_app/politique.dart';
+import 'package:epst_app/vues/formation/accueil_enseignant.dart';
 import 'package:epst_app/vues/formation/formation.dart';
 import 'package:epst_app/vues/ige/ige.dart';
 import 'package:epst_app/vues/parcours_scolaire/parcours_scolaire.dart';
@@ -212,7 +213,7 @@ class _Accueil extends State<Accueil> {
         ],
       ),
       body: currentIndex == 2
-          ? AccueilSg()
+          ? Formation(titre: "Formation à distance")
           // Center(
           //     child: GridView.count(
           //       shrinkWrap: true,
@@ -425,11 +426,9 @@ class _Accueil extends State<Accueil> {
           : currentIndex == 0
               ? NotificationsScolaires()
               : currentIndex == 1
-                  ? Formation(titre: "Formation à distance")
+                  ? AccueilSg()
                   : currentIndex == 3
-                      ? Ige(
-                          titre: "Demande document service",
-                        )
+                      ? AccueilEnseignant()
                       // : currentIndex == 4
                       //     ? LoginChoicePage()
                       : SearchPage(),
@@ -445,7 +444,7 @@ class _Accueil extends State<Accueil> {
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.black,
         //backgroundColor: Colors.white,
-        type: BottomNavigationBarType.shifting,
+        type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex,
         unselectedLabelStyle: TextStyle(
           fontSize: 10,
@@ -458,9 +457,9 @@ class _Accueil extends State<Accueil> {
         ),
         items: [
           choix("Annonces", "svg/SolarChatUnreadOutline.svg", 0),
-          choix("Ma classe", "svg/SolarBook2Outline.svg", 1),
-          choix("S.G & S.C", "svg/SolarHomeAngleOutline.svg", 2),
-          choix("Services", "svg/SolarClipboardTextLinear.svg", 3),
+          choix("Administration", "svg/SolarHomeAngleOutline.svg", 1),
+          choix("Je suis élève", "svg/SolarBook2Outline.svg", 2),
+          choix("Je suis prof", "svg/SolarClipboardTextLinear.svg", 3),
           // choix(
           //     "Parcours scolaire", "svg/SolarSquareAcademicCap2Linear.svg", 4),
           choix("Recherche", "HugeiconsSearch01.svg", 5),

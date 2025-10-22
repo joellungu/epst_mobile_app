@@ -30,6 +30,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # enseignement_en_ligne:
+    # path: C:\Users\najma\OneDrive\Documents\FlutterProjets\enseignement_en_ligne
+
   professeurs_app:
     path: C:\Users\najma\OneDrive\Documents\FlutterProjets\professeurs_app
     
@@ -44,7 +47,7 @@ dependencies:
   shimmer:
   #easy_popup: ^1.0.0
   dio: 
-  #syncfusion_flutter_pdfviewer: ^19.4.55-beta
+  # zego_uikit_prebuilt_video_conference: ^2.10.3
   flutter_chat_ui:
   #pdfx:
   #flutter_mailer:
@@ -60,8 +63,7 @@ dependencies:
   path_provider:
   connectivity_plus: 
   web_socket_channel:
-  open_filex: 
-  #open_filex: ^4.7.0
+  open_filex:
   get:
   http:
   get_storage:
@@ -79,7 +81,6 @@ dependencies:
   pdfx:
   syncfusion_flutter_pdfviewer:
   upgrader:
-  #open_filex:
   local_auth: 
   intl:
   geolocator:
