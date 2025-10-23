@@ -17,7 +17,9 @@ import 'sernie/sernie.dart';
 class Ige extends StatefulWidget {
   String? titre;
   //
-  Ige({Key? key, this.titre}) : super(key: key);
+  bool? appB;
+  //
+  Ige({Key? key, this.titre, this.appB: false}) : super(key: key);
   //
   @override
   State<StatefulWidget> createState() {
@@ -60,10 +62,12 @@ class _Ige extends State<Ige> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text("Services"),
-      //   centerTitle: true,
-      // ),
+      appBar: widget.appB!
+          ? AppBar(
+              title: Text("Services"),
+              centerTitle: true,
+            )
+          : null,
       body: Center(
         child: GridView.count(
           padding: const EdgeInsets.all(20),

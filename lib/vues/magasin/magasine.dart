@@ -24,8 +24,10 @@ class Magasinee extends StatefulWidget {
 
 class Magasine extends GetView<MagasinController> {
   //
-  Magasine({Key? key, this.titre}) : super(key: key) {
-    controller.getListeMag(1);
+  int type;
+  //
+  Magasine({Key? key, this.titre, this.type: 1}) : super(key: key) {
+    controller.getListeMag(type);
   }
   //
   String? titre;

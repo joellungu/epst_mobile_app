@@ -2,6 +2,7 @@ import 'package:epst_app/vues/actualite/clin_oeil.dart';
 import 'package:epst_app/vues/actualite/site.dart';
 import 'package:epst_app/vues/magasin/magasine.dart';
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class AccueilMag extends StatelessWidget {
   //
@@ -36,11 +37,14 @@ class AccueilMag extends StatelessWidget {
             // TabBarView pour le contenu
             Expanded(
               child: TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
                 children: [
                   Actualites(),
-                  Magasine(),
-                  ClinOeil(),
-                  Center(child: Text('Contenu Tab 3')),
+                  Magasine(
+                    type: 1,
+                  ),
+                  Emmission(),
+                  NvCitoyen(),
                 ],
               ),
             ),
@@ -50,4 +54,128 @@ class AccueilMag extends StatelessWidget {
     );
   }
   //
+}
+
+class Emmission extends StatefulWidget {
+  @override
+  State<Emmission> createState() => _Emmission();
+}
+
+class _Emmission extends State<Emmission> {
+  late final WebViewController _controller;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted) // autoriser JS
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onPageStarted: (url) {
+            setState(() => _isLoading = true);
+          },
+          onPageFinished: (url) {
+            setState(() => _isLoading = false);
+          },
+          onNavigationRequest: (NavigationRequest request) {
+            // Exemple : bloquer certains sites
+            if (request.url.startsWith('https://youtube.com')) {
+              debugPrint('Blocage : ${request.url}');
+              return NavigationDecision.prevent;
+            }
+            return NavigationDecision.navigate;
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(
+          'https://www.youtube.com/playlist?list=PLG6Y1Tv0uHt_9ROdQyq5UmxaMtx6iWCSr'));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          WebViewWidget(controller: _controller),
+          if (_isLoading)
+            const Center(
+              child: CircularProgressIndicator(),
+            ),
+        ],
+      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () async {
+      //     final url = await _controller.currentUrl();
+      //     ScaffoldMessenger.of(context).showSnackBar(
+      //       SnackBar(content: Text('URL actuelle : $url')),
+      //     );
+      //   },
+      //   child: const Icon(Icons.link),
+      // ),
+    );
+  }
+}
+
+class NvCitoyen extends StatefulWidget {
+  @override
+  State<NvCitoyen> createState() => _NvCitoyen();
+}
+
+class _NvCitoyen extends State<NvCitoyen> {
+  late final WebViewController _controller;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted) // autoriser JS
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onPageStarted: (url) {
+            setState(() => _isLoading = true);
+          },
+          onPageFinished: (url) {
+            setState(() => _isLoading = false);
+          },
+          onNavigationRequest: (NavigationRequest request) {
+            // Exemple : bloquer certains sites
+            if (request.url.startsWith('https://youtube.com')) {
+              debugPrint('Blocage : ${request.url}');
+              return NavigationDecision.prevent;
+            }
+            return NavigationDecision.navigate;
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(
+          'https://www.youtube.com/playlist?list=PLG6Y1Tv0uHt9-ljcs0JyTe_w4gcLRz3Oz'));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          WebViewWidget(controller: _controller),
+          if (_isLoading)
+            const Center(
+              child: CircularProgressIndicator(),
+            ),
+        ],
+      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () async {
+      //     final url = await _controller.currentUrl();
+      //     ScaffoldMessenger.of(context).showSnackBar(
+      //       SnackBar(content: Text('URL actuelle : $url')),
+      //     );
+      //   },
+      //   child: const Icon(Icons.link),
+      // ),
+    );
+  }
 }

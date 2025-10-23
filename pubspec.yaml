@@ -93,9 +93,8 @@ dependencies:
   flutter_svg: 
   card_swiper: 
   path: any
-  link_text: 
-  #webview_flutter_android: any
-  #webview_flutter_wkwebview: any
+  link_text:
+  webview_flutter: ^4.13.0
   flutter_chat_types: any
 
 #dependency_overrides:

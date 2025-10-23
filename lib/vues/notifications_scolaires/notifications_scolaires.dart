@@ -48,14 +48,14 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
   //
   List cats = [
     {"nom": "Direct Educ tv", "icon": Icons.live_tv},
+    {"nom": "Actu & Mag", "icon": Icons.newspaper_outlined},
     //{"nom": "Clin d'œil", "icon": Icons.remove_red_eye},
     //{"nom": "Site", "icon": Icons.language},
     //{"nom": "DINACOPE", "icon": Icons.people},
+    {"nom": "Chat avec un agent", "icon": Icons.chat},
+    {"nom": "Dépot plainte", "icon": Icons.policy},
     {"nom": "Demande Docs Scolaires", "icon": Icons.article},
     {"nom": "Resultat Examens d'Etat", "icon": Icons.display_settings},
-    {"nom": "Dépot plainte", "icon": Icons.policy},
-    {"nom": "Actu & Mag", "icon": Icons.newspaper_outlined},
-    {"nom": "Chat avec un agent", "icon": Icons.chat},
     {"nom": "Demande service", "icon": Icons.seven_k_rounded},
   ];
   //
@@ -261,19 +261,12 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
                             Get.to(const DirectEductivi());
                           }
                           //
-                          // if (s == 1) {
-                          //   Get.to(const Actualites());
-                          // }
-                          // //
-
                           //
                           if (s == 1) {
-                            Get.to(Documents(titre: "Documents"));
+                            Get.to(AccueilMag());
                           }
                           //
-                          if (s == 2) {
-                            Get.to(const ResultatExetat());
-                          }
+                          if (s == 2) {}
                           //
                           if (s == 3) {
                             //
@@ -283,11 +276,17 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
                           }
                           //
                           if (s == 4) {
-                            Get.to(AccueilMag());
+                            Get.to(Documents(titre: "Documents"));
+                          }
+                          //
+                          if (s == 5) {
+                            Get.to(const ResultatExetat());
                           }
                           //
                           if (s == 6) {
-                            Get.to(Ige());
+                            Get.to(Ige(
+                              appB: true,
+                            ));
                           }
                         },
                         child: Column(

@@ -1,4 +1,5 @@
 import 'package:epst_app/vues/ige/ige.dart';
+import 'package:epst_app/vues/magasin/magasine.dart';
 import 'package:flutter/material.dart';
 
 class AccueilSg extends StatefulWidget {
@@ -30,7 +31,7 @@ class _AccueilSg extends State<AccueilSg> {
               tabs: [
                 Tab(text: 'Secretariat général'),
                 Tab(text: 'Statistiques'),
-                Tab(text: 'Demande services'),
+                Tab(text: 'Documents admin'),
               ],
             ),
             const SizedBox(height: 10),
@@ -40,8 +41,8 @@ class _AccueilSg extends State<AccueilSg> {
                 children: [
                   Center(child: Text('Contenu Tab 1')),
                   Center(child: Text('Contenu Tab 2')),
-                  Ige(
-                    titre: "Demande document service",
+                  Magasine(
+                    type: 3,
                   ),
                 ],
               ),
