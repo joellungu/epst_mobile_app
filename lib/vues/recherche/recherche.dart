@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:epst_app/chats/WaitingScreen.dart';
 import 'package:epst_app/vues/actualite/live.dart';
 import 'package:epst_app/vues/chat.dart';
 import 'package:epst_app/vues/e_sige/e_sige.dart';
@@ -92,56 +93,9 @@ class _SearchPageState extends State<SearchPage> {
                   onTap: () {
                     //
                     if (index == 0) {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            //
-                            TextEditingController textEditingController =
-                                TextEditingController();
-                            //
-                            return AlertDialog(
-                              title: const Text("Votre nom"),
-                              content: SizedBox(
-                                height: 150,
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    TextField(
-                                      controller: textEditingController,
-                                      decoration: const InputDecoration(
-                                        hintText: "Votre nom SVP!",
-                                      ),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        if (textEditingController
-                                            .text.isNotEmpty) {
-                                          var encoded = utf8.encode(
-                                              textEditingController.text);
-                                          var decoded = utf8.decode(encoded);
-                                          print(decoded);
-                                          //
-
-                                          Get.back();
-
-                                          Get.to(
-                                            Chat(
-                                              titre: liste[index],
-                                              nom: decoded,
-                                            ),
-                                          );
-                                          //
-                                          //textEditingController.clear();
-                                        }
-                                      },
-                                      child: const Text("Commencer"),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            );
-                          });
+                      Get.to(
+                        WaitingScreen(),
+                      );
                     }
                     if (index == 1) {
                       Get.to(

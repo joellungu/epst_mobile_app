@@ -150,6 +150,7 @@ class _DepotPlainte extends State<DepotPlainte> {
               ),
               TextField(
                 controller: telephoneC,
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     //prefixIcon: Text("Téléphone:"),
                     border: OutlineInputBorder(
@@ -690,62 +691,4 @@ class _DepotPlainte extends State<DepotPlainte> {
       print("_______________: $e");
     }
   }
-
-  /*
-  getFile2(bool v) async {
-    final ImagePicker _picker = ImagePicker();
-    if (v) {
-      final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
-    } else {
-      final XFile? video = await _picker.pickVideo(source: ImageSource.camera);
-    }
-    // Pick an image
-    //final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    // Capture a photo
-
-    // Pick a video
-    //final XFile? image = await _picker.pickVideo(source: ImageSource.gallery);
-    // Capture a video
-
-    // Pick multiple images
-    //final List<XFile>? images = await _picker.pickMultiImage();
-  }
-  */
 }
-
-/*
-SizedBox(height: 20,),
-              Container(height: 50,
-              child: Flexible(
-                child: new ConstrainedBox(
-                  constraints: new BoxConstraints(
-                    minWidth: MediaQuery.of(context).size.width,
-                    maxWidth: MediaQuery.of(context).size.width,
-                    minHeight: 25.0,
-                    maxHeight: 135.0,
-                  ),
-                  child: new Scrollbar(
-                    child: new TextField(
-                      cursorColor: Colors.red,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: null,
-                      //controller: tc,
-                      //_handleSubmitted : null,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        contentPadding: EdgeInsets.only(
-                            top: 2.0,
-                            left: 13.0,
-                            right: 13.0,
-                            bottom: 2.0),
-                        hintText: "Type your message",
-                        hintStyle: TextStyle(
-                          color:Colors.grey,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              ),
- */

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:card_swiper/card_swiper.dart';
+import 'package:epst_app/chats/WaitingScreen.dart';
 import 'package:epst_app/utils/connexion.dart';
 import 'package:epst_app/utils/requetes.dart';
 import 'package:epst_app/vues/actualite/video_en_ligne.dart';
@@ -247,10 +248,10 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: GridView.count(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(15),
                   crossAxisCount: 4,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 5,
+                  crossAxisSpacing: 13,
                   childAspectRatio: 0.8,
                   children: List.generate(
                     cats.length,
@@ -266,7 +267,9 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
                             Get.to(AccueilMag());
                           }
                           //
-                          if (s == 2) {}
+                          if (s == 2) {
+                            Get.to(WaitingScreen());
+                          }
                           //
                           if (s == 3) {
                             //

@@ -1,5 +1,6 @@
 import 'package:epst_app/models/historiquedb.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'details_plainte.dart';
@@ -26,51 +27,69 @@ class _PlainteHis extends State<PlainteHis> {
       children: List.generate(
         listPlainte.length,
         (index) {
-          print(listPlainte[index]["envoyer"]);
+          print("['envoyer'] ${listPlainte[index]}");
           return Card(
             elevation: 1,
-            child: Container(
-              height: 120,
-              child: Column(
-                children: [
-                  Expanded(
-                    flex: 4,
-                    child: Text(
-                      "${listPlainte[index]["envoyer"]}, Votre plainte à été deposé avec succès, et sera traité dans le delais requis",
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey.shade500,
+            child: InkWell(
+              onTap: () {
+                //
+                Get.dialog(
+                  Center(
+                    child: Card(
+                      elevation: 1,
+                      child: Container(
+                        height: 50,
+                        width: 300,
+                        alignment: Alignment.center,
+                        child: Text("${listPlainte[index]['reference']}"),
                       ),
                     ),
                   ),
-                  Expanded(
-                    flex: 5,
-                    child: ListTile(
-                      onTap: () {
-                        //
-                        if (listPlainte[index]["envoyer"] == "non") {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return HistoriqueSend(listPlainte[index]);
-                              },
-                            ),
-                          );
-                        }
-                      },
-                      leading: const Icon(Icons.menu),
-                      title: Text(listPlainte[index]["envoyeur"]),
-                      subtitle: Text(listPlainte[index]["date"]),
-                      trailing: listPlainte[index]["envoyer"] == "non"
-                          ? const Icon(Icons.sync)
-                          : const Icon(
-                              Icons.check_circle_outline,
-                              color: Colors.green,
-                            ),
+                );
+              },
+              child: Container(
+                height: 120,
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 4,
+                      child: Text(
+                        "${listPlainte[index]["envoyer"]}, Votre plainte à été deposé avec succès, et sera traité dans le delais requis",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey.shade500,
+                        ),
+                      ),
                     ),
-                  )
-                ],
+                    Expanded(
+                      flex: 5,
+                      child: ListTile(
+                        onTap: () {
+                          //
+                          if (listPlainte[index]["envoyer"] == "non") {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return HistoriqueSend(listPlainte[index]);
+                                },
+                              ),
+                            );
+                          }
+                        },
+                        leading: const Icon(Icons.menu),
+                        title: Text(listPlainte[index]["envoyeur"]),
+                        subtitle: Text(listPlainte[index]["date"]),
+                        trailing: listPlainte[index]["envoyer"] == "non"
+                            ? const Icon(Icons.sync)
+                            : const Icon(
+                                Icons.check_circle_outline,
+                                color: Colors.green,
+                              ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           );
