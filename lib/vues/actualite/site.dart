@@ -1,3 +1,5 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:epst_app/widgets/noConnectingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 // Import for Android features.
@@ -18,11 +20,13 @@ class Actualites extends StatefulWidget {
 class _Actualites extends State<Actualites> {
   WebViewController? controlleur;
   late final WebViewController _controller;
+  //
 
   @override
   void initState() {
+    //
     super.initState();
-
+    //
     // #docregion platform_features
     late final PlatformWebViewControllerCreationParams params;
     if (WebViewPlatform.instance is WebKitWebViewPlatform) {
@@ -102,31 +106,8 @@ Page resource error:
       //   title: const Text("Educ-NC sur le net"),
       // ),
       body: WebViewWidget(
-        // javascriptMode: JavascriptMode.unrestricted,
-        // onWebViewCreated: (WebViewController w) {
-        //   controlleur = w;
-        // },
-        // initialUrl: "https://www.eduquepsp.education",
         controller: _controller,
-        //https://www.youtube.com
-        //"https://www.efoad.minepst.gouv.cd",
       ),
-      // body: WebView(
-      //     javascriptMode: JavascriptMode.unrestricted,
-      //     onWebViewCreated: (WebViewController w) {
-      //       controlleur = w;
-      //     },
-      //     initialUrl: "https://minepst.gouv.cd/infos-et-blogs"
-      //     //"https://www.eduquepsp.education",
-      //     //https://www.youtube.com
-      //     //"https://www.efoad.minepst.gouv.cd",
-      //     ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     controlleur!.reload();
-      //   },
-      //   child: const Icon(Icons.sync),
-      // ),
     );
   }
 }

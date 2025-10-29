@@ -42,22 +42,13 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  #file_picker: ^5.0.2
-  #easy_permissions_handler: ^1.0.0
   shimmer:
-  #easy_popup: ^1.0.0
   dio: 
-  # zego_uikit_prebuilt_video_conference: ^2.10.3
   flutter_chat_ui:
-  #pdfx:
-  #flutter_mailer:
   uuid:
-  #webview_flutter: ^4.8.0
-  #flutter_plugin_record: ^1.0.1
   percent_indicator: 
   image_picker:
   accordion:
-  #camera_camera: ^2.0.2
   flutter_chat_bubble:
   sqflite:
   path_provider:
@@ -70,10 +61,8 @@ dependencies:
   isolated_worker:
   video_player:
   chewie: 
-  #stomp_dart_client:
   socket_io_client: 
-  flutter_widget_from_html: 
-  #flutter_inappwebview: ^6.0.0
+  flutter_widget_from_html:
   youtube_player_flutter: 
   youtube_player_iframe:
   url_launcher: ^6.3.1
@@ -84,10 +73,12 @@ dependencies:
   local_auth: 
   intl:
   geolocator:
+  flutter_quill: ^11.4.2
   mime: 
   record: 
   permission_handler:
   syncfusion_flutter_charts: 
+  flutter_localization: ^0.3.3
   file_picker: 
   lottie: 
   flutter_svg: 
@@ -96,6 +87,8 @@ dependencies:
   link_text:
   webview_flutter: ^4.13.0
   flutter_chat_types: any
+  cached_network_image:
+  flutter_cache_manager:
 
 #dependency_overrides:
   #package_info_plus:
@@ -117,7 +110,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/Logo EDUC-APP-FINAL.png"
+  image_path: "assets/logo.jpg"
   min_sdk_android: 21
 
 

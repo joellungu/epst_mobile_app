@@ -18,6 +18,7 @@ import 'package:get/get.dart';
 import 'package:epst_app/vues/actualite/clin_oeil.dart';
 import 'package:epst_app/vues/actualite/dinacope.dart';
 import 'package:epst_app/vues/actualite/direct_eductivi.dart';
+import 'AnnoncesSwiper.dart';
 
 class NotificationsScolaires extends StatefulWidget {
   const NotificationsScolaires({Key? key}) : super(key: key);
@@ -30,16 +31,6 @@ class NotificationsScolaires extends StatefulWidget {
 }
 
 class _NotificationsScolaires extends State<NotificationsScolaires> {
-  Timer? timer;
-  init() {
-    timer = Timer.periodic(const Duration(seconds: 5), (c) {
-      print("temps: ${c.tick}");
-      controller.next();
-      //pageController.nextPage(
-      //  duration: const Duration(seconds: 1), curve: Curves.linear);
-    });
-  }
-
   //
   PageController pageController = PageController(initialPage: 999);
   //viewportFraction: 1.0, keepPage: false,
@@ -68,15 +59,12 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
     // TODO: implement initState
     super.initState();
     //
-    init();
   }
 
   @override
   void dispose() {
     //
     pageController.dispose();
-    //
-    timer!.cancel();
     //
     super.dispose();
     //
@@ -245,10 +233,10 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: GridView.count(
-                  padding: const EdgeInsets.all(15),
+                  padding: const EdgeInsets.all(10),
                   crossAxisCount: 4,
                   mainAxisSpacing: 5,
                   crossAxisSpacing: 13,
@@ -309,13 +297,17 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
                               ),
                             ),
                             Expanded(
-                              flex: 4,
-                              child: Text(
-                                "${cats[s]['nom']}".toUpperCase(),
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
+                              flex: 5,
+                              child: Container(
+                                //color: Colors.red.shade300,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "${cats[s]['nom']}".toUpperCase(),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),
@@ -327,156 +319,47 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
                 ),
               ),
             ),
+            AnnoncesSwiper(),
 
-            Expanded(
-              flex: 7,
-              child: Container(
-                  child: FutureBuilder(
-                future: loadAnnonces(),
-                builder: (c, t) {
-                  if (t.hasData) {
-                    List list = t.data as List;
-                    return Swiper(
-                      itemBuilder: (BuildContext context, int index) {
-                        debugPrint(
-                            "${Connexion.lien}annonce/image?id=${list[index]}");
-                        return Image.network(
-                          "${Connexion.lien}annonce/image?id=${list[index]}",
-                          fit: BoxFit.fill,
-                        );
-                      },
-                      //autoplay: true,
-                      duration: 2000,
-                      controller: controller,
-                      itemCount: list.length,
-                      pagination: const SwiperPagination(),
-                      control: const SwiperControl(),
-                    );
-                    //
-                  } else if (t.hasError) {
-                    return Container();
-                  }
-
-                  return Center(
-                    child: Container(
-                      height: 40,
-                      width: 40,
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
-                },
-              )),
-            ),
             // Expanded(
-            //   flex: 3,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     crossAxisAlignment: CrossAxisAlignment.center,
-            //     //scrollDirection: Axis.horizontal,
-            //     children: List.generate(
-            //       cats.length,
-            //       (e) {
-            //         //
-            //         return Expanded(
-            //           flex: 3,
-            //           child: InkWell(
-            //             onTap: () {
-            //               if (e == 0) {
-            //                 Get.to(DirectEductivi());
-            //               }
-            //               //
-            //               if (e == 1) {
-            //                 Get.to(ClinOeil());
-            //               }
-            //               //
-            //               if (e == 2) {
-            //                 Get.to(Actualites());
-            //               }
-            //               //
-            //               if (e == 3) {
-            //                 Get.to(Dinacope());
-            //               }
-            //               //
-
-            //               // Navigator.of(context).push(
-            //               //   MaterialPageRoute(
-            //               //     builder: (context) {
-            //               //       return const DirectEductivi();
-            //               //     },
-            //               //   ),
-            //               // );
-            //             },
-            //             //style: ElevatedButton.styleFrom(),
-            //             child: Container(
-            //               width: Get.size.width / 4.2,
-            //               margin: const EdgeInsets.all(5),
-            //               height: 100,
-            //               decoration: BoxDecoration(
-            //                   color: Colors.grey.shade300,
-            //                   borderRadius: BorderRadius.circular(5)),
-            //               child: Column(
-            //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //                 children: [
-            //                   Expanded(
-            //                     flex: 7,
-            //                     child: Container(
-            //                       alignment: Alignment.center, //
-            //                       decoration: const BoxDecoration(
-            //                         //color: Colors.blue,
-            //                         borderRadius: BorderRadius.only(
-            //                           topLeft: Radius.circular(10),
-            //                           topRight: Radius.circular(10),
-            //                         ),
-            //                       ),
-            //                       child: Icon(
-            //                         cats[e]['icon'],
-            //                         size: 70,
-            //                         color: Colors.blue,
-            //                       ),
-            //                     ),
-            //                   ),
-            //                   Expanded(
-            //                     flex: 3,
-            //                     child: Container(
-            //                       alignment: Alignment.center,
-            //                       decoration: const BoxDecoration(
-            //                         borderRadius: BorderRadius.only(
-            //                           bottomLeft: Radius.circular(10),
-            //                           bottomRight: Radius.circular(10),
-            //                         ),
-            //                       ),
-            //                       child: RichText(
-            //                         textAlign: TextAlign.center,
-            //                         text: TextSpan(
-            //                           text: cats[e]['nom'],
-            //                           children: [
-            //                             TextSpan(
-            //                               text: "",
-            //                               style: TextStyle(
-            //                                 fontSize: taille,
-            //                                 fontWeight: FontWeight.bold,
-            //                                 color: Colors.black,
-            //                               ),
-            //                             )
-            //                           ],
-            //                           style: TextStyle(
-            //                             fontSize: st,
-            //                             fontWeight: FontWeight.bold,
-            //                             color: Colors.black,
-            //                           ),
-            //                         ),
-            //                       ),
-            //                     ),
-            //                   )
-            //                 ],
-            //               ),
-            //             ),
-            //           ),
+            //   flex: 7,
+            //   child: Container(
+            //       child: FutureBuilder(
+            //     future: loadAnnonces(),
+            //     builder: (c, t) {
+            //       if (t.hasData) {
+            //         List list = t.data as List;
+            //         return Swiper(
+            //           itemBuilder: (BuildContext context, int index) {
+            //             debugPrint(
+            //                 "${Connexion.lien}annonce/image?id=${list[index]}");
+            //             return Image.network(
+            //               "${Connexion.lien}annonce/image?id=${list[index]}",
+            //               fit: BoxFit.fill,
+            //             );
+            //           },
+            //           //autoplay: true,
+            //           duration: 2000,
+            //           controller: controller,
+            //           itemCount: list.length,
+            //           pagination: const SwiperPagination(),
+            //           control: const SwiperControl(),
             //         );
-            //       },
-            //     ),
-            //   ),
-            // )
+            //         //
+            //       } else if (t.hasError) {
+            //         return Container();
+            //       }
+
+            //       return Center(
+            //         child: Container(
+            //           height: 40,
+            //           width: 40,
+            //           child: CircularProgressIndicator(),
+            //         ),
+            //       );
+            //     },
+            //   )),
+            // ),
           ],
         ),
       ),

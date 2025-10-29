@@ -10,8 +10,10 @@ import 'package:shimmer/shimmer.dart';
 
 class MessagePhonique extends GetView<MagasinController> {
   //
-  MessagePhonique({Key? key, this.titre}) : super(key: key) {
-    controller.getListeMag(4);
+  bool? localData;
+  //
+  MessagePhonique({Key? key, this.titre, this.localData}) : super(key: key) {
+    controller.getListeMag(4, localData!);
   }
   //
   String? titre;

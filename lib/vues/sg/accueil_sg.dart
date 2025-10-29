@@ -1,5 +1,8 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:epst_app/vues/ige/ige.dart';
 import 'package:epst_app/vues/magasin/magasine.dart';
+import 'package:epst_app/vues/sg/sg.dart';
+import 'package:epst_app/widgets/noConnectingPage.dart';
 import 'package:flutter/material.dart';
 
 class AccueilSg extends StatefulWidget {
@@ -11,6 +14,35 @@ class AccueilSg extends StatefulWidget {
 }
 
 class _AccueilSg extends State<AccueilSg> {
+  //
+  bool _isConnected = false;
+  late Connectivity _connectivity;
+  late final Stream<ConnectivityResult> _stream;
+  //
+
+  Future<void> _checkConnection() async {
+    final results = await _connectivity.checkConnectivity();
+    final connected = results.any((r) => r != ConnectivityResult.none);
+    setState(() => _isConnected = connected);
+
+    // On écoute les changements en direct
+    _connectivity.onConnectivityChanged.listen((results) {
+      final connected = results.any((r) => r != ConnectivityResult.none);
+      setState(() => _isConnected = connected);
+    });
+  }
+
+  //
+  @override
+  void initState() {
+    super.initState();
+    //
+    _connectivity = Connectivity();
+    //
+    _checkConnection();
+    //
+  }
+
   //
   @override
   Widget build(BuildContext context) {
@@ -39,11 +71,14 @@ class _AccueilSg extends State<AccueilSg> {
             Expanded(
               child: TabBarView(
                 children: [
-                  Center(child: Text('Contenu Tab 1')),
-                  Center(child: Text('Contenu Tab 2')),
+                  _isConnected ? SecretariaGeneral() : NoConnectionPage(),
+                  _isConnected
+                      ? Center(child: Text('Contenu Tab 2'))
+                      : NoConnectionPage(),
                   Magasine(
                     type: 3,
-                  ),
+                    localData: _isConnected,
+                  )
                 ],
               ),
             ),

@@ -4,6 +4,7 @@ import 'package:epst_app/vues/documents_officiels/notes_circulaire.dart';
 import 'package:epst_app/vues/documents_officiels/notifications_arretes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class documents_officiels extends StatefulWidget {
   String? titre;
@@ -17,8 +18,33 @@ class documents_officiels extends StatefulWidget {
 }
 
 class _Coure extends State<documents_officiels> {
+  //
+  bool _isConnected = false;
+  late Connectivity _connectivity;
+  late final Stream<ConnectivityResult> _stream;
+  //
+
+  Future<void> _checkConnection() async {
+    final results = await _connectivity.checkConnectivity();
+    final connected = results.any((r) => r != ConnectivityResult.none);
+    setState(() => _isConnected = connected);
+
+    // On écoute les changements en direct
+    _connectivity.onConnectivityChanged.listen((results) {
+      final connected = results.any((r) => r != ConnectivityResult.none);
+      setState(() => _isConnected = connected);
+    });
+  }
+
+  //
   @override
-  void initState() {}
+  void initState() {
+    //
+    _connectivity = Connectivity();
+    //
+    _checkConnection();
+  }
+
   //
   //
   @override
@@ -37,7 +63,10 @@ class _Coure extends State<documents_officiels> {
           ElevatedButton(
             onPressed: () {
               //
-              Get.to(ArretesMinisteriel(titre: "Arrêtés ministériels"));
+              Get.to(ArretesMinisteriel(
+                titre: "Arrêtés ministériels",
+                localData: _isConnected,
+              ));
             },
             style: const ButtonStyle(
                 /*
@@ -106,7 +135,10 @@ class _Coure extends State<documents_officiels> {
           ElevatedButton(
             onPressed: () {
               //
-              Get.to(NotificationsArretes(titre: "Notifications arretés"));
+              Get.to(NotificationsArretes(
+                titre: "Notifications arretés",
+                localData: _isConnected,
+              ));
             },
             style: const ButtonStyle(
                 /*
@@ -175,7 +207,10 @@ class _Coure extends State<documents_officiels> {
           ElevatedButton(
             onPressed: () {
               //
-              Get.to(NotesCirculaire(titre: "Notes circulaires"));
+              Get.to(NotesCirculaire(
+                titre: "Notes circulaires",
+                localData: _isConnected,
+              ));
             },
             style: const ButtonStyle(
                 /*
@@ -244,7 +279,10 @@ class _Coure extends State<documents_officiels> {
           ElevatedButton(
             onPressed: () {
               //
-              Get.to(MessagePhonique(titre: "Message phonique"));
+              Get.to(MessagePhonique(
+                titre: "Message phonique",
+                localData: _isConnected,
+              ));
             },
             style: const ButtonStyle(
                 /*

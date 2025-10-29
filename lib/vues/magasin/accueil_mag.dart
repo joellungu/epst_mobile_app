@@ -1,11 +1,49 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:epst_app/vues/actualite/clin_oeil.dart';
 import 'package:epst_app/vues/actualite/site.dart';
 import 'package:epst_app/vues/magasin/magasine.dart';
+import 'package:epst_app/widgets/noConnectingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class AccueilMag extends StatelessWidget {
+class AccueilMag extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    //
+    return _AccueilMag();
+  }
   //
+}
+
+class _AccueilMag extends State<AccueilMag> {
+  //
+  bool _isConnected = false;
+  late Connectivity _connectivity;
+  late final Stream<ConnectivityResult> _stream;
+  //
+
+  Future<void> _checkConnection() async {
+    final results = await _connectivity.checkConnectivity();
+    final connected = results.any((r) => r != ConnectivityResult.none);
+    setState(() => _isConnected = connected);
+
+    // On écoute les changements en direct
+    _connectivity.onConnectivityChanged.listen((results) {
+      final connected = results.any((r) => r != ConnectivityResult.none);
+      setState(() => _isConnected = connected);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    //
+    _connectivity = Connectivity();
+    //
+    _checkConnection();
+    //
+  }
+
   @override
   Widget build(BuildContext context) {
     //
@@ -39,12 +77,13 @@ class AccueilMag extends StatelessWidget {
               child: TabBarView(
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  Actualites(),
+                  _isConnected ? Actualites() : NoConnectionPage(),
                   Magasine(
                     type: 1,
+                    localData: _isConnected,
                   ),
-                  Emmission(),
-                  NvCitoyen(),
+                  _isConnected ? Emmission() : NoConnectionPage(),
+                  _isConnected ? NvCitoyen() : NoConnectionPage(),
                 ],
               ),
             ),

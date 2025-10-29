@@ -16,7 +16,7 @@ class FormationMobileEnligne extends StatelessWidget {
     "FORMATION POUR LES ELEVES DE L'EDUCATION DE BASE,Animation - 1719829657336.json",
     //"FORMATION POUR LES ENCADREURS DE LA MATERNELLE,Animation - 1719829657336.json",
     "FORMATION POUR LES ELEVES DU SECONDAIRE,Animation - 1719837965657.json",
-    "BIBLIOTHEQUE NUMERIQUE,Animation - 1719829962343.json"
+    //"BIBLIOTHEQUE NUMERIQUE,Animation - 1719829962343.json"
   ];
   //
   List formationsPros = [

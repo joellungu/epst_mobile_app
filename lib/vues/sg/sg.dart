@@ -23,18 +23,18 @@ class SecretariaGeneral extends GetView<SgController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("$titre"),
-        actions: const [
-          /*IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.search,
-            ),
-          )*/
-        ],
-      ),
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   title: Text("$titre"),
+      //   actions: const [
+      //     /*IconButton(
+      //       onPressed: () {},
+      //       icon: const Icon(
+      //         Icons.search,
+      //       ),
+      //     )*/
+      //   ],
+      // ),
       body: controller.obx(
         (state) {
           List l = state!;

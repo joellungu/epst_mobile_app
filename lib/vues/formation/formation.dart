@@ -1,4 +1,5 @@
 import 'package:epst_app/utils/connexion.dart';
+import 'package:epst_app/vues/bibliotheques/bibliotheque.dart';
 import 'package:epst_app/vues/formation/foad.dart';
 import 'package:epst_app/vues/formation/formation_en_ligne/login.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,7 @@ class _Formation extends State<Formation> {
                 children: [
                   Accueil(),
                   LoginFL(),
-                  Center(child: Text('')),
+                  Bibliotheque(),
                 ],
               ),
             ),

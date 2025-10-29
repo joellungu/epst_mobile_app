@@ -10,8 +10,11 @@ import 'package:shimmer/shimmer.dart';
 
 class NotificationsArretes extends GetView<MagasinController> {
   //
-  NotificationsArretes({Key? key, this.titre}) : super(key: key) {
-    controller.getListeMag(6);
+  bool? localData;
+  //
+  NotificationsArretes({Key? key, this.titre, this.localData})
+      : super(key: key) {
+    controller.getListeMag(6, localData!);
   }
   //
   String? titre;

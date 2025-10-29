@@ -10,8 +10,10 @@ import 'package:shimmer/shimmer.dart';
 
 class ArretesMinisteriel extends GetView<MagasinController> {
   //
-  ArretesMinisteriel({Key? key, this.titre}) : super(key: key) {
-    controller.getListeMag(3);
+  bool? localData;
+  //
+  ArretesMinisteriel({Key? key, this.titre, this.localData}) : super(key: key) {
+    controller.getListeMag(3, localData!);
   }
   //
   String? titre;

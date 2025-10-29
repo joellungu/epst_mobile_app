@@ -5,8 +5,11 @@ import 'package:get_storage/get_storage.dart';
 
 class AttestationReussit extends GetView<MagasinController> {
   //
-  AttestationReussit({Key? key, this.titre}) : super(key: key) {
-    controller.getListeMag(4);
+  bool? localData;
+  //
+  AttestationReussit({Key? key, this.titre, this.localData: true})
+      : super(key: key) {
+    controller.getListeMag(4, localData!);
   }
   //
   String? titre;
@@ -17,6 +20,8 @@ class AttestationReussit extends GetView<MagasinController> {
   RxBool loads = true.obs;
   //
   List liste = [];
+  //
+
   //
   @override
   Widget build(BuildContext context) {

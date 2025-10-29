@@ -13,6 +13,7 @@ import 'demande_identification/identification.dart';
 import 'documents_certificatifs/documents.dart';
 import 'resultat_exetat/resultat_exetat.dart';
 import 'sernie/sernie.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 class Ige extends StatefulWidget {
   String? titre;
@@ -28,6 +29,24 @@ class Ige extends StatefulWidget {
 }
 
 class _Ige extends State<Ige> {
+  //
+  bool _isConnected = false;
+  late Connectivity _connectivity;
+  late final Stream<ConnectivityResult> _stream;
+  //
+
+  Future<void> _checkConnection() async {
+    final results = await _connectivity.checkConnectivity();
+    final connected = results.any((r) => r != ConnectivityResult.none);
+    setState(() => _isConnected = connected);
+
+    // On écoute les changements en direct
+    _connectivity.onConnectivityChanged.listen((results) {
+      final connected = results.any((r) => r != ConnectivityResult.none);
+      setState(() => _isConnected = connected);
+    });
+  }
+
   //
   List services = [
     // "Consultation résultats d'examen d'etat", //Get.to(const ResultatExetat());
@@ -58,6 +77,15 @@ class _Ige extends State<Ige> {
   double st = 12;
   double taille = 8;
   double pd = 13;
+  //
+  @override
+  void initState() {
+    //
+    _connectivity = Connectivity();
+    //
+    _checkConnection();
+  }
+
   //
   @override
   Widget build(BuildContext context) {
@@ -104,8 +132,10 @@ class _Ige extends State<Ige> {
                     ));
                   }
                   if (s == 3) {
-                    Get.to(
-                        AttestationReussit(titre: "Attestation de réussite"));
+                    Get.to(AttestationReussit(
+                      titre: "Attestation de réussite",
+                      localData: _isConnected,
+                    ));
                   }
                   if (s == 4) {
                     Get.to(Mutuelle(titre: "Mutuelle"));

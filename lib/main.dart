@@ -19,6 +19,8 @@ import 'vues/ige/resultat_exetat/resultat_controller.dart';
 import 'vues/ige/sernie/sernie_controller.dart';
 import 'vues/mutuelle/mutuelle_controller.dart';
 import 'widgets/paiement_controller.dart';
+import 'package:flutter_quill/flutter_quill.dart' as t;
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 //
 List liste_ecoles = [];
@@ -120,6 +122,19 @@ class Epst extends StatelessWidget {
           ),
         ),
       ),
+      //
+      localizationsDelegates: const [
+        t.FlutterQuillLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('fr'),
+        // ajoute d'autres langues si besoin
+      ],
+      //
       home: Splash(),
       /*
       home: UpgradeAlert(

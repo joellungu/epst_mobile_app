@@ -10,8 +10,10 @@ import 'package:shimmer/shimmer.dart';
 
 class NotesCirculaire extends GetView<MagasinController> {
   //
-  NotesCirculaire({Key? key, this.titre}) : super(key: key) {
-    controller.getListeMag(5);
+  bool? localData;
+  //
+  NotesCirculaire({Key? key, this.titre, this.localData}) : super(key: key) {
+    controller.getListeMag(5, localData!);
   }
   //
   String? titre;
