@@ -1,15 +1,11 @@
-import 'package:epst_app/utils/connexion.dart';
+import 'package:enseignement_en_ligne/pages/login/login.dart';
 import 'package:epst_app/vues/bibliotheques/bibliotheque.dart';
 import 'package:epst_app/vues/formation/foad.dart';
-import 'package:epst_app/vues/formation/formation_en_ligne/login.dart';
 import 'package:flutter/material.dart';
-import 'package:link_text/link_text.dart';
 import 'package:lottie/lottie.dart';
-import 'package:professeurs_app/pages/login/connexion_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'eod/eod.dart';
 import 'package:smart_keslassi_parent/pages/accueil.dart';
-import 'package:professeurs_app/professeurs_app.dart';
 
 // ignore: must_be_immutable
 class Formation extends StatefulWidget {
@@ -51,7 +47,7 @@ class _Formation extends State<Formation> {
               tabAlignment: TabAlignment.center,
               tabs: [
                 Tab(text: 'Parcours scolaire'),
-                Tab(text: 'Cours en ligne'),
+                Tab(text: 'Ma classe en ligne'),
                 Tab(text: 'Bibliothèque'),
               ],
             ),
@@ -61,7 +57,7 @@ class _Formation extends State<Formation> {
               child: TabBarView(
                 children: [
                   Accueil(),
-                  LoginFL(),
+                  Login(),
                   Bibliotheque(),
                 ],
               ),

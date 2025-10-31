@@ -1,18 +1,9 @@
-import 'package:epst_app/vues/formation/formation_eleves/enseignement_mobile_enligne.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
 
-class Bibliotheque extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    //
-    return _Bibliotheque();
-  }
+class BibliothequeEnseignant extends StatelessWidget {
   //
-}
-
-class _Bibliotheque extends State<Bibliotheque> {
   @override
   Widget build(BuildContext context) {
     //
@@ -103,7 +94,7 @@ class _Bibliotheque extends State<Bibliotheque> {
               ),
               InkWell(
                 onTap: () {
-                  Get.to(FormationMobileEnligne("Eleve"));
+                  //Get.to(FormationMobileEnligne("Eleve"));
                 },
                 child: Card(
                   child: Container(
@@ -183,4 +174,5 @@ class _Bibliotheque extends State<Bibliotheque> {
       ),
     );
   }
+  //
 }

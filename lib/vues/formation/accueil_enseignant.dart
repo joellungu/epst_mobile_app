@@ -1,3 +1,5 @@
+import 'package:enseignement_en_ligne/enseignement_en_ligne.dart';
+import 'package:epst_app/vues/enseignants/bibliotheque_enseignant.dart';
 import 'package:epst_app/vues/formation/foad.dart';
 import 'package:epst_app/vues/ige/ige.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +19,7 @@ class _AccueilEnseignant extends State<AccueilEnseignant> {
   Widget build(BuildContext context) {
     //
     return DefaultTabController(
-      length: 2, // Nombre d'onglets pour chaque TabBar
+      length: 3, // Nombre d'onglets pour chaque TabBar
       child: Scaffold(
         body: Column(
           children: [
@@ -31,7 +33,8 @@ class _AccueilEnseignant extends State<AccueilEnseignant> {
               tabAlignment: TabAlignment.center,
               tabs: [
                 Tab(text: 'Gestion Classe'),
-                Tab(text: 'Formation continue enseignant'),
+                Tab(text: 'Formation en ligne Ens.'),
+                Tab(text: 'Bibliothèque'),
               ],
             ),
             const SizedBox(height: 10),
@@ -40,7 +43,9 @@ class _AccueilEnseignant extends State<AccueilEnseignant> {
               child: TabBarView(
                 children: [
                   LoginScreen(),
-                  FOAD(),
+                  Login(),
+                  // FOAD(),
+                  BibliothequeEnseignant()
                 ],
               ),
             ),
