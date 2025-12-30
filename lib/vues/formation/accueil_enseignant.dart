@@ -1,8 +1,6 @@
 import 'package:enseignemant_en_ligne_professeur/enseignement_en_ligne_professeur.dart'
     as p;
 import 'package:epst_app/vues/enseignants/bibliotheque_enseignant.dart';
-import 'package:epst_app/vues/formation/foad.dart';
-import 'package:epst_app/vues/ige/ige.dart';
 import 'package:flutter/material.dart';
 import 'package:professeurs_app/pages/login/connexion.dart';
 
