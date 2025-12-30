@@ -23,13 +23,18 @@ class _AccueilMag extends State<AccueilMag> {
   //
 
   Future<void> _checkConnection() async {
-    final results = await _connectivity.checkConnectivity();
-    final connected = results.any((r) => r != ConnectivityResult.none);
-    setState(() => _isConnected = connected);
+    //
+    _connectivity = Connectivity();
+    //
+    // final results = await _connectivity.checkConnectivity();
+    // final connected = results.any((r) => r != ConnectivityResult.none);
+    // print("Je suis à 1");
+    // setState(() => _isConnected = connected);
 
     // On écoute les changements en direct
     _connectivity.onConnectivityChanged.listen((results) {
       final connected = results.any((r) => r != ConnectivityResult.none);
+      print("Je suis à 2");
       setState(() => _isConnected = connected);
     });
   }

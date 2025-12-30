@@ -57,10 +57,11 @@ class FormationSecondaire extends StatelessWidget {
             for (List cs in courss) {
               for (Map ee in cs) {
                 int cls = e + 1;
-                if (ee['categorie'] == "Secondaire".toLowerCase() &&
+                if (ee['categorie'].toLowerCase() ==
+                        "Secondaire".toLowerCase() &&
                     ee['propriete'].toLowerCase() ==
                         typeFormation.toLowerCase() &&
-                    ee['classe'] == cls) {
+                    ee['cls'] == cls) {
                   listDeCours.add(ee['cours']);
                 }
               }
@@ -95,10 +96,11 @@ class FormationSecondaire extends StatelessWidget {
                     for (List ll in classeCours) {
                       for (Map ee in ll) {
                         int cls = e + 1;
-                        if (ee['cours'] ==
+                        if (ee['cours'].toLowerCase() ==
                                 listDeCours.elementAt(l).toLowerCase() &&
-                            ee['categorie'] == "Maternelle".toLowerCase() &&
-                            ee['classe'] == cls) {
+                            ee['categorie'].toLowerCase() ==
+                                "Secondaire".toLowerCase() &&
+                            ee['cls'] == cls) {
                           branches.add(ee['banche']);
                           types.add(ee['type']);
                         }

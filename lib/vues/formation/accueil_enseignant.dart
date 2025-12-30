@@ -1,4 +1,5 @@
-import 'package:enseignement_en_ligne/enseignement_en_ligne.dart';
+import 'package:enseignemant_en_ligne_professeur/enseignement_en_ligne_professeur.dart'
+    as p;
 import 'package:epst_app/vues/enseignants/bibliotheque_enseignant.dart';
 import 'package:epst_app/vues/formation/foad.dart';
 import 'package:epst_app/vues/ige/ige.dart';
@@ -43,7 +44,8 @@ class _AccueilEnseignant extends State<AccueilEnseignant> {
               child: TabBarView(
                 children: [
                   LoginScreen(),
-                  Login(),
+                  //
+                  p.Login(),
                   // FOAD(),
                   BibliothequeEnseignant()
                 ],

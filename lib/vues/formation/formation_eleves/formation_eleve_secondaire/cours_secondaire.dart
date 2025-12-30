@@ -55,7 +55,7 @@ class CoursSecondaire extends StatelessWidget {
                       child: FutureBuilder(
                         future: Utils.getNotion(
                             cours.toLowerCase(),
-                            "Education de base".toLowerCase(),
+                            "Secondaire".toLowerCase(),
                             lecons.elementAt(e),
                             classe),
                         builder: (c, t) {
@@ -109,21 +109,6 @@ class CoursSecondaire extends StatelessWidget {
                     );
                   });
               //
-
-              // Navigator.of(context).push(
-              //   MaterialPageRoute(
-              //     builder: (context) {
-              //       return TypeCours("${lecons[e]}");
-              //     },
-              //   ),
-              // );
-              // Navigator.of(context).push(
-              //   MaterialPageRoute(
-              //     builder: (context) {
-              //       return TypeCours("${lecons[e]}");
-              //     },
-              //   ),
-              // );
             },
             child: Container(
               height: 230,

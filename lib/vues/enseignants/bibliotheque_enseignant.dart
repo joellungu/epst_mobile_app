@@ -1,5 +1,7 @@
+import 'package:epst_app/vues/formation/formation_eleves/enseignement_mobile_enligne.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class BibliothequeEnseignant extends StatelessWidget {
@@ -95,6 +97,7 @@ class BibliothequeEnseignant extends StatelessWidget {
               InkWell(
                 onTap: () {
                   //Get.to(FormationMobileEnligne("Eleve"));
+                  Get.to(FormationMobileEnligne("Professeur"));
                 },
                 child: Card(
                   child: Container(

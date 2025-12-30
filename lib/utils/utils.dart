@@ -29,10 +29,10 @@ class Utils {
     //
     for (List l in classeCours) {
       for (Map e in l) {
-        if (e['cours'] == cours &&
-            e['categorie'] == categorie &&
+        if (e['cours'].toLowerCase() == cours &&
+            e['categorie'].toLowerCase() == categorie &&
             e['banche'] == banche &&
-            e['classe'] == classe) {
+            e['cls'] == classe) {
           print('notion: $e');
           notions.add(e);
         }

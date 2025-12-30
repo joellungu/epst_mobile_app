@@ -5,6 +5,7 @@ import 'package:epst_app/vues/ministre/ministre.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
+import 'package:inspecteur_cours_distant/pages/accueil.dart';
 import 'identification.dart';
 import 'identification_sernie.dart';
 
@@ -76,7 +77,8 @@ class IdentificationController extends GetxController with StateMixin<List> {
         //"Agent sernie id",
       } else if (e["role"] == 15) {
         //Les validateur
-        Get.to(IdentificationSernie(e));
+        Get.to(Accueil(e['id'], "${e['nom']} ${e['prenom']} ${e['postnom']}"));
+        //
       } else if (e["role"] == 11) {
         //Les validateur
         Get.to(IdentificationSernie(e));

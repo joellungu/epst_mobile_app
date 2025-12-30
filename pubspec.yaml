@@ -29,6 +29,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  inspecteur_cours_distant:
+    path: C:\Users\najma\OneDrive\Documents\FlutterProjets\inspecteur_cours_distant
 
   enseignemant_en_ligne_professeur:
     path: C:\Users\najma\OneDrive\Documents\FlutterProjets\enseignemant_en_ligne_professeur
@@ -77,8 +80,7 @@ dependencies:
   geolocator:
   flutter_quill: ^11.4.2
   mime: 
-  record: 
-  permission_handler:
+  record:
   syncfusion_flutter_charts: 
   flutter_localization: ^0.3.3
   file_picker: 
@@ -89,7 +91,10 @@ dependencies:
   link_text:
   webview_flutter: ^4.13.0
   flutter_chat_types: any
-  zego_uikit_prebuilt_video_conference: ^2.10.3
+  zego_uikit_prebuilt_video_conference: ^2.11.0
+  permission_handler: ^12.0.1
+  zego_uikit: ^2.28.38
+  zego_plugin_adapter: ^2.14.2
   cached_network_image:
   flutter_cache_manager:
 

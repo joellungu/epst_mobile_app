@@ -48,6 +48,7 @@ class LeconPdf extends StatelessWidget {
                 if (t.hasData) {
                   //
                   String id = t.data as String;
+                  print("Le ID: $id");
 
                   if (id != "0") {
                     //
@@ -173,7 +174,7 @@ class LeconPdf extends StatelessWidget {
     );
   }
 
-//package:get/get_connect/http/src/response/response.dart
+  //package:get/get_connect/http/src/response/response.dart
   //
   Future<String> checkCours(String cours, String categorie, String banche,
       String type, String notion, int classe, String propriete) async {

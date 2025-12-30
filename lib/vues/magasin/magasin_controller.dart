@@ -102,6 +102,7 @@ class MagasinController extends GetxController with StateMixin<List> {
         //
         //change(liste1, status: RxStatus.success());
         if (type == 1) {
+          
           change(liste1, status: RxStatus.success());
         } else if (type == 2) {
           change(liste2, status: RxStatus.success());

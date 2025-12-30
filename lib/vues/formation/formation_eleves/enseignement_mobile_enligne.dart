@@ -36,7 +36,7 @@ class FormationMobileEnligne extends StatelessWidget {
     //
     return Scaffold(
       appBar: AppBar(
-        title: const Text("FORMATION ELEVES"),
+        title: Text("FORMATION ${typeFormation.toUpperCase()}"),
         centerTitle: true,
       ),
       body: Center(

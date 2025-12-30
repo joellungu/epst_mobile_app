@@ -38,6 +38,21 @@ class DetailsSG extends StatelessWidget {
                     "${e['denomition']}",
                   ),
                   const Padding(
+                    padding: EdgeInsets.only(top: 5),
+                  ),
+                  Container(
+                    height: 150,
+                    width: 150,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          "${Connexion.lien}secretariat/photoprofil/${e["id"]}",
+                        ),
+                        fit: BoxFit.contain,
+                      ),
+                    ),
+                  ),
+                  const Padding(
                     padding: EdgeInsets.only(top: 10),
                   ),
                   Card(
