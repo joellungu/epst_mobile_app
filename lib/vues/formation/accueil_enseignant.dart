@@ -2,6 +2,7 @@ import 'package:enseignemant_en_ligne_professeur/enseignement_en_ligne_professeu
     as p;
 import 'package:epst_app/vues/enseignants/bibliotheque_enseignant.dart';
 import 'package:flutter/material.dart';
+import 'package:professeurs_app/pages/accueil_professeur.dart';
 import 'package:professeurs_app/pages/login/connexion.dart';
 
 class AccueilEnseignant extends StatefulWidget {
@@ -41,7 +42,7 @@ class _AccueilEnseignant extends State<AccueilEnseignant> {
             Expanded(
               child: TabBarView(
                 children: [
-                  LoginScreen(),
+                  AccueilProfesseur(),
                   //
                   p.Login(),
                   // FOAD(),
