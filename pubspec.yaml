@@ -31,19 +31,19 @@ dependencies:
     sdk: flutter
   
   inspecteur_cours_distant:
-    path: C:\Users\najma\OneDrive\Documents\FlutterProjets\inspecteur_cours_distant
+    path: C:\Users\pijol\Documents\FlutterProjets\inspecteur_cours_distant
 
   enseignemant_en_ligne_professeur:
-    path: C:\Users\najma\OneDrive\Documents\FlutterProjets\enseignemant_en_ligne_professeur
+    path: C:\Users\pijol\Documents\FlutterProjets\enseignemant_en_ligne_professeur
 
   enseignement_en_ligne:
-    path: C:\Users\najma\OneDrive\Documents\FlutterProjets\enseignement_en_ligne
+    path: C:\Users\pijol\Documents\FlutterProjets\enseignement_en_ligne
 
   professeurs_app:
-    path: C:\Users\najma\OneDrive\Documents\FlutterProjets\professeurs_app
+    path: C:\Users\pijol\Documents\FlutterProjets\professeur_app
     
   smart_keslassi_parent:
-    path: C:\Users\najma\OneDrive\Documents\FlutterProjets\smart_keslassi_parent
+    path: C:\Users\pijol\Documents\FlutterProjets\smart_kelasi-parent
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -97,10 +97,10 @@ dependencies:
   zego_plugin_adapter: ^2.14.2
   cached_network_image:
   flutter_cache_manager:
+  open_file:
 
 dependency_overrides:
   #package_info_plus:
-  open_filex:
 
 dev_dependencies:
   flutter_test:

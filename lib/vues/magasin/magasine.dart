@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:open_filex/open_filex.dart';
+import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -133,7 +133,7 @@ class Magasine extends GetView<MagasinController> {
                                           await getApplicationDocumentsDirectory();
                                       print(
                                           "${directory.path}/${l[index]["id"]}.${l[index]["extention"]}");
-                                      final or = await OpenFilex.open(
+                                      final or = await OpenFile.open(
                                           "${directory.path}/${l[index]["id"]}.${l[index]["extention"]}");
                                       print(or.message);
                                       print(or.type);

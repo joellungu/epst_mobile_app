@@ -14,11 +14,13 @@ class Connexion {
   //static var lien = 'http://localhost:8080/';
   //static var ws = 'localhost:8080';
   //
-  //static var lien = 'https://educ-app-serveur-43d00822f87c.herokuapp.com/';
-  //static var ws = 'educ-app-serveur-43d00822f87c.herokuapp.com';
+  static var lien = 'https://educ-app-serveur-43d00822f87c.herokuapp.com/';
+  static var ws = 'educ-app-serveur-43d00822f87c.herokuapp.com';
   //
-  static var lien = 'http://192.168.11.100:8080/';
-  static var ws = '192.168.11.100:8080';
+  static var lien2 = 'https://smartkelasi-7109ee9b9b9b.herokuapp.com/';
+  //
+  //static var lien = 'http://192.168.11.100:8080/';
+  //static var ws = '192.168.11.100:8080';
   //
   //static var lien = 'http://10.0.2.2:8080/';
   //static var ws = '10.0.2.2:8080';

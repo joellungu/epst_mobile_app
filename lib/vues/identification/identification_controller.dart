@@ -2,10 +2,11 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:epst_app/utils/requetes.dart';
 import 'package:epst_app/vues/ige/sernie/sernie.dart';
 import 'package:epst_app/vues/ministre/ministre.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
-import 'package:inspecteur_cours_distant/pages/accueil.dart';
+//import 'package:inspecteur_cours_distant/pages/accueil.dart';
 import 'identification.dart';
 import 'identification_sernie.dart';
 
@@ -57,7 +58,7 @@ class IdentificationController extends GetxController with StateMixin<List> {
   }
 
   //
-  login(String matricule, String mdp) async {
+  login(String matricule, String mdp, BuildContext context) async {
     //
     Response response = await requete.getE("agent/login/$matricule/$mdp");
     if (response.isOk) {
@@ -77,7 +78,7 @@ class IdentificationController extends GetxController with StateMixin<List> {
         //"Agent sernie id",
       } else if (e["role"] == 15) {
         //Les validateur
-        Get.to(Accueil(e['id'], "${e['nom']} ${e['prenom']} ${e['postnom']}"));
+        //Get.to(Accueil(e['id'], "${e['nom']} ${e['prenom']} ${e['postnom']}"));
         //
       } else if (e["role"] == 11) {
         //Les validateur
@@ -89,14 +90,17 @@ class IdentificationController extends GetxController with StateMixin<List> {
         //Les enregistreurs
         Get.to(Ministre());
       } else {
-        Get.snackbar("Erreur", "Vous n'etes pas autorisé à y acceder");
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Vous n'etes pas autorisé à y acceder")));
+      
+        //Get.snackbar("Erreur", "Vous n'etes pas autorisé à y acceder");
       }
     } else {
       //
       print(response.body);
       Get.back();
-      Get.snackbar(
-          "Erreur", "Un problème est survenu lors de l'authentification");
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Un problème est survenu lors de l'authentification")));
+      // Get.snackbar(
+      //     "Erreur", "Un problème est survenu lors de l'authentification");
     }
   }
 

@@ -58,7 +58,7 @@ class _Formation extends State<Formation> {
                 children: [
                   Accueil(),
                   Login(),
-                  Bibliotheque(),
+                  Bibliotheque(propriete: 'Eleve'),
                 ],
               ),
             ),
