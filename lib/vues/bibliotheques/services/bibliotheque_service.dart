@@ -17,7 +17,8 @@ class BibliothequeService {
   final GetStorage _box = GetStorage();
   final http.Client _client;
 
-  BibliothequeService({http.Client? client}) : _client = client ?? http.Client();
+  BibliothequeService({http.Client? client})
+      : _client = client ?? http.Client();
 
   Future<bool> isConnected() async {
     final dynamic result = await Connectivity().checkConnectivity();
@@ -33,6 +34,7 @@ class BibliothequeService {
       return stored
           .whereType<Map>()
           .map((e) => BibliothequeCours.fromJson(Map<String, dynamic>.from(e)))
+          .where((cours) => !cours.isZip)
           .toList();
     }
     return [];
@@ -43,36 +45,46 @@ class BibliothequeService {
       return getCachedCourses();
     }
 
-    final response = await _client
-        .get(Uri.parse('${Connexion.lien}cours/all'))
-        .timeout(const Duration(minutes: 2));
+    try {
+      final response = await _client
+          .get(Uri.parse('${Connexion.lien}cours/all'))
+          .timeout(const Duration(minutes: 2));
 
-    if (response.statusCode != 200 && response.statusCode != 201) {
+      if (response.statusCode != 200 && response.statusCode != 201) {
+        return getCachedCourses();
+      }
+
+      final decoded = jsonDecode(response.body);
+      if (decoded is! List) {
+        return getCachedCourses();
+      }
+
+      final courses = decoded
+          .whereType<Map>()
+          .map((e) {
+            final data = Map<String, dynamic>.from(e);
+            data.remove('data');
+            return BibliothequeCours.fromJson(data);
+          })
+          .where((cours) => cours.id > 0 && !cours.isZip)
+          .toList();
+
+      await _box.write(_allCoursesKey, courses.map((e) => e.toJson()).toList());
+      await _box.write(_lastUpdateKey, DateTime.now().toIso8601String());
+      return courses;
+    } catch (_) {
       return getCachedCourses();
     }
-
-    final decoded = jsonDecode(response.body);
-    if (decoded is! List) {
-      return getCachedCourses();
-    }
-
-    final courses = decoded
-        .whereType<Map>()
-        .map((e) {
-          final data = Map<String, dynamic>.from(e);
-          data.remove('data');
-          return BibliothequeCours.fromJson(data);
-        })
-        .where((cours) => cours.id > 0)
-        .toList();
-
-    await _box.write(_allCoursesKey, courses.map((e) => e.toJson()).toList());
-    await _box.write(_lastUpdateKey, DateTime.now().toIso8601String());
-    return courses;
   }
 
-  Future<List<BibliothequeClasse>> getClasses(String propriete) async {
-    final allCourses = await refreshCoursesIfConnected();
+  Future<List<BibliothequeClasse>> getClasses(
+    String propriete, {
+    bool refresh = false,
+  }) async {
+    final cachedCourses = await getCachedCourses();
+    final allCourses = refresh || cachedCourses.isEmpty
+        ? await refreshCoursesIfConnected()
+        : cachedCourses;
     final courses = allCourses
         .where((cours) =>
             cours.propriete.isEmpty ||
@@ -96,8 +108,9 @@ class BibliothequeService {
 
   Future<List<BibliothequeCours>> getCoursesByClass(
     String idClasse,
-    String propriete,
-  ) async {
+    String propriete, {
+    bool refresh = false,
+  }) async {
     final cachedCourses = await getCachedCourses();
     var courses = cachedCourses.where((e) {
       final courseClassId = e.idClasse.isEmpty ? 'sans-classe' : e.idClasse;
@@ -105,28 +118,45 @@ class BibliothequeService {
           (e.propriete.isEmpty || _samePropriete(e.propriete, propriete));
     }).toList();
 
-    if (await isConnected() && idClasse.isNotEmpty && idClasse != 'sans-classe') {
+    if (refresh &&
+        await isConnected() &&
+        idClasse.isNotEmpty &&
+        idClasse != 'sans-classe') {
       final uri = Uri.parse('${Connexion.lien}cours/allcours').replace(
         queryParameters: {
           'idClasse': idClasse,
           'typeFormation': propriete,
         },
       );
-      final response = await _client.get(uri).timeout(const Duration(minutes: 2));
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        final decoded = jsonDecode(response.body);
-        if (decoded is List) {
-          courses = decoded.whereType<Map>().map((e) {
-            final data = Map<String, dynamic>.from(e);
-            data.remove('data');
-            return BibliothequeCours.fromJson(data);
-          }).toList();
-          await _mergeCourses(courses);
+      try {
+        final response =
+            await _client.get(uri).timeout(const Duration(minutes: 2));
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          final decoded = jsonDecode(response.body);
+          if (decoded is List) {
+            courses = decoded
+                .whereType<Map>()
+                .map((e) {
+                  final data = Map<String, dynamic>.from(e);
+                  data.remove('data');
+                  return BibliothequeCours.fromJson(data);
+                })
+                .where((cours) => !cours.isZip)
+                .toList();
+            await _mergeCourses(courses);
+          }
         }
+      } catch (_) {
+        courses = cachedCourses.where((e) {
+          final courseClassId = e.idClasse.isEmpty ? 'sans-classe' : e.idClasse;
+          return courseClassId == idClasse &&
+              (e.propriete.isEmpty || _samePropriete(e.propriete, propriete));
+        }).toList();
       }
     }
 
-    courses.sort((a, b) => a.titre.toLowerCase().compareTo(b.titre.toLowerCase()));
+    courses
+        .sort((a, b) => a.titre.toLowerCase().compareTo(b.titre.toLowerCase()));
     return courses;
   }
 
@@ -135,6 +165,11 @@ class BibliothequeService {
   }
 
   Future<File> getOrDownloadCourseFile(BibliothequeCours cours) async {
+    if (cours.isZip) {
+      throw Exception(
+          "Les fichiers ZIP ne sont pas disponibles dans la bibliotheque.");
+    }
+
     final file = await localFileFor(cours);
     if (await file.exists() && await file.length() > 0) {
       return file;
@@ -183,11 +218,16 @@ class BibliothequeService {
 
   Future<void> _mergeCourses(List<BibliothequeCours> newCourses) async {
     final all = await getCachedCourses();
-    final byId = <int, BibliothequeCours>{for (final cours in all) cours.id: cours};
+    final byId = <int, BibliothequeCours>{
+      for (final cours in all) cours.id: cours
+    };
     for (final cours in newCourses) {
-      byId[cours.id] = cours;
+      if (!cours.isZip) {
+        byId[cours.id] = cours;
+      }
     }
-    await _box.write(_allCoursesKey, byId.values.map((e) => e.toJson()).toList());
+    await _box.write(
+        _allCoursesKey, byId.values.map((e) => e.toJson()).toList());
     await _box.write(_lastUpdateKey, DateTime.now().toIso8601String());
   }
 }

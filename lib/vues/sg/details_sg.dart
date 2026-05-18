@@ -4,17 +4,50 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DetailsSG extends StatelessWidget {
-  Map e;
+  final Map e;
   DetailsSG(this.e, {Key? key}) : super(key: key);
   //
-  RxInt ie = 0.obs;
+  final RxInt ie = 0.obs;
   //
+  String _text(
+    Map data,
+    List<String> keys, {
+    String fallback = 'Non renseigne',
+  }) {
+    for (final key in keys) {
+      final value = data[key];
+      if (value != null && value.toString().trim().isNotEmpty) {
+        return value.toString();
+      }
+    }
+    return fallback;
+  }
+
+  List _list(Map data, List<String> keys) {
+    for (final key in keys) {
+      final value = data[key];
+      if (value is List) {
+        return value;
+      }
+    }
+    return [];
+  }
+
+  String _arreteTexte() {
+    final arrete = e['arrete'] ?? e['arretes'];
+    if (arrete is Map) {
+      return _text(arrete, ['texte', 'text']);
+    }
+    return 'Non renseigne';
+  }
+
   @override
   Widget build(BuildContext context) {
+    final departements = _list(e, ['departements', 'departement']);
     //
     return Scaffold(
       appBar: AppBar(
-        title: Text("${e['sigle']}"),
+        title: Text(_text(e, ['sigle'], fallback: 'Secretariat general')),
       ),
       backgroundColor: Colors.grey.shade200,
       body: Obx(
@@ -35,7 +68,7 @@ class DetailsSG extends StatelessWidget {
                     padding: EdgeInsets.only(top: 10),
                   ),
                   Text(
-                    "${e['denomition']}",
+                    _text(e, ['denomination', 'denomition']),
                   ),
                   const Padding(
                     padding: EdgeInsets.only(top: 5),
@@ -66,17 +99,17 @@ class DetailsSG extends StatelessWidget {
                           ListTile(
                             leading: const Icon(Icons.person),
                             title: const Text("NOM DU RESPONSABLE"),
-                            subtitle: Text("${e['responsable']}"),
+                            subtitle: Text(_text(e, ['responsable'])),
                           ),
                           ListTile(
                             leading: const Icon(Icons.phone_android),
                             title: const Text("TELEPHONE"),
-                            subtitle: Text("${e['telephone']}"),
+                            subtitle: Text(_text(e, ['telephone'])),
                           ),
                           ListTile(
                             leading: const Icon(Icons.email),
                             title: const Text("EMAIL"),
-                            subtitle: Text("${e['email']}"),
+                            subtitle: Text(_text(e, ['email'])),
                           ),
                         ],
                       ),
@@ -98,7 +131,7 @@ class DetailsSG extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    """${e['adresse']}""",
+                    _text(e, ['adresse']),
                   ),
                 ],
               )
@@ -106,10 +139,10 @@ class DetailsSG extends StatelessWidget {
                 ? ListView(
                     padding: const EdgeInsets.all(20),
                     children: List.generate(
-                      e['departement'].length,
+                      departements.length,
                       (index) {
                         //departements
-                        Map d = e['departement'][index];
+                        Map d = departements[index];
                         // String ds = "";
                         // //ds.codeUnits
                         // List<int> images = [];
@@ -128,11 +161,18 @@ class DetailsSG extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                d["photo"] != null
+                                (d["photo"] != null || d["hasPhoto"] == true)
                                     ? Expanded(
                                         flex: 3,
                                         child: Image.network(
-                                            "${Connexion.lien}secretariat/photo/${e["id"]}/$index")
+                                          d["id"] != null
+                                              ? "${Connexion.lien}secretariat/departement/photo/${d["id"]}"
+                                              : "${Connexion.lien}secretariat/photo/${e["id"]}/$index",
+                                          errorBuilder:
+                                              (context, error, stackTrace) {
+                                            return const SizedBox.shrink();
+                                          },
+                                        )
                                         // .memory(
                                         //   Uint8List.fromList(
                                         //     json.decode(d["photo"]).cast<int>(),
@@ -146,7 +186,7 @@ class DetailsSG extends StatelessWidget {
                                     alignment: Alignment.center,
                                     child: ListTile(
                                       title: Text(
-                                        "${d["responsable"]}",
+                                        _text(d, ['responsable']),
                                         style: const TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
@@ -157,7 +197,10 @@ class DetailsSG extends StatelessWidget {
                                           text: "Departement: ",
                                           children: [
                                             TextSpan(
-                                              text: "${d["departement"]}",
+                                              text: _text(
+                                                d,
+                                                ['nom', 'departement'],
+                                              ),
                                               style: const TextStyle(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold,
@@ -199,7 +242,7 @@ class DetailsSG extends StatelessWidget {
                           const SizedBox(
                             height: 5,
                           ),
-                          Text("""${e['arretes']['text']}""")
+                          Text(_arreteTexte())
                         ],
                       )
                     : ie.value == 3
@@ -221,7 +264,7 @@ class DetailsSG extends StatelessWidget {
                               const SizedBox(
                                 height: 5,
                               ),
-                              Text("""${e['attributionMission']}""")
+                              Text(_text(e, ['attributionMission']))
                             ],
                           )
                         : ie.value == 4
@@ -243,7 +286,7 @@ class DetailsSG extends StatelessWidget {
                                   const SizedBox(
                                     height: 5,
                                   ),
-                                  Text("""${e['realisation']}""")
+                                  Text(_text(e, ['realisation']))
                                 ],
                               )
                             : ListView(
@@ -264,7 +307,7 @@ class DetailsSG extends StatelessWidget {
                                   const SizedBox(
                                     height: 5,
                                   ),
-                                  Text("""${e['historique']}""")
+                                  Text(_text(e, ['historique']))
                                   //HtmlWidget("""${e['historique']}"""),
                                 ],
                               ),

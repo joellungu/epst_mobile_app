@@ -24,25 +24,25 @@ class Magasinee extends StatefulWidget {
 
 class Magasine extends GetView<MagasinController> {
   //
-  int type;
-  bool? localData;
+  final int type;
+  final bool? localData;
   //
-  Magasine({Key? key, this.titre, this.type: 1, this.localData})
+  Magasine({Key? key, this.titre, this.type = 1, this.localData})
       : super(key: key) {
     Timer(const Duration(seconds: 1), () {
       //
-      controller.getListeMag(type, localData!);
+      controller.getListeMag(type, localData ?? true);
     });
   }
   //
-  String? titre;
-  var box = GetStorage();
+  final String? titre;
+  final box = GetStorage();
   //
-  RxString text = "".obs;
+  final RxString text = "".obs;
   //
-  RxBool loads = true.obs;
+  final RxBool loads = true.obs;
   //
-  List liste = [];
+  final List liste = [];
   //
   @override
   Widget build(BuildContext context) {

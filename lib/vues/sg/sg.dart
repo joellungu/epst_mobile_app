@@ -11,14 +11,25 @@ class SecretariaGeneral extends GetView<SgController> {
     controller.getAllSecretarial();
   }
   //
-  String? titre;
-  var box = GetStorage();
+  final String? titre;
+  final box = GetStorage();
   //
-  RxString text = "".obs;
+  final RxString text = "".obs;
   //
-  RxBool loads = true.obs;
+  final RxBool loads = true.obs;
   //
-  List liste = [];
+  final List liste = [];
+  //
+  String _text(Map data, List<String> keys, {String fallback = ''}) {
+    for (final key in keys) {
+      final value = data[key];
+      if (value != null && value.toString().trim().isNotEmpty) {
+        return value.toString();
+      }
+    }
+    return fallback;
+  }
+
   //
   @override
   Widget build(BuildContext context) {
@@ -44,6 +55,12 @@ class SecretariaGeneral extends GetView<SgController> {
               l.length,
               (index) {
                 Map s = l[index];
+                final sigle = _text(s, ['sigle'], fallback: '-');
+                final denomination = _text(
+                  s,
+                  ['denomination', 'denomition'],
+                  fallback: 'Secretariat general',
+                );
                 return ListTile(
                   onTap: () async {
                     //
@@ -78,7 +95,7 @@ class SecretariaGeneral extends GetView<SgController> {
                       borderRadius: BorderRadius.circular(25),
                     ),
                     child: Text(
-                      "${s['sigle']}",
+                      sigle,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                         fontSize: 15,
@@ -87,7 +104,7 @@ class SecretariaGeneral extends GetView<SgController> {
                       ),
                     ),
                   ),
-                  title: Text("${s['denomition']}"),
+                  title: Text(denomination),
                   //subtitle: const Text(
                   //  "Direction de l'information pour la gestion de l'éducation"),
                   trailing: const Icon(Icons.arrow_forward_ios),

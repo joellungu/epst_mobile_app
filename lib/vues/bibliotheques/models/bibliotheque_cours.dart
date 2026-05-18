@@ -86,6 +86,8 @@ class BibliothequeCours {
 
   String get extension => type.isEmpty ? 'bin' : type.replaceAll('.', '');
 
+  bool get isZip => extension.toLowerCase() == 'zip';
+
   static String _clean(dynamic value) {
     final text = '${value ?? ''}'.trim();
     return text == 'null' ? '' : text;

@@ -40,12 +40,17 @@ class _BibliothequeCoursPageState extends State<BibliothequeCoursPage> {
       _future = widget.service.getCoursesByClass(
         widget.classe.id,
         widget.propriete,
+        refresh: true,
       );
     });
     await _future;
   }
 
   Future<void> _openCourse(BibliothequeCours cours) async {
+    if (cours.isZip) {
+      return;
+    }
+
     setState(() {
       _openingCourseId = cours.id;
     });
@@ -168,8 +173,6 @@ class _BibliothequeCoursPageState extends State<BibliothequeCoursPage> {
       case 'jpg':
       case 'jpeg':
         return 'image/jpeg';
-      case 'zip':
-        return 'application/zip';
     }
     return null;
   }
@@ -221,7 +224,9 @@ class _CoursTile extends StatelessWidget {
         subtitle: Padding(
           padding: const EdgeInsets.only(top: 4),
           child: Text(
-            cours.detail.isEmpty ? cours.extension.toUpperCase() : '${cours.detail}\n${cours.extension.toUpperCase()}',
+            cours.detail.isEmpty
+                ? cours.extension.toUpperCase()
+                : '${cours.detail}\n${cours.extension.toUpperCase()}',
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),

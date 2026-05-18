@@ -15,7 +15,8 @@ class BibliothequeClassesPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<BibliothequeClassesPage> createState() => _BibliothequeClassesPageState();
+  State<BibliothequeClassesPage> createState() =>
+      _BibliothequeClassesPageState();
 }
 
 class _BibliothequeClassesPageState extends State<BibliothequeClassesPage> {
@@ -30,9 +31,12 @@ class _BibliothequeClassesPageState extends State<BibliothequeClassesPage> {
     _future = _load();
   }
 
-  Future<List<BibliothequeClasse>> _load() async {
+  Future<List<BibliothequeClasse>> _load({bool refresh = false}) async {
     _connected = await _service.isConnected();
-    final classes = await _service.getClasses(widget.propriete);
+    final classes = await _service.getClasses(
+      widget.propriete,
+      refresh: refresh,
+    );
     if (mounted) {
       setState(() {});
     }
@@ -41,7 +45,7 @@ class _BibliothequeClassesPageState extends State<BibliothequeClassesPage> {
 
   Future<void> _refresh() async {
     setState(() {
-      _future = _load();
+      _future = _load(refresh: true);
     });
     await _future;
   }
@@ -187,7 +191,9 @@ class _ClasseTile extends StatelessWidget {
         subtitle: Padding(
           padding: const EdgeInsets.only(top: 4),
           child: Text(
-            details.isEmpty ? '${classe.totalCours} cours' : '$details\n${classe.totalCours} cours',
+            details.isEmpty
+                ? '${classe.totalCours} cours'
+                : '$details\n${classe.totalCours} cours',
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),

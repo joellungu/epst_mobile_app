@@ -202,7 +202,6 @@ class MinistreController extends GetxController {
                 }
               : <String, String>{
                   'ageBands': '/analytics/students/age-bands',
-                  'topClasses': '/analytics/students/top-classes',
                   'averageAgeByClass':
                       '/analytics/students/average-age-by-class',
                   'presenceByClass': '/analytics/students/presence-by-class',

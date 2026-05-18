@@ -13,7 +13,7 @@ class ReformeController extends GetxController with StateMixin<List> {
   List<Map<String, dynamic>> liste11 = [];
   List<Map<String, dynamic>> liste2 = [];
   //
-  getListeMag(int type) async {
+  Future<void> getListeMag(int type) async {
     //
     liste1 = [];
     liste11 = [];
@@ -24,7 +24,13 @@ class ReformeController extends GetxController with StateMixin<List> {
     //
     var l1 = box.read("magasin") ?? [];
     var l2 = box.read("reforme") ?? [];
-    Response rep = await magasinConnexion.getListeMag(type);
+    Response rep;
+    try {
+      rep = await magasinConnexion.getListeMag(type);
+    } catch (_) {
+      change(l2, status: RxStatus.success());
+      return;
+    }
     if (rep.isOk) {
       print(rep.body);
       List repListe = rep.body;
@@ -74,20 +80,21 @@ class ReformeController extends GetxController with StateMixin<List> {
     //
     final Directory directory = await getApplicationDocumentsDirectory();
     try {
-      //final File file = File('${directory.path}/$id.$extension');
+      final File file = File('${directory.path}/$id.$extension');
       print(':::${directory.path}/$id.$extension');
       //bool v = await Directory('${directory.path}/$id.$extension').exists();
       //if (!v) {
       Map<String, dynamic> m = await getMagasin(id);
-      box.write(id, base64Decode(m["piecejointe"]));
-      //File f = await file.writeAsBytes(base64Decode(m["piecejointe"])); //
-      //bool b = await f.exists();
+      final bytes = base64Decode("${m["piecejointe"] ?? ""}");
+      box.write(id, bytes);
+      File f = await file.writeAsBytes(bytes); //
+      bool b = await f.exists();
       //liste11.add(e);
       //change(liste11, status: RxStatus.success());
       //print("Fichier crée avec succé ! $b");
       //  return 1;
       //}
-      return 1;
+      return b ? 1 : 0;
       //
     } catch (e) {
       return 0;

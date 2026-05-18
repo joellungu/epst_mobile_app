@@ -21,7 +21,7 @@ class MagasinController extends GetxController with StateMixin<List> {
   List<Map<String, dynamic>> liste7 = [];
   List<Map<String, dynamic>> liste11 = [];
   //
-  getListeMag(int type, bool localData) async {
+  Future<void> getListeMag(int type, bool localData) async {
     //
     change([], status: RxStatus.loading());
     //
@@ -35,8 +35,6 @@ class MagasinController extends GetxController with StateMixin<List> {
     liste11 = [];
     //
     var box = GetStorage();
-    int v = 0;
-    //
     var l1 = box.read("magasin") ?? [];
     var l2 = box.read("reforme") ?? [];
     var l3 = box.read("am") ?? [];
@@ -47,7 +45,13 @@ class MagasinController extends GetxController with StateMixin<List> {
     //
     if (localData) {
       //
-      http.Response rep = await magasinConnexion.getListeMag(type);
+      http.Response rep;
+      try {
+        rep = await magasinConnexion.getListeMag(type);
+      } catch (e) {
+        _showCachedList(type, l1, l2, l3, l4, l5, l6, l7);
+        return;
+      }
       print("le truc statu code: ${rep.body}");
       print("Je suis à 7 == $type");
       if (rep.statusCode == 200 || rep.statusCode == 201) {
@@ -101,22 +105,8 @@ class MagasinController extends GetxController with StateMixin<List> {
         //box.write("reforme", liste2);//
         //
         //change(liste1, status: RxStatus.success());
-        if (type == 1) {
-          
-          change(liste1, status: RxStatus.success());
-        } else if (type == 2) {
-          change(liste2, status: RxStatus.success());
-        } else if (type == 3) {
-          change(liste3, status: RxStatus.success());
-        } else if (type == 4) {
-          change(liste4, status: RxStatus.success());
-        } else if (type == 5) {
-          change(liste5, status: RxStatus.success());
-        } else if (type == 6) {
-          change(liste6, status: RxStatus.success());
-        } else if (type == 7) {
-          change(liste7, status: RxStatus.success());
-        }
+        _showCachedList(
+            type, liste1, liste2, liste3, liste4, liste5, liste6, liste7);
         //
         //change(l1, status: RxStatus.success());
       } else {
@@ -128,21 +118,7 @@ class MagasinController extends GetxController with StateMixin<List> {
         box.write("mp", l6);
         box.write("sg", l7);
         //
-        if (type == 1) {
-          change(l1, status: RxStatus.success());
-        } else if (type == 2) {
-          change(l2, status: RxStatus.success());
-        } else if (type == 3) {
-          change(l3, status: RxStatus.success());
-        } else if (type == 4) {
-          change(l4, status: RxStatus.success());
-        } else if (type == 5) {
-          change(l5, status: RxStatus.success());
-        } else if (type == 6) {
-          change(l6, status: RxStatus.success());
-        } else if (type == 7) {
-          change(l7, status: RxStatus.success());
-        }
+        _showCachedList(type, l1, l2, l3, l4, l5, l6, l7);
         //
       }
     } else {
@@ -154,22 +130,37 @@ class MagasinController extends GetxController with StateMixin<List> {
       box.write("mp", l6);
       box.write("sg", l7);
       //
-      if (type == 1) {
-        change(l1, status: RxStatus.success());
-      } else if (type == 2) {
-        change(l2, status: RxStatus.success());
-      } else if (type == 3) {
-        change(l3, status: RxStatus.success());
-      } else if (type == 4) {
-        change(l4, status: RxStatus.success());
-      } else if (type == 5) {
-        change(l5, status: RxStatus.success());
-      } else if (type == 6) {
-        change(l6, status: RxStatus.success());
-      } else if (type == 7) {
-        change(l7, status: RxStatus.success());
-      }
+      _showCachedList(type, l1, l2, l3, l4, l5, l6, l7);
       //
+    }
+  }
+
+  void _showCachedList(
+    int type,
+    List l1,
+    List l2,
+    List l3,
+    List l4,
+    List l5,
+    List l6,
+    List l7,
+  ) {
+    if (type == 1) {
+      change(l1, status: RxStatus.success());
+    } else if (type == 2) {
+      change(l2, status: RxStatus.success());
+    } else if (type == 3) {
+      change(l3, status: RxStatus.success());
+    } else if (type == 4) {
+      change(l4, status: RxStatus.success());
+    } else if (type == 5) {
+      change(l5, status: RxStatus.success());
+    } else if (type == 6) {
+      change(l6, status: RxStatus.success());
+    } else if (type == 7) {
+      change(l7, status: RxStatus.success());
+    } else {
+      change([], status: RxStatus.success());
     }
   }
 
@@ -183,10 +174,10 @@ class MagasinController extends GetxController with StateMixin<List> {
       print(':::${directory.path}/$id.$extension');
       //bool v = await Directory('${directory.path}/$id.$extension').exists();
       //if (!v) {
-      Map<String, dynamic> m = await getMagasin(id);
-      box.write(id, base64Decode(m["piecejointe"]));
-      File f = await file.writeAsBytes(base64Decode(m["piecejointe"])); //
-      bool b = await f.exists();
+      final Map<String, dynamic> m = await getMagasin(id);
+      final bytes = base64Decode("${m["piecejointe"] ?? ""}");
+      box.write(id, bytes);
+      await file.writeAsBytes(bytes); //
       //liste11.add(e);
       //change(liste11, status: RxStatus.success());
       //print("Fichier crée avec succé ! $b");
@@ -202,8 +193,6 @@ class MagasinController extends GetxController with StateMixin<List> {
 
   //
   Future<Map<String, dynamic>> getMagasin(String id) async {
-    Map<String, dynamic> t = {};
-    //
     //var url = Uri.parse("${Connexion.lien}magasin/$id");
     var response = await magasinConnexion.getMagasin(id);
     print(response.body);
@@ -241,7 +230,6 @@ class MagasinConnexion extends GetConnect {
   }
 
   Future<http.Response> getMagasin(String id) async {
-    var url = Uri.parse('${Connexion.lien}magasin/$id');
     var response = await http.get(Uri.parse("${Connexion.lien}magasin/$id"));
     return response;
     //return get("${Connexion.lien}magasin/$id");
