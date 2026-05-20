@@ -1,10 +1,10 @@
-import 'package:enseignement_en_ligne/pages/login/login.dart';
+import 'package:enseignement_en_ligne/pages/cours/classes.dart';
+import 'package:enseignement_en_ligne/pages/login/forgot.dart';
+import 'package:enseignement_en_ligne/pages/login/signup.dart';
 import 'package:epst_app/vues/bibliotheques/bibliotheque.dart';
-import 'package:epst_app/vues/formation/foad.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'eod/eod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:smart_keslassi_parent/pages/accueil.dart';
 
 // ignore: must_be_immutable
@@ -20,44 +20,31 @@ class Formation extends StatefulWidget {
 
 class _Formation extends State<Formation> {
   @override
-  void initState() {
-    //
-    super.initState();
-  }
-
-  double st = 15;
-  double taille = 10;
-  double pd = 15;
-
-  @override
   Widget build(BuildContext context) {
-    //
     return DefaultTabController(
-      length: 3, // Nombre d'onglets pour chaque TabBar
+      length: 3,
       child: Scaffold(
         body: Column(
           children: [
-            // TabBar 1
             TabBar(
               dividerColor: Colors.white,
               indicatorColor: Colors.black,
-              labelStyle: TextStyle(color: Colors.black),
+              labelStyle: const TextStyle(color: Colors.black),
               unselectedLabelColor: Colors.grey,
               isScrollable: true,
               tabAlignment: TabAlignment.center,
-              tabs: [
+              tabs: const [
                 Tab(text: 'Parcours scolaire'),
                 Tab(text: 'Ma classe en ligne'),
                 Tab(text: 'Bibliothèque'),
               ],
             ),
             const SizedBox(height: 10),
-            // TabBarView pour le contenu
             Expanded(
               child: TabBarView(
                 children: [
                   Accueil(),
-                  Login(),
+                  const _OnlineClassLogin(),
                   Bibliotheque(propriete: 'Eleve'),
                 ],
               ),
@@ -66,279 +53,223 @@ class _Formation extends State<Formation> {
         ),
       ),
     );
-    //
-    return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   title: Text(widget.titre!),
-      // ),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          // crossAxisCount: 2,
-          // mainAxisSpacing: 5,
-          // crossAxisSpacing: 5,
-          // childAspectRatio: 1,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            InkWell(
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const FOAD();
-                    },
-                  ),
-                );
-              },
-              child: Container(
-                height: 220,
-                margin: const EdgeInsets.only(top: 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Colors.blue,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Expanded(
-                      flex: 9,
-                      child: Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.all(pd),
-                        // child: Image.asset(
-                        //   "assets/LOGO-MINEPST-BON.png",
-                        //   color: Colors.blue,
-                        //   colorBlendMode: BlendMode.color,
-                        // ), //
-                        decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                          ),
-                        ),
-                        child: Lottie.asset(
-                            'assets/Animation - 1719829962343.json'),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Container(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        alignment: Alignment.center,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(10),
-                            bottomRight: Radius.circular(10),
-                          ),
-                        ),
-                        child: RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(
-                            text: "",
-                            children: const [
-                              TextSpan(
-                                text: "FOAD MOBILE",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              )
-                            ],
-                            style: TextStyle(
-                              fontSize: st,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            // InkWell(
-            //   onTap: () {
-            //     // Navigator.of(context).push(
-            //     //   MaterialPageRoute(
-            //     //     builder: (context) {
-            //     //       return const EnseignementEnseignantEnligne();
-            //     //     },
-            //     //   ),
-            //     // );
-            //   },
-            //   child: Container(
-            //     height: 200,
-            //     margin: const EdgeInsets.only(top: 10),
-            //     decoration: BoxDecoration(
-            //       borderRadius: BorderRadius.circular(5),
-            //       color: Colors.blue,
-            //     ),
-            //     child: Column(
-            //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //       children: [
-            //         Expanded(
-            //           flex: 9,
-            //           child: Container(
-            //             alignment: Alignment.center,
-            //             padding: EdgeInsets.all(pd),
-            //             // child: Image.asset(
-            //             //   "assets/LOGO-MINEPST-BON.png",
-            //             //   color: Colors.blue,
-            //             //   colorBlendMode: BlendMode.color,
-            //             // ), //
-            //             decoration: const BoxDecoration(
-            //               //color: Colors.blue,
-            //               borderRadius: BorderRadius.only(
-            //                 topLeft: Radius.circular(10),
-            //                 topRight: Radius.circular(10),
-            //               ),
-            //             ),
-            //             child:
-            //                 Lottie.asset('assets/Animation - 1719829657336.json'),
-            //           ),
-            //         ),
-            //         Expanded(
-            //           flex: 2,
-            //           child: Container(
-            //             padding: const EdgeInsets.only(bottom: 15),
-            //             alignment: Alignment.center,
-            //             decoration: const BoxDecoration(
-            //                 borderRadius: BorderRadius.only(
-            //               bottomLeft: Radius.circular(10),
-            //               bottomRight: Radius.circular(10),
-            //             )),
-            //             child: RichText(
-            //               textAlign: TextAlign.center,
-            //               text: TextSpan(
-            //                 text: "",
-            //                 children: const [
-            //                   TextSpan(
-            //                     text: "FOAD EN LIGNE",
-            //                     style: TextStyle(
-            //                       fontSize: 20,
-            //                       fontWeight: FontWeight.bold,
-            //                       color: Colors.white,
-            //                     ),
-            //                   )
-            //                 ],
-            //                 style: TextStyle(
-            //                   fontSize: st,
-            //                   fontWeight: FontWeight.bold,
-            //                   color: Colors.white,
-            //                 ),
-            //               ),
-            //             ),
-            //           ),
-            //         )
-            //       ],
-            //     ),
-            //   ),
-            // ),
+  }
+}
 
-            InkWell(
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Eod();
-                    },
-                  ),
-                );
-              },
-              child: Container(
-                height: 220,
-                margin: const EdgeInsets.only(top: 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Colors.blue,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Expanded(
-                      flex: 9,
-                      child: Container(
-                        alignment: Alignment.center,
-                        padding: EdgeInsets.all(pd), //
-                        decoration: const BoxDecoration(
-                          //color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            topRight: Radius.circular(10),
-                          ),
-                        ),
-                        child: Lottie.asset(
-                            'assets/Animation - 1719829768791.json'),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Container(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        alignment: Alignment.center,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10),
-                        )),
-                        child: RichText(
-                          textAlign: TextAlign.center,
-                          text: TextSpan(
-                            text: "EOD\n",
-                            children: const [
-                              TextSpan(
-                                text: "Enseignement ouverte à distance",
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              )
-                            ],
-                            style: TextStyle(
-                              fontSize: 20, //st,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+class _OnlineClassLogin extends StatefulWidget {
+  const _OnlineClassLogin();
+
+  @override
+  State<_OnlineClassLogin> createState() => _OnlineClassLoginState();
+}
+
+class _OnlineClassLoginState extends State<_OnlineClassLogin> {
+  final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _obscurePassword = true;
+
+  @override
+  void dispose() {
+    _userNameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _submit() {
+    if (_userNameController.text.trim().isEmpty ||
+        _passwordController.text.isEmpty) {
+      Get.to(Classes());
+      Get.snackbar("Oups", "Veuillez saisir tous les champs.");
+      return;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        top: false,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final compact = constraints.maxHeight < 620;
+            final logoSize = compact ? 92.0 : 136.0;
+
+            return SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(24, 14, 24, 24),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 420),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Center(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.asset(
+                              "assets/EPST APP.png",
+                              height: logoSize,
+                              width: logoSize,
+                              fit: BoxFit.contain,
                             ),
                           ),
                         ),
-                      ),
-                    )
-                  ],
+                        SizedBox(height: compact ? 16 : 24),
+                        const Text(
+                          "Connexion",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 28,
+                          ),
+                        ),
+                        SizedBox(height: compact ? 18 : 26),
+                        _LoginField(
+                          controller: _userNameController,
+                          hintText: "Email ID",
+                          iconAsset: "assets/HugeiconsAt.svg",
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+                        const SizedBox(height: 16),
+                        _LoginField(
+                          controller: _passwordController,
+                          hintText: "Mot de passe",
+                          iconAsset: "assets/HugeiconsCircleLock02.svg",
+                          obscureText: _obscurePassword,
+                          suffix: IconButton(
+                            tooltip: _obscurePassword
+                                ? "Afficher le mot de passe"
+                                : "Masquer le mot de passe",
+                            onPressed: () {
+                              setState(() {
+                                _obscurePassword = !_obscurePassword;
+                              });
+                            },
+                            icon: SvgPicture.asset(
+                              _obscurePassword
+                                  ? "assets/HugeiconsView.svg"
+                                  : "assets/HugeiconsViewOff.svg",
+                              colorFilter: const ColorFilter.mode(
+                                Colors.grey,
+                                BlendMode.srcIn,
+                              ),
+                              height: 24,
+                              width: 24,
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () => Get.to(Forgot()),
+                            child: const Text(
+                              "Mot de passe oublié ?",
+                              style: TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        SizedBox(
+                          height: 48,
+                          child: ElevatedButton(
+                            onPressed: _submit,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            child: const Text(
+                              "Connexion",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Wrap(
+                          alignment: WrapAlignment.center,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            const Text(
+                              "Pas de compte ?",
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () => Get.to(Signup()),
+                              child: const Text(
+                                "Créer un compte",
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 40,
-            ),
-            TextButton(
-              child: const Text(
-                "Cliquez sur ce lien pour la version en ligne",
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 13,
-                  color: Colors.blue,
-                ),
-                // You can optionally handle link tap event by yourself
-              ),
-              onPressed: () async {
-                if (!await launchUrl(
-                    Uri.parse("https://foade.minepst.gouv.cd"))) {
-                  throw Exception(
-                      'Could not launch https://foade.minepst.gouv.cd');
-                }
-              },
-            )
-          ],
+            );
+          },
         ),
       ),
+    );
+  }
+}
+
+class _LoginField extends StatelessWidget {
+  final TextEditingController controller;
+  final String hintText;
+  final String iconAsset;
+  final bool obscureText;
+  final TextInputType? keyboardType;
+  final Widget? suffix;
+
+  const _LoginField({
+    required this.controller,
+    required this.hintText,
+    required this.iconAsset,
+    this.obscureText = false,
+    this.keyboardType,
+    this.suffix,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SvgPicture.asset(
+          iconAsset,
+          colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+          height: 25,
+          width: 25,
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: TextField(
+            controller: controller,
+            keyboardType: keyboardType,
+            obscureText: obscureText,
+            decoration: InputDecoration(
+              hintText: hintText,
+              suffixIcon: suffix,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

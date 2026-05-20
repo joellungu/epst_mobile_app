@@ -109,7 +109,7 @@ class _BibliothequeCoursPageState extends State<BibliothequeCoursPage> {
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(18, 14, 18, 8),
                     child: Text(
-                      '${courses.length} cours associés',
+                      '${courses.length} fichier${courses.length > 1 ? 's' : ''} associe${courses.length > 1 ? 's' : ''}',
                       style: TextStyle(
                         color: Colors.grey.shade700,
                         fontWeight: FontWeight.w600,
@@ -126,9 +126,9 @@ class _BibliothequeCoursPageState extends State<BibliothequeCoursPage> {
                   const SliverFillRemaining(
                     child: BibliothequeEmptyState(
                       icon: Icons.folder_open,
-                      title: 'Aucun cours pour cette classe',
+                      title: 'Aucun fichier pour cette classe',
                       message:
-                          'Tirez vers le bas pour vérifier les dernières données en ligne.',
+                          'Tirez vers le bas pour verifier les derniers fichiers en ligne.',
                     ),
                   )
                 else

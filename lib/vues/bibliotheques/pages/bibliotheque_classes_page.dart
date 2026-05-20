@@ -177,7 +177,17 @@ class _ClasseTile extends StatelessWidget {
             color: Colors.blue.shade50,
             borderRadius: BorderRadius.circular(8),
           ),
-          child: const Icon(Icons.school_outlined, color: Colors.blue),
+          child: Text(
+            classe.shortLabel,
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              color: Colors.blue,
+              fontWeight: FontWeight.w800,
+              fontSize: 12,
+            ),
+          ),
         ),
         title: Text(
           classe.nom,
@@ -192,8 +202,8 @@ class _ClasseTile extends StatelessWidget {
           padding: const EdgeInsets.only(top: 4),
           child: Text(
             details.isEmpty
-                ? '${classe.totalCours} cours'
-                : '$details\n${classe.totalCours} cours',
+                ? '${classe.totalCours} fichier${classe.totalCours > 1 ? 's' : ''}'
+                : '$details\n${classe.totalCours} fichier${classe.totalCours > 1 ? 's' : ''}',
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),

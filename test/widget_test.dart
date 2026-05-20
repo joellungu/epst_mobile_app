@@ -1,32 +1,53 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:epst_app/main.dart';
+import 'package:inspecteur_cours_distant/inspecteur_cours_distant.dart'
+    as inspecteur_cours_distant;
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  testWidgets('shows sernafor inspector distance courses module', (
+    WidgetTester tester,
+  ) async {
+    const assignments = [
+      inspecteur_cours_distant.InspecteurCoursAssignment(
+        id: 1,
+        idInspecteur: 19,
+        course: inspecteur_cours_distant.CourseInfo(
+          id: 10,
+          title: 'Pedagogie',
+          branch: '',
+          notion: '',
+          type: '',
+          classId: 'classe-1',
+        ),
+        classes: [
+          inspecteur_cours_distant.ClasseInfo(
+            id: 'classe-1',
+            label: '1ere primaire',
+            details: 'Education de base',
+          ),
+        ],
+      ),
+    ];
+
     await tester.pumpWidget(
-      Epst(),
+      const MaterialApp(
+        home: inspecteur_cours_distant.Accueil(
+          {
+            'id': 19,
+            'role': 19,
+            'matricule': 'INS-19',
+            'nom': 'Inspecteur',
+            'postnom': 'Sernafor',
+          },
+          initialAssignments: assignments,
+        ),
+      ),
     );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('Cours affectes'), findsOneWidget);
+    expect(find.text('Pedagogie'), findsOneWidget);
+    expect(find.text('1ere primaire'), findsOneWidget);
   });
 }

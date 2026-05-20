@@ -1,4 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:epst_app/utils/connexion.dart';
 import 'package:epst_app/utils/requetes.dart';
 import 'package:epst_app/vues/ige/sernie/sernie.dart';
 import 'package:epst_app/vues/ministre/ministre.dart';
@@ -6,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
-//import 'package:inspecteur_cours_distant/pages/accueil.dart';
+import 'package:inspecteur_cours_distant/inspecteur_cours_distant.dart'
+    as inspecteur_cours_distant;
 import 'identification.dart';
 import 'identification_sernie.dart';
 
@@ -89,16 +91,25 @@ class IdentificationController extends GetxController with StateMixin<List> {
       } else if (e["role"] == 16 || e["role"] == 17 || e["role"] == 18) {
         //Les enregistreurs
         Get.to(Ministre());
+      } else if (e["role"] == 19 || e["role"] == 20) {
+        Get.to(
+          inspecteur_cours_distant.Accueil(
+            Map<String, dynamic>.from(e),
+            baseUrl: Connexion.lien,
+          ),
+        );
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Vous n'etes pas autorisé à y acceder")));
-      
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("Vous n'etes pas autorisé à y acceder")));
+
         //Get.snackbar("Erreur", "Vous n'etes pas autorisé à y acceder");
       }
     } else {
       //
       print(response.body);
       Get.back();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Un problème est survenu lors de l'authentification")));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("Un problème est survenu lors de l'authentification")));
       // Get.snackbar(
       //     "Erreur", "Un problème est survenu lors de l'authentification");
     }
@@ -138,6 +149,15 @@ class IdentificationController extends GetxController with StateMixin<List> {
           //Les enregistreurs
           pass = true;
           Get.to(Sernie(titre: "SERNIE"));
+          break;
+        } else if (e["role"] == 19 || e["role"] == 20) {
+          pass = true;
+          Get.to(
+            inspecteur_cours_distant.Accueil(
+              Map<String, dynamic>.from(e),
+              baseUrl: Connexion.lien,
+            ),
+          );
           break;
         } else {
           pass = false;

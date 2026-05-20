@@ -12,6 +12,7 @@ import 'package:path_provider/path_provider.dart';
 
 class BibliothequeService {
   static const String _allCoursesKey = 'bibliotheque.cours.all';
+  static const String _allClassesKey = 'bibliotheque.classes.all';
   static const String _lastUpdateKey = 'bibliotheque.last_update';
 
   final GetStorage _box = GetStorage();
@@ -77,14 +78,79 @@ class BibliothequeService {
     }
   }
 
+  Future<List<BibliothequeClasse>> getCachedClasses() async {
+    final stored = _box.read(_allClassesKey);
+    if (stored is List) {
+      return stored
+          .whereType<Map>()
+          .map((e) => BibliothequeClasse.fromJson(
+                Map<String, dynamic>.from(e),
+                totalCours: _asInt(e['totalCours']),
+              ))
+          .where((classe) => classe.id.isNotEmpty)
+          .toList();
+    }
+    return [];
+  }
+
+  Future<List<BibliothequeClasse>> refreshClassesIfConnected() async {
+    if (!await isConnected()) {
+      return getCachedClasses();
+    }
+
+    try {
+      final response = await _client
+          .get(Uri.parse('${Connexion.lien}classes'))
+          .timeout(const Duration(minutes: 2));
+
+      if (response.statusCode != 200 && response.statusCode != 201) {
+        return getCachedClasses();
+      }
+
+      final decoded = jsonDecode(response.body);
+      final rawClasses = decoded is List
+          ? decoded
+          : decoded is Map
+              ? decoded['data'] ??
+                  decoded['classes'] ??
+                  decoded['content'] ??
+                  decoded['items'] ??
+                  const []
+              : const [];
+
+      if (rawClasses is! List) {
+        return getCachedClasses();
+      }
+
+      final classes = rawClasses
+          .whereType<Map>()
+          .map((e) => BibliothequeClasse.fromJson(
+                Map<String, dynamic>.from(e),
+              ))
+          .where((classe) => classe.id.isNotEmpty)
+          .toList();
+
+      await _box.write(_allClassesKey, classes.map((e) => e.toJson()).toList());
+      await _box.write(_lastUpdateKey, DateTime.now().toIso8601String());
+      return classes;
+    } catch (_) {
+      return getCachedClasses();
+    }
+  }
+
   Future<List<BibliothequeClasse>> getClasses(
     String propriete, {
     bool refresh = false,
   }) async {
     final cachedCourses = await getCachedCourses();
+    final cachedClasses = await getCachedClasses();
+    final connected = await isConnected();
     final allCourses = refresh || cachedCourses.isEmpty
         ? await refreshCoursesIfConnected()
         : cachedCourses;
+    final allClasses = refresh || cachedClasses.isEmpty || connected
+        ? await refreshClassesIfConnected()
+        : cachedClasses;
     final courses = allCourses
         .where((cours) =>
             cours.propriete.isEmpty ||
@@ -97,11 +163,19 @@ class BibliothequeService {
       grouped.putIfAbsent(idClasse, () => []).add(cours.toJson());
     }
 
-    final classes = grouped.values
-        .where((courses) => courses.isNotEmpty)
-        .map(BibliothequeClasse.fromCourses)
-        .toList();
+    final classesById = <String, BibliothequeClasse>{
+      for (final classe in allClasses) classe.id: classe,
+    };
 
+    for (final entry in grouped.entries) {
+      final classeFromCourses = BibliothequeClasse.fromCourses(entry.value);
+      classesById[entry.key] =
+          (classesById[entry.key] ?? classeFromCourses).copyWith(
+        totalCours: entry.value.length,
+      );
+    }
+
+    final classes = classesById.values.toList();
     classes.sort((a, b) => a.nom.toLowerCase().compareTo(b.nom.toLowerCase()));
     return classes;
   }
@@ -112,14 +186,15 @@ class BibliothequeService {
     bool refresh = false,
   }) async {
     final cachedCourses = await getCachedCourses();
+    final connected = await isConnected();
     var courses = cachedCourses.where((e) {
       final courseClassId = e.idClasse.isEmpty ? 'sans-classe' : e.idClasse;
       return courseClassId == idClasse &&
           (e.propriete.isEmpty || _samePropriete(e.propriete, propriete));
     }).toList();
 
-    if (refresh &&
-        await isConnected() &&
+    if ((refresh || (connected && courses.isEmpty)) &&
+        connected &&
         idClasse.isNotEmpty &&
         idClasse != 'sans-classe') {
       final uri = Uri.parse('${Connexion.lien}cours/allcours').replace(
@@ -229,5 +304,12 @@ class BibliothequeService {
     await _box.write(
         _allCoursesKey, byId.values.map((e) => e.toJson()).toList());
     await _box.write(_lastUpdateKey, DateTime.now().toIso8601String());
+  }
+
+  int _asInt(dynamic value) {
+    if (value is int) {
+      return value;
+    }
+    return int.tryParse('${value ?? 0}') ?? 0;
   }
 }
