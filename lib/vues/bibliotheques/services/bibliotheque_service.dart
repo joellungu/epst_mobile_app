@@ -176,7 +176,19 @@ class BibliothequeService {
     }
 
     final classes = classesById.values.toList();
-    classes.sort((a, b) => a.nom.toLowerCase().compareTo(b.nom.toLowerCase()));
+    classes.sort((a, b) {
+      final optionCompare =
+          a.option.toLowerCase().compareTo(b.option.toLowerCase());
+      if (optionCompare != 0) {
+        return optionCompare;
+      }
+      final niveauCompare =
+          a.niveau.toLowerCase().compareTo(b.niveau.toLowerCase());
+      if (niveauCompare != 0) {
+        return niveauCompare;
+      }
+      return a.displayName.toLowerCase().compareTo(b.displayName.toLowerCase());
+    });
     return classes;
   }
 

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:epst_app/utils/connexion.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
@@ -41,6 +43,38 @@ class DetailsSG extends StatelessWidget {
     return 'Non renseigne';
   }
 
+  ImageProvider _profileImage() {
+    final localPath = e['localPhotoPath'];
+    if (localPath != null && File(localPath.toString()).existsSync()) {
+      return FileImage(File(localPath.toString()));
+    }
+    return NetworkImage("${Connexion.lien}secretariat/photoprofil/${e["id"]}");
+  }
+
+  Widget _departmentImage(Map d, int index) {
+    final localPath = d['localPhotoPath'];
+    if (localPath != null && File(localPath.toString()).existsSync()) {
+      return Image.file(
+        File(localPath.toString()),
+        fit: BoxFit.contain,
+      );
+    }
+
+    if (d["photo"] == null && d["hasPhoto"] != true && d["id"] == null) {
+      return const SizedBox.shrink();
+    }
+
+    return Image.network(
+      d["id"] != null
+          ? "${Connexion.lien}secretariat/departement/photo/${d["id"]}"
+          : "${Connexion.lien}secretariat/photo/${e["id"]}/$index",
+      fit: BoxFit.contain,
+      errorBuilder: (context, error, stackTrace) {
+        return const SizedBox.shrink();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final departements = _list(e, ['departements', 'departement']);
@@ -78,9 +112,7 @@ class DetailsSG extends StatelessWidget {
                     width: 150,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: NetworkImage(
-                          "${Connexion.lien}secretariat/photoprofil/${e["id"]}",
-                        ),
+                        image: _profileImage(),
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -161,24 +193,19 @@ class DetailsSG extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                (d["photo"] != null || d["hasPhoto"] == true)
+                                (d["photo"] != null ||
+                                        d["hasPhoto"] == true ||
+                                        d["id"] != null ||
+                                        d["localPhotoPath"] != null)
                                     ? Expanded(
                                         flex: 3,
-                                        child: Image.network(
-                                          d["id"] != null
-                                              ? "${Connexion.lien}secretariat/departement/photo/${d["id"]}"
-                                              : "${Connexion.lien}secretariat/photo/${e["id"]}/$index",
-                                          errorBuilder:
-                                              (context, error, stackTrace) {
-                                            return const SizedBox.shrink();
-                                          },
-                                        )
+                                        child: _departmentImage(d, index),
                                         // .memory(
                                         //   Uint8List.fromList(
                                         //     json.decode(d["photo"]).cast<int>(),
                                         //   ),
                                         // ),
-                                        )
+                                      )
                                     : Container(),
                                 Expanded(
                                   flex: 6,

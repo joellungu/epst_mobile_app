@@ -20,9 +20,17 @@ class BibliothequeClasse {
   factory BibliothequeClasse.fromCourses(List<Map<String, dynamic>> courses) {
     final first = courses.first;
     final name = _firstNotEmpty([
+      _join([
+        first['option'],
+        first['niveau'],
+      ]),
+      _join([
+        first['section'],
+        first['niveau'],
+      ]),
       first['nomClasse'],
-      first['niveau'],
       first['classe'],
+      first['niveau'],
       _clean(first['cls']).isEmpty ? '' : '${_clean(first['cls'])}e',
     ]);
 
@@ -42,14 +50,16 @@ class BibliothequeClasse {
     int totalCours = 0,
   }) {
     final labelParts = [
+      _firstNotEmpty([json['option'], json['section']]),
       json['niveau'],
       json['cycle'],
-      _firstNotEmpty([json['option'], json['section']]),
       json['nom'],
     ].map(_clean).where((value) => value.isNotEmpty).toList();
     final name = _firstNotEmpty([
-      json['nomClasse'],
       labelParts.join(' '),
+      _join([json['option'], json['niveau']]),
+      _join([json['section'], json['niveau']]),
+      json['nomClasse'],
       json['classe'],
       json['niveau'],
     ]);
@@ -89,8 +99,24 @@ class BibliothequeClasse {
     );
   }
 
+  String get displayName {
+    final priority = _join([
+      _firstNotEmpty([option, section]),
+      niveau,
+    ]);
+    return _firstNotEmpty([priority, nom, niveau, option, section, 'Classe']);
+  }
+
+  String get detailsLabel {
+    return [
+      cycle,
+      section == option ? '' : section,
+      nom == displayName ? '' : nom,
+    ].where((e) => e.isNotEmpty).join(' - ');
+  }
+
   String get shortLabel {
-    final value = _firstNotEmpty([niveau, nom]);
+    final value = _firstNotEmpty([niveau, option, section, nom]);
     if (value.isEmpty) {
       return '-';
     }
@@ -110,5 +136,9 @@ class BibliothequeClasse {
       }
     }
     return '';
+  }
+
+  static String _join(List<dynamic> values) {
+    return values.map(_clean).where((value) => value.isNotEmpty).join(' ');
   }
 }

@@ -120,10 +120,9 @@ Page resource error:
       //   //"https://www.efoad.minepst.gouv.cd",
       // ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controlleur!.reload();
-        },
-        child: const Icon(Icons.sync),
+        tooltip: "Rafraîchir",
+        onPressed: _controller.reload,
+        child: const Icon(Icons.refresh),
       ),
     );
   }

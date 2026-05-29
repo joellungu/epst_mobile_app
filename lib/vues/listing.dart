@@ -7,7 +7,7 @@ import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 // #enddocregion platform_imports
 
 class Listing extends StatefulWidget {
-  String? titre;
+  final String? titre;
 
   Listing({Key? key, this.titre}) : super(key: key);
 
@@ -134,10 +134,9 @@ Page resource error:
         // ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controlleur!.reload();
-        },
-        child: const Icon(Icons.sync),
+        tooltip: "Rafraîchir",
+        onPressed: _controller.reload,
+        child: const Icon(Icons.refresh),
       ),
     );
   }

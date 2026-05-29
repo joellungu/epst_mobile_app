@@ -153,11 +153,7 @@ class _ClasseTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final details = [
-      classe.cycle,
-      classe.section,
-      classe.option,
-    ].where((e) => e.isNotEmpty).join(' - ');
+    final details = classe.detailsLabel;
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 6),
@@ -190,7 +186,7 @@ class _ClasseTile extends StatelessWidget {
           ),
         ),
         title: Text(
-          classe.nom,
+          classe.displayName,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(

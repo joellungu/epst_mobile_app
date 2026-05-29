@@ -1,5 +1,3 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:epst_app/widgets/noConnectingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 // Import for Android features.
@@ -86,7 +84,7 @@ Page resource error:
           );
         },
       )
-      ..loadRequest(Uri.parse('https://edu-nc.gouv.cd/infos-et-blogs'));
+      ..loadRequest(Uri.parse('https://edu-nc.gouv.cd'));
 
     // #docregion platform_features
     if (controller.platform is AndroidWebViewController) {
@@ -107,6 +105,11 @@ Page resource error:
       // ),
       body: WebViewWidget(
         controller: _controller,
+      ),
+      floatingActionButton: FloatingActionButton(
+        tooltip: "Rafraîchir",
+        onPressed: _controller.reload,
+        child: const Icon(Icons.refresh),
       ),
     );
   }
