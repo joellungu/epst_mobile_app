@@ -20,7 +20,7 @@ class Ige extends StatefulWidget {
   //
   bool? appB;
   //
-  Ige({Key? key, this.titre, this.appB: false}) : super(key: key);
+  Ige({Key? key, this.titre, this.appB = false}) : super(key: key);
   //
   @override
   State<StatefulWidget> createState() {

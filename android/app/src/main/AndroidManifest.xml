@@ -35,6 +35,7 @@
         android:label="education app"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"        
+        android:networkSecurityConfig="@xml/network_security_config"
         android:requestLegacyExternalStorage="true"
     >
         <activity

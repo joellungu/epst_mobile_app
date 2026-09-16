@@ -7,7 +7,7 @@ class AttestationReussit extends GetView<MagasinController> {
   //
   bool? localData;
   //
-  AttestationReussit({Key? key, this.titre, this.localData: true})
+  AttestationReussit({Key? key, this.titre, this.localData = true})
       : super(key: key) {
     controller.getListeMag(4, localData!);
   }

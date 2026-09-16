@@ -91,7 +91,7 @@ class IdentificationController extends GetxController with StateMixin<List> {
       } else if (e["role"] == 16 || e["role"] == 17 || e["role"] == 18) {
         //Les enregistreurs
         Get.to(Ministre());
-      } else if (e["role"] == 19 || e["role"] == 20) {
+      } else if (e["role"] == 19 || e["role"] == 20 || e["role"] == 21) {
         Get.to(
           inspecteur_cours_distant.Accueil(
             Map<String, dynamic>.from(e),
@@ -150,7 +150,7 @@ class IdentificationController extends GetxController with StateMixin<List> {
           pass = true;
           Get.to(Sernie(titre: "SERNIE"));
           break;
-        } else if (e["role"] == 19 || e["role"] == 20) {
+        } else if (e["role"] == 19 || e["role"] == 20 || e["role"] == 21) {
           pass = true;
           Get.to(
             inspecteur_cours_distant.Accueil(
