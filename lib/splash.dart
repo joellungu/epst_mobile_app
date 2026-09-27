@@ -74,7 +74,7 @@ class Splash extends StatelessWidget {
           height: Get.size.height / 2,
           width: Get.size.width,
           child: Image.asset(
-            "assets/Logo EDUC-APP-FINAL.png",
+            "assets/logo_min_edu_nc.png",
             fit: BoxFit.contain,
           ),
         ),
@@ -108,7 +108,7 @@ class Splash extends StatelessWidget {
                 height: Get.size.height / 2,
                 width: Get.size.width,
                 child: Image.asset(
-                  "assets/Logo EDUC-APP-FINAL.png",
+                  "assets/logo_min_edu_nc.png",
                   fit: BoxFit.contain,
                 ),
               ),

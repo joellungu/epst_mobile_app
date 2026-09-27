@@ -60,7 +60,7 @@ class _ResultatExetat extends State<ResultatExetat> {
         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Image.asset(
-            "assets/LOGO-MINEPST-BON.png",
+            "assets/logo_min_edu_nc.png",
             height: 200,
             width: 200,
             //color: Colors.white,

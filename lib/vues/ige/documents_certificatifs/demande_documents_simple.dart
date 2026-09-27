@@ -143,7 +143,7 @@ class _DemandeDocument extends State<DemandeDocumentsSimple> {
             width: 200,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: ExactAssetImage("assets/LOGO-MINEPST-BON.png"),
+                image: ExactAssetImage("assets/logo_min_edu_nc.png"),
               ),
             ),
           ),

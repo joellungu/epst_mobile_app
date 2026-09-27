@@ -1,8 +1,7 @@
+import 'package:epst_app/vues/parcours_scolaire/espace_parent.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:professeurs_app/pages/login/connexion.dart';
-import 'package:professeurs_app/pages/splash.dart';
-import 'package:smart_keslassi_parent/pages/accueil.dart';
 
 class LoginChoicePage extends StatelessWidget {
   LoginChoicePage();
@@ -33,12 +32,11 @@ class LoginChoicePage extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Action parent
-                    print("Salut");
-                    //Get.to(Accueil());
+                    // Action parent — espace parent EDU-NC interne
                     Navigator.of(context).push(
                       MaterialPageRoute<void>(
-                        builder: (BuildContext context) => Accueil(),
+                        builder: (BuildContext context) =>
+                            const EspaceParent(),
                       ),
                     );
                   },

@@ -32,9 +32,9 @@ class _AccueilEnseignant extends State<AccueilEnseignant> {
               isScrollable: true,
               tabAlignment: TabAlignment.center,
               tabs: [
-                Tab(text: 'Gestion Classe'),
-                Tab(text: 'Formation en ligne Ens.'),
-                Tab(text: 'Bibliothèque'),
+                Tab(icon: Icon(Icons.class_outlined, size: 20), text: 'Gestion Classe'),
+                Tab(icon: Icon(Icons.laptop_chromebook_outlined, size: 20), text: 'Formation en ligne Ens.'),
+                Tab(icon: Icon(Icons.library_books_outlined, size: 20), text: 'Bibliothèque'),
               ],
             ),
             const SizedBox(height: 10),

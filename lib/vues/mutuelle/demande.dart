@@ -236,7 +236,7 @@ class _Demande extends State<Demande> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const Text("Identité agent EPST"),
+              const Text("Identité agent EDU-NC"),
               const SizedBox(
                 height: 10,
               ),

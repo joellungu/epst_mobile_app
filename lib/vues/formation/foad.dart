@@ -68,7 +68,7 @@ class _FOAD extends State<FOAD> {
                                 alignment: Alignment.center,
                                 padding: EdgeInsets.all(pd),
                                 // child: Image.asset(
-                                //   "assets/LOGO-MINEPST-BON.png",
+                                //   "assets/logo_min_edu_nc.png",
                                 //   color: Colors.blue,
                                 //   colorBlendMode: BlendMode.color,
                                 // ), //
@@ -144,7 +144,7 @@ class _FOAD extends State<FOAD> {
                   //               alignment: Alignment.center,
                   //               padding: EdgeInsets.all(pd),
                   //               // child: Image.asset(
-                  //               //   "assets/LOGO-MINEPST-BON.png",
+                  //               //   "assets/logo_min_edu_nc.png",
                   //               //   color: Colors.blue,
                   //               //   colorBlendMode: BlendMode.color,
                   //               // ), //
@@ -220,7 +220,7 @@ class _FOAD extends State<FOAD> {
                                 alignment: Alignment.center,
                                 padding: EdgeInsets.all(pd),
                                 // child: Image.asset(
-                                //   "assets/LOGO-MINEPST-BON.png",
+                                //   "assets/logo_min_edu_nc.png",
                                 //   color: Colors.blue,
                                 //   colorBlendMode: BlendMode.color,
                                 // ), //
@@ -295,7 +295,7 @@ class _FOAD extends State<FOAD> {
                   //               alignment: Alignment.center,
                   //               padding: EdgeInsets.all(pd),
                   //               // child: Image.asset(
-                  //               //   "assets/LOGO-MINEPST-BON.png",
+                  //               //   "assets/logo_min_edu_nc.png",
                   //               //   color: Colors.blue,
                   //               //   colorBlendMode: BlendMode.color,
                   //               // ), //

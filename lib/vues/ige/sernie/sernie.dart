@@ -63,7 +63,7 @@ class _Sernie extends State<Sernie> {
             //             topRight: Radius.circular(10),
             //           )),
             //           child: Image.asset(
-            //             "assets/LOGO-MINEPST-BON.png",
+            //             "assets/logo_min_edu_nc.png",
             //             color: Colors.blue,
             //             colorBlendMode: BlendMode.color,
             //           ),
@@ -129,7 +129,7 @@ class _Sernie extends State<Sernie> {
                         decoration: BoxDecoration(
                           image: const DecorationImage(
                             image: ExactAssetImage(
-                              "assets/LOGO-MINEPST-BON.png",
+                              "assets/logo_min_edu_nc.png",
                             ),
                           ),
                           borderRadius: BorderRadius.circular(25),
@@ -182,7 +182,7 @@ class _Sernie extends State<Sernie> {
             //             topRight: Radius.circular(10),
             //           )),
             //           child: Image.asset(
-            //             "assets/LOGO-MINEPST-BON.png",
+            //             "assets/logo_min_edu_nc.png",
             //             color: Colors.blue,
             //             colorBlendMode: BlendMode.color,
             //           ),
@@ -249,7 +249,7 @@ class _Sernie extends State<Sernie> {
                         decoration: BoxDecoration(
                           image: const DecorationImage(
                             image: ExactAssetImage(
-                              "assets/LOGO-MINEPST-BON.png",
+                              "assets/logo_min_edu_nc.png",
                             ),
                           ),
                           borderRadius: BorderRadius.circular(25),

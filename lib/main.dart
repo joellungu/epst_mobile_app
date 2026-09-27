@@ -91,7 +91,7 @@ void main() async {
       Get.put(LoginEnseignantController());
   //
   runApp(
-    Epst(),
+    EduNcApp(),
   );
   //Timer(const Duration(seconds: 5), () {
   //load();
@@ -99,8 +99,8 @@ void main() async {
   //
 }
 
-class Epst extends StatelessWidget {
-  Epst({
+class EduNcApp extends StatelessWidget {
+  EduNcApp({
     Key? key,
   }) : super(key: key);
 
@@ -110,7 +110,7 @@ class Epst extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'EPST APP',
+      title: 'EDU-NC',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,

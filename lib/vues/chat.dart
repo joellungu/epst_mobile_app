@@ -170,7 +170,7 @@ class _Chat extends State<Chat> {
                 const SizedBox(
                   width: 10,
                 ),
-                const Text("Agent DGC/EPST"),
+                const Text("Agent EDU-NC"),
               ],
             ),
           ),

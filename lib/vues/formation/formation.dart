@@ -1,7 +1,7 @@
 import 'package:enseignement_en_ligne/pages/login/login.dart' as student;
 import 'package:epst_app/vues/bibliotheques/bibliotheque.dart';
+import 'package:epst_app/vues/parcours_scolaire/espace_parent.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_keslassi_parent/pages/accueil.dart';
 
 // ignore: must_be_immutable
 class Formation extends StatefulWidget {
@@ -30,16 +30,16 @@ class _Formation extends State<Formation> {
               isScrollable: true,
               tabAlignment: TabAlignment.center,
               tabs: const [
-                Tab(text: 'Parcours scolaire'),
-                Tab(text: 'Ma classe en ligne'),
-                Tab(text: 'Bibliothèque'),
+                Tab(icon: Icon(Icons.timeline_outlined, size: 20), text: 'Parcours scolaire'),
+                Tab(icon: Icon(Icons.videocam_outlined, size: 20), text: 'Ma classe en ligne'),
+                Tab(icon: Icon(Icons.library_books_outlined, size: 20), text: 'Bibliothèque'),
               ],
             ),
             const SizedBox(height: 10),
             Expanded(
               child: TabBarView(
                 children: [
-                  Accueil(),
+                  EspaceParent(),
                   const student.Login(embedded: true),
                   Bibliotheque(propriete: 'Eleve'),
                 ],

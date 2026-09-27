@@ -58,7 +58,7 @@ class _Identification extends State<Identification> {
             //             topRight: Radius.circular(10),
             //           )),
             //           child: Image.asset(
-            //             "assets/LOGO-MINEPST-BON.png",
+            //             "assets/logo_min_edu_nc.png",
             //             color: Colors.blue,
             //             colorBlendMode: BlendMode.color,
             //           ),
@@ -124,7 +124,7 @@ class _Identification extends State<Identification> {
                         decoration: BoxDecoration(
                           image: const DecorationImage(
                             image: ExactAssetImage(
-                              "assets/LOGO-MINEPST-BON.png",
+                              "assets/logo_min_edu_nc.png",
                             ),
                           ),
                           borderRadius: BorderRadius.circular(25),
@@ -177,7 +177,7 @@ class _Identification extends State<Identification> {
             //             topRight: Radius.circular(10),
             //           )),
             //           child: Image.asset(
-            //             "assets/LOGO-MINEPST-BON.png",
+            //             "assets/logo_min_edu_nc.png",
             //             color: Colors.blue,
             //             colorBlendMode: BlendMode.color,
             //           ),
@@ -243,7 +243,7 @@ class _Identification extends State<Identification> {
                         decoration: BoxDecoration(
                           image: const DecorationImage(
                             image: ExactAssetImage(
-                              "assets/LOGO-MINEPST-BON.png",
+                              "assets/logo_min_edu_nc.png",
                             ),
                           ),
                           borderRadius: BorderRadius.circular(25),

@@ -89,10 +89,10 @@ class _Coure extends State<documents_officiels> {
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                       )),
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
+                      child: const Icon(
+                        Icons.gavel_outlined,
+                        size: 64,
                         color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
                       ),
                     ),
                   ),
@@ -161,10 +161,10 @@ class _Coure extends State<documents_officiels> {
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                       )),
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
+                      child: const Icon(
+                        Icons.notifications_outlined,
+                        size: 64,
                         color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
                       ),
                     ),
                   ),
@@ -233,10 +233,10 @@ class _Coure extends State<documents_officiels> {
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                       )),
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
+                      child: const Icon(
+                        Icons.note_alt_outlined,
+                        size: 64,
                         color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
                       ),
                     ),
                   ),
@@ -305,10 +305,10 @@ class _Coure extends State<documents_officiels> {
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                       )),
-                      child: Image.asset(
-                        "assets/LOGO-MINEPST-BON.png",
+                      child: const Icon(
+                        Icons.voicemail_outlined,
+                        size: 64,
                         color: Colors.blue,
-                        colorBlendMode: BlendMode.color,
                       ),
                     ),
                   ),

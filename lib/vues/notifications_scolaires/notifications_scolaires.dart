@@ -45,10 +45,10 @@ class _NotificationsScolaires extends State<NotificationsScolaires> {
     //{"nom": "Site", "icon": Icons.language},
     //{"nom": "DINACOPE", "icon": Icons.people},
     {"nom": "Chat avec un agent", "icon": Icons.chat},
-    {"nom": "Dépot plainte", "icon": Icons.policy},
-    {"nom": "Demande Docs Scolaires", "icon": Icons.article},
-    {"nom": "Resultat Examens d'Etat", "icon": Icons.display_settings},
-    {"nom": "Demande service", "icon": Icons.seven_k_rounded},
+    {"nom": "Dépot plainte", "icon": Icons.report_problem_outlined},
+    {"nom": "Demande Docs Scolaires", "icon": Icons.article_outlined},
+    {"nom": "Resultat Examens d'Etat", "icon": Icons.school_outlined},
+    {"nom": "Demande service", "icon": Icons.miscellaneous_services_outlined},
   ];
   //
   //

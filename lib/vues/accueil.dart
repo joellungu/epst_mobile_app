@@ -46,90 +46,18 @@ class _Accueil extends State<Accueil> {
     //"Demande docs et services d'EDUCATION",
     //"Actualilé",
     //"Mutuelle de santé",
-    //"EPST Kelasi",
   ];
 
   @override
   void initState() {
+    // Icônes distinctes et cohérentes avec chaque libellé de `liste`
     listeIcons = [
-      // Image.asset(
-      //   "assets/FOAD.jpg",
-      //   color: Colors.blue,
-      //   colorBlendMode: BlendMode.color,
-      // ),
-
-      Image.asset(
-        "assets/images-n.png",
-        color: Colors.blue,
-        colorBlendMode: BlendMode.colorDodge,
-      ),
-      // Image.asset(
-      //   "assets/LOGO-MINEPST-BON.png",
-      //   // color: Colors.blue,
-      //   // colorBlendMode: BlendMode.color,
-      // ), //
-      Image.asset(
-        "assets/logo-mag.png",
-        color: Colors.blue,
-        colorBlendMode: BlendMode.color,
-      ),
-      //
-      Image.asset(
-        "assets/LOGO-MINEPST-BON.png",
-        // color: Colors.blue,
-        // colorBlendMode: BlendMode.color,
-      ),
-      Image.asset(
-        "assets/LOGO-MINEPST-BON.png",
-        // color: Colors.blue,
-        // colorBlendMode: BlendMode.color,
-      ),
-      Image.asset(
-        "assets/LOGO-MINEPST-BON.png",
-        // color: Colors.blue,
-        // colorBlendMode: BlendMode.color,
-      ),
-      Image.asset(
-        "assets/LOGO-MINEPST-BON.png",
-        //color: Colors.blue,
-        //colorBlendMode: BlendMode.color,
-      ),
-      Image.asset(
-        "assets/LOGO-MINEPST-BON.png",
-        fit: BoxFit.fill,
-        // color: Colors.blue,
-        // colorBlendMode: BlendMode.color,
-      ),
-      // Image.asset(
-      //   "assets/LOGO-MINEPST-BON.png",
-      //   color: Colors.white,
-      //   colorBlendMode: BlendMode.dst,
-      //   height: 100,
-      //   width: 100,
-      // ),
-      // //
-      // Image.asset(
-      //   "assets/LOGO-MINEPST-BON.png",
-      //   // color: Colors.blue,
-      //   // colorBlendMode: BlendMode.color,
-      // ),
-
-      Image.asset(
-        "assets/Logo_MESP_ok.png",
-        fit: BoxFit.fill,
-        // height: 100,
-        // width: 100,
-        color: Colors.blue,
-        colorBlendMode: BlendMode.color,
-      ),
-      // Image.asset(
-      //   "assets/epst_kelasi.png",
-      //   fit: BoxFit.fill,
-      //   height: 100,
-      //   width: 100,
-      //   // color: Colors.blue,
-      //   // colorBlendMode: BlendMode.color,
-      // ),
+      const Icon(Icons.chat_outlined, size: 48, color: Colors.blue),
+      const Icon(Icons.newspaper_outlined, size: 48, color: Colors.blue),
+      const Icon(Icons.report_problem_outlined, size: 48, color: Colors.blue),
+      const Icon(Icons.policy_outlined, size: 48, color: Colors.blue),
+      const Icon(Icons.business_outlined, size: 48, color: Colors.blue),
+      const Icon(Icons.bar_chart_outlined, size: 48, color: Colors.blue),
     ];
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitUp]);
@@ -145,7 +73,7 @@ class _Accueil extends State<Accueil> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "EDUCATION APP",
+          "EDU-NC",
           style: TextStyle(
             fontSize: 20,
             color: Colors.black,
@@ -456,10 +384,10 @@ class _Accueil extends State<Accueil> {
           color: Colors.black,
         ),
         items: [
-          choix("Annonces", "svg/SolarChatUnreadOutline.svg", 0),
-          choix("Administration", "svg/SolarHomeAngleOutline.svg", 1),
+          choix("Annonces", "svg/SolarHomeAngleOutline.svg", 0),
+          choix("Administration", "svg/SolarSettingsOutline.svg", 1),
           choix("Je suis élève", "svg/SolarBook2Outline.svg", 2),
-          choix("Je suis prof", "svg/SolarClipboardTextLinear.svg", 3),
+          choix("Je suis prof", "svg/SolarSquareAcademicCap2Linear.svg", 3),
           // choix(
           //     "Parcours scolaire", "svg/SolarSquareAcademicCap2Linear.svg", 4),
           choix("Recherche", "HugeiconsSearch01.svg", 5),

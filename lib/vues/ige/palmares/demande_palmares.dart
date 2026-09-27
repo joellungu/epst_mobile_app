@@ -144,7 +144,7 @@ class _DemandePalmares extends State<DemandePalmares> {
         //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Image.asset(
-            "assets/LOGO-MINEPST-BON.png",
+            "assets/logo_min_edu_nc.png",
             height: 200,
             width: 200,
             //color: Colors.white,

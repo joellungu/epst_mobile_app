@@ -39,7 +39,7 @@ class ListResultat extends StatelessWidget {
                 width: 50,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: ExactAssetImage("assets/LOGO-MINEPST-BON.png"),
+                    image: ExactAssetImage("assets/logo_min_edu_nc.png"),
                   ),
                 ),
               ),
@@ -98,7 +98,7 @@ class DetailsPalmares extends StatelessWidget {
       ),
       body: ListView(padding: const EdgeInsets.all(10), children: [
         Image.asset(
-          "assets/LOGO-MINEPST-BON.png",
+          "assets/logo_min_edu_nc.png",
           height: 100,
           width: 100,
           //color: Colors.white,

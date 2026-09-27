@@ -40,7 +40,6 @@ class _SearchPageState extends State<SearchPage> {
     //"Demande docs et services d'EDUCATION",
     //"Actualilé",
     //"Mutuelle de santé",
-    //"EPST Kelasi",
     //
     "Consultation résultats d'examen d'etat", //Get.to(const ResultatExetat());
     "Documents certificatifs", //Get.to(Documents(titre: "Documents"));
@@ -55,6 +54,24 @@ class _SearchPageState extends State<SearchPage> {
   ];
 
   String query = "";
+
+  // Icônes cohérentes avec chaque service (même ordre que `liste`)
+  final List<IconData> listeIcons = [
+    Icons.chat_outlined, // Chat avec agent EDU-NC
+    Icons.newspaper_outlined, // Magazine EDU-NC
+    Icons.report_problem_outlined, // MGP dépôt plainte
+    Icons.policy_outlined, // Réformes EDU-NC
+    Icons.business_outlined, // Sécretariat général
+    Icons.bar_chart_outlined, // Statistique de EDU-NC
+    Icons.school_outlined, // Consultation résultats d'examen d'etat
+    Icons.folder_open_outlined, // Documents certificatifs
+    Icons.emoji_events_outlined, // Palmarès exetat
+    Icons.badge_outlined, // Identification epreuves certificative
+    Icons.fingerprint_outlined, // Identification SERNIE
+    Icons.swap_horiz_outlined, // Transfère élève
+    Icons.home_work_outlined, // Identification école
+    Icons.health_and_safety_outlined, // M.E.S.P
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +89,7 @@ class _SearchPageState extends State<SearchPage> {
             padding: const EdgeInsets.all(8.0),
             child: TextField(
               decoration: InputDecoration(
-                hintText: "Rechercher un fruit...",
+                hintText: "Rechercher un service...",
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12.0),
@@ -89,92 +106,97 @@ class _SearchPageState extends State<SearchPage> {
             child: ListView.builder(
               itemCount: filteredItems.length,
               itemBuilder: (context, index) {
+                final String item = filteredItems[index];
+                final int realIndex = liste.indexOf(item);
                 return ListTile(
                   onTap: () {
                     //
-                    if (index == 0) {
+                    if (realIndex == 0) {
                       Get.to(
                         WaitingScreen(),
                       );
                     }
-                    if (index == 1) {
+                    if (realIndex == 1) {
                       Get.to(
                         Magasine(
-                          titre: liste[index],
+                          titre: item,
                         ),
                       );
                     }
-                    if (index == 2) {
+                    if (realIndex == 2) {
                       //
                       Get.to(
                         DepotPlainte(
-                          titre: liste[index],
+                          titre: item,
                         ),
                       );
                     }
-                    if (index == 3) {
+                    if (realIndex == 3) {
                       Get.to(
                         Reforme(
-                          titre: liste[index],
+                          titre: item,
                         ),
                       );
                     }
-                    if (index == 4) {
+                    if (realIndex == 4) {
                       //print("Je suis le cours...");Ige,Ige
                       Get.to(
                         SecretariaGeneral(
-                          titre: liste[index],
+                          titre: item,
                         ),
                       );
                     }
-                    if (index == 5) {
+                    if (realIndex == 5) {
                       //print("Je suis le cours...");Ige,Ige
                       Get.to(
                         Esige(
-                          titre: liste[index],
+                          titre: item,
                         ),
                       );
                     }
-                    // if (index == 6) {
+                    // if (realIndex == 6) {
                     //   //print("Je suis le cours...");Ige,Ige
                     //   Get.to(
                     //     LiveStream(
-                    //       titre: liste[index],
+                    //       titre: item,
                     //     ),
                     //   );
                     // }
                     //
-                    if (index == 6) {
+                    if (realIndex == 6) {
                       Get.to(const ResultatExetat());
                     }
-                    if (index == 7) {
+                    if (realIndex == 7) {
                       Get.to(Documents(titre: "Documents"));
                     }
-                    if (index == 8) {
+                    if (realIndex == 8) {
                       Get.to(const DemandePalmares());
                     }
-                    if (index == 9) {
+                    if (realIndex == 9) {
                       Get.to(Identification(
                           titre: "Identification epreuves certificative"));
                     }
-                    if (index == 10) {
+                    if (realIndex == 10) {
                       Get.to(Sernie(titre: "Identification SERNIE"));
                     }
-                    if (index == 11) {
+                    if (realIndex == 11) {
                       Get.to(Transfere(
                         titre: "Demande de transfère",
                       ));
                     }
-                    if (index == 12) {
+                    if (realIndex == 12) {
                       Get.to(
                           AttestationReussit(titre: "Attestation de réussite"));
                     }
-                    if (index == 13) {
+                    if (realIndex == 13) {
                       Get.to(Mutuelle(titre: "Mutuelle"));
                     }
                   },
-                  leading: const Icon(Icons.menu),
-                  title: Text(filteredItems[index]),
+                  leading: Icon(
+                    listeIcons[realIndex % listeIcons.length],
+                    color: Colors.blue,
+                  ),
+                  title: Text(item),
                 );
               },
             ),

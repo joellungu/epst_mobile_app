@@ -60,6 +60,15 @@ class _Ige extends State<Ige> {
     "M.E.S.P", //Get.to(Mutuelle(titre: "Mutuelle"));
     //"",
   ];
+
+  // Icônes distinctes et cohérentes avec chaque service ci-dessus
+  final List<IconData> serviceIcons = [
+    Icons.badge_outlined,
+    Icons.fingerprint_outlined,
+    Icons.swap_horiz_outlined,
+    Icons.home_work_outlined,
+    Icons.health_and_safety_outlined,
+  ];
   //
   final Random _random = Random();
   //
@@ -158,21 +167,27 @@ class _Ige extends State<Ige> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            height: 50,
-                            width: 150,
+                            height: 44,
+                            width: 44,
+                            alignment: Alignment.center,
                             decoration: BoxDecoration(
-                              image: const DecorationImage(
-                                image:
-                                    ExactAssetImage("assets/logo_min_edu_nc.png"
-                                        //"assets/LOGO-MINEPST-BON.png",
-                                        ),
-                              ),
-                              borderRadius: BorderRadius.circular(25),
-                              //color: Colors.black,
+                              color: Colors.white.withOpacity(0.7),
+                              borderRadius: BorderRadius.circular(22),
                             ),
+                            child: Icon(
+                              serviceIcons[s % serviceIcons.length],
+                              size: 26,
+                              color: Colors.black87,
+                            ),
+                          ),
+                          Image.asset(
+                            "assets/logo_min_edu_nc.png",
+                            height: 36,
+                            width: 90,
+                            fit: BoxFit.contain,
                           ),
                         ],
                       ),

@@ -56,7 +56,7 @@ class EducDeBaseCours extends StatelessWidget {
                       alignment: Alignment.center,
                       padding: EdgeInsets.all(pd),
                       // child: Image.asset(
-                      //   "assets/LOGO-MINEPST-BON.png",
+                      //   "assets/logo_min_edu_nc.png",
                       //   color: Colors.blue,
                       //   colorBlendMode: BlendMode.color,
                       // ), //

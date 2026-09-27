@@ -61,9 +61,9 @@ class _AccueilSg extends State<AccueilSg> {
               isScrollable: true,
               tabAlignment: TabAlignment.center,
               tabs: [
-                Tab(text: 'Secretariat général'),
-                Tab(text: 'Statistiques'),
-                Tab(text: 'Documents admin'),
+                Tab(icon: Icon(Icons.business_outlined, size: 20), text: 'Secretariat général'),
+                Tab(icon: Icon(Icons.bar_chart_outlined, size: 20), text: 'Statistiques'),
+                Tab(icon: Icon(Icons.folder_open_outlined, size: 20), text: 'Documents admin'),
               ],
             ),
             const SizedBox(height: 10),

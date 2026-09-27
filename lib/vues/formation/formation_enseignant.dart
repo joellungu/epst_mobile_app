@@ -52,7 +52,7 @@ class _FormationEnseignent extends State<FormationEnseignent> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => PdfVue(
-                    titre: "LE MAGAZINE DE L'EPST 4  01.12.2021",
+                    titre: "LE MAGAZINE DE EDU-NC 4  01.12.2021",
                   ),
                 ),
               );

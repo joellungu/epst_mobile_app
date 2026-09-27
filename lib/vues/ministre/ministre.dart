@@ -21,7 +21,7 @@ class Ministre extends GetView<MinistreController> {
     return Scaffold(
       backgroundColor: const Color(0xFFF4F6FA),
       appBar: AppBar(
-        title: const Text("Tableau de bord de l'EPST"),
+        title: const Text("Tableau de bord EDU-NC"),
         actions: [
           IconButton(
             tooltip: 'Actualiser',

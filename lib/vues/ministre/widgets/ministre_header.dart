@@ -21,7 +21,7 @@ class MinistreHeader extends StatelessWidget {
       child: Row(
         children: [
           Image.asset(
-            'assets/LOGO-MINEPST-BON.png',
+            'assets/logo_min_edu_nc.png',
             width: 64,
             height: 64,
             fit: BoxFit.contain,

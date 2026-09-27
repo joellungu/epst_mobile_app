@@ -57,7 +57,7 @@ class _Mutuelle extends State<Mutuelle> {
             //             topRight: Radius.circular(10),
             //           )),
             //           child: Image.asset(
-            //             "assets/Logo_MESP_ok.png",
+            //             "assets/logo_min_edu_nc.png",
             //             color: Colors.blue,
             //             colorBlendMode: BlendMode.color,
             //           ),
@@ -123,7 +123,7 @@ class _Mutuelle extends State<Mutuelle> {
                         decoration: BoxDecoration(
                           image: const DecorationImage(
                             image: ExactAssetImage(
-                              "assets/LOGO-MINEPST-BON.png",
+                              "assets/logo_min_edu_nc.png",
                             ),
                           ),
                           borderRadius: BorderRadius.circular(25),
@@ -176,7 +176,7 @@ class _Mutuelle extends State<Mutuelle> {
             //             topRight: Radius.circular(10),
             //           )),
             //           child: Image.asset(
-            //             "assets/Logo_MESP_ok.png",
+            //             "assets/logo_min_edu_nc.png",
             //             color: Colors.blue,
             //             colorBlendMode: BlendMode.color,
             //           ),
@@ -242,7 +242,7 @@ class _Mutuelle extends State<Mutuelle> {
                         decoration: BoxDecoration(
                           image: const DecorationImage(
                             image: ExactAssetImage(
-                              "assets/LOGO-MINEPST-BON.png",
+                              "assets/logo_min_edu_nc.png",
                             ),
                           ),
                           borderRadius: BorderRadius.circular(25),

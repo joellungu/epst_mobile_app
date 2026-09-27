@@ -111,7 +111,7 @@ class TypeCours extends StatelessWidget {
                             alignment: Alignment.center,
                             padding: const EdgeInsets.all(15),
                             // child: Image.asset(
-                            //   "assets/LOGO-MINEPST-BON.png",
+                            //   "assets/logo_min_edu_nc.png",
                             //   color: Colors.blue,
                             //   colorBlendMode: BlendMode.color,
                             // ), //

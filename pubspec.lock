@@ -396,14 +396,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_barcode_scanner_plus:
-    dependency: transitive
-    description:
-      name: flutter_barcode_scanner_plus
-      sha256: "75bcf27d12ad6cd075dcfc8d838cffc254dab89cf9d33ec470faa1f9b4f97296"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.8"
   flutter_cache_manager:
     dependency: "direct main"
     description:
@@ -1686,13 +1678,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  smart_keslassi_parent:
-    dependency: "direct main"
-    description:
-      path: "C:\\Users\\pijol\\Documents\\FlutterProjets\\smart_kelasi-parent"
-      relative: false
-    source: path
-    version: "1.0.0+1"
   socket_io_client:
     dependency: "direct main"
     description:
